@@ -23,5 +23,13 @@ module FarMar
 
       return markets_list
     end
+
+    def self.find(id)
+      markets_list = self.all
+
+      markets_list.find do |instance|
+        instance.id == id
+      end
+    end
   end
 end

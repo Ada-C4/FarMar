@@ -27,4 +27,10 @@ describe FarMar::Market do
       expect(FarMar::Market.all.length).to eq 500
     end
   end
+  describe "self.find(id)" do
+    it "returns the corresponding market name for a particular market id" do
+      id = 400
+      expect(FarMar::Market.find(id).name).to eq "Green Spring Station Farmers Market"
+    end
+  end
 end
