@@ -1,4 +1,4 @@
 require 'simplecov'
-SimpleCove.start
+SimpleCov.start
 
 require "./lib/far_mar"

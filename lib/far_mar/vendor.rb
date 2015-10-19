@@ -1,4 +1,4 @@
 module FarMar
-  class Vender
+  class Vendor
   end
 end

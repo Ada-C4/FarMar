@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe FarMar::Market do
+describe FarMar::Vendor do
   before :each do
-    @vendor = FarMar::vendor.new
+    @vendor = FarMar::Vendor.new
   end
   describe "#initialize" do
     it "creates a new instance" do
