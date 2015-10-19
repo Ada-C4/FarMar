@@ -1,7 +1,7 @@
 module FarMar
 
    class Vendor
-
+     attr_reader :ID, :name, :employees, :market_id
      def self.all
      end
 
