@@ -6,6 +6,8 @@ describe FarMar::Vendor do
   end
 
   describe "initialize" do
-    it "initialize vendor"
+    it "creat a new market" do
+      expect(@vendor.name).to be_a(String)
+    end
   end
 end

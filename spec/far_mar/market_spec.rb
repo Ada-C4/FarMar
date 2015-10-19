@@ -5,7 +5,9 @@ describe FarMar::Market do
     @market = Market.new
   end
 
-  describe "initialize" do
-    it "initialize market"
+  describe "initialize market" do
+    it "creat a new market" do
+      expect(@market.name).to be_a(String)
+    end
   end
 end
