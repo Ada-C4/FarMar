@@ -1,5 +1,5 @@
 module FarMar
-  class Products
+  class Product
 
   # Each product belongs to a vendor. The `vendor_id` field refers to the `FarMar::Vendor` ID field. The `FarMar::Product` data, in order in the CSV, consists of:
   #
@@ -8,7 +8,7 @@ module FarMar
   # 3. Vendor_id - (Fixnum) a reference to which vendor sells this product
 
     def initialize
-      array_of_products = CSV.read("./support/products.csv")
+      array_of_product = CSV.read("./support/products.csv")
     end
   end
 end

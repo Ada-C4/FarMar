@@ -1,5 +1,5 @@
 module FarMar
-  class Sales
+  class Sale
 
   # Each sale belongs to a vendor __AND__ a product. The `vendor_id` and `product_id` fields refer to the `FarMar::Vendor` and `FarMar::Product` ID fields, respectively. The `FarMar::Sale` data, in order in the CSV, consists of:
   #
@@ -10,7 +10,7 @@ module FarMar
   # 5. Product_id - (Fixnum) a refere
 
     def initialize
-      array_of_sales = CSV.read("./support/sales.csv")
+      array_of_sale = CSV.read("./support/sales.csv")
     end
   end
 end
