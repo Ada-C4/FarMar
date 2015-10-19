@@ -2,8 +2,8 @@ require "./spec/spec_helper"
 
 describe FarMar::Sale do
   before :each do
-    @sale1 = FarMar::Sale.new(5, "amount", "purchase_time", "vendor_id", "product_id")
-    @sale2 = FarMar::Sale.new(6, "amount", "purchase_time", "vendor_id", "product_id")
+    @sale1 = FarMar::Sale.new(5, "amount", "2013-11-06 22:57:35 -0800", "vendor_id", "product_id")
+    @sale2 = FarMar::Sale.new(6, "amount", "2013-11-06 22:57:35 -0805", "vendor_id", "product_id")
   end
   describe "#initialize" do
     it "creates new instance of sale" do
