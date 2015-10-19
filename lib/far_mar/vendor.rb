@@ -1,4 +1,4 @@
-# require './suport/vendors.csv'
+# CSV.read('./support/vendors.csv')
 
 module FarMar
 
