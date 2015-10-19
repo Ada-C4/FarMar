@@ -13,14 +13,20 @@ describe FarMar do
           :state => "WA",
           :zip => "98133"
         }
-        expect(FarMar::Market.new(fake_hash)).to be_an_instance_of(FarMar::Market)
+        new_market = FarMar::Market.new(fake_hash)
+        expect(new_market).to be_an_instance_of(FarMar::Market)
+        expect(new_market.id).to eq(1)
+        expect(new_market.name).to eq("Holiday")
+        expect(new_market.zip).to eq("98133")
+
+        # I tried to iterate over the original hash but that was a fail.
+        # fake_hash.each do |k, v|
+        #   expect(new_market.k.to_s).to eq(v)
+        # end
       end
     end
 
     describe ".all" do
-      # before :each do
-      #
-      # end
       it "returns an array of 500 Market objects" do
         all_markets = FarMar::Market.all
         expect(all_markets).to be_an(Array)

@@ -3,13 +3,10 @@ module FarMar
     attr_reader :id, :name, :address, :city, :county, :state, :zip
 
     def initialize(market_hash)
-      @id = market_hash[:id]
-      @name = market_hash[:name]
-      @address = market_hash[:address]
-      @city = market_hash[:city]
-      @county = market_hash[:county]
-      @state = market_hash[:state]
-      @zip = market_hash[:zip]
+      # This block sets each key to an instance variable
+      market_hash.each do |k,v|
+        instance_variable_set("@#{k}", v) unless v.nil?
+      end
     end
 
     # Converts an array to a hash for passing to owner instantiation
