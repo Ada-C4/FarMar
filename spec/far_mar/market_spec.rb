@@ -3,7 +3,7 @@ describe FarMar do
   describe FarMar::Market do
 
     before :each do
-      @market = FarMar::Market.new()
+      @market = FarMar::Market.new
     end
 
     describe ".new" do

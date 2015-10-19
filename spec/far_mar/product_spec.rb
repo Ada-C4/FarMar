@@ -3,7 +3,7 @@ describe FarMar do
   describe FarMar::Product do
 
     before :each do
-      @product = FarMar::Product.new()
+      @product = FarMar::Product.new
     end
 
     describe ".new" do
