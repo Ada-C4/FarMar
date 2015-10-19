@@ -15,7 +15,7 @@ describe FarMar::Product do
     it "returns an array" do
       expect(FarMar::Product.all).to be_an Array
     end
-    it "returns 500 items in array" do
+    it "returns 8193 items in array" do
       expect(FarMar::Product.all.length).to eq 8193
     end
   end
