@@ -3,11 +3,28 @@ require "spec_helper"
 
 describe FarMar::Market do
   before :each do
-    @market = FarMar::Market.new
+    row = [1,"Name", "Address", "City", "County", "State", "Zip"]
+    @market = FarMar::Market.new(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
   end
   describe ".new" do
     it "creates a new instance of Market" do
       expect(@market).to be_an_instance_of FarMar::Market
+    end
+  end
+  describe "#initialize" do
+    it "creates a new instance of market with 7 instance variables" do
+      expect(@market.instance_variables.length).to eq 7
+    end
+    it "creates a new instance of market with @id as an integer" do
+      expect(@market.id.class).to eq Fixnum
+    end
+  end
+  describe "self.all" do
+    it "returns an array of market instances" do
+      expect(FarMar::Market.all).to be_an Array
+    end
+    it "returns an array with 500 market instances" do
+      expect(FarMar::Market.all.length).to eq 500
     end
   end
 end
