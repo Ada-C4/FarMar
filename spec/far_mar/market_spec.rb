@@ -19,4 +19,13 @@ describe FarMar::Market do
       expect(FarMar::Market.all.length).to eq 500
     end
   end
+  describe "#self.find(id)" do
+    it "returns an instance of FarMar::Market" do
+      expect(FarMar::Market.find(1)).to be_instance_of FarMar::Market
+    end
+    it "returns correct instance of FarMar::Market" do
+      expect(FarMar::Market.find(1).name).to eq "People's Co-op Farmers Market"
+      expect(FarMar::Market.find(2).name).to eq "Silverdale Farmers Market"
+    end
+  end
 end

@@ -2,6 +2,8 @@
 module FarMar
   class Market
 
+    attr_reader :name
+
     def initialize(id, name, address, city, county, state, zip)
       @id = id
       @name = name
@@ -24,6 +26,11 @@ module FarMar
     end
 
     def self.find(id)
+
+      FarMar::Market.all.find do |market_instance|
+        market_instance.id == id
+      end
+
     end
 
   end

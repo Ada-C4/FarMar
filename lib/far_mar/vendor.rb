@@ -20,6 +20,7 @@ module FarMar
     end
 
     def self.find(id)
+      
     end
   end
 end
