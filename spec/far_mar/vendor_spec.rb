@@ -6,7 +6,7 @@ describe FarMar::Vendor do
   end
   describe ".new" do
     it "creates a new instance of vendor" do
-      expect(@player).to be_an_instance_of FarMar::Vendor
+      expect(@vendor).to be_an_instance_of FarMar::Vendor
     end
   end
 end
