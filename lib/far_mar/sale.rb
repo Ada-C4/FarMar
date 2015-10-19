@@ -1,6 +1,6 @@
 module FarMar
 
-   class Sales
+   class Sale
    end
-   
+
 end
