@@ -7,7 +7,7 @@ describe FarMar::Product do
 
   describe "initialize Product" do
     it "creat a new product" do
-      expect(@product.name).to eq ""
+      expect(@product).to be_an_instance_of FarMar::Product
     end
   end
 end

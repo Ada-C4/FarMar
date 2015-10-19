@@ -7,7 +7,7 @@ describe FarMar::Sale do
 
   describe "initialize Sale" do
     it "creat a new sale" do
-      expect(@sale.amount).to eq 3
+      expect(@sale).to be_an_instance_of FarMar::Sale
     end
   end
 end

@@ -1,5 +1,4 @@
 require "spec_helper"
-require "./lib/far_mar/market"
 
 describe FarMar::Vendor do
   before :each do
@@ -8,7 +7,7 @@ describe FarMar::Vendor do
 
   describe "initialize" do
     it "creat a new market" do
-      expect(@vendor.name).to eq ""
+      expect(@vendor).to be_an_instance_of FarMar::Vendor 
     end
   end
 end

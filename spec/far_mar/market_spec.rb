@@ -7,7 +7,7 @@ describe FarMar::Market do
 
   describe "initialize market" do
     it "creat a new market" do
-      expect(@market.name).to eq ""
+      expect(@market).to be_an_instance_of FarMar::Market
     end
   end
 end
