@@ -22,13 +22,16 @@ describe FarMar::Market do
 		before :each do
 			@market_array = FarMar::Market.all
 		end
-		it 'returns an array of Market instances' do
+		it 'returns an array' do
 			expect(@market_array).to be_an_instance_of(Array)
 		end
-		it 'contains all the markets in the CSV file' do
-
+		it 'contains FarMar::Market instances' do
+			length = @market_array.length - 1
+			expect(@market_array[rand(0..length)]).to be_an_instance_of(FarMar::Market)
+		end
+		it 'does not have duplicate ids' do
+			
 		end
 	end
-
 
 end

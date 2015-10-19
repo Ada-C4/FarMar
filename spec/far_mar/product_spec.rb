@@ -1,9 +1,11 @@
+require 'spec_helper'
 
+describe FarMar::Product do
 
-module FarMar
-
-	class Product
-
+	describe 'initialize' do
+		it 'creates an instance of a FarMar::Product' do
+			
+		end
 	end
 
 end
