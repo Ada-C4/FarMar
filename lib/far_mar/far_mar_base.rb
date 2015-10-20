@@ -22,5 +22,20 @@ module FarMar
       end
       return objects
     end
+
+    def self.find(id)
+      if id.class != Fixnum
+        return nil
+      end
+      csv_file = CSV.read(self::FILENAME)
+      match_record = csv_file.find { |a| a[0].to_i == id}
+      if match_record == nil
+        return nil
+      else
+        hash = self.convert_to_hash(match_record)
+        return self.new(hash)
+      end
+    end
+
   end
 end
