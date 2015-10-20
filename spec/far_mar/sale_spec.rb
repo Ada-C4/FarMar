@@ -26,5 +26,16 @@ describe FarMar do
         expect(all_sales.length).to eq(12798)
       end
     end
+
+    describe ".find(id)" do
+      it "returns Sale object for matching ID" do
+        result = FarMar::Sale.find(19)
+        expect(result).to be_an_instance_of(FarMar::Sale)
+        expect(result.id).to eq(19)
+        expect(result.amount).to eq(9035)
+        expect(result.vendor_id).to eq(4)
+        expect(result.product_id).to eq(6)
+      end
+    end
   end
 end
