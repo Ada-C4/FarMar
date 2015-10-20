@@ -13,6 +13,16 @@ module FarMar
       market = FarMar::Market.find(@market_id)
     end
 
+    def products
+      products_list = FarMar::Product.all
+
+      vendor_products = products_list.find_all do |instance|
+        @id == instance.vendor_id
+      end
+
+      return vendor_products
+    end
+
     def self.all
       vendors_list = []
       vendors_csv = CSV.read("./support/vendors.csv")

@@ -34,11 +34,16 @@ describe FarMar::Market do
     end
   end
   describe "#vendors" do
-    it "returns an array of vendors for a particular market" do
+    before :each do
       @id = 1
-      expect(FarMar::Market.find(@id).vendors).to be_an Array
-      expect(FarMar::Market.find(@id).vendors.length).to eq 6
-      expect(FarMar::Market.find(@id).vendors[0]).to be_an_instance_of FarMar::Vendor
+      @market = FarMar::Market.find(@id)
+    end
+    it "returns an array of vendors for a particular market" do
+      expect(@market.vendors).to be_an Array
+      expect(@market.vendors.length).to eq 6
+    end
+    it "checks that element of the array returned by #vendors is an instance of the Vendor class" do
+      expect(@market.vendors[0]).to be_an_instance_of FarMar::Vendor
     end
   end
 end

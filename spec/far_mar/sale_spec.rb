@@ -33,7 +33,8 @@ describe FarMar::Sale do
     end
     it "returns the corresponding product name for a particular sale" do
       @id = 11000
-      expect(FarMar::Product.find(FarMar::Sale.find(@id).product_id).name). to eq "Fuzzy Burrito"
+      @sale = FarMar::Sale.find(@id)
+      expect(FarMar::Product.find(@sale.product_id).name). to eq "Fuzzy Burrito"
     end
   end
 end

@@ -33,14 +33,34 @@ describe FarMar::Vendor do
     end
     it "returns the corresponding Market name for a particular vendor" do
       @id = 2188
-      expect(FarMar::Market.find(FarMar::Vendor.find(@id).market_id).name). to eq "Selma/Dallas County Farmers Market"
+      @vendor = FarMar::Vendor.find(@id)
+      expect(FarMar::Market.find(@vendor.market_id).name). to eq "Selma/Dallas County Farmers Market"
     end
   end
   describe "#market" do
-    it "returns the instance of FarMar::Market that is associated with the vendor" do
+    before :each do
       @id = 1
-      expect(FarMar::Vendor.find(@id).market).to be_an_instance_of FarMar::Market
-      expect(FarMar::Vendor.find(@id).market.name).to eq "People's Co-op Farmers Market"
+      @vendor = FarMar::Vendor.find(@id)
+    end
+    it "returns the instance of FarMar::Market that is associated with the vendor" do
+      expect(@vendor.market).to be_an_instance_of FarMar::Market
+      expect(@vendor.market.name).to eq "People's Co-op Farmers Market"
+    end
+  end
+  describe "#products" do
+    before :each do
+      @id = 2
+      @vendor = FarMar::Vendor.find(@id)
+    end
+    it "returns an array of products for a particular vendor" do
+      expect(@vendor.products).to be_an Array
+      expect(@vendor.products.length).to eq 2
+    end
+    it "checks that an element of the array returned by #products is an instance of the Product class" do
+      expect(@vendor.products[0]).to be_an_instance_of FarMar::Product
+    end
+    it "checks the name of the first product in the array of vendor products" do
+      expect(@vendor.products[0].name).to eq "Fierce Greens"
     end
   end
 end
