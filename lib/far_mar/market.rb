@@ -31,8 +31,12 @@ module FarMar
       end
     end
 
-    def vendors(id)
-      
+    def vendors
+
+      FarMar::Vendor.all.find_all do |vendor_instance|
+        vendor_instance.market_id == @id
+      end
+
     end
 
   end
