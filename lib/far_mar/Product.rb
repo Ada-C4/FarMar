@@ -12,5 +12,10 @@ module FarMar
         FarMar::Product.new(row[0], row[1], row[2])
       end
     end
+    def self.find(id)
+      FarMar::Product.all.find do |product|
+        product.id == id
+      end
+    end
   end
 end

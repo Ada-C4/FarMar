@@ -16,4 +16,9 @@ describe FarMar::Product do
       expect(FarMar::Product.all.length).to eq 8193
     end
   end
+  describe "#find(id)" do
+    it "returns the product instance with an id matching the parameter" do
+      expect(FarMar::Product.find(14).name).to eq "Stupendous Carrots"
+    end
+  end
 end
