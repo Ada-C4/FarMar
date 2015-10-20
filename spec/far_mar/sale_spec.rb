@@ -4,13 +4,8 @@ describe FarMar do
   describe FarMar::Sale do
     describe "#initialize" do
       it "creates a new Sale instance" do
-        fake_hash = {
-          :id =>  1,
-          :amount => 9290,
-          :purchase_time => "2013-11-12 04:36:56 -0800",
-          :vendor_id => 5,
-          :product_id => 12
-        }
+        fake_array = ["1", "9290", "2013-11-12 04:36:56 -0800", "5", "12"]
+        fake_hash = FarMar::Sale.convert_to_hash(fake_array)
         sale = FarMar::Sale.new(fake_hash)
         expect(sale).to be_an_instance_of(FarMar::Sale)
         expect(sale.id).to eq(1)
@@ -28,6 +23,7 @@ describe FarMar do
         expect(all_sales[0].product_id).to eq(1)
         expect(all_sales[-1].id).to eq(12001)
         expect(all_sales[-1].product_id).to eq(8192)
+        expect(all_sales.length).to eq(12798)
       end
     end
   end
