@@ -38,4 +38,11 @@ describe FarMar::Vendor do
       expect(@vendor.market.name).to eq "People's Co-op Farmers Market"
     end
   end
+
+  describe "#products" do
+    it "returns all Products for the specific vendor instance" do
+      expect(@vendor.products.length).to eq 1
+      expect(@vendor.products[0].name). to eq "Dry Beets"
+    end
+  end
 end
