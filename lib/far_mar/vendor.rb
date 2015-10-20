@@ -1,6 +1,8 @@
 
 module FarMar
   class Vendor
+    attr_reader :id, :name
+
     def initialize(id, name, num_employees, market_id)
       @id = id
       @name = name
@@ -20,7 +22,9 @@ module FarMar
     end
 
     def self.find(id)
-      
+      FarMar::Vendor.all.find do |vendor_instance|
+        vendor_instance.id == id
+      end
     end
   end
 end
