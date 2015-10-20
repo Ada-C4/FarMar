@@ -32,9 +32,9 @@ describe FarMar::Vendor do
 	end
 
 	describe '.find(id)' do
-		it 'returns the vendor for a given id' do
-			vendor = [10,"Kertzmann LLC",11,3]
-			expect(FarMar::Vendor.find(10)).to eq(vendor)
+		it 'returns a vendor instance' do
+			vendor = FarMar::Vendor.new(10,"Kertzmann LLC",11,3)
+			expect(FarMar::Vendor.find(10).name).to eq("Kertzmann LLC")
 		end
 	end
 

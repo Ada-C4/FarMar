@@ -6,10 +6,10 @@ module FarMar
 		attr_reader :vendor_id, :name, :employees, :market_id
 
 		def initialize(vendor_id, name, employees, market_id)
-			@vendor_id = vendor_id
+			@vendor_id = vendor_id.to_i
 			@name = name
 			@employees = employees
-			@market_id = market_id
+			@market_id = market_id.to_i
 		end
 
 		def self.all
@@ -22,9 +22,10 @@ module FarMar
 		end
 
 		def self.find(id)
-			vendor_array = self.all
-			vendor = vendor_array.find { |ven| ven.vendor_id == id }
-			return vendor 
+			vendor_array = FarMar::Vendor.all
+			vendor = vendor_array.find do |vendor| 
+				vendor.vendor_id == id 
+			end
 		end
 
 	end
