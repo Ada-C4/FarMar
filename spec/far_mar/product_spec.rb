@@ -10,4 +10,8 @@ describe FarMar::Product do
       expect(@product).to be_an_instance_of FarMar::Product
     end
   end
+
+  describe "self.all" do
+    it "returns a collection of Product instances"
+  end
 end

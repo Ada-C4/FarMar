@@ -10,4 +10,8 @@ describe FarMar::Sale do
       expect(@sale).to be_an_instance_of FarMar::Sale
     end
   end
+
+  describe "self.all" do
+    it "returns a collection of Sale instances"
+  end
 end

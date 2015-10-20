@@ -7,7 +7,11 @@ describe FarMar::Vendor do
 
   describe "initialize" do
     it "creat a new market" do
-      expect(@vendor).to be_an_instance_of FarMar::Vendor 
+      expect(@vendor).to be_an_instance_of FarMar::Vendor
     end
+  end
+
+  describe "self.all" do
+    it "returns a collection of Vendor instances"
   end
 end
