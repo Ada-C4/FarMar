@@ -11,27 +11,26 @@ describe FarMar::Sale do
     end
   end
   describe "#initialize" do
-    it "creates a new instance of Sale with 5 instance variables" do
+    it "creates instance variables" do
       expect(@sale.instance_variables.length).to eq 5
     end
-    it "creates a new instance of Sale with @id as an integer" do
+    it "creates @id as an integer" do
       expect(@sale.id.class).to eq Fixnum
+    end
+    it "creates @purchase_date as a DateTime object" do
+      expect(@sale.purchase_time).to be_an_instance_of DateTime
+      expect(@sale.purchase_time.month).to eq 10
     end
   end
   describe "self.all" do
     it "returns an array of Sale instances" do
       expect(FarMar::Sale.all).to be_an Array
-    end
-    it "returns an array with 12798 Sales instances" do
       expect(FarMar::Sale.all.length).to eq 12798
+      expect(FarMar::Sale.all[0]).to be_an_instance_of FarMar::Sale
     end
   end
   describe "self.find(id)" do
-    it "returns the month of purchase for a particular sale" do
-      @id = 12000
-      expect(FarMar::Sale.find(@id).purchase_time.month).to eq 11
-    end
-    it "returns the corresponding product name for a particular sale" do
+    it "returns the name of the product sold" do
       @id = 11000
       @sale = FarMar::Sale.find(@id)
       expect(FarMar::Product.find(@sale.product_id).name). to eq "Fuzzy Burrito"

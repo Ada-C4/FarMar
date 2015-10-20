@@ -10,7 +10,7 @@ module FarMar
     end
 
     def market
-      market = FarMar::Market.find(@market_id)
+      FarMar::Market.find(@market_id)
     end
 
     def products
