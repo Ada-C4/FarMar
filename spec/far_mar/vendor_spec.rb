@@ -52,4 +52,14 @@ describe FarMar::Vendor do
       expect(@vendor.products[0].name).to eq "Fierce Greens"
     end
   end
+  describe "#sales" do
+    it "returns an array of sales for a vendor" do
+      @id = 1
+      @vendor = FarMar::Vendor.find(@id)
+      expect(@vendor.sales).to be_an Array
+      expect(@vendor.sales.length).to eq 7
+      expect(@vendor.sales[5]).to be_an_instance_of FarMar::Sale
+      expect(@vendor.sales[5].amount).to eq 6950
+    end
+  end
 end
