@@ -15,11 +15,9 @@ module FarMar
     def vendors
       vendors_list = FarMar::Vendor.all
 
-      market_vendors = vendors_list.find_all do |instance|
+      return vendors_list.find_all do |instance|
         @id == instance.market_id
       end
-
-      return market_vendors
     end
 
     def self.all

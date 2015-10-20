@@ -16,21 +16,35 @@ module FarMar
     def products
       products_list = FarMar::Product.all
 
-      vendor_products = products_list.find_all do |instance|
+      return products_list.find_all do |instance|
         @id == instance.vendor_id
       end
-
-      return vendor_products
     end
 
     def sales
       sales_list = FarMar::Sale.all
 
-      vendor_sales = sales_list.find_all do |instance|
+      return sales_list.find_all do |instance|
         @id == instance.vendor_id
       end
+    end
 
-      return vendor_sales
+    def revenue
+      revenue = 0
+
+      self.sales.each do |sale|
+        revenue += sale.amount
+      end
+
+      return revenue
+    end
+
+    def self.by_market(market_id)
+      vendors_list = self.all
+
+      return vendors_list.find_all do |vendor|
+        market_id == vendor.market_id
+      end
     end
 
     def self.all

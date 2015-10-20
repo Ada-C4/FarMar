@@ -62,4 +62,16 @@ describe FarMar::Vendor do
       expect(@vendor.sales[5].amount).to eq 6950
     end
   end
+  describe "#revenue" do
+    it "returns the sum of the vendor's sales" do
+      @id = 1
+      @vendor = FarMar::Vendor.find(@id)
+      expect(@vendor.revenue.class).to eq Fixnum
+    end
+  end
+  describe "self.by_market(market_id)" do
+    it "returns an array of vendors for a particular market ID" do
+      expect(FarMar::Vendor.by_market(1).length). to eq 6 
+    end
+  end
 end
