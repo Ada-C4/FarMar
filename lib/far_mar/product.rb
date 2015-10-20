@@ -1,7 +1,8 @@
 module FarMar
 
    class Product
-
+     attr_reader :ID, :name, :vendor_id
+      
      def self.all
      end
 

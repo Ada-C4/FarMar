@@ -10,4 +10,6 @@ describe FarMar::Market do
       expect(@market).to be_an_instance_of FarMar::Market
     end
   end
+
+  #here put a test where we see if we can make a farmers market
 end
