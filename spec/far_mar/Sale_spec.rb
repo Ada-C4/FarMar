@@ -16,4 +16,9 @@ describe FarMar::Sale do
       expect(FarMar::Sale.all.length).to eq 12798
     end
   end
+  describe "#find(id)" do
+    it "returns the sales instance with an id matching the parameter" do
+      expect(FarMar::Sale.find(20).id).to eq 20
+    end
+  end
 end
