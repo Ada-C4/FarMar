@@ -1,6 +1,7 @@
 module FarMar
   class Vendor < FarMar_Base
     attr_reader :id, :name, :emp_num, :market_id
+    FILENAME = './support/vendors.csv'
 
     def initialize(vendor_hash)
       super(vendor_hash)
@@ -14,10 +15,5 @@ module FarMar
       vendor[:market_id] = array[3].to_i
       return vendor
     end
-
-    def self.all
-      super('./support/vendors.csv')
-    end
-
   end
 end

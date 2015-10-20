@@ -7,8 +7,8 @@ module FarMar
       end
     end
 
-    def self.all(file)
-      csv_file = CSV.read(file)
+    def self.all
+      csv_file = CSV.read(self::FILENAME)
       # Create empty array which will hold all the objects
       objects = []
       csv_file.each do |row|

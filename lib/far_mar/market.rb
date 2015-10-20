@@ -1,6 +1,7 @@
 module FarMar
   class Market < FarMar_Base
     attr_reader :id, :name, :address, :city, :county, :state, :zip
+    FILENAME = './support/markets.csv'
 
     def initialize(market_hash)
       super(market_hash)
@@ -16,10 +17,6 @@ module FarMar
       market_hash[:county] = market_array[4]
       market_hash[:state] = market_array[5]
       return market_hash
-    end
-
-    def self.all
-      super('./support/markets.csv')
     end
   end
 end

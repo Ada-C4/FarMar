@@ -1,6 +1,7 @@
 module FarMar
   class Sale < FarMar_Base
     attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
+    FILENAME = './support/sales.csv'
 
     def initialize(sale_hash)
       super(sale_hash)
@@ -15,10 +16,5 @@ module FarMar
       sale_hash[:product_id] = sale_array[4].to_i
       return sale_hash
     end
-
-    def self.all
-      super('./support/sales.csv')
-    end
-
   end
 end
