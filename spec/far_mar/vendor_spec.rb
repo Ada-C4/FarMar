@@ -21,6 +21,17 @@ describe FarMar do
         expect(vendors[-1].id).to eq(2690)
       end
 
+      describe ".find(id)" do
+        it "returns Vendor object for matching ID" do
+          result = FarMar::Vendor.find(2690)
+          expect(result).to be_an_instance_of(FarMar::Vendor)
+          expect(result.id).to eq(2690)
+          expect(result.name).to eq("Mann-Lueilwitz")
+          expect(result.emp_num).to eq(4)
+          expect(result.market_id).to eq(500)
+        end
+      end
+
     end
   end
 end
