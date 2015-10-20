@@ -16,4 +16,11 @@ describe FarMar::Sale do
       expect(FarMar::Sale.all).to be_an(Array)
     end
   end
+
+  describe "find" do
+    it "return the sale, usind id " do
+      expect(FarMar::Sale.find(11).amount).to eq(1030)
+    end
+  end
+  
 end

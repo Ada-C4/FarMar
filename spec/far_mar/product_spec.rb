@@ -21,6 +21,6 @@ describe FarMar::Product do
     it "return the product, usind id " do
       expect(FarMar::Product.find(8).name).to eq("Shaky Honey")
     end
-
   end
+  
 end

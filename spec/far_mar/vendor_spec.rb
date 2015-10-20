@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe FarMar::Vendor do
   before :each do
-    @vendor =FarMar::Vendor.new("Hamill", "Kilback and Pfeffer",5,1)
+    @vendor =FarMar::Vendor.new(6,"Zulauf and Sons",8,1)
   end
 
   describe "initialize" do
@@ -16,4 +16,11 @@ describe FarMar::Vendor do
       expect(FarMar::Vendor.all).to be_an(Array)
     end
   end
+
+  describe "find" do
+    it "return the vendor, usind id " do
+      expect(FarMar::Vendor.find(6).name).to eq("Zulauf and Sons")
+    end
+  end
+  
 end
