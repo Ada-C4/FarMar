@@ -21,7 +21,6 @@ describe FarMar::Vendor do
   describe "self.all" do
     it "returns an array" do
       expect(FarMar::Vendor.all).to be_an Array
-      expect(FarMar::Vendor.all.length).to eq 2690
     end
     it "creates an array of Vendor instances" do
       expect(FarMar::Vendor.all[20]).to be_an_instance_of FarMar::Vendor

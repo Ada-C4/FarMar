@@ -10,6 +10,10 @@ module FarMar
       @product_id = product_id.to_i
     end
 
+    def vendor
+      FarMar::Vendor.find(@vendor_id)
+    end
+
     def self.all
       sales_list = []
       sales_csv = CSV.read("./support/sales.csv")
