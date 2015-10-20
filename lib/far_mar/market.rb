@@ -12,6 +12,16 @@ module FarMar
       @zip = zip
     end
 
+    def vendors
+      vendors_list = FarMar::Vendor.all
+
+      market_vendors = vendors_list.find_all do |instance|
+        @id == instance.market_id
+      end
+
+      return market_vendors
+    end
+
     def self.all
       markets_list = []
       markets_csv = CSV.read("./support/markets.csv")

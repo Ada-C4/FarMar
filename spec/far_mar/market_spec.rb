@@ -33,4 +33,12 @@ describe FarMar::Market do
       expect(FarMar::Market.find(@id).name).to eq "Green Spring Station Farmers Market"
     end
   end
+  describe "#vendors" do
+    it "returns an array of vendors for a particular market" do
+      @id = 1
+      expect(FarMar::Market.find(@id).vendors).to be_an Array
+      expect(FarMar::Market.find(@id).vendors.length).to eq 6
+      expect(FarMar::Market.find(@id).vendors[0]).to be_an_instance_of FarMar::Vendor
+    end
+  end
 end
