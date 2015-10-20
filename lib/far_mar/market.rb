@@ -1,28 +1,27 @@
 module FarMar
 
    class Market
-     attr_reader :ID, :name, :address, :city, :county, :state, :zip
-     #the choice- to iterate or to read and manipulate?
-     #what datatype do I ultimately want? Probably a hash.
-    #  CSV.open(filename, mode='r', options) {|file| block}
-    #
-    # CSV.open("moar_ada_peeps.csv", 'w') do |csv|
-    #   csv << "5,Charles"
-    # end
-    #
-    #
-    # CSV.open("markets.csv", 'r').each do |line|
-    #   puts line
-    # end
+     attr_reader :id, :name, :address, :city, :county, :state, :zip
 
+     @@market_objects_array = []
 
-     def initialize
+     def initialize(id = "", name = "", address = "", city = "", county = "", state = "", zip = "")
+       @id = id
+       @name = name
+       @address = address
+       @city = city
+       @county = county
+       @state = state
+       @zip = zip
      end
 
-
-
-     def self.all
-      #  returns market_instances_array, which should be an array of objects
+    #method for inputting csv file to generate markets
+    #market_csv is the path to a csv file
+     def self.all(market_csv)
+       market_info = CSV.read(market_csv)
+       market_info.each do |a|
+         Market.new(a[0], a[1], a[2], a[3], a[4], a[5], a[6])
+       end
      end
 
      def self.find(id)
