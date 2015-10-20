@@ -3,7 +3,7 @@ module FarMar
     attr_reader :id
 
     def initialize(market_info)
-      @id = market_info[0]
+      @id = market_info[0].to_i
       @name = market_info[1]
       @address = market_info[2]
       @city = market_info[3]

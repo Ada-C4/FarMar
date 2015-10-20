@@ -3,9 +3,9 @@ module FarMar
     attr_reader :id, :vendor_id
 
     def initialize(product_info)
-      @id = product_info[0]
+      @id = product_info[0].to_i
       @name = product_info[1]
-      @vendor_id = product_info[2]
+      @vendor_id = product_info[2].to_i
     end
 
     def self.all

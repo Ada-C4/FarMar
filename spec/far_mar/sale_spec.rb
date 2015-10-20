@@ -4,7 +4,7 @@ describe FarMar do
 
     describe "#initialize" do
       before :each do
-        sale_info = [1,9290,"2013-11-07 04:34:56 -0800",1,1]
+        sale_info = CSV.open("./support/sales.csv", 'r') { |csv| csv.first }
         @sale = FarMar::Sale.new(sale_info)
       end
       it "creates a new instance of the Sale class" do

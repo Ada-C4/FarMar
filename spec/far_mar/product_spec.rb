@@ -4,7 +4,7 @@ describe FarMar do
 
     describe "#initialize" do
       before :each do
-        product_info = [1,"Dry Beets",1]
+        product_info = CSV.open("./support/products.csv", 'r') { |csv| csv.first }
         @product = FarMar::Product.new(product_info)
       end
       it "creates a new instance of the Product class" do

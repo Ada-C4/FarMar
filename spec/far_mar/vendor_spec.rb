@@ -4,7 +4,7 @@ describe FarMar do
 
     describe "#initialize" do
       before :each do
-        vendor_info = [1,"Feil-Farrell",8,1]
+        vendor_info = CSV.open("./support/vendors.csv", 'r') { |csv| csv.first }
         @vendor = FarMar::Vendor.new(vendor_info)
       end
       it "creates a new instance of the Vendor class" do

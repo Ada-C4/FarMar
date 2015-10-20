@@ -4,7 +4,7 @@ describe FarMar do
 
     describe "#initialize" do
       before :each do
-        market_info = [1,"People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202"]
+        market_info = CSV.open("./support/markets.csv", 'r') { |csv| csv.first }
         @market = FarMar::Market.new(market_info)
       end
       it "creates a new instance of the Market class" do
