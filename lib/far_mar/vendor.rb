@@ -14,5 +14,7 @@ module FarMar
       vendor[:market_id] = array[3].to_i
       return vendor
     end
+
+    
   end
 end
