@@ -20,7 +20,14 @@ describe FarMar::Market do
       expect(all_markets[0]).to be_an_instance_of FarMar::Market
       expect(all_markets[-1]).to be_an_instance_of FarMar::Market
       #test length of array
-      expect(all_markets.length).to eq 500
+      csv = CSV.read("support/markets.csv")
+      expect(all_markets.length).to eq csv.length
+    end
+  end
+
+  describe "#find" do
+    it "returns the instance of Market matching the input id" do
+      expect(FarMar::Market.find(1)).to be_an_instance_of FarMar::Market
     end
   end
 
