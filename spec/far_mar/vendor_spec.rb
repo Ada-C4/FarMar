@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe FarMar::Vendor do
   before :each do
-    @vendor = FarMar::Vendor.new(1, "Joe", "10", 4)
+    @vendor = FarMar::Vendor.new(2, "Joe", "10", 4)
   end
   describe "#initialize" do
     it "creates a new instance" do
@@ -29,6 +29,14 @@ describe FarMar::Vendor do
       vendor_market = @vendor.market
       expect(vendor_market).to be_an Object
       expect(vendor_market.market_id).to eq 4
+    end
+  end
+
+  describe "products" do
+    it "return a collection of vendor instances that are associated with market_id" do
+      vendor_product_array = @vendor.products
+      expect(vendor_product_array).to be_an Array
+      expect(vendor_product_array.length).to eq 2
     end
   end
 end

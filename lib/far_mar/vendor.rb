@@ -32,5 +32,16 @@ module FarMar
         end
       end
     end
+
+    def products
+      vendor_products_array = []
+      product_array = FarMar::Product.all
+      product_array.each do |product|
+        if product.vendor_id == @vendor_id
+          vendor_products_array.push(product)
+        end
+      end
+      return vendor_products_array
+    end
   end
 end
