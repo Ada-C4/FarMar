@@ -1,4 +1,4 @@
-require "simplecov"
-Simplecov.start
+require 'simplecov'
+SimpleCov.start
 
-require "./lib/far_mar"
+require './lib/far_mar'
