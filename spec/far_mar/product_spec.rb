@@ -11,18 +11,18 @@ describe FarMar::Product do
     end
   end
   describe "#initialize" do
-    it "creates a new instance of product with 3 instance variables" do
+    it "creates a new instance of Product with 3 instance variables" do
       expect(@product.instance_variables.length).to eq 3
     end
-    it "creates a new instance of product with @vendor_id as an integer" do
+    it "creates a new instance of Product with @vendor_id as an integer" do
       expect(@product.vendor_id.class).to eq Fixnum
     end
   end
   describe "self.all" do
-    it "returns an array of product instances" do
+    it "returns an array of Product instances" do
       expect(FarMar::Product.all).to be_an Array
     end
-    it "returns an array with 8193 product instances" do
+    it "returns an array with 8193 Product instances" do
       expect(FarMar::Product.all.length).to eq 8193
     end
   end
