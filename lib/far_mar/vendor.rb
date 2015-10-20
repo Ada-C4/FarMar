@@ -15,6 +15,9 @@ module FarMar
       return vendor
     end
 
-    
+    def self.all
+      super('./support/vendors.csv')
+    end
+
   end
 end
