@@ -19,4 +19,13 @@ describe FarMar::Sale do
       expect(FarMar::Sale.all.length).to eq 12798
     end
   end
+  describe "#self.find(id)" do
+    it "returns an instance of FarMar::Sale" do
+      expect(FarMar::Sale.find(1)).to be_instance_of FarMar::Sale
+    end
+    it "returns correct instance of FarMar::Sale" do
+      expect(FarMar::Sale.find(1).amount).to eq 9290
+      expect(FarMar::Sale.find(2).amount).to eq 2262
+    end
+  end
 end

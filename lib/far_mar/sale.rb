@@ -1,6 +1,8 @@
 
 module FarMar
   class Sale
+    attr_reader :id, :amount
+
     def initialize(id, amount, purchase_time, vendor_id, product_id)
       @id = id
       @amount = amount
@@ -21,6 +23,9 @@ module FarMar
     end
 
     def self.find(id)
+      FarMar::Sale.all.find do |sale_instance|
+        sale_instance.id == id
+      end
     end
   end
 end
