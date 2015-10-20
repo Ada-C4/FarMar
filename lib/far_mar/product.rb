@@ -1,11 +1,9 @@
 module FarMar
-  class Product
+  class Product < FarMar_Base
     attr_reader :id, :name, :vendor_id
 
     def initialize(product_hash)
-      product_hash.each do |k,v|
-        instance_variable_set("@#{k}", v) unless v.nil?
-      end
+      super(product_hash)
     end
 
     # Converts an array to a hash for passing to product instantiation

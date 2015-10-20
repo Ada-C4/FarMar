@@ -1,12 +1,9 @@
 module FarMar
-  class Market
+  class Market < FarMar_Base
     attr_reader :id, :name, :address, :city, :county, :state, :zip
 
     def initialize(market_hash)
-      # This block sets each key to an instance variable and assigns the value
-      market_hash.each do |k,v|
-        instance_variable_set("@#{k}", v) unless v.nil?
-      end
+      super(market_hash)
     end
 
     # Converts an array to a hash for passing to market instantiation
