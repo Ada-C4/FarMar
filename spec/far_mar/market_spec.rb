@@ -10,4 +10,8 @@ describe FarMar::Market do
       expect(@market).to be_an_instance_of FarMar::Market
     end
   end
+
+  describe "self.all" do
+    it ""
+  end
 end
