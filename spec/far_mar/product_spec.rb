@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe FarMar::Product do
   before :each do
-    @product=FarMar::Product.new()
+    @product=FarMar::Product.new(3, "prori", 1)
   end
 
   describe "initialize Product" do
@@ -11,7 +11,9 @@ describe FarMar::Product do
     end
   end
 
-  describe "self.all" do
-    it "returns a collection of Product instances"
+  describe "all" do
+    it "returns a collection of Product instances" do
+      expect(FarMar::Product.all).to be_an(Array)
+    end
   end
 end
