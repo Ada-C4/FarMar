@@ -5,7 +5,7 @@ module FarMar
     def initialize(id, amount, purchase_time, vendor_id, product_id)
       @id = id.to_i
       @amount = amount.to_i
-      @purchase_time = DateTime.strptime(purchase_time, "%Y-%m-%d %H:%M:%S %z")
+      @purchase_time = DateTime.parse(purchase_time)
       @vendor_id = vendor_id.to_i
       @product_id = product_id.to_i
     end

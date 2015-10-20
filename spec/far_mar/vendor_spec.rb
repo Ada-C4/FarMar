@@ -19,9 +19,11 @@ describe FarMar::Vendor do
     end
   end
   describe "self.all" do
-    it "returns an array of Vendor instances" do
+    it "returns an array" do
       expect(FarMar::Vendor.all).to be_an Array
       expect(FarMar::Vendor.all.length).to eq 2690
+    end
+    it "creates an array of Vendor instances" do
       expect(FarMar::Vendor.all[20]).to be_an_instance_of FarMar::Vendor
     end
   end
@@ -43,23 +45,25 @@ describe FarMar::Vendor do
     end
   end
   describe "#products" do
-    it "returns an array of vendor products" do
+    it "returns an array" do
       @id = 2
       @vendor = FarMar::Vendor.find(@id)
       expect(@vendor.products).to be_an Array
       expect(@vendor.products.length).to eq 2
+    end
+    it "creates an array with vendor products" do
       expect(@vendor.products[0]).to be_an_instance_of FarMar::Product
-      expect(@vendor.products[0].name).to eq "Fierce Greens"
     end
   end
   describe "#sales" do
-    it "returns an array of sales for a vendor" do
+    it "returns an array" do
       @id = 1
       @vendor = FarMar::Vendor.find(@id)
       expect(@vendor.sales).to be_an Array
       expect(@vendor.sales.length).to eq 7
+    end
+    it "creates an array of vendor sale instances" do
       expect(@vendor.sales[5]).to be_an_instance_of FarMar::Sale
-      expect(@vendor.sales[5].amount).to eq 6950
     end
   end
   describe "#revenue" do
@@ -71,7 +75,9 @@ describe FarMar::Vendor do
   end
   describe "self.by_market(market_id)" do
     it "returns an array of vendors for a particular market ID" do
-      expect(FarMar::Vendor.by_market(1).length). to eq 6 
+      @id = 1
+      @vendor = FarMar::Vendor.find(@id)
+      expect(FarMar::Vendor.by_market(@id).length). to eq 6
     end
   end
 end

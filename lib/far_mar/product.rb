@@ -8,6 +8,10 @@ module FarMar
       @vendor_id = vendor_id.to_i
     end
 
+    def vendor
+      FarMar::Vendor.find(@vendor_id)
+    end
+
     def self.all
       products_list = []
       products_csv = CSV.read("./support/products.csv")

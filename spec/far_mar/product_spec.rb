@@ -19,9 +19,11 @@ describe FarMar::Product do
     end
   end
   describe "self.all" do
-    it "returns an array of Product instances" do
+    it "returns an array" do
       expect(FarMar::Product.all).to be_an Array
       expect(FarMar::Product.all.length).to eq 8193
+    end
+    it "creates an array with instances of Product" do
       expect(FarMar::Product.all[999]).to be_an_instance_of FarMar::Product
     end
   end
@@ -29,6 +31,12 @@ describe FarMar::Product do
     it "finds a product using its ID" do
       @id = 8171
       expect(FarMar::Product.find(@id).name).to eq "Lazy Pretzel"
+    end
+  end
+  describe "#vendor" do
+    it "returns a Vendor instance associated with the product" do
+      @id = 2
+      expect(FarMar::Product.find(@id).vendor).to be_an_instance_of FarMar::Vendor
     end
   end
 end
