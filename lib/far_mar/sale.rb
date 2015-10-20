@@ -16,7 +16,7 @@ module FarMar
 
 		def self.all
 			sales_array = []
-			CSV.read('./support/markets.csv').each do |row|
+			CSV.read('./support/sales.csv').each do |row|
         sale = FarMar::Sale.new(row[0], row[1], row[2], row[3], row[4])
         sales_array.push(sale)
       end

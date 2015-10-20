@@ -12,7 +12,13 @@ module FarMar
 			@market_id = market_id
 		end
 
-		
+		def self.all
+			vendor_array = []
+			  CSV.read('./support/vendors.csv').each do |row|
+        	market = FarMar::Market.new(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
+        	market_array.push(market)
+      end
+		end
 
 	end
 
