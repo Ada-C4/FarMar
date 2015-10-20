@@ -9,7 +9,7 @@ module FarMar
       end
     end
 
-    # Converts an array to a hash for passing to owner instantiation
+    # Converts an array to a hash for passing to market instantiation
     def self.convert_to_market_hash(market_array)
       market_hash = {}
       market_hash[:id] = market_array[0].to_i
