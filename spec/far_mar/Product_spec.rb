@@ -18,7 +18,7 @@ describe FarMar::Product do
   end
   describe "#find(id)" do
     it "returns the product instance with an id matching the parameter" do
-      expect(FarMar::Product.find(14).name).to eq "Stupendous Carrots"
+      expect(FarMar::Product.find(14).id).to eq 14
     end
   end
 end

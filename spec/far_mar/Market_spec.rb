@@ -16,4 +16,9 @@ describe FarMar::Market do
       expect(FarMar::Market.all.length).to eq 500
     end
   end
+  describe "#find(id)" do
+    it "returns the market instance with an id matching the parameter" do
+      expect(FarMar::Market.find(9).id).to eq 9
+    end
+  end
 end
