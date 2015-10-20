@@ -39,4 +39,13 @@ describe FarMar::Vendor do
       expect(@vendor2.market.name).to eq "Saratoga Farmers' Market"
     end
   end
+  describe "#products" do
+    it "returns an array" do
+      expect(@vendor1.products).to be_an Array
+    end
+    it "returns array of correct length" do
+      expect(@vendor1.products.length).to eq 3
+      expect(@vendor2.products.length).to eq 3
+    end
+  end
 end
