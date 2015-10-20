@@ -31,5 +31,12 @@ describe FarMar::Market do
         expect(FarMar::Market.find(2).name).to eq "Silverdale Farmers Market"
       end
     end
+
+    describe "#vendors" do
+      it "returns all Vendors with for the specific market instance" do
+        expect(@market.vendors.length).to eq 6
+        expect(@market.vendors[0].name).to eq "Feil-Farrell"
+      end
+    end
   end
 end
