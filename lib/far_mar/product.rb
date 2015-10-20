@@ -20,6 +20,18 @@ module FarMar
       end
     end
 
+    def number_of_sales
+      self.sales.length
+    end
+
+    def self.by_vendor(vendor_id)
+      products_list = self.all
+
+      return products_list.find_all do |product|
+        vendor_id == product.vendor_id
+      end
+    end
+
     def self.all
       products_list = []
       products_csv = CSV.read("./support/products.csv")

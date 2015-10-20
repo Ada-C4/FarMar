@@ -40,14 +40,40 @@ describe FarMar::Product do
     end
   end
   describe "#sales" do
-    it "returns an array" do
+    before :each do
       @id = 2
-      expect(FarMar::Product.find(@id).sales).to be_an Array
-      expect(FarMar::Product.find(@id).sales.length).to eq 1
+      @product = FarMar::Product.find(@id)
+    end
+    it "returns an array" do
+      expect(@product.sales).to be_an Array
+      expect(@product.sales.length).to eq 1
     end
     it "creates an array with instances of Sale" do
-      @id = 2
-      expect(FarMar::Product.find(@id).sales[0]).to be_an_instance_of FarMar::Sale
+      expect(@product.sales[0]).to be_an_instance_of FarMar::Sale
+    end
+  end
+  describe "#number_of_sales" do
+    before :each do
+      @id = 1
+      @product = FarMar::Product.find(@id)
+    end
+    it "returns an integer" do
+      expect(@product.number_of_sales).to be_an Fixnum
+    end
+    it "counts the number of sales for a product" do
+      expect(@product.number_of_sales).to eq 7
+    end
+  end
+  describe "self.by_vendor(vendor_id)" do
+    before :each do
+      @vendor_id = 2
+    end
+    it "returns an array" do
+      expect(FarMar::Product.by_vendor(@vendor_id)).to be_an Array
+      expect(FarMar::Product.by_vendor(@vendor_id).length).to eq 2
+    end
+    it "creates an array of Product instances" do
+      expect(FarMar::Product.by_vendor(@vendor_id)[0]).to be_an_instance_of FarMar::Product
     end
   end
 end
