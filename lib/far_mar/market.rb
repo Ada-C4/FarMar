@@ -18,5 +18,13 @@ module FarMar
       market_hash[:state] = market_array[5]
       return market_hash
     end
+
+    def self.find(id)
+      # binding.pry
+      if id.class != Fixnum
+        return nil
+      end
+    end
+
   end
 end

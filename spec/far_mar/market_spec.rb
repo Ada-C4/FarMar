@@ -40,18 +40,18 @@ describe FarMar do
 
     describe ".find(id)" do
       it "returns nil when id is not an integer" do
-        expect FarMar::Market.find('a').to be_nil
-        expect FarMar::Market.find([1, 2]).to be_nil
+        expect(FarMar::Market.find('a')).to be_nil
+        expect(FarMar::Market.find([1, 2])).to be_nil
       end
       it "returns nil for no matching id" do
-        expect FarMar::Market.find(9999999999999).to be_nil
-        expect FarMar::Market.find(-1).to be_nil
+        expect(FarMar::Market.find(9999999999999)).to be_nil
+        expect(FarMar::Market.find(-1)).to be_nil
       end
 
       it "returns Market object for matching id" do
         result = FarMar::Market.find(18)
         expect(result).to be_an_instance_of(FarMar::Market)
-        expect(result.name).to eq("Grand Valley State University Farmers Market")    
+        expect(result.name).to eq("Grand Valley State University Farmers Market")
       end
 
     end
