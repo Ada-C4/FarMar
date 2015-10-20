@@ -47,5 +47,18 @@ describe FarMar::Vendor do
       expect(@vendor1.products.length).to eq 3
       expect(@vendor2.products.length).to eq 3
     end
+    it "returns correct first item in array" do
+      expect(@vendor1.products[0].name).to eq "Shaky Honey"
+      expect(@vendor2.products[0].name).to eq "Gigantic Bread"
+    end
+  end
+  describe "#sales" do
+    it "returns an array" do
+      expect(@vendor1.sales).to be_an Array
+    end
+    it "returns array of correct length" do
+      expect(@vendor1.sales.length).to eq 9
+      expect(@vendor2.sales.length).to eq 1
+    end
   end
 end
