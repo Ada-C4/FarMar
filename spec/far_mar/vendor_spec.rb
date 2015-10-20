@@ -61,4 +61,12 @@ describe FarMar::Vendor do
       expect(@vendor2.sales.length).to eq 1
     end
   end
+  describe "#revenue" do
+    it "returns an integer" do
+      expect(@vendor1.revenue).to be_a Fixnum
+    end
+    it "returns correct total sales" do
+      expect(@vendor1.revenue).to eq 61749
+    end
+  end
 end

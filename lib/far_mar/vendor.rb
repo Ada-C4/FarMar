@@ -44,5 +44,16 @@ module FarMar
         sales_instance.vendor_id == @id
       end
     end
+
+    def revenue
+      revenue = 0
+
+      sales.each do |sales_instance|
+        revenue += sales_instance.amount
+      end
+
+      return revenue
+
+    end
   end
 end
