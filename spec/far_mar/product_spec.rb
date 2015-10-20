@@ -39,4 +39,15 @@ describe FarMar::Product do
       expect(FarMar::Product.find(@id).vendor).to be_an_instance_of FarMar::Vendor
     end
   end
+  describe "#sales" do
+    it "returns an array" do
+      @id = 2
+      expect(FarMar::Product.find(@id).sales).to be_an Array
+      expect(FarMar::Product.find(@id).sales.length).to eq 1
+    end
+    it "creates an array with instances of Sale" do
+      @id = 2
+      expect(FarMar::Product.find(@id).sales[0]).to be_an_instance_of FarMar::Sale
+    end
+  end
 end
