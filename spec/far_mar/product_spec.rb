@@ -26,4 +26,18 @@ describe FarMar::Product do
       expect(FarMar::Product.find(test_id)).to eq @products[2]
     end
   end
+
+  describe "#vendor" do
+    it "returns a vendor object for the current product" do
+      @products = FarMar::Product.all
+      product = @products[1]
+      expect(product.vendor).to be_an_instance_of FarMar::Vendor
+    end
+
+    it "returns the correct vendor object for a product" do
+      product = @products[1]
+      expect(product.vendor.vendor_name).to eq "Hamill, Kilback and Pfeffer"
+    end
+  end
+
 end

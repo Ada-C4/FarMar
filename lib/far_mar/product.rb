@@ -1,13 +1,14 @@
 module FarMar
   class Product
-    #product_csv = CSV.read("support/products.csv")
+
     attr_accessor :product_id, :product_name, :vendor_id
     def initialize(product_hash)
-      @product_id   = product_hash[:id]
+      @product_id   = product_hash[:id].to_i
       @product_name = product_hash[:name]
-      @vendor_id    = product_hash[:vendor_id]
+      @vendor_id    = product_hash[:vendor_id].to_i
     end
 
+    # Return a collection of all Product instances, representing all the products described in the CSV
     def self.all
       @products = []
       products_csv = CSV.read("support/products.csv")
@@ -20,13 +21,29 @@ module FarMar
       return @products
     end
 
+    # Returns an instance of Product with the passed in ID
     def self.find(id)
       @products.find do |product|
         product.product_id == id
       end
     end
 
+    # Returns the FarMar::Vendor instance that is associated with the product
+    def vendor
+      FarMar::Vendor.find(self.vendor_id)
+    end
 
+    # Returns a collection for FarMar::Sale instances associated with the product
+    def sales
+    end
+
+    # Returns the number of times this product has been sold
+    def number_of_sales
+    end
+
+    # Returns all of the products with the given Vendor ID
+    def self.by_vendor(vendor_id)
+    end
 
   end
 end

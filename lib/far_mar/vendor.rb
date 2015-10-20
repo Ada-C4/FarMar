@@ -1,7 +1,7 @@
 module FarMar
   class Vendor
 
-      attr_accessor :vendors, :vendor_id, :market_id
+      attr_accessor :vendors, :vendor_id, :market_id, :vendor_name
       def initialize(vendor_hash)
         @vendor_id        = vendor_hash[:id].to_i
         @vendor_name      = vendor_hash[:name]

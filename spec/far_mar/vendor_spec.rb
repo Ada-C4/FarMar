@@ -20,12 +20,12 @@ describe FarMar::Vendor do
     end
   end
 
-  describe ".find" do
-    it "can find a vendor object with a given ID" do
-      test_id = @vendors[2].vendor_id
-      expect(FarMar::Vendor.find(test_id)).to eq @vendors[2]
-    end
-  end
+  # describe ".find" do
+  #   it "can find a vendor object with a given ID" do
+  #     test_id = @vendors[2].vendor_id
+  #     expect(FarMar::Vendor.find(test_id)).to eq @vendors[2]
+  #   end
+  # end
 
   describe "#market" do
     it "returns a market object for the current vendor" do
