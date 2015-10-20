@@ -11,7 +11,9 @@ describe FarMar::Vendor do
     end
   end
 
-  describe "self.all" do
-    it "returns a collection of Vendor instances"
-  end
+  # describe "self.all" do
+  #   it "returns a collection of Vendors instances" do
+  #     expect(FarMar::Vendor.all).to be_an(Array)
+  #   end
+  # end
 end
