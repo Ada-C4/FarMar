@@ -13,5 +13,10 @@ module FarMar
         FarMar::Vendor.new(row[0], row[1], row[2], row[3])
       end
     end
+    def self.find(id)
+      FarMar::Vendor.all.find do |vendor|
+        vendor.id == id
+      end
+    end
   end
 end

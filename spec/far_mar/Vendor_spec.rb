@@ -16,4 +16,9 @@ describe FarMar::Vendor do
       expect(FarMar::Vendor.all.length).to eq 2690
     end
   end
+  describe "#find(id)" do
+    it "returns the vendor instance with an id matching the parameter" do
+      expect(FarMar::Vendor.find(556).id).to eq 556
+    end
+  end
 end
