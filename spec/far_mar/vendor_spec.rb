@@ -27,4 +27,16 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "#market" do
+    it "returns a market object for the current vendor" do
+      vendor = @vendors[1]
+      expect(vendor.market).to be_an_instance_of FarMar::Market
+    end
+
+    it "returns the correct market object for a vendor" do
+      vendor = @vendors[1]
+      expect(vendor.market.name).to eq "People's Co-op Farmers Market"
+    end
+  end
+
 end
