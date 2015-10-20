@@ -31,5 +31,9 @@ module FarMar
       end
     end
 
+    def vendors(id)
+      
+    end
+
   end
 end

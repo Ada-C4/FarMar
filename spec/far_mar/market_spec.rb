@@ -31,4 +31,18 @@ describe FarMar::Market do
       expect(FarMar::Market.find(2).name).to eq "Silverdale Farmers Market"
     end
   end
+  describe "#vendors" do
+    it "returns an array" do
+      expect(FarMar::Market.vendors).to be_an Array
+    end
+    it "returns array of instances of FarMar::Vendor" do
+      expect(FarMar::Market.vendors(1)[0]).to be_instance_of FarMar::Vendor
+    end
+    it "returns correct array length" do
+      expect(FarMar::Market.vendors(100).length).to eq 6
+    end
+    it "returns correct first instance of FarMar::Vendor" do
+      expect(FarMar::Market.vendors(100)[0].name).to eq "Schiller-Ledner"
+    end
+  end
 end
