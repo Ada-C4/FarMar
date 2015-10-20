@@ -2,6 +2,8 @@ CSV.read("./support/products.csv")
 
 module FarMar
   class Product
+    attr_reader :id, :name
+
     def initialize(id, name, vendor_id)
       @id = id
       @name = name
@@ -20,6 +22,9 @@ module FarMar
     end
 
     def self.find(id)
+      FarMar::Product.all.find do |product_instance|
+        product_instance.id == id
+      end
     end
   end
 end

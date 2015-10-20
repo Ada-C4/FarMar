@@ -19,4 +19,13 @@ describe FarMar::Product do
       expect(FarMar::Product.all.length).to eq 8193
     end
   end
+  describe "#self.find(id)" do
+    it "returns an instance of FarMar::Product" do
+      expect(FarMar::Product.find(1)).to be_instance_of FarMar::Product
+    end
+    it "returns correct instance of FarMar::Vendor" do
+      expect(FarMar::Product.find(1).name).to eq "Dry Beets"
+      expect(FarMar::Product.find(2).name).to eq "Fierce Greens"
+    end
+  end
 end

@@ -21,12 +21,13 @@ describe FarMar::Vendor do
     end
   end
   describe "#self.find(id)" do
-    it "returns an instance of FarMar::Market" do
+    it "returns an instance of FarMar::Vendor" do
       expect(FarMar::Vendor.find(1)).to be_instance_of FarMar::Vendor
+      expect(FarMar::Vendor.find(2)).to be_instance_of FarMar::Vendor
     end
     it "returns correct instance of FarMar::Market" do
       expect(FarMar::Vendor.find(1).name).to eq "Feil-Farrell"
-      expect(FarMar::Market.find(2).name).to eq "\"Hamill, Kilback and Pfeffer\""
+      expect(FarMar::Vendor.find(2).name).to eq "Hamill, Kilback and Pfeffer"
     end
   end
 end
