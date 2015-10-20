@@ -2,4 +2,4 @@
 # Need to check data types for CSV input in product
 # Need to deal with Date Time for CSV input in Sale
 # Check accessors
-# Improve vendors spec
+# Improve #vendors spec - suspect this could be written more efficiently
