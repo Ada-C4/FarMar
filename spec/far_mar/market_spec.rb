@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe FarMar::Market do 
 
-	describe 'initialize' do
+	describe '#initialize' do
 	  before :each do
 		  @market = FarMar::Market.new(1,"People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon",97202)
 	  end
@@ -18,7 +18,7 @@ describe FarMar::Market do
 	  end
 	end
 
-	describe 'self.all' do	
+	describe '.all' do	
 		before :each do
 			@market_array = FarMar::Market.all
 		end
