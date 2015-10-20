@@ -10,7 +10,7 @@ describe FarMar::Vendor do
 			expect(@vendor).to be_an_instance_of(FarMar::Vendor)
 		end
 		it 'can retrieve the id of a given instance' do
-			expect(@vendor.id).to eq(30)
+			expect(@vendor.vendor_id).to eq(30)
 		end
 	end
 
