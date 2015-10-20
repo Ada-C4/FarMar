@@ -10,6 +10,9 @@ describe FarMar::Market do
       expect(@market1).to be_instance_of FarMar::Market
       expect(@market2).to be_instance_of FarMar::Market
     end
+    it "allows access to id of instance" do
+      expect(@market1.id).to eq 5
+    end
   end
   describe "#self.all" do
     it "returns an array" do

@@ -2,7 +2,7 @@
 module FarMar
   class Market
 
-    attr_reader :name
+    attr_reader :id, :name
 
     def initialize(id, name, address, city, county, state, zip)
       @id = id
