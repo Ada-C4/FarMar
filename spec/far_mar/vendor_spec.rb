@@ -39,4 +39,16 @@ describe FarMar::Vendor do
     end
   end
 
+  describe ".by_market" do
+    it "does not return nil" do
+      test_market = 1
+      expect(FarMar::Vendor.by_market(test_market)).not_to eq []
+    end
+
+    it "returns the correct number of vendors" do
+      test_market = FarMar::Market.find(1)
+      vendors_for_market = test_market.vendors
+      expect(FarMar::Vendor.by_market(1).length).to eq vendors_for_market.length
+    end
+  end
 end

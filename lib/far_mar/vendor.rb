@@ -9,6 +9,7 @@ module FarMar
         @market_id        = vendor_hash[:market_id].to_i
       end
 
+      # Returns a collection of Vendor instances, representing all the vendors described in the CSV
       def self.all
         @vendors = []
         vendors_csv = CSV.read("support/vendors.csv")
@@ -21,6 +22,7 @@ module FarMar
         return @vendors
       end
 
+      # Returns an instance of Vendor that matches the search ID
       def self.find(id)
         @vendors.find do |vendor|
           vendor.vendor_id == id
@@ -32,5 +34,25 @@ module FarMar
         FarMar::Market.find(self.market_id)
       end
 
+      # Returns a collection of FarMar::Product instances that are associated with the vendor
+      def products
+        ## COME BACK TO THIS METHOD ONCE PRODUCT HAS BEEN BUILT OUT
+      end
+
+      # Returns a collection of FarMar::Sale instances that are associated with the vendor
+      def sales
+        ## COME BACK TO THIS METHOD ONCE SALES HAS BEEN BUILT OUT
+      end
+
+      # Returns the sum of all the vendor's sale (in cents)
+      def revenue
+      end
+
+      # Returns all of the vendors with the given market ID
+      def self.by_market(market_id)
+        vendors = FarMar::Vendor.all
+        matched_vendors = vendors.find_all { |vendor| vendor.market_id == market_id}
+        return matched_vendors
+      end
   end
 end
