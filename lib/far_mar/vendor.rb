@@ -9,6 +9,7 @@ module FarMar
      end
 
      def self.by_market(market_id)
+     end
 
      def market
      end
