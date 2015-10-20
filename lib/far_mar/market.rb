@@ -32,8 +32,11 @@ module FarMar
     end
 
     def vendors
-      ## NEED TO WRITE THIS METHOD ONCE VENDORS IS BETTER DEFINED
+      vendors = FarMar::Vendor.all
+      matched_vendors = vendors.find_all do |vendor|
+        vendor.market_id == self.id
+      end
+      return matched_vendors
     end
-
   end
 end

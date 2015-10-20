@@ -28,4 +28,21 @@ describe FarMar::Market do
       expect(FarMar::Market.find(test_id)).to eq @markets[2]
     end
   end
+
+  describe "#vendors" do
+    it "does not return nil" do
+      sample_market_id = 1
+      sample_market = FarMar::Market.find(sample_market_id)
+      matched_vendors = FarMar::Vendor.all
+      matched_vendors = matched_vendors.find_all { |vendor| vendor.market_id == sample_market_id}
+      expect(sample_market.vendors).not_to eq []
+    end
+    it "returns all vendors associated with market_id" do
+      sample_market_id = 1
+      matched_vendors = FarMar::Vendor.all
+      sample_market = FarMar::Market.find(sample_market_id)
+      matched_vendors = matched_vendors.find_all { |vendor| vendor.market_id == sample_market_id}
+      expect(sample_market.vendors.length).to eq matched_vendors.length
+    end
+  end
 end
