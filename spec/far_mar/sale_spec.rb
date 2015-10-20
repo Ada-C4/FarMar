@@ -1,13 +1,13 @@
 require "spec_helper"
 
-describe Farmer::Sale do
+describe FarMar::Sale do
   before :each do
-    @sale = Farmer::Sale.new
+    @sale = FarMar::Sale.new
   end
 
   context "initializing" do
     it "returns a sale object" do
-      expect(@sale).to be_an_instance_of Farmer::Sale
+      expect(@sale).to be_an_instance_of FarMar::Sale
     end
   end
 end
