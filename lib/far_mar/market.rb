@@ -26,7 +26,7 @@ module FarMar
         market.market_id == id
       end
     end
-    def vendor
+    def vendors
       market_vendor_array = []
       vendor_array = FarMar::Vendor.all
       vendor_array.each do |vendor|

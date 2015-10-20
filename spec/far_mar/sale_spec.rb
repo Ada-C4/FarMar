@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe FarMar::Sale do
   before :each do
-    @sale = FarMar::Sale.new
+    @sale = FarMar::Sale.new(10, "150", "12:00pm", 2, 4)
   end
   describe "#initialize" do
     it "creates a new instance" do

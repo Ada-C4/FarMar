@@ -26,7 +26,7 @@ describe FarMar::Market do
 
   describe "vendors" do
     it "return a collection of vendor instances that are associated with market_id" do
-      market_vendor_array = @market.vendor
+      market_vendor_array = @market.vendors
       expect(market_vendor_array).to be_an Array
       expect(market_vendor_array.length).to eq 6
     end

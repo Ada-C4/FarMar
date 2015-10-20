@@ -1,6 +1,15 @@
 module FarMar
   class Product
 
+    attr_reader :product_id, :name, :vendor_id
+
+    def initialize(product_id, name, vendor_id)
+      @product_id = product_id
+      @name = name
+      @vendor_id = vendor_id
+    end
+
+
     def self.all
       products_csv = CSV.read("./support/products.csv")
       product_instances = []

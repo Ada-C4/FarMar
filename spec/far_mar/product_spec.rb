@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe FarMar::Product do
   before :each do
-    @product = FarMar::Product.new
+    @product = FarMar::Product.new(5, "apple", 2)
   end
   describe "#initialize" do
     it "creates a new instance" do
