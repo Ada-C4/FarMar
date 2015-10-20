@@ -30,4 +30,13 @@ describe FarMar::Vendor do
       expect(FarMar::Vendor.find(2).name).to eq "Hamill, Kilback and Pfeffer"
     end
   end
+  describe "#market" do
+    it "returns instance of Market class" do
+      expect(@vendor1.market).to be_instance_of FarMar::Market
+    end
+    it "returns correct instance of Market class" do
+      expect(@vendor1.market.name).to eq "Charlestown Farmers Market"
+      expect(@vendor2.market.name).to eq "Saratoga Farmers' Market"
+    end
+  end
 end
