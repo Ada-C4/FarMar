@@ -25,12 +25,13 @@ describe FarMar::Market do
 		it 'returns an array' do
 			expect(@market_array).to be_an_instance_of(Array)
 		end
-		it 'contains FarMar::Market instances' do
+		it 'contains only FarMar::Market instances' do
 			length = @market_array.length - 1
 			expect(@market_array[rand(0..length)]).to be_an_instance_of(FarMar::Market)
 		end
-		it 'does not have duplicate ids' do
-			
+		it 'contains all data from CSV file' do
+			csv = CSV.read("support/markets.csv")
+			expect(@market_array.length).to eq(csv.length)
 		end
 	end
 

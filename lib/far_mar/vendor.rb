@@ -21,6 +21,12 @@ module FarMar
       return vendor_array
 		end
 
+		def self.find(id)
+			vendor_array = self.all
+			vendor = vendor_array.find { |ven| ven.vendor_id == id }
+			return vendor 
+		end
+
 	end
 
 end

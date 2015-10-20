@@ -18,10 +18,9 @@ describe FarMar::Sale do
   	it 'returns an array' do
   		expect(@sale_array).to be_an_instance_of(Array)
   	end
-  	# I don't know if the below spec is too specific or not, 
-  	# but I don't know how to generally test the length of a CSV file
-  	it 'returns array containing all CSV info' do
-      expect(@sale_array.length).to eq(12798)
+    it 'contains all sales from CSV' do 
+      csv = CSV.read("support/sales.csv")
+      expect(@sale_array.length).to eq csv.length
     end
   end
 

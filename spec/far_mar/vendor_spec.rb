@@ -21,13 +21,20 @@ describe FarMar::Vendor do
 		it 'returns an array' do
 			expect(@vendor_array).to be_an_instance_of(Array)
 		end
-		# Would prefer to use a variable for CSV length, but not sure how to do that
 		it 'contains same number of vendors as orginal file' do
-			expect(@vendor_array.length).to eq(2690)
+			csv = CSV.read("support/vendors.csv")
+			expect(@vendor_array.length).to eq(csv.length)
 		end
 		it 'only contains FarMar::Vendor instances' do
 			length = @vendor_array.length - 1
 			expect(@vendor_array[rand(0..length)]).to be_an_instance_of(FarMar::Vendor)
+		end
+	end
+
+	describe '.find(id)' do
+		it 'returns the vendor for a given id' do
+			vendor = [10,"Kertzmann LLC",11,3]
+			expect(FarMar::Vendor.find(10)).to eq(vendor)
 		end
 	end
 

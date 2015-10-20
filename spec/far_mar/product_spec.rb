@@ -28,6 +28,10 @@ describe FarMar::Product do
 			length = @product_array.length - 1
 			expect(@product_array[rand(0..length)]).to be_an_instance_of(FarMar::Product)
 		end
+		it 'contains all products from CSV' do 
+			csv = CSV.read("support/products.csv")
+      expect(@product_array.length).to eq csv.length
+		end
 	end
 
 end
