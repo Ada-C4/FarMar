@@ -11,7 +11,7 @@ describe FarMar::Product do
     end
   end
 
-  describe "all" do
+  describe ".all" do
     it "returns a collection of Product instances" do
       expect(FarMar::Product.all).to be_an(Array)
     end

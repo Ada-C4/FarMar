@@ -11,7 +11,7 @@ describe FarMar::Market do
     end
   end
 
-  describe "all" do
+  describe ".all" do
     it "returns an array of Market instances" do
       expect(FarMar::Market.all).to be_an(Array)
     end

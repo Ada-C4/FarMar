@@ -12,7 +12,7 @@ module FarMar
 
     def self.all
       sale_array =[]
-      sale_csv = CSV.read("./support/products.csv")
+      sale_csv = CSV.read("./support/sales.csv")
       sale_csv.each do |sale|
         new_sale = Sale.new(sale[0].to_i, sale[1].to_i, sale[2], sale[3].to_i, sale[4].to_i)
         sale_array.push(new_sale)

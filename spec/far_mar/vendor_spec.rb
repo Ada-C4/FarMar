@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe FarMar::Vendor do
   before :each do
-    @vendor =FarMar::Vendor.new
+    @vendor =FarMar::Vendor.new("Hamill", "Kilback and Pfeffer",5,1)
   end
 
   describe "initialize" do
@@ -11,9 +11,9 @@ describe FarMar::Vendor do
     end
   end
 
-  # describe "self.all" do
-  #   it "returns a collection of Vendors instances" do
-  #     expect(FarMar::Vendor.all).to be_an(Array)
-  #   end
-  # end
+  describe ".all" do
+    it "returns a collection of Vendors instances" do
+      expect(FarMar::Vendor.all).to be_an(Array)
+    end
+  end
 end

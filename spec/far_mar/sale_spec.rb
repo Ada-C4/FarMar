@@ -11,7 +11,7 @@ describe FarMar::Sale do
     end
   end
 
-  describe "self.all" do
+  describe ".all" do
     it "returns a collection of Sale instances" do
       expect(FarMar::Sale.all).to be_an(Array)
     end
