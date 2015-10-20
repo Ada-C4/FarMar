@@ -3,7 +3,7 @@ module FarMar
     attr_reader :id, :name, :address, :city, :county, :state, :zip
 
     def initialize(market_hash)
-      # This block sets each key to an instance variable
+      # This block sets each key to an instance variable and assigns the value
       market_hash.each do |k,v|
         instance_variable_set("@#{k}", v) unless v.nil?
       end

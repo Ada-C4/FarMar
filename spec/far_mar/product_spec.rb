@@ -13,7 +13,7 @@ describe FarMar do
         expect(product).to be_an_instance_of(FarMar::Product)
         expect(product.id).to eq(1)
         expect(product.name).to eq("Crispy Spiders")
-        expect(vendor_id).to eq(5555)
+        expect(product.vendor_id).to eq(5555)
       end
 
       describe ".all" do
