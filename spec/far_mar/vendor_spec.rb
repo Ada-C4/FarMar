@@ -2,12 +2,16 @@ require "spec_helper"
 describe FarMar do
   describe FarMar::Vendor do
 
-    describe ".new" do
+    describe "#initialize" do
       before :each do
-        @vendor = FarMar::Vendor.new
+        vendor_info = [1,"Feil-Farrell",8,1]
+        @vendor = FarMar::Vendor.new(vendor_info)
       end
       it "creates a new instance of the Vendor class" do
         expect(@vendor).to be_an_instance_of(FarMar::Vendor)
+      end
+      it "retrieves the vendor ID from the vendor info array" do
+        expect(@vendor.id).to eq(1)
       end
     end
 
@@ -18,8 +22,14 @@ describe FarMar do
       it "returns an array" do
         expect(FarMar::Vendor.all).to be_an(Array)
       end
-      it "returns an array with the vendor info" do
+      it "returns an array with all the vendors" do
         expect(FarMar::Vendor.all.length).to eq(@vendors.size)
+      end
+      it "contains instances of the Vendor class" do
+        vendor_total = FarMar::Vendor.all.length
+        expect(FarMar::Vendor.all[0]).to be_an_instance_of(FarMar::Vendor)
+        expect(FarMar::Vendor.all[vendor_total - 1]).to be_an_instance_of(FarMar::Vendor)
+        expect(FarMar::Vendor.all[vendor_total]).to be nil
       end
     end
 

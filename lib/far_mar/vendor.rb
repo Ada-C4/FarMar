@@ -1,9 +1,21 @@
 module FarMar
   class Vendor
+    attr_reader :id, :market_id
+
+    def initialize(vendor_info)
+      @id = vendor_info[0]
+      @name = vendor_info[1]
+      @number_of_employees = vendor_info[2]
+      @market_id = vendor_info[3]
+    end
 
     def self.all
-      vendors = CSV.read("./support/vendors.csv")
-      return vendors
+      vendor_array = []
+      CSV.read("./support/vendors.csv").each do |vendor|
+        new_vendor = FarMar::Vendor.new(vendor)
+        vendor_array.push(new_vendor)
+      end
+      return vendor_array
     end
 
   end
