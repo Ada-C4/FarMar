@@ -9,6 +9,10 @@ module FarMar
       @market_id = market_id.to_i
     end
 
+    def market
+      market = FarMar::Market.find(@market_id)
+    end
+
     def self.all
       vendors_list = []
       vendors_csv = CSV.read("./support/vendors.csv")

@@ -36,4 +36,11 @@ describe FarMar::Vendor do
       expect(FarMar::Market.find(FarMar::Vendor.find(@id).market_id).name). to eq "Selma/Dallas County Farmers Market"
     end
   end
+  describe "#market" do
+    it "returns the instance of FarMar::Market that is associated with the vendor" do
+      @id = 1
+      expect(FarMar::Vendor.find(@id).market).to be_an_instance_of FarMar::Market
+      expect(FarMar::Vendor.find(@id).market.name).to eq "People's Co-op Farmers Market"
+    end
+  end
 end
