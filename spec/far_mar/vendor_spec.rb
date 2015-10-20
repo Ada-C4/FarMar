@@ -1,11 +1,11 @@
 require "./spec/spec_helper"
 
 describe FarMar::Vendor do
-  describe "initialize" do
-    before :each do
-      @vendor = FarMar::Vendor.new(1, "Feil-Farrell", 8, 1)
-    end
+  before :each do
+    @vendor = FarMar::Vendor.new(1, "Feil-Farrell", 8, 1)
+  end
 
+  describe "initialize" do
     it "creates an instance of Farmar::Vendor class" do
       expect(@vendor).to be_an_instance_of FarMar::Vendor
     end
@@ -29,6 +29,13 @@ describe FarMar::Vendor do
     it "returns the FarMar::Vendor with the specified id" do
       expect(FarMar::Vendor.find(2)).to be_an_instance_of FarMar::Vendor
       expect(FarMar::Vendor.find(2).name).to eq "Hamill, Kilback and Pfeffer"
+    end
+  end
+
+  describe "#market" do
+    it "returns the Market for the specific vendor instance" do
+      expect(@vendor.market).to be_an_instance_of FarMar::Market
+      expect(@vendor.market.name).to eq "People's Co-op Farmers Market"
     end
   end
 end

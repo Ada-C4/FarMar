@@ -33,7 +33,7 @@ describe FarMar::Market do
     end
 
     describe "#vendors" do
-      it "returns all Vendors with for the specific market instance" do
+      it "returns all Vendors for the specific market instance" do
         expect(@market.vendors.length).to eq 6
         expect(@market.vendors[0].name).to eq "Feil-Farrell"
       end
