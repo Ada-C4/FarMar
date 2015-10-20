@@ -10,7 +10,7 @@ module FarMar
     end
 
     # Converts an array to a hash for passing to market instantiation
-    def self.convert_to_market_hash(market_array)
+    def self.convert_to_hash(market_array)
       market_hash = {}
       market_hash[:id] = market_array[0].to_i
       market_hash[:name] = market_array[1]
@@ -27,10 +27,10 @@ module FarMar
       markets = []
       csv_file.each do |row|
         # Convert the array to a hash
-        market_hash = self.convert_to_market_hash(row)
+        market_hash = convert_to_hash(row)
         # Create a market object from each row-hash in the csv file
         temp = FarMar::Market.new(market_hash)
-        # Push account object to array of accounts
+        # Push market object to array of markets
         markets.push(temp)
       end
       return markets
