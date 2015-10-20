@@ -24,9 +24,6 @@ module FarMar
     end
 
     def self.find(id)
-      if id.class != Fixnum
-        return nil
-      end
       csv_file = CSV.read(self::FILENAME)
       match_record = csv_file.find { |a| a[0].to_i == id}
       if match_record == nil
