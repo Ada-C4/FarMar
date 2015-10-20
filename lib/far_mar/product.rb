@@ -16,18 +16,7 @@ module FarMar
     end
 
     def self.all
-      csv_file = CSV.read("./support/products.csv")
-      # Create empty array which will hold all the product objects
-      products = []
-      csv_file.each do |row|
-        # Convert the array to a hash
-        product_hash = convert_to_hash(row)
-        # Create a product object from each row-hash in the csv file
-        temp = FarMar::Product.new(product_hash)
-        # Push product object to array of products
-        products.push(temp)
-      end
-      return products
+      super('./support/products.csv')
     end
   end
 end

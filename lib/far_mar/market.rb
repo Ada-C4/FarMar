@@ -19,18 +19,7 @@ module FarMar
     end
 
     def self.all
-      csv_file = CSV.read("./support/markets.csv")
-      # Create empty array which will hold all the market objects
-      markets = []
-      csv_file.each do |row|
-        # Convert the array to a hash
-        market_hash = convert_to_hash(row)
-        # Create a market object from each row-hash in the csv file
-        temp = FarMar::Market.new(market_hash)
-        # Push market object to array of markets
-        markets.push(temp)
-      end
-      return markets
+      super('./support/markets.csv')
     end
   end
 end
