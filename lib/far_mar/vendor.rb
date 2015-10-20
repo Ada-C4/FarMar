@@ -21,7 +21,7 @@ module FarMar
     end
 
     def market
-      return FarMar::Market.all.find {|market| market.id == @id}
+      return FarMar::Market.all.find {|market| market.id == @market_id}
     end
   end
 end
