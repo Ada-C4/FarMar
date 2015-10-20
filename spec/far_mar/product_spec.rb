@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe FarMar::Product do
   before :each do
-    @product=FarMar::Product.new(3, "prori", 1)
+    @product=FarMar::Product.new(8, "Shaky Honey", 5)
   end
 
   describe "initialize Product" do
@@ -15,5 +15,12 @@ describe FarMar::Product do
     it "returns a collection of Product instances" do
       expect(FarMar::Product.all).to be_an(Array)
     end
+  end
+
+  describe "find" do
+    it "return the product, usind id " do
+      expect(FarMar::Product.find(8).name).to eq("Shaky Honey")
+    end
+
   end
 end

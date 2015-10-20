@@ -28,13 +28,9 @@ module FarMar
     end
 
     def self.find(id)
-      markets = self.all
-      market1 = nil
-      markets.each do |market|
-        if market.id == id
-          market1= market
-        end
-        return market1
+      market_array = self.all
+      market_array.find do |market|
+        market.id == id
       end
       # markets.find do |market|
       #   market.id = id
