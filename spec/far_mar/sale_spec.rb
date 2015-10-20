@@ -44,4 +44,11 @@ describe FarMar::Sale do
       expect(FarMar::Sale.find(@id).vendor.id).to eq 1
     end
   end
+  describe "#product" do
+    it "returns a Product instance associated with the sale" do
+      @id = 2
+      expect(FarMar::Sale.find(@id).product).to be_an_instance_of FarMar::Product
+      expect(FarMar::Sale.find(@id).product.id).to eq 1
+    end
+  end
 end
