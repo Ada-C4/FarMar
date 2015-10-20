@@ -28,8 +28,8 @@ describe FarMar::Product do
   end
   describe "self.find(id)" do
     it "returns the corresponding product name for a particular product id" do
-      id = 8171
-      expect(FarMar::Product.find(id).name).to eq "Lazy Pretzel"
+      @id = 8171
+      expect(FarMar::Product.find(@id).name).to eq "Lazy Pretzel"
     end
   end
 end

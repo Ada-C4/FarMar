@@ -27,13 +27,13 @@ describe FarMar::Vendor do
     end
   end
   describe "self.find(id)" do
-    it "returns the corresponding Vendor name for a particular vendor id" do
-      id = 2608
-      expect(FarMar::Vendor.find(id).name).to eq "Funk and Sons"
+    it "returns the corresponding vendor name for a particular vendor id" do
+      @id = 2608
+      expect(FarMar::Vendor.find(@id).name).to eq "Funk and Sons"
     end
-    it "returns the corresponding Market name for a particular Vendor" do
-      id = 2188
-      expect(FarMar::Market.find(FarMar::Vendor.find(id).market_id).name). to eq "Selma/Dallas County Farmers Market"
+    it "returns the corresponding Market name for a particular vendor" do
+      @id = 2188
+      expect(FarMar::Market.find(FarMar::Vendor.find(@id).market_id).name). to eq "Selma/Dallas County Farmers Market"
     end
   end
 end

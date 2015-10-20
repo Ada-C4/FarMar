@@ -12,7 +12,7 @@ describe FarMar::Market do
     end
   end
   describe "#initialize" do
-    it "creates a new instance of market with 7 instance variables" do
+    it "creates a new instance of Market with 7 instance variables" do
       expect(@market.instance_variables.length).to eq 7
     end
     it "creates a new instance of market with @id as an integer" do
@@ -20,17 +20,17 @@ describe FarMar::Market do
     end
   end
   describe "self.all" do
-    it "returns an array of market instances" do
+    it "returns an array of Market instances" do
       expect(FarMar::Market.all).to be_an Array
     end
-    it "returns an array with 500 market instances" do
+    it "returns an array with 500 Market instances" do
       expect(FarMar::Market.all.length).to eq 500
     end
   end
   describe "self.find(id)" do
     it "returns the corresponding market name for a particular market id" do
-      id = 400
-      expect(FarMar::Market.find(id).name).to eq "Green Spring Station Farmers Market"
+      @id = 400
+      expect(FarMar::Market.find(@id).name).to eq "Green Spring Station Farmers Market"
     end
   end
 end
