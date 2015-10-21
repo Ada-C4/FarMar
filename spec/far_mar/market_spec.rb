@@ -43,7 +43,7 @@ describe FarMar::Market do
 
   describe ".vendors" do
     it "returns a collection of vendor instances associated with the specific market" do
-      expect(@market.vendors.class).to eq Array
+      expect(@market.vendors).to be_an Array
     end
   end
 

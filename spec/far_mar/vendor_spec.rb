@@ -30,5 +30,12 @@ describe FarMar::Vendor do
     end
   end
 
+  describe ".market" do
+    it "returns the Market instance from the csv that is associated with this vendor" do
+      expect(@vendor.market).to be_an_instance_of FarMar::Market
+      expect(@vendor.market.name).to eq "People's Co-op Farmers Market"
+    end
+  end
+
 
 end

@@ -24,8 +24,8 @@ module FarMar
       all.find{|vendor| vendor.id == id}
     end
 
-    # def market
-    # end
+    def market
+    end
     #
     # def products
     # end
