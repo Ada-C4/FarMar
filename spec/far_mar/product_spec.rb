@@ -29,6 +29,19 @@ describe FarMar do
           product = FarMar::Product.find(num)
           expect(product.id).to eq 1
         end
-    end
+      end
+
+      describe "find_vendor" do
+        before :each do
+          @product = FarMar::Product.new({
+            :id => 123,
+            :name => "product name",
+            :vendor_id => 456
+          })
+        end
+        it "returns an instance of Vendor" do
+          expect(@product.find_vendor(@product.id)).to be_an_instance_of FarMar::Vendor
+        end
+      end
   end
 end
