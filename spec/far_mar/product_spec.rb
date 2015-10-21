@@ -12,8 +12,14 @@ describe FarMar::Product do
   end
 
   context ".self.all" do
-    it "only returns instances in the products.csv file" do
-      expect(FarMar::Product.all()).to be_truthy
+    it "returns an array" do
+      expect(FarMar::Product.all().class).to be Array
+    end
+    it "returns instances of all lines in vendors.csv" do
+      expect(FarMar::Product.all().length).to eq 8193
     end
   end
+
+
+
 end
