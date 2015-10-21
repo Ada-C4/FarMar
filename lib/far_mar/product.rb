@@ -25,6 +25,14 @@ module FarMar
       FarMar::Product.all_objects.find_all { |product| product.vendor_id == vendor_id }
     end
 
+    # returns the FarMar::Vendor instance that is associated with this
+    # vendor using the vendor_id field
+    def vendor
+      return FarMar::Vendor.find(@vendor_id)
+    end
+
+    # returns a collection of FarMar::Sale instances that are associated using
+    # the product_id field
     def sales
       return FarMar::Sale.by_product(@id)
     end
