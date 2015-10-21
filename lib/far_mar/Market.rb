@@ -12,9 +12,13 @@ module FarMar
       @zip = zip
     end
     def self.all
-      CSV.read("./support/markets.csv").map do |row|
-        FarMar::Market.new(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
+      @@markets_all ||= []
+      if @@markets_all == []
+        CSV.read("./support/markets.csv").map do |row|
+          @@markets_all.push(FarMar::Market.new(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+        end
       end
+        return @@markets_all
     end
     def self.find(id)
       FarMar::Market.all.find do |market|

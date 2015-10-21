@@ -9,9 +9,13 @@ module FarMar
       @market_id = market_id.to_i
     end
     def self.all
-      CSV.read("./support/vendors.csv").map do |row|
-        FarMar::Vendor.new(row[0], row[1], row[2], row[3])
+      @@vendors_all ||= []
+      if @@vendors_all == []
+        CSV.read("./support/vendors.csv").map do |row|
+          @@vendors_all.push(FarMar::Vendor.new(row[0], row[1], row[2], row[3]))
+        end
       end
+      return  @@vendors_all
     end
     def self.find(id)
       FarMar::Vendor.all.find do |vendor|

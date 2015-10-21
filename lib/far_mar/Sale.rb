@@ -10,9 +10,13 @@ module FarMar
       @product_id = product_id.to_i
     end
     def self.all
-      CSV.read("./support/sales.csv").map do |row|
-        FarMar::Sale.new(row[0], row[1], row[2], row[3], row[4])
+      @@sales_all ||= []
+      if @@sales_all == []
+        CSV.read("./support/sales.csv").map do |row|
+          @@sales_all.push(FarMar::Sale.new(row[0], row[1], row[2], row[3], row[4]))
+        end
       end
+        return @@sales_all
     end
     def self.find(id)
       FarMar::Sale.all.find do |sale|
