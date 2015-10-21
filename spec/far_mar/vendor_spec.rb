@@ -82,5 +82,16 @@ describe FarMar do
       end
     end
 
+    describe ".by_market(market_id)" do
+      before :each do
+        @market_id = rand(1..500)
+      end
+      it "returns a collection" do
+        expect(FarMar::Vendor.by_market(@market_id)).to be_an(Array)
+      end
+      it "returns instances of Vendors" do
+        expect(FarMar::Vendor.by_market(@market_id)[0]).to be_an_instance_of(FarMar::Vendor) if FarMar::Vendor.by_market(@market_id).length > 0
+      end
+    end
   end
 end
