@@ -17,4 +17,15 @@ describe FarMar::Sale do
     end
   end
 
+  describe "#all" do
+    all_sales = FarMar::Sale.all
+    it "returns a collection of all sale instances in the csv" do
+      expect(all_sales.class).to eq Array
+      expect(all_sales[0]).to be_an_instance_of FarMar::Sale
+      expect(all_sales[-1]).to be_an_instance_of FarMar::Sale
+      csv = CSV.read("support/sales.csv")
+      expect(all_sales.length).to eq csv.length
+    end
+  end
+
 end
