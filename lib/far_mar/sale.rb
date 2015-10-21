@@ -23,11 +23,19 @@ module FarMar
 
     # returns all of the sales with the given product id
     def self.by_product(product_id)
-      FarMar::Sale.all_objects.find_all { |sale| sale.product_id == product_id }
+      return FarMar::Sale.all_objects.find_all { |sale| sale.product_id == product_id }
     end
 
+    # returns all of the vendors with the given vendor id
     def self.by_vendor(vendor_id)
-      FarMar::Sale.all_objects.find_all { |sale| sale.vendor_id == vendor_id }
+      return FarMar::Sale.all_objects.find_all { |sale| sale.vendor_id == vendor_id }
     end
+
+    # returns the Vendor that is associated with the sale
+    def vendor
+      return FarMar::Vendor.find(@vendor_id)
+    end
+
+    # returns the Product that is associated with the sale
   end
 end
