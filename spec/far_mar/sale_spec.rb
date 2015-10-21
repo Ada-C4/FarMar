@@ -24,4 +24,19 @@ describe FarMar::Sale do
     end
   end
 
+  describe "vendor" do
+    it "returns the vendor instance that is associated with the sale" do
+      sale_vendor = @sale.vendor
+      expect(sale_vendor).to be_an Object
+      expect(sale_vendor.vendor_id).to eq 2
+    end
+  end
+
+  describe "product" do
+    it "returns the product instance that is associated with the sale" do
+      sale_product = @sale.product
+      expect(sale_product).to be_an Object
+      expect(sale_product.product_id).to eq 4
+    end
+  end
 end
