@@ -10,4 +10,6 @@ describe FarMar::Product do
         expect(@product).to be_an_instance_of FarMar::Product
       end
   end
+
+  
 end
