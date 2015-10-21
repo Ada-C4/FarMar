@@ -52,4 +52,11 @@ describe FarMar::Product do
     end
   end
 
+  describe "#number_of_sales" do
+    it "returns the expected number of sales" do
+      product = @products[0]
+      expect(product.number_of_sales).to eq 7
+    end
+  end
+
 end

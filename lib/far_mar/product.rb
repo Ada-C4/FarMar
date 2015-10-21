@@ -42,6 +42,7 @@ module FarMar
 
     # Returns the number of times this product has been sold
     def number_of_sales
+      return self.sales.length
     end
 
     # Returns all of the products with the given Vendor ID
