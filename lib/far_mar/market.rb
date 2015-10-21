@@ -29,5 +29,18 @@ module FarMar
       market_array = self.all
       market_array.find {|i| i.id == id}
     end
+
+    def vendors
+      #returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field
+      vendor_array = []
+      vendor_list = FarMar::Vendor.all
+      vendor_list.find_all do |i|
+        if i.market_id == id
+          vendor_array.push(i)
+        end
+      end
+      return vendor_array
+    end
+
   end
 end

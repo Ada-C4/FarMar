@@ -5,7 +5,7 @@ module FarMar
         @id = id.to_i
         @name = name
         @no_of_employees = no_of_employees
-        @market_id = market_id
+        @market_id = market_id.to_i
       end
 
       def self.all

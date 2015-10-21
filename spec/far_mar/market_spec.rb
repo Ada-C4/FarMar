@@ -32,9 +32,12 @@ describe FarMar::Market do
     end
   end
 
-  # context "" do
-  #   it "" do
-  #     expect().to
-  #   end
-  # end
+  context "#vendors" do
+    it "returns a collection" do
+      expect(@market.vendors.class).to eq Array
+    end
+    it "is a collection of Vendor instances in Far::Mar" do
+      expect(@market.vendors.length).to eq 8
+    end
+  end
 end

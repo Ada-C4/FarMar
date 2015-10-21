@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe FarMar::Vendor do
   before :each do
-    @vendor = FarMar::Vendor.new(45,"Hyatt, Conroy and Ortiz",5,10)
+    @vendor = FarMar::Vendor.new(45, "Hyatt, Conroy and Ortiz", 5, 10)
     @vendor_2 = FarMar::Vendor.new(2690, "Mann-Lueilwitz", 4, 500)
   end
 
