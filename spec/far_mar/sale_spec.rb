@@ -2,8 +2,8 @@ require "./spec/spec_helper"
 
 describe FarMar::Sale do
   before :each do
-    @sale1 = FarMar::Sale.new(5, "amount", "2013-11-06 22:57:35 -0800", "vendor_id", "product_id")
-    @sale2 = FarMar::Sale.new(6, "amount", "2013-11-06 22:57:35 -0805", "vendor_id", "product_id")
+    @sale1 = FarMar::Sale.new(5,4440,"2013-11-10 05:19:05 -0800",1,1)
+    @sale2 = FarMar::Sale.new(100,4573,"2013-11-08 15:18:32 -0800",19,56)
   end
   describe "#initialize" do
     it "creates new instance of sale" do
@@ -26,6 +26,15 @@ describe FarMar::Sale do
     it "returns correct instance of FarMar::Sale" do
       expect(FarMar::Sale.find(1).amount).to eq 9290
       expect(FarMar::Sale.find(2).amount).to eq 2262
+    end
+  end
+  describe "#vendor" do
+    it "returns an instance of FarMar::Vendor" do
+      expect(@sale1.vendor).to be_instance_of FarMar::Vendor
+    end
+    it "returns correct instance of FarMar::Vendor" do
+      expect(@sale1.vendor.name).to eq "Feil-Farrell"
+      expect(@sale2.vendor.name).to eq "Labadie-Tremblay"
     end
   end
 end
