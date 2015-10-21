@@ -41,4 +41,14 @@ describe FarMar::Market do
 		end
 	end
 
+	describe '.vendors(id)' do
+		it 'returns an array' do
+		length = FarMar::Market.all.length - 1 
+		  expect(FarMar::Market.vendors(rand(0..length))).to be_an_instance_of(Array)
+		end
+		it 'returns all FarMar::Vendor instances for a market id' do
+			expect(FarMar::Market.vendors(1).length).to eq([6])
+		end
+	end
+
 end
