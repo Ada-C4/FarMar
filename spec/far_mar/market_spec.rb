@@ -41,13 +41,15 @@ describe FarMar::Market do
 		end
 	end
 
-	describe '.vendors(id)' do
+	describe 'vendors' do
+		before :each do
+			@market = FarMar::Market.new(7,"Petaluma Evening Farmers' Market","1 2nd Street","Petaluma","Sonoma","California",94952)
+		end
 		it 'returns an array' do
-		length = FarMar::Market.all.length - 1 
-		  expect(FarMar::Market.vendors(rand(0..length))).to be_an_instance_of(Array)
+		  expect(@market.vendors).to be_an_instance_of(Array)
 		end
 		it 'returns all FarMar::Vendor instances for a market id' do
-			expect(FarMar::Market.vendors(1).length).to eq(6)
+			expect(@market.vendors.length).to eq(2)
 		end
 	end
 

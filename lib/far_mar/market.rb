@@ -30,7 +30,7 @@ module FarMar
       FarMar::Market.all.find {|mar| mar.market_id == id }
     end
 
-    def self.vendors(market_id)
+    def vendors
       FarMar::Vendor.all.find_all {|ven| ven.market == market_id }
     end
 

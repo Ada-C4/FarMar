@@ -68,11 +68,13 @@ describe FarMar::Vendor do
 		end
 	end
 
-	describe '.by_market' do
-		
+	describe '.by_market(market_id)' do
+		it 'returns all Vendors for given market_id' do
+			
+		end
 	end
 
-	describe '.revenue(vendor_id)' do
+	describe '#revenue' do
 		
 	end
 
