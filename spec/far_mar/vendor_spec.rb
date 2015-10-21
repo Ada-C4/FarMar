@@ -2,11 +2,12 @@ require "spec_helper"
 describe FarMar do
   describe FarMar::Vendor do
 
+    before :each do
+      vendor_info = CSV.open("./support/vendors.csv", 'r') { |csv| csv.first }
+      @vendor = FarMar::Vendor.new(vendor_info)
+    end
+
     describe "#initialize" do
-      before :each do
-        vendor_info = CSV.open("./support/vendors.csv", 'r') { |csv| csv.first }
-        @vendor = FarMar::Vendor.new(vendor_info)
-      end
       it "creates a new instance of the Vendor class" do
         expect(@vendor).to be_an_instance_of(FarMar::Vendor)
       end
@@ -46,10 +47,6 @@ describe FarMar do
     end
 
     describe "#market" do
-      before :each do
-        vendor_info = CSV.open("./support/vendors.csv", 'r') { |csv| csv.first }
-        @vendor = FarMar::Vendor.new(vendor_info)
-      end
       it "returns an instance of the Market class" do
         expect(@vendor.market).to be_an_instance_of(FarMar::Market)
       end
@@ -59,10 +56,6 @@ describe FarMar do
     end
 
     describe "#products" do
-      before :each do
-        vendor_info = CSV.open("./support/vendors.csv", 'r') { |csv| csv.first }
-        @vendor = FarMar::Vendor.new(vendor_info)
-      end
       it "returns a collection" do
         expect(@vendor.products).to be_an(Array)
       end
@@ -72,15 +65,20 @@ describe FarMar do
     end
 
     describe "#sales" do
-      before :each do
-        vendor_info = CSV.open("./support/vendors.csv", 'r') { |csv| csv.first }
-        @vendor = FarMar::Vendor.new(vendor_info)
-      end
       it "returns a collection" do
         expect(@vendor.sales).to be_an(Array)
       end
       it "returns instances of Sales" do
         expect(@vendor.sales[0]).to be_an_instance_of(FarMar::Sale) if @vendor.sales.length > 0
+      end
+    end
+
+    describe "#revenue" do
+      it "returns a sum in cents" do
+        expect(@vendor.revenue).to be_a(Fixnum)
+      end
+      it "returns the sum of sales" do
+        expect(@vendor.revenue).to eq(38259)
       end
     end
 

@@ -1,6 +1,6 @@
 module FarMar
   class Sale
-    attr_reader :id, :vendor_id, :product_id
+    attr_reader :id, :vendor_id, :product_id, :amount
 
     def initialize(sale_info)
       @id = sale_info[0].to_i
