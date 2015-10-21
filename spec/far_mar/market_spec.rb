@@ -63,12 +63,11 @@ describe FarMar::Market do
         expect(market_15.id).to eq 15
       end
     end
-    describe "self.vendors(id)" do
-      it "returns a collection of vendor instances associated with the inputted market id" do
-        vendors_48 = FarMar::Market.vendors(48)
-        expect(vendors_48).to be_an Array
-        expect(vendors_48[3]).to be_an_instance_of FarMar::Vendor
-        expect(vendors_48[4].market_id).to eq 48
+    describe "#vendors" do
+      it "returns a collection of vendor instances associated with the market id" do
+        expect(@market.vendors).to be_an Array
+        expect(@market.vendors[3]).to be_an_instance_of FarMar::Vendor
+        expect(@market.vendors[4].market_id).to eq 1
     end
   end
 end
