@@ -62,5 +62,12 @@ module FarMar
         #sales_array is an array of Vendor objects
         return sales_array
       end
+
+      def number_of_sales(product_id)
+        sales = find_sales(product_id)
+        total = 0
+        sales.each {|sale| total += 1}
+        return total
+      end
   end
 end

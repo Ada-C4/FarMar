@@ -59,5 +59,21 @@ describe FarMar do
           expect(@product.find_sales(@product.id)[0]).to be_an_instance_of FarMar::Sale
         end
       end
+
+      describe "number_of_sales" do
+        before :each do
+          @product = FarMar::Product.new({
+            :id => 1,
+            :name => "product name",
+            :vendor_id => 456
+          })
+        end
+        it "returns an integer" do
+          expect(@product.number_of_sales(@product.id)).to be_a Fixnum
+        end
+        it "returns the correct number of sales" do
+          expect(@product.number_of_sales(@product.id)).to eq 7
+        end
+      end
   end
 end
