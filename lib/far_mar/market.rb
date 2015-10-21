@@ -12,12 +12,11 @@ module FarMar
       @zip = market_hash[:zip]
     end
 
-
     def self.all
       # if @@market_array is nil, reads the csv and creates the array
       # otherwise uses array already in memory
-      @@markets_array ||= CSV.read('./support/markets.csv').map do |col|
-        FarMar::Market.new({
+      @@all_markets ||= CSV.read('./support/markets.csv').map do |col|
+         FarMar::Market.new({
           id: col[0],
           name: col[1],
           address: col[2],
@@ -30,6 +29,7 @@ module FarMar
     end
 
     def self.find(id)
+      # can use all without self (all.find instead of self.all.find) because already in the class scope
       all.find do |market|
         market.id == id
       end
