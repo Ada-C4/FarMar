@@ -15,11 +15,11 @@ describe FarMar do
     end
     describe "self.all" do
       it "returns an array of 2690 Vendor objects" do
-        vendors = FarMar::Vendor.all
-        expect(vendors).to be_an(Array)
-        expect(vendors.length).to eq(2690)
-        expect(vendors[0].id).to eq(1)
-        expect(vendors[-1].id).to eq(2690)
+        FarMar::Vendor.all
+        expect(FarMar::Vendor.all_objects).to be_an(Array)
+        expect(FarMar::Vendor.all_objects.length).to eq(2690)
+        expect(FarMar::Vendor.all_objects[0].id).to eq(1)
+        expect(FarMar::Vendor.all_objects[-1].id).to eq(2690)
       end
     end
 
