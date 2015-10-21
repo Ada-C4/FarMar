@@ -15,12 +15,14 @@ module FarMar
 		end
 
 		def self.all
-			sales_array = []
-			CSV.read('./support/sales.csv').each do |row|
-        sale = FarMar::Sale.new(row[0], row[1], row[2], row[3], row[4])
-        sales_array.push(sale)
+				@@sales_array ||= []
+				if @@sales_array = []
+				CSV.read('./support/sales.csv').each do |row|
+        	sale = FarMar::Sale.new(row[0], row[1], row[2], row[3], row[4])
+        	@@sales_array.push(sale)
+      	end
       end
-			return sales_array
+			return @@sales_array
 		end
 
 		def self.find(id)

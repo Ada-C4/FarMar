@@ -13,20 +13,22 @@ module FarMar
 		end
 
 		def self.all
-			vendor_array = []
-			  CSV.read('./support/vendors.csv').each do |row|
-        	vendor = FarMar::Vendor.new(row[0], row[1], row[2], row[3])
-        	vendor_array.push(vendor)
-      end
-      return vendor_array
+			@@vendor_array ||= []
+			  if @@vendor_array == []
+			  	CSV.read('./support/vendors.csv').each do |row|
+        		vendor = FarMar::Vendor.new(row[0], row[1], row[2], row[3])
+        		@@vendor_array.push(vendor)
+      		end
+      	end
+      return @@vendor_array
 		end
 
 		def self.find(vendor_id)
  			FarMar::Vendor.all.find {|ven| ven.vendor_id == vendor_id}
 		end
 
-		def self.products(vendor_id)
-			FarMar::Product.all.find_all { |pro| pro.vendor_id == vendor_id}
+		def products
+			FarMar::Product.all.find_all { |pro| pro.vendor_id == @vendor_id}
 		end
 
 		def self.sales(vendor_id)
