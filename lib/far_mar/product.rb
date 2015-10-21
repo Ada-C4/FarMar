@@ -12,11 +12,12 @@ module FarMar
       product_array = CSV.read("support/products.csv")
       product_array.each do |line|
       new_product = Product.new(
-        id: product_array[0],
-        name: product_array[1],
-        product_id: product_array[2])
+        id: line[0],
+        name: line[1],
+        vendor_id: line[2])
         products.push(new_product)
       end
+      return products
     end
 
     def self.find(id)
@@ -27,7 +28,7 @@ module FarMar
       specific_product = Product.new(
         id: matched_line[0],
         name: matched_line[1],
-        product_id: matched_line[2])
+        vendor_id: matched_line[2])
     end
   end
 end

@@ -41,8 +41,12 @@ module FarMar
       return matched_market
     end
 
-    def product
-
+    def products
+      possibilities = FarMar::Product.all
+      associated_products = possibilities.find_all do |each|
+        @id == each.vendor_id
+      end
+      return associated_products
     end
   end
 end
