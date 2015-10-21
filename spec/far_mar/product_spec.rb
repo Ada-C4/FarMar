@@ -36,5 +36,12 @@ describe FarMar::Product do
       expect(@all_products.length).to eq 8193
     end
   end
+  describe "self.find(id)" do
+    it "returns an instance of product with the passed id" do
+      product_25 = FarMar::Product.find(25)
+      expect(product_25).to be_an_instance_of FarMar::Product
+      expect(product_25.id).to eq 25
+    end
+  end
 
 end

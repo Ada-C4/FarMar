@@ -46,4 +46,11 @@ describe FarMar::Sale do
       expect(@all_sales.length).to eq 12798
     end
   end
+  describe "self.find(id)" do
+    it "returns an instance of sale with the passed id" do
+      sale_100 = FarMar::Sale.find(100)
+      expect(sale_100).to be_an_instance_of FarMar::Sale
+      expect(sale_100.id).to eq 100
+    end
+  end
 end

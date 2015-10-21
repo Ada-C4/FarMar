@@ -25,11 +25,11 @@ module FarMar
         return market_array
     end
 
-# def self.find(id)
-#       Bank::Account.all.find do |account|
-#         account.account_id == id
-#       end
-#     end
+    def self.find(id)
+      FarMar::Market.all.find do |market|
+        market.id == id
+      end
+    end
 
   end
 end

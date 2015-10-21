@@ -56,4 +56,11 @@ describe FarMar::Market do
       expect(@all_markets.length).to eq 500
     end
   end
+  describe "self.find(id)" do
+    it "returns an instance of market with the passed id" do
+      market_15 = FarMar::Market.find(15)
+      expect(market_15).to be_an_instance_of FarMar::Market
+      expect(market_15.id).to eq 15
+    end
+  end
 end
