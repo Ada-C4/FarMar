@@ -6,3 +6,16 @@
 # Write the product method for vendor
 # Rewrite the vendor by_market spec - using length but should be testing result accuracy
 # Rewrite tests to take test data
+# Hailey's efficiency code:
+          def self.all
+          @@markets_all ||= []
+          if @@markets_all == []
+          CSV.read("support/markets.csv").each do |id, name, address, city, county, state, zip|
+            #binding.pry
+            market_hash = {:id => id.to_i, :name => name, :address => address, :city => city, :county => county, :state => state, :zip => zip}
+            market = FarMar::Market.new(market_hash)
+            @@markets_all.push(market)
+          end
+          end
+          return @@markets_all
+          end

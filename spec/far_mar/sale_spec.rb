@@ -7,7 +7,7 @@ describe FarMar::Sale do
 
   describe "#new" do
     it "create a new instance of Sale" do
-      example_sale_hash = {:id => 1111, :amount => 5678, :purchase_time => "a date", :vendor_id => 1, :product_id => 3} # NEED TO BUILD THE HASH
+      example_sale_hash = {:id => 1111, :amount => 5678, :purchase_time => "2010-03-21 07:17:17 -0800", :vendor_id => 1, :product_id => 3} # NEED TO BUILD THE HASH
       example_sale = FarMar::Sale.new(example_sale_hash)
       expect(example_sale).to be_an_instance_of FarMar::Sale
     end
@@ -50,6 +50,24 @@ describe "#product" do
     sale = @sales[1]
     expect(sale.product.product_name).to eq "Dry Beets"
   end
+end
+
+describe '.between' do
+  before :each do
+    @start_date = DateTime.parse("2013-11-06 08:00:00 -0800")
+    @end_date   = DateTime.parse("2013-11-06 09:00:00 -0800")
+  end
+  it "returns a non-empty array of sale objects" do
+    expect(FarMar::Sale.between( @start_date , @end_date )).to be_an_instance_of Array
+    expect(FarMar::Sale.between( @start_date , @end_date )).not_to eq []
+    expect(FarMar::Sale.between( @start_date , @end_date )[0]).to be_an_instance_of FarMar::Sale
+  end
+
+  it "returns the expected sale objects" do
+    expect(FarMar::Sale.between( @start_date , @end_date )[1].sale_id).to eq 1931
+  end
+
+
 end
 
 end
