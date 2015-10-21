@@ -45,4 +45,14 @@ describe FarMar::Market do
       expect(sample_market.vendors.length).to eq matched_vendors.length
     end
   end
+
+  describe "#products" do
+    it "returns an array with products in it" do
+      sample_market = @markets[1]
+      expect(sample_market.products).to be_an_instance_of Array
+      expect(sample_market.products).not_to eq []
+      expect(sample_market.products.length).to eq 9
+      expect(sample_market.products[0].product_name).to eq "Stupendous Carrots"
+    end
+  end
 end

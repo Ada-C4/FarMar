@@ -39,5 +39,38 @@ module FarMar
       end
       return matched_vendors
     end
+
+  # ----------- OPTIONAL REQUIREMENTS: Part I --------------------- #
+
+  # Returns a collection of product instances that are associated to the market though the FarMar::Vendor class
+  def products
+    products = []
+    matched_vendors = self.vendors
+    matched_vendors.each { |vendor| products.push(vendor.products)}
+    products.flatten!
+    return products
+  end
+
+  # Returns a collection of Market instances where the market name or vendor name contain the search term
+  def self.search(search_term)
+  end
+
+  # Returns the vendor with the highest revenue
+  def preferred_vendor
+  end
+
+  # Returns the vendor with highest revenue for the given date
+  def preferred_vendor(date)
+  end
+
+  # Returns the vendor with the lowest revenue
+  def worst_vendor
+  end
+
+  # Returns the vendor with the lowest revenue for the given date
+  def worst_vendor(date)
+  end
+
+
   end
 end
