@@ -7,6 +7,10 @@ module FarMar
       super(market_hash)
     end
 
+    def self.all_objects
+      @@all_objects ||= self.all
+    end
+
     # Converts an array to a hash for passing to market instantiation
     def self.convert_to_hash(market_array)
       market_hash = {}
@@ -17,11 +21,6 @@ module FarMar
       market_hash[:county] = market_array[4]
       market_hash[:state] = market_array[5]
       return market_hash
-    end
-
-    def self.all
-      @@all_objects ||= super
-      return @@all_objects
     end
 
     def vendors
