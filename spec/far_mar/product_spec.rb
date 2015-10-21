@@ -2,8 +2,8 @@ require "./spec/spec_helper"
 
 describe FarMar::Product do
   before :each do
-    @product1 = FarMar::Product.new(5, "name", "vendor_id")
-    @product2 = FarMar::Product.new(6, "name", "vendor_id")
+    @product1 = FarMar::Product.new(5, "name", 100)
+    @product2 = FarMar::Product.new(6, "name", 400)
   end
   describe "#initialize" do
     it "creates new instance of product" do
@@ -26,6 +26,15 @@ describe FarMar::Product do
     it "returns correct instance of FarMar::Vendor" do
       expect(FarMar::Product.find(1).name).to eq "Dry Beets"
       expect(FarMar::Product.find(2).name).to eq "Fierce Greens"
+    end
+  end
+  describe "#vendor" do
+    it "returns an instance of FarMar::Vendor" do
+      expect(@product1.vendor).to be_instance_of FarMar::Vendor
+    end
+    it "returns correct instance of FarMar::Vendor" do
+      expect(@product1.vendor.name).to eq "Bernier, Moen and Torp"
+      expect(@product2.vendor.name).to eq "Howe LLC"
     end
   end
 end
