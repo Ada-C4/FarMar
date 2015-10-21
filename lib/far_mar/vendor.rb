@@ -30,13 +30,7 @@ module FarMar
     end
 
     def revenue
-      revenue = 0
-
-      self.sales.each do |sale|
-        revenue += sale.amount
-      end
-
-      return revenue
+      self.sales.inject(0) { |sum, sale| sum + sale.amount }
     end
 
     def self.by_market(market_id)
