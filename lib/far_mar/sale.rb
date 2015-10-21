@@ -24,5 +24,10 @@ module FarMar
     def vendor
       return FarMar::Vendor.all.find {|vendor| vendor.id == @vendor_id}
     end
+
+    def product
+      return FarMar::Product.all.find {|product| product.id == @product_id}
+    end
+
   end
 end

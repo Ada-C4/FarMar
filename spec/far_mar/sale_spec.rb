@@ -5,7 +5,7 @@ describe FarMar::Sale do
     @sale = FarMar::Sale.new(1, 9290, "2013-11-07 04:34:56 -0800", 1, 1)
     @sale2 = FarMar::Sale.new(175, 5824, "2013-11-07 21:51:51 -0800", 34, 105)
   end
-  
+
   describe "initialize" do
     it "creates an instance of Farmar::Sale class" do
       expect(@sale).to be_an_instance_of FarMar::Sale
@@ -38,6 +38,14 @@ describe FarMar::Sale do
       expect(@sale.vendor).to be_an_instance_of FarMar::Vendor
       expect(@sale.vendor.id).to eq 1
       expect(@sale2.vendor.id).to eq 34
+    end
+  end
+
+  describe "product" do
+    it "returns the FarMar::Product instance that is associated with this sale" do
+      expect(@sale.product).to be_an_instance_of FarMar::Product
+      expect(@sale.product.name).to eq "Dry Beets"
+      expect(@sale2.product.name).to eq "Happy Mushrooms"
     end
   end
 end
