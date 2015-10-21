@@ -3,7 +3,7 @@ require "spec_helper"
 describe FarMar do
   describe FarMar::Market do
     before :each do
-      @market = FarMar::Market.all
+      #@market = FarMar::Market.all
     end
 
     describe "#initialize" do
@@ -16,10 +16,15 @@ describe FarMar do
 
     describe '#self.all' do
       it "returns a collection of Market instances" do
-        
-        expect(@market.length).to eq 4
+        expect(FarMar::Market.all.length).to eq CSV.read("support/markets.csv").length
       end
+    end
 
+    describe "self.find(id)" do
+      it "returns specific instance of market" do
+        find_test = FarMar::Market.find(15)
+        expect(find_test.name).to eq "Farmers Market in Denison"
+      end
     end
   end
 end
