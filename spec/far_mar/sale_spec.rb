@@ -55,5 +55,14 @@ describe FarMar do
       end
     end
 
+    describe "#product" do
+      it "returns an instance of the Product class" do
+        expect(@sale.product).to be_an_instance_of(FarMar::Product)
+      end
+      it "returns the Product with the matching id" do
+        expect(@sale.product_id).to eq(@sale.product.id)
+      end
+    end
+
   end
 end
