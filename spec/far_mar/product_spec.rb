@@ -15,7 +15,7 @@ describe FarMar::Product do
     it "returns an array" do
       expect(FarMar::Product.all().class).to be Array
     end
-    it "returns instances of all lines in vendors.csv" do
+    it "returns instances of all lines in the csv" do
       expect(FarMar::Product.all().length).to eq 8193
     end
   end

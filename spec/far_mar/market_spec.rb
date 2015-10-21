@@ -12,8 +12,11 @@ describe FarMar::Market do
   end
 
   context ".self.all" do
-    it "only returns instances in the markets.csv file" do
-      expect(FarMar::Market.all()).to be_truthy
+    it "returns an array" do
+      expect(FarMar::Market.all().class).to be Array
+    end
+    it "returns instances of all lines in the csv" do
+      expect(FarMar::Market.all().length).to eq 500
     end
   end
 
