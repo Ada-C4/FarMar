@@ -39,5 +39,10 @@ module FarMar
       end
       return total_revenue
     end
+
+    def self.by_market(market_id)
+      market = FarMar::Market.find(market_id)
+      return market.vendors
+    end
   end
 end

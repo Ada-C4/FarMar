@@ -59,4 +59,10 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "#self.by_market(id)" do
+    it "returns all vendors with given market_id" do
+      expect(FarMar::Vendor.by_market(1).length).to eq 6
+      expect(FarMar::Vendor.by_market(1)[0].name).to eq "Feil-Farrell"
+    end
+  end
 end
