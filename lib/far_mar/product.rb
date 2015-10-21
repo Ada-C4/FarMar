@@ -44,5 +44,8 @@ module FarMar
       return product_sales_array
     end
 
+    def number_of_sales
+      return sales.length
+    end
   end
 end

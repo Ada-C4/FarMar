@@ -40,5 +40,12 @@ describe FarMar::Product do
     end
   end
 
+  describe "number_of_sales" do
+    it "returns the number of times a product has been sold" do
+      total_times_sold = @product.number_of_sales
+      expect(total_times_sold).to eq 2
+    end
+  end
+
 
 end
