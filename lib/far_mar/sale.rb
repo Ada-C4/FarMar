@@ -21,6 +21,7 @@ module FarMar
         product_id: line[4])
         sales.push(new_sale)
       end
+      return sales
     end
 
     def self.find(id)

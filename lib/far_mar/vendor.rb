@@ -48,5 +48,32 @@ module FarMar
       end
       return associated_products
     end
+
+    def sales
+      possibilities = FarMar::Sale.all
+      associated_sales = possibilities.find_all do |each|
+        @id == each.vendor_id
+      end
+      return associated_sales
+    end
+
+    def revenue
+      revenue = 0
+      self.sales.each do |sale|
+        revenue += sale.amount.to_i
+      end
+      return revenue
+    end
+
+    def self.by_market(market_id)
+      possibilities = self.all
+      vendor_party = []
+      match = possibilities.find do |each|
+        market_id == each.market_id
+        vendor_party.push(match)
+        binding.pry
+      end
+      return vendor_party
+    end
   end
 end
