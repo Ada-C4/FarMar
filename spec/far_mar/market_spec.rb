@@ -23,23 +23,46 @@ describe FarMar::Market do
   end
 
   describe "self.all" do
-    it "creates an array of market objects from csv" do
-      all = FarMar::Market.all("./support/markets.csv")
-      my_csv = CSV.read("./support/markets.csv")
-      expect(all.length).to eq my_csv.length
-      expect(all).to be_an_instance_of Array
-      expect(all[0].class).to eq FarMar::Market
-      expect(all[11].zip).to eq "12051"
+    context "default csv is passed in" do
+      it "creates an array of market objects from default csv" do
+        all = FarMar::Market.all
+        my_csv = CSV.read("./support/markets.csv")
+        expect(all.length).to eq my_csv.length
+        expect(all).to be_an_instance_of Array
+        expect(all[0].class).to eq FarMar::Market
+        expect(all[11].zip).to eq "12051"
+      end
+    end
+
+    context "non-default csv is passed in" do
+      it "creates an array of market objects from default csv" do
+        all = FarMar::Market.all("./support/markets2.csv")
+        my_csv = CSV.read("./support/markets2.csv")
+        expect(all.length).to eq my_csv.length
+        expect(all).to be_an_instance_of Array
+        expect(all[0].class).to eq FarMar::Market
+        expect(all[9].state).to eq "New Dork"
+      end
     end
   end
 
   describe "self.find" do
-    it "returns an instance of a market matching the passed id" do
-      id4 = FarMar::Market.find("./support/markets.csv",4)
-      id370 = FarMar::Market.find("./support/markets.csv",370)
-      expect(id4.county).to eq "New London"
-      expect(id4.class).to eq FarMar::Market
-      expect(id370.state).to eq "Illinois"
+    context "default csv is passed in" do
+      it "returns an instance of a market matching the passed id" do
+        id4 = FarMar::Market.find(4)
+        id370 = FarMar::Market.find(370)
+        expect(id4.county).to eq "New London"
+        expect(id4.class).to eq FarMar::Market
+        expect(id370.state).to eq "Illinois"
+      end
+    end
+
+    context "non-default csv is passed in" do
+      it "returns an instance of a market matching the passed id" do
+        id4 = FarMar::Market.find(4, "./support/markets2.csv")
+        expect(id4.county).to eq "New Fundon"
+        expect(id4.class).to eq FarMar::Market
+      end
     end
   end
 end
