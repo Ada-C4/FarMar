@@ -45,5 +45,18 @@ describe FarMar do
       end
     end
 
+    describe "#market" do
+      before :each do
+        vendor_info = CSV.open("./support/vendors.csv", 'r') { |csv| csv.first }
+        @vendor = FarMar::Vendor.new(vendor_info)
+      end
+      it "returns an instance of the Market class" do
+        expect(@vendor.market).to be_an_instance_of(FarMar::Market)
+      end
+      it "returns the Market with the matching id" do
+        expect(@vendor.market_id).to eq(@vendor.market.id)
+      end
+    end
+
   end
 end
