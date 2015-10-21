@@ -69,11 +69,15 @@ describe FarMar::Product do
   end
 
   describe 'number_of_sales' do
-  	@product = FarMar::Product.new(6,"Smooth Mushrooms",4)
-  	@product1 = FarMar::Product.new(165,"Striped Apples",51)
+  	before :each do
+  		@product = FarMar::Product.new(6,"Smooth Mushrooms",4)
+  	end
   	it 'returns the number of times Product has been sold' do
   		expect(@product.number_of_sales).to eq(1)
-  		expect(@product1.number_of_sales).to eq(0)
+  	end
+  	it 'works if product has not been sold' do
+  		@product1 = FarMar::Product.new(165,"Striped Apples",51)
+  		expect(@product1.number_of_sales).to eq(0) 
   	end
   end
 end

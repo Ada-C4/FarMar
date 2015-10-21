@@ -34,6 +34,10 @@ module FarMar
 			FarMar::Sale.all.find_all {|sale| sale.product_id == @product_id}
 		end
 
+		def number_of_sales
+			return self.sales.length
+		end
+
 	end
 
 end
