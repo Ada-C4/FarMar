@@ -24,4 +24,10 @@ describe FarMar::Sale do
     end
   end
 
+  describe  '.find' do
+    it 'returns a matching sale instance' do
+      expect(FarMar::Sale.find(15).product_id).to be eq(4)
+    end
+  end
+
 end
