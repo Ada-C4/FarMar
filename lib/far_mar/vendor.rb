@@ -38,9 +38,12 @@ module FarMar
       end
     end
 
-    # def sales
-    # end
-    #
+    def sales
+      FarMar::Sale.all.find_all do |sale|
+        sale.vendor_id == @id
+      end
+    end
+
     # def revenue
     # end
     #

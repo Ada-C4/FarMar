@@ -40,6 +40,15 @@ describe FarMar::Vendor do
   describe ".products" do
     it "returns a collection of the product instances associated with the vendor" do
       expect(@vendor.products).to be_an Array
+      expect(@vendor.products.first).to be_a FarMar::Product
+      expect(@vendor.products.first.name).to eq "Dry Beets"
+    end
+  end
+
+  describe ".sales" do
+    it "returns a collection of the sale instances associated with the vendor" do
+      expect(@vendor.sales).to be_an Array
+      expect(@vendor.sales.first.id).to eq 1
     end
   end
 
