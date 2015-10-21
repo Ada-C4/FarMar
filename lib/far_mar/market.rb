@@ -59,22 +59,27 @@ module FarMar
   end
 
   # Returns the vendor with the highest revenue
-  def preferred_vendor
-    all_vendors = self.vendors
-    all_vendors.sort_by! { |vendor| vendor.revenue}
-    return all_vendors[-1]
+  # Can take a date as an input to return the vendor with the highest revenue on a given date
+  def preferred_vendor(date = nil)
+    if date == nil
+      all_vendors = self.vendors
+      all_vendors.sort_by! { |vendor| vendor.revenue }
+      return all_vendors[-1]
+    else
+      ## ACCOMODATE TAKING A DATE AS INPUT HERE
+    end
   end
-
-  # Returns the vendor with highest revenue for the given date
-  # def preferred_vendor(date)
-  # end
 
   # Returns the vendor with the lowest revenue
-  def worst_vendor
-  end
-
-  # Returns the vendor with the lowest revenue for the given date
-  def worst_vendor(date)
+  # Can take a date as an input to return the vendor with the lowest revenue on a given date
+  def worst_vendor(date = nil)
+    if date == nil
+      all_vendors = self.vendors
+      all_vendors.sort_by! { |vendor| vendor.revenue }
+      return all_vendors[0]
+    else
+      ## ACCOMODATE TAKING A DATE AS INPUT HERE
+    end
   end
 
 

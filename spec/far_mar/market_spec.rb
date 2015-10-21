@@ -73,4 +73,20 @@ describe FarMar::Market do
     end
 
   end
+
+  describe "#worst_vendor" do
+    it "returns a vendor object" do
+      sample_market = @markets[1]
+      expect(sample_market.worst_vendor).to be_an_instance_of FarMar::Vendor
+    end
+
+    it "returns the vendor object with the lowest revenue" do
+      sample_market = @markets[1]
+      all_vendors = sample_market.vendors
+      min = all_vendors.min_by { |i| i.revenue}
+      expect(sample_market.worst_vendor).to eq min
+    end
+
+  end
+
 end
