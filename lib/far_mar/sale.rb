@@ -16,7 +16,7 @@ module FarMar
         new_sale = FarMar::Sale.new(
         {
           :id => line[0].to_i,
-          :amount => line[1],
+          :amount => line[1].to_i,
           :purchase_time => line[2],
           :vendor_id => line[3].to_i,
           :product_id => line[4].to_i
@@ -33,7 +33,7 @@ module FarMar
         new_sale = FarMar::Sale.new(
         {
           :id => match[0].to_i,
-          :amount => match[1],
+          :amount => match[1].to_i,
           :purchase_time => match[2],
           :vendor_id => match[3].to_i,
           :product_id => match[4].to_i
@@ -45,6 +45,10 @@ module FarMar
 
       def id
         return @id
+      end
+
+      def amount
+        return @amount
       end
   end
 end

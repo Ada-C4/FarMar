@@ -84,5 +84,19 @@ describe FarMar do
         expect(@vendor.find_sales(@vendor.id)[0]).to be_an_instance_of FarMar::Sale
       end
     end
+
+    describe "total_sales" do
+      before :each do
+        @vendor = FarMar::Vendor.new({
+          :id => 1,
+          :name => "vendor name",
+          :num_employees => 18,
+          :market_id => 1
+          })
+      end
+      it "returns an integer" do
+        expect(@vendor.total_sales(@vendor.id)).to be_a Fixnum
+      end
+    end
   end
 end

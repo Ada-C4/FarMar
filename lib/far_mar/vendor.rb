@@ -73,15 +73,25 @@ module FarMar
         matches.each do |line|
           sale = FarMar::Sale.new({
             :id => line[0].to_i,
-            :amount => line[1],
+            :amount => line[1].to_i,
             :purchase_time => line[2],
             :vendor_id => line[3].to_i,
             :product_id => line[4].to_i
           })
           sales_array.push(sale)
         end
-        #sales_array is an array of Vendor objects
+        #sales_array is an array of Sale objects
         return sales_array
+      end
+
+      def total_sales(vendor_id)
+        sales = find_sales(vendor_id)
+        #sales is an array of Sale objects
+        sum = 0
+        sales.each do |sale|
+          sum += sale.amount
+        end
+        return sum
       end
   end
 end
