@@ -35,7 +35,7 @@ module FarMar
     end
 
     def vendors
-      return FarMar::Vendor.find_by_market_id(self.id)
+      return FarMar::Vendor.market(self.id)
     end
 
 

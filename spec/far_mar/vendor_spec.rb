@@ -23,18 +23,20 @@ describe FarMar::Vendor do
     end
   end
 
-    describe "find_by_market_id" do
+    describe "market" do
       it "return a vendor array" do
-        expect(FarMar::Vendor.find_by_market_id(2)).to be_an_instance_of(Array)
+        expect(FarMar::Vendor.market(2)).to be_an_instance_of(Array)
       end
 
       it "return the right array" do
-        vendor_array = FarMar::Vendor.find_by_market_id(1)
+        vendor_array = FarMar::Vendor.market(1)
         vendor_array.each do |vendor|
           (@check = true) if vendor.id == 1
         end
         expect(@check).to be_truthy
       end
     end
+
+
 
 end

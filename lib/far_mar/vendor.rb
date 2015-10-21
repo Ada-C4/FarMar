@@ -27,7 +27,7 @@ module FarMar
       end
     end
 
-    def self.find_by_market_id(id)
+    def self.market(id)
       vendor_array = self.all
       vendor_array.find_all do |vendor|
         vendor.market_id == id

@@ -1,3 +1,4 @@
+require 'pry'
 module FarMar
 
   class Sale
@@ -5,9 +6,10 @@ module FarMar
     def initialize (id, amount, purchase_time, vendor_id, product_id)
       @amount = amount
       @id = id
-      @purchase_time =  purchase_time#DateTime.strptime(purchase_time, "%Y-%m-%d %H:%M:%S %z")
+      @purchase_time =  DateTime.parse(purchase_time)#DateTime.strptime(purchase_time, "%Y-%m-%d %H:%M:%S %z")
       @vendor_id = vendor_id
       @product_id = product_id
+
     end
 
     def self.all

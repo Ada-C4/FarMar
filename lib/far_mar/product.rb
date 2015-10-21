@@ -26,6 +26,6 @@ module FarMar
       end
     end
 
-    
+
   end
 end

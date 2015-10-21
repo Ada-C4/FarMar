@@ -33,7 +33,6 @@ describe FarMar::Market do
       expect(@market_array).to be_an_instance_of(Array)
     end
 
-
   end
 end
 
