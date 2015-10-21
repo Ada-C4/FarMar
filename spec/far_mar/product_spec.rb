@@ -60,7 +60,7 @@ describe FarMar::Product do
   		expect(@product.sales.length).to eq(3)
   	end
   	it 'returns Sales instances' do
-  		expect(@products.sales[rand(0..2)]).to be_an_instance_of(FarMar::Sale)
+  		expect(@product.sales[rand(0..2)]).to be_an_instance_of(FarMar::Sale)
   	end
   end
 end
