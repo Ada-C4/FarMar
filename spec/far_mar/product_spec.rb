@@ -17,10 +17,18 @@ describe FarMar::Product do
   end
 
   describe "self.find" do
-    it "returns an instance of Product where the value of the id field in the CSV matches the passed parameter" do
+    it "returns product instance where the value of the id the passed parameter" do
       result = FarMar::Product.find(3)
       expect(result).to be_an Object
       expect(result.product_id).to eq 3
+    end
+  end
+
+  describe "vendor" do
+    it "returns the vendor instance that is associated with the product" do
+      product_vendor = @product.vendor
+      expect(product_vendor).to be_an Object
+      expect(product_vendor.vendor_id).to eq 2
     end
   end
 

@@ -17,7 +17,7 @@ describe FarMar::Market do
   end
 
   describe "self.find" do
-    it "returns an instance of Market where the value of the id field in the CSV matches the passed parameter" do
+    it "returns market instance where the value of the id the passed parameter" do
       result = FarMar::Market.find(3)
       expect(result).to be_an Object
       expect(result.market_id).to eq 3

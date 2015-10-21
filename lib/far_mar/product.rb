@@ -24,5 +24,14 @@ module FarMar
       end
     end
 
+    def vendor
+      product_vendor_array = FarMar::Vendor.all
+      product_vendor_array.each do |row|
+        if row.vendor_id == @vendor_id
+          return row
+        end
+      end
+    end
+
   end
 end
