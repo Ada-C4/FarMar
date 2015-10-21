@@ -11,25 +11,27 @@ module FarMar
     end
 
     def self.all
-      vendor_array =[]
-      vendor_csv = CSV.read("./support/vendors.csv")
-      vendor_csv.each do |sale|
-        new_vendor = Vendor.new(sale[0].to_i, sale[1], sale[2], sale[3].to_i)
-        vendor_array.push(new_vendor)
+      @@array_all ||= []
+      if @@array_all == []
+        vendor_csv = CSV.read("./support/vendors.csv")
+        vendor_csv.each do |sale|
+          new_vendor = Vendor.new(sale[0].to_i, sale[1], sale[2], sale[3].to_i)
+          @@array_all.push(new_vendor)
+        end
       end
-      return vendor_array
+      return @@array_all
     end
 
     def self.find(id)
-      vendor_array = self.all
-      vendor_array.find do |vendor|
+      @@array_all = self.all
+      @@array_all.find do |vendor|
         vendor.id == id
       end
     end
 
     def self.market(id)
-      vendor_array = self.all
-      vendor_array.find_all do |vendor|
+      @@array_all = self.all
+      @@array_all.find_all do |vendor|
         vendor.market_id == id
       end
     end
@@ -49,8 +51,8 @@ module FarMar
     end
 
     def self.by_market(market_id)
-      vendor_array = self.all
-      vendor_array.find_all do |vendor|
+      @@array_all = self.all
+      @@array_all.find_all do |vendor|
         vendor.market_id == market_id
       end
     end

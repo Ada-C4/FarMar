@@ -10,13 +10,15 @@ module FarMar
     end
 
     def self.all
-      product_array =[]
+      @@product_all ||= []
+      if @@product_all == []
       product_csv = CSV.read("./support/products.csv")
       product_csv.each do |product|
         new_product = Product.new(product[0].to_i, product[1], product[2].to_i)
-        product_array.push(new_product)
+        @@product_all.push(new_product)
       end
-      return product_array
+     end
+      return @@product_all
     end
 
     def self.find(id)
@@ -27,8 +29,7 @@ module FarMar
     end
 
     def self.vendor(id)
-      product_array = self.all
-      product_array.find_all do |product|
+      @@product_all.find_all do |product|
         product.vendor_id == id
       end
     end
@@ -39,9 +40,9 @@ module FarMar
         sale.product_id == self.id
       end
     end
-
-
-
+    #
+    # def number_of_sales
+    # end
 
   end
 end

@@ -17,19 +17,21 @@ module FarMar
 
 
     def self.all
-      market_array =[]
-      market_csv = CSV.read("./support/markets.csv")
-      market_csv.each do |row|
-        new_market = Market.new(row[0].to_i, row[1], row[2], row[3], row[4], row[5], row[6])
-        market_array.push(new_market)
-        # binding.pry
+      @@market_all ||= []
+      if @@market_all == []
+        market_csv = CSV.read("./support/markets.csv")
+        market_csv.each do |row|
+          new_market = Market.new(row[0].to_i, row[1], row[2], row[3], row[4], row[5], row[6])
+          @@market_all.push(new_market)
+          # binding.pry
+        end
       end
-      return market_array
+      return @@market_all
     end
 
     def self.find(id)
-      market_array = self.all
-      market_array.find do |market|
+      @@market_all= self.all
+      @@market_all.find do |market|
         market.id == id
       end
     end
