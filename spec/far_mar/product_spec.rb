@@ -54,4 +54,13 @@ describe FarMar::Product do
       expect(@product2.sales[0].id).to eq 19
     end
   end
+  describe "#number_of_sales" do
+    it "returns an integer" do
+      expect(@product1.number_of_sales).to be_a Fixnum
+    end
+    it "returns correct num times a product has been sold" do
+      expect(@product1.number_of_sales).to eq 2
+      expect(@product2.number_of_sales).to eq 1
+    end
+  end
 end

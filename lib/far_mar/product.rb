@@ -38,5 +38,9 @@ module FarMar
         sales_instance.product_id == @id
       end
     end
+
+    def number_of_sales
+      self.sales.length
+    end
   end
 end
