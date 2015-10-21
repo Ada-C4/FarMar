@@ -3,6 +3,7 @@ require "./spec/spec_helper"
 describe "initialize" do
   before :each do
     @product = FarMar::Product.new(1, "Dry Beets", 1)
+    @product2 = FarMar::Product.new(58, "Thoughtless Honey", 20)
   end
 
   it "creates an instance of Farmar::Product class" do
@@ -34,6 +35,7 @@ describe "initialize" do
     it "returns the Farmar::Vendor instance that is associated with the specific product" do
       expect(@product.vendor).to be_an_instance_of FarMar::Vendor
       expect(@product.vendor.name).to eq "Feil-Farrell"
+      expect(@product2.vendor.name).to eq "Ledner Group"
     end
   end
 

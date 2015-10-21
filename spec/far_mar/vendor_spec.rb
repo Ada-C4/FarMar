@@ -3,6 +3,7 @@ require "./spec/spec_helper"
 describe FarMar::Vendor do
   before :each do
     @vendor = FarMar::Vendor.new(1, "Feil-Farrell", 8, 1)
+    @vendor2 = FarMar::Vendor.new(20, "Ledner Group", 7, 6)
   end
 
   describe "initialize" do
@@ -36,6 +37,7 @@ describe FarMar::Vendor do
     it "returns the Market for the specific vendor instance" do
       expect(@vendor.market).to be_an_instance_of FarMar::Market
       expect(@vendor.market.name).to eq "People's Co-op Farmers Market"
+      expect(@vendor2.market.name).to eq "Jefferson City Farmer's Market"
     end
   end
 
@@ -43,6 +45,7 @@ describe FarMar::Vendor do
     it "returns all Products for the specific vendor instance" do
       expect(@vendor.products.length).to eq 1
       expect(@vendor.products[0].name). to eq "Dry Beets"
+      expect(@vendor2.products[0].name). to eq "Thoughtless Honey"
     end
   end
 
@@ -50,12 +53,15 @@ describe FarMar::Vendor do
     it "returns all Sales for the specific vendor instance" do
       expect(@vendor.sales.length).to eq 7
       expect(@vendor.sales[0].amount).to eq 9290
+      expect(@vendor2.sales.length).to eq 5
+      expect(@vendor2.sales[0].amount).to eq 6539
     end
   end
 
   describe "#revenue" do
     it "returns the sum of sales for a specific vendor instance" do
       expect(@vendor.revenue).to eq 38259
+      expect(@vendor2.revenue).to eq 30601
     end
   end
 
@@ -63,6 +69,8 @@ describe FarMar::Vendor do
     it "returns all vendors with given market_id" do
       expect(FarMar::Vendor.by_market(1).length).to eq 6
       expect(FarMar::Vendor.by_market(1)[0].name).to eq "Feil-Farrell"
+      expect(FarMar::Vendor.by_market(20).length).to eq 7
+      expect(FarMar::Vendor.by_market(20)[0].name).to eq "Davis Group"
     end
   end
 end
