@@ -11,22 +11,23 @@ module FarMar
 
       # Returns a collection of Vendor instances, representing all the vendors described in the CSV
       def self.all
-        @@vendors ||= []
-        if @@vendors == []
+        # Using a class variable for the
+        @vendors ||= []
+        if @vendors == []
           vendors_csv = CSV.read("support/vendors.csv")
 
           vendors_csv.each do |id, name, num_employees, market_id|
             hash = {:id => id, :name => name, :employees => num_employees, :market_id => market_id}
             vendor = FarMar::Vendor.new(hash)
-            @@vendors.push(vendor)
+            @vendors.push(vendor)
           end
         end
-        return @@vendors
+        return @vendors
       end
 
       # Returns an instance of Vendor that matches the search ID
       def self.find(id)
-        @@vendors.find do |vendor|
+        @vendors.find do |vendor|
           vendor.vendor_id == id
         end
       end

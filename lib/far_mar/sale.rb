@@ -13,22 +13,22 @@ module FarMar
 
     # Returns a collection of Sale instances, representing all of the sales described in the CSV
     def self.all
-      @@sales ||= []
-      if @@sales == []
+      @sales ||= []
+      if @sales == []
         sales_csv = CSV.read("support/sales.csv")
 
         sales_csv.each do |id, amount, purchase_time, vendor_id, product_id|
           hash = {:id => id, :amount => amount, :purchase_time => purchase_time,  :vendor_id => vendor_id, :product_id => product_id}
           sale = FarMar::Sale.new(hash)
-          @@sales.push(sale)
+          @sales.push(sale)
         end
       end
-      return @@sales
+      return @sales
     end
 
     # Returns an instance of Sale where the value of the ID field matches the passed parameter
     def self.find(id)
-      @@sales.find do |sale|
+      @sales.find do |sale|
         sale.sale_id == id
       end
     end
