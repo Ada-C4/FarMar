@@ -2,8 +2,12 @@ require "spec_helper"
 
 describe FarMar::Vendor do
   before :each do
-    v_hash = {id: "1", name: "Feil-Farrell", employees: "8", market_id: "1"}
-    @vendor = FarMar::Vendor.new(v_hash)
+    @vendor = FarMar::Vendor.new({
+      id: "1",
+      name: "Feil-Farrell",
+      employees: "8",
+      market_id: "1"
+      })
   end
 
   describe ".new" do
@@ -56,6 +60,12 @@ describe FarMar::Vendor do
     it "returns the the sum of all of the vendor's sales, in cents" do
       expect(@vendor.revenue).to be_an Integer
       expect(@vendor.revenue).to eq 38259
+    end
+  end
+
+  describe "#by_market" do
+    it "returns all of the vendors with the given market id" do
+      expect(FarMar::Vendor.by_market(1)).to be_an Array
     end
   end
 end
