@@ -25,6 +25,8 @@ module FarMar
 
     def self.all
 # review!!!
+
+# why does @markets need to be an instance variable?
       @markets = []
       CSV.foreach('./support/markets.csv') do |row|
         newmarket = Market.new row[0].to_i, row[1].to_s, row[2], row[3].to_s, row[4].to_s, row[5].to_s, row[6].to_s
@@ -37,18 +39,8 @@ module FarMar
 # self.find(id) - returns an instance of Market where the value of the id field in the CSV matches the passed parameter.
 # review!!!
     def self.find(id)
-    #return #
-    Market.all.find do |market|
+    return Market.all.find do |market|
         market.id == id
-        market_array = [
-          "#{market.id}",
-          "#{market.name}",
-          "#{market.address}",
-          "#{market.city}",
-          "#{market.state}",
-          "#{market.zip}",
-        ]
-        return market_array
       end
     end
 

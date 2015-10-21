@@ -22,7 +22,9 @@ describe FarMar::Market do
 
   describe "self.findall" do
     it "returns an ID for a market passed in as a parameter" do
-    expect((FarMar::Market.find(12)).to eq market_array
+      twelve = FarMar::Market.find(12)
+    expect(twelve).to be_an_instance_of FarMar::Market
+    expect(twelve.id).to eq 12
     end
   end
 end
