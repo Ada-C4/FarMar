@@ -19,5 +19,13 @@ describe FarMar do
         expect(FarMar::Sale.all.length).to eq CSV.read("support/sales.csv").length
       end
     end
+
+    describe "self.find(id)" do
+      it "returns specific instance of Sale" do
+        find_test = FarMar::Sale.find(15)
+        expect(find_test.product_id).to eq 4
+      end
+    end
+
   end
 end
