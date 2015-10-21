@@ -44,6 +44,10 @@ module FarMar
         return @id
       end
 
+      def market_id
+        return @market_id
+      end
+
       def find_market(market_id)
         return FarMar::Market.find(market_id)
       end
@@ -93,5 +97,13 @@ module FarMar
         end
         return sum
       end
+
+      def self.by_market(market_id)
+        all_vendors = FarMar::Vendor.all
+        #all_vendors is an array of Vendor objects
+        matches = all_vendors.find_all {|vendor| vendor.market_id == market_id}
+        return matches
+      end
+
   end
 end

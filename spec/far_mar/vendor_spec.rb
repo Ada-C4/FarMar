@@ -98,5 +98,14 @@ describe FarMar do
         expect(@vendor.revenue(@vendor.id)).to be_a Fixnum
       end
     end
+
+    describe "self.by_market" do
+      it "returns an array" do
+        expect(FarMar::Vendor.by_market(1)).to be_an Array
+      end
+      it "has Vendor instances in the array" do
+        expect(FarMar::Vendor.by_market(1)[0]).to be_an_instance_of FarMar::Vendor
+      end
+    end
   end
 end
