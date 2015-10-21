@@ -1,12 +1,13 @@
 require "spec_helper"
 describe FarMar do
   describe FarMar::Product do
+    
+    before :each do
+      product_info = CSV.open("./support/products.csv", 'r') { |csv| csv.first }
+      @product = FarMar::Product.new(product_info)
+    end
 
     describe "#initialize" do
-      before :each do
-        product_info = CSV.open("./support/products.csv", 'r') { |csv| csv.first }
-        @product = FarMar::Product.new(product_info)
-      end
       it "creates a new instance of the Product class" do
         expect(@product).to be_an_instance_of(FarMar::Product)
       end
@@ -42,6 +43,15 @@ describe FarMar do
       end
       it "returns the Product with the matching id" do
         expect(FarMar::Product.find(@id).id).to eq(@id)
+      end
+    end
+
+    describe "#vendor" do
+      it "returns an instance of the Vendor class" do
+        expect(@product.vendor).to be_an_instance_of(FarMar::Vendor)
+      end
+      it "returns the Vendor with the matching id" do
+        expect(@product.vendor_id).to eq(@product.vendor.id)
       end
     end
 
