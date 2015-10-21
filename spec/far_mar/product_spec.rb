@@ -34,10 +34,19 @@ describe FarMar::Product do
 		end
 	end
 
-	  describe  '.find' do
+	describe '.find' do
     it 'returns a matching product instance' do
       expect(FarMar::Product.find(10).name).to eq("Black Apples")
     end
+  end
+
+  describe '#vendor' do
+  	before :each do
+  		@product = FarMar::Product.new(9,"Large Mushrooms",5)
+  	end
+  	it 'returns Vendor associated with Product' do
+  		expect(@product.vendor.name).to eq("Reynolds, Schmitt and Klocko")
+  	end
   end
 
 end
