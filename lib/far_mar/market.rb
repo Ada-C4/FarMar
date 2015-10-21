@@ -20,14 +20,7 @@ module FarMar
     end
 
     def vendors
-      csv_file = CSV.read(FarMar::Vendor::FILENAME)
-      matches = csv_file.find_all { |row| row[3].to_i == @id }
-      vendors = []
-      matches.each do |vendor_array|
-        vendor_hash = FarMar::Vendor.convert_to_hash(vendor_array)
-        vendors.push(FarMar::Vendor.new(vendor_hash))
-      end
-      return vendors
+      return FarMar::Vendor.by_market(@id)
     end
 
   end
