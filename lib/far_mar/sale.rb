@@ -2,11 +2,11 @@ module FarMar
   class Sale
     attr_accessor :id, :amount, :purchase_time, :vendor_id, :product_id
     def initialize(sale_hash)
-      @id = sale_hash[:id]
-      @amount = sale_hash[:amount]
+      @id = sale_hash[:id].to_i
+      @amount = sale_hash[:amount].to_i
       @purchase_time = sale_hash[:purchase_time]
-      @vendor_id = sale_hash[:vendor_id]
-      @product_id = sale_hash[:product_id]
+      @vendor_id = sale_hash[:vendor_id].to_i
+      @product_id = sale_hash[:product_id].to_i
     end
 
     def self.all
@@ -35,6 +35,20 @@ module FarMar
         purchase_time: matched_line[2],
         vendor_id: matched_line[3],
         product_id: matched_line[4])
+    end
+
+    def vendor
+      associated_vendor = FarMar::Vendor.all.find_all do |each|
+        @vendor_id == each.id
+      end
+      return associated_vendor
+    end
+
+    def product
+      associated_product = FarMar::Product.all.find_all do |each|
+        @product_id == each.id
+      end
+      return associated_product
     end
   end
 end
