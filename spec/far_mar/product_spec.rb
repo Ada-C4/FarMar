@@ -33,7 +33,7 @@ describe FarMar::Product do
       expect(@all_products[0]).to be_an_instance_of FarMar::Product
     end
     it "creates a product for each row in the csv file" do
-      expect(@all_markets.length).to eq 8193
+      expect(@all_products.length).to eq 8193
     end
   end
 
