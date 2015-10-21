@@ -6,9 +6,9 @@ module FarMar
 		attr_reader :product_id, :name, :vendor_id
 
 		def initialize(product_id, name, vendor_id)
-			@product_id = product_id
+			@product_id = product_id.to_i
 			@name = name.to_s
-			@vendor_id = vendor_id
+			@vendor_id = vendor_id.to_i
 		end
 
 		def self.all
@@ -18,6 +18,10 @@ module FarMar
         product_array.push(product)
 			end
 			return product_array
+		end
+
+		def self.find(id)
+			FarMar::Product.all.find {|pro| pro.product_id == id}
 		end
 
 	end
