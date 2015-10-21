@@ -59,10 +59,12 @@ describe FarMar::Vendor do
 		end
 	end
 
-	describe '.sales(vendor_id)' do
+	describe '#sales' do
+		before :each do
+			@vendor = FarMar::Vendor.new(12,"Windler Inc",4,3)
+		end
 		it 'returns all sales per vendor' do
-			expect(FarMar::Vendor.sales(6).length).to eq(1)
-			expect(FarMar::Vendor.sales(15).length).to eq(7)
+			expect(@vendor.sales.length).to eq(3)
 		end
 	end
 
