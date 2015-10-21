@@ -35,8 +35,11 @@ describe FarMar::Market do
 
   describe "self.find" do
     it "returns an instance of a market matching the passed id" do
-      id2 = FarMar::Market.find("./support/markets.csv",2)
-      expect(id2.county).to eq "Preston"
+      id4 = FarMar::Market.find("./support/markets.csv",4)
+      id370 = FarMar::Market.find("./support/markets.csv",370)
+      expect(id4.county).to eq "New London"
+      expect(id4.class).to eq FarMar::Market
+      expect(id370.state).to eq "Illinois"
     end
   end
 end

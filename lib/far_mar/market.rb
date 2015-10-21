@@ -21,14 +21,15 @@ module FarMar
        market_info.each do |a|
          markets.push(Market.new(a[0], a[1], a[2], a[3], a[4], a[5], a[6]))
        end
-       markets
+       return markets
      end
 
      #method to return a market instance for which the id matches the parameter
      #input a csv and an id
-     def self.find(market_csv, id)
+     def self.find(market_csv, search_id)
        all = self.all(market_csv)
-       all.find {|n| n.id == id }
+       match = (all.find {|n| n.id == search_id.to_s})
+       return match
      end
 
      def vendors
