@@ -37,5 +37,10 @@ describe FarMar::Vendor do
     end
   end
 
+  describe ".products" do
+    it "returns a collection of the product instances associated with the vendor" do
+      expect(@vendor.products).to be_an Array
+    end
+  end
 
 end

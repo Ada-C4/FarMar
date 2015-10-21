@@ -32,10 +32,12 @@ module FarMar
       end
     end
 
-    #
-    # def products
-    # end
-    #
+    def products
+      FarMar::Product.all.find_all do |product|
+        product.vendor_id == @id
+      end
+    end
+
     # def sales
     # end
     #
