@@ -52,6 +52,20 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "#products" do
+    it "does not return an empty array" do
+      test_vendor = FarMar::Vendor.find(1)
+      expect(test_vendor.products).not_to eq []
+    end
+
+    it "returns the correct array of products" do
+      test_vendor = FarMar::Vendor.find(2)
+      expect(test_vendor.products[0].product_name).to eq "Fierce Greens"
+      expect(test_vendor.products[1].product_name).to eq "Heavy Chicken"
+      expect(test_vendor.products.length).to eq 2
+    end
+  end
+
   describe "#sales" do
     it "does not return an empty array" do
       test_vendor = FarMar::Vendor.find(1)

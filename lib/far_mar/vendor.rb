@@ -36,7 +36,9 @@ module FarMar
 
       # Returns a collection of FarMar::Product instances that are associated with the vendor
       def products
-        ## COME BACK TO THIS METHOD ONCE PRODUCT HAS BEEN BUILT OUT
+        products = FarMar::Product.all
+        matched_products = products.find_all { |product| product.vendor_id == self.vendor_id }
+        return matched_products
       end
 
       # Returns a collection of FarMar::Sale instances that are associated with the vendor
