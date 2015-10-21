@@ -59,5 +59,16 @@ describe FarMar do
         expect(@market.id).to eq 123
       end
     end
+
+    describe "find_vendors" do
+      it "returns an array" do
+        market_id = 1
+        expect(FarMar::Market.find_vendors(market_id)).to be_an Array
+      end
+      it "has Vendor objects in the array" do
+        market_id = 1
+        expect(FarMar::Market.find_vendors(market_id)[0]).to be_an_instance_of FarMar::Vendor
+      end
+    end
   end
 end
