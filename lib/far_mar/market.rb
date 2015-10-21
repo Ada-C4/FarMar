@@ -33,5 +33,15 @@ module FarMar
         id == market.id
       end
     end
+
+    def list_vendors
+      vendor_list = []
+      FarMar::Vendor.all.each do |vendor|
+        if id == vendor.market_id
+          vendor_list.push(vendor)
+        end
+      end
+      vendor_list
+    end
   end
 end

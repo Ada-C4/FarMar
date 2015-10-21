@@ -26,5 +26,14 @@ describe FarMar do
         expect(find_test.name).to eq "Farmers Market in Denison"
       end
     end
+
+    describe "list_vendors(id)" do
+      it "returns array of vendors at specific market" do
+        vendor_list_test = FarMar::Market.find(20)
+        vendor_list_test.list_vendors.each do |vendor|
+          expect(vendor.market_id).to eq 20
+        end
+      end
+    end
   end
 end
