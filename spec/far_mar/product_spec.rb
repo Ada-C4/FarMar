@@ -43,5 +43,21 @@ describe FarMar do
           expect(@product.find_vendor(@product.id)).to be_an_instance_of FarMar::Vendor
         end
       end
+
+      describe "find_sales" do
+        before :each do
+          @product = FarMar::Product.new({
+            :id => 123,
+            :name => "product name",
+            :vendor_id => 456
+          })
+        end
+        it "returns an array" do
+          expect(@product.find_sales(@product.id)).to be_an Array
+        end
+        it "has Product items in the array" do
+          expect(@product.find_sales(@product.id)[0]).to be_an_instance_of FarMar::Sale
+        end
+      end
   end
 end
