@@ -44,7 +44,9 @@ describe FarMar::Vendor do
   end
   describe ".revenue" do
     it "returns the sum of all amounts for sales instances whose vendor_id matches the vendor's id" do
+      @vendor_0_sales = FarMar::Vendor.new("51", "Bernier Inc", "1", "12")
       expect(@vendor.revenue).to eq 7586
+      expect(@vendor_0_sales.revenue).to eq 0
     end
   end
   describe "#by_market(market_id)" do
