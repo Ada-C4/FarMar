@@ -40,4 +40,11 @@ describe FarMar::Product do
     end
   end
 
+  describe ".sales" do
+    it "returns a collection of sales instances associated with this product" do
+      expect(@product.sales).to be_an Array
+      expect(@product.sales.length).to eq 2
+    end
+  end
+
 end
