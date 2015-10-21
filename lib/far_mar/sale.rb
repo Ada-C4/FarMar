@@ -37,6 +37,12 @@ module FarMar
 			FarMar::Product.all.find {|pro| pro.product_id == @product_id}
 		end
 
+		def self.between(beginning_time, ending_time)
+			@@sales_array.find_all do |sale|
+				sale.purchase_time.between?(beginning_time, ending_time)
+			end
+		end
+
 	end
 
 end

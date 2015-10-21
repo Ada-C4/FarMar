@@ -45,4 +45,15 @@ describe FarMar::Sale do
     end
   end
 
+  describe 'self.between(beginning_time, end_time)' do
+    before :each do
+      @beg_time1 = DateTime.strptime("2013-11-06 08:35:40 -08:00", "%Y-%m-%d %H:%M:%S %z")
+      @end_time1 = DateTime.strptime("2013-11-13 08:35:16 -0800", "%Y-%m-%d %H:%M:%S %z")
+    end
+    it 'returns Sales between two purchase times' do
+      sales = FarMar::Sale.between(@beg_time1, @end_time1)
+      expect(sales.length).to eq(12798)
+    end
+  end
+
 end
