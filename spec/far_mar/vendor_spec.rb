@@ -2,16 +2,15 @@ require 'spec_helper'
 
 describe FarMar do
   describe FarMar::Vendor do
+    vendor_hash = FarMar::Vendor.convert_to_hash(["70","Eichmann Group","8","16"])
+    let(:sample_vendor) { FarMar::Vendor.new(vendor_hash) }
     describe "#initialize" do
       it "creates a new Vendor instance" do
-        v_array = %w(1 QFC 10 2)
-        v_hash = FarMar::Vendor.convert_to_hash(v_array)
-        vendor = FarMar::Vendor.new(v_hash)
-        expect(vendor).to be_an_instance_of(FarMar::Vendor)
-        expect(vendor.id).to eq(1)
-        expect(vendor.name).to eq("QFC")
-        expect(vendor.emp_num).to eq(10)
-        expect(vendor.market_id).to eq(2)
+        expect(sample_vendor).to be_an_instance_of(FarMar::Vendor)
+        expect(sample_vendor.id).to eq(70)
+        expect(sample_vendor.name).to eq("Eichmann Group")
+        expect(sample_vendor.emp_num).to eq(8)
+        expect(sample_vendor.market_id).to eq(16)
       end
     end
     describe "self.all" do
@@ -47,6 +46,16 @@ describe FarMar do
         expect(vendors).to be_an_instance_of(Array)
         expect(vendors.length).to eq(3)
         expect(vendors[0].id).to eq(51)
+      end
+    end
+
+    describe "#products" do
+      it "returns a collection of Products with the vendor's ID" do
+        products = sample_vendor.products
+        expect(products).to be_an(Array)
+        expect(products.length).to eq(5)
+        expect(products[0].id).to eq(221)
+        expect(products[-1].name).to eq("Cheerful Bread")
       end
     end
   end

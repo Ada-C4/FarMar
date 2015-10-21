@@ -16,6 +16,7 @@ module FarMar
       return vendor
     end
 
+    # returns all of the vendors with the given market_id
     def self.by_market(market_id)
       csv_file = CSV.read(FILENAME)
       matches = csv_file.find_all { |row| row[3].to_i == market_id }
@@ -26,5 +27,11 @@ module FarMar
       end
       return vendors
     end
+
+     # returns a collection of FarMar::Product instances that are
+     # associated by the FarMar::Product vendor_id field
+     def products
+       
+     end
   end
 end
