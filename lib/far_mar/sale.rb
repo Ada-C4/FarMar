@@ -33,5 +33,11 @@ module FarMar
         vendor_instance.id == @vendor_id
       end
     end
+
+    def product
+      FarMar::Product.all.find do |product_instance|
+        product_instance.id == @product_id
+      end
+    end
   end
 end

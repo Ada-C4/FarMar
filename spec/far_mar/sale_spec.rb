@@ -37,4 +37,13 @@ describe FarMar::Sale do
       expect(@sale2.vendor.name).to eq "Labadie-Tremblay"
     end
   end
+  describe "#product" do
+    it "returns an instance of FarMar::Product" do
+      expect(@sale1.product).to be_instance_of FarMar::Product
+    end
+    it "returns correct instance of FarMar::Product" do
+      expect(@sale1.product.name).to eq "Dry Beets"
+      expect(@sale2.product.name).to eq "Nom nom Beef"
+    end
+  end
 end
