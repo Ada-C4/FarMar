@@ -47,4 +47,11 @@ describe FarMar::Vendor do
       expect(@vendor.revenue).to eq 7586
     end
   end
+  describe "#by_market(market_id)" do
+    it "returns all vendor instances whose market_id matches the parameter passed in" do
+      vendors = FarMar::Vendor.by_market(498)
+      expect(vendors.length).to eq 2
+      expect(vendors[1].class).to eq FarMar::Vendor
+    end
+  end
 end

@@ -37,7 +37,12 @@ module FarMar
       amounts = self.sales.map do |sale|
         sale.amount
       end
-      amounts.inject(0) { |result, sale| result + sale }
+      amounts.inject { |result, sale| result + sale }
+    end
+    def self.by_market(market_id)
+      self.all.find_all do |vendor|
+        market_id == vendor.market_id
+      end
     end
   end
 end
