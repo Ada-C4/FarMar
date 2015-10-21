@@ -2,17 +2,16 @@ require 'spec_helper'
 
 describe FarMar do
   describe FarMar::Sale do
+    sale_hash = FarMar::Sale.convert_to_hash(["1", "9290", "2013-11-12 04:36:56 -0800", "5", "12"])
+    let(:sample_sale) { FarMar::Sale.new(sale_hash) }
     describe "#initialize" do
       it "creates a new Sale instance" do
-        fake_array = ["1", "9290", "2013-11-12 04:36:56 -0800", "5", "12"]
-        fake_hash = FarMar::Sale.convert_to_hash(fake_array)
-        sale = FarMar::Sale.new(fake_hash)
-        expect(sale).to be_an_instance_of(FarMar::Sale)
-        expect(sale.id).to eq(1)
-        expect(sale.amount).to eq(9290)
-        expect(sale.purchase_time.class).to be(DateTime)
-        expect(sale.vendor_id).to eq(5)
-        expect(sale.product_id).to eq(12)
+        expect(sample_sale).to be_an_instance_of(FarMar::Sale)
+        expect(sample_sale.id).to eq(1)
+        expect(sample_sale.amount).to eq(9290)
+        expect(sample_sale.purchase_time.class).to be(DateTime)
+        expect(sample_sale.vendor_id).to eq(5)
+        expect(sample_sale.product_id).to eq(12)
       end
     end
     describe ".all" do
@@ -51,6 +50,14 @@ describe FarMar do
         expect(products.length).to eq(7)
         expect(products[0].id).to eq(32)
         expect(products[-1].id).to eq(38)
+      end
+    end
+
+    describe "#vendor" do
+      it "returns vendor associated with the sale" do
+        sample_vendor = sample_sale.vendor
+        expect(sample_vendor.id).to eq(sample_sale.vendor_id)
+        expect(sample_vendor.name).to eq("Reynolds, Schmitt and Klocko")
       end
     end
   end
