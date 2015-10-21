@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe FarMar::Product do
   before :each do
-    @product=FarMar::Product.new(8, "Shaky Honey", 5)
+    @product=FarMar::Product.new(2,"Fierce Greens",2)
   end
 
   describe "initialize Product" do
@@ -23,10 +23,20 @@ describe FarMar::Product do
     end
   end
 
-  describe "by_vendor" do
+  describe "vendor" do
     it "return products by vendor id" do
-      vendor_array = FarMar::Product.by_vendor(2)
+      vendor_array = FarMar::Product.vendor(2)
       expect(vendor_array[0].id).to eq 2
+    end
+  end
+
+  describe "sales" do
+    it "return an array of sales" do
+      expect(@product.sales).to be_an(Array)
+    end
+
+    it "return an array of sales for this product" do
+    expect(@product.sales[0].id).to eq 8
     end
   end
 
