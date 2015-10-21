@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe FarMar::Product do
   before :each do
-    @product = FarMar::Product.new
+    @product = FarMar::Product.new(12, "Gorgeous Fish", 6)
   end
 
   context "initializing" do
