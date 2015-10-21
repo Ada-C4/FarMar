@@ -27,5 +27,9 @@ module FarMar
       end
       return products
     end
+
+    def sales
+      return FarMar::Sale.by_product(@id)
+    end
   end
 end

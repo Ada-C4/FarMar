@@ -51,7 +51,7 @@ describe FarMar do
 
     describe "#sales" do
       it "returns array of Sales that match the product id" do
-        sales = sample.product.sales
+        sales = sample_product.sales
         expect(sales).to be_an_instance_of(Array)
         expect(sales.length).to eq(7)
         expect(sales[0].id).to eq(32)
