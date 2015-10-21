@@ -35,7 +35,11 @@ module FarMar
 		end
 
 		def number_of_sales
-			return self.sales.length
+			self.sales.length
+		end
+
+		def self.by_vendor(vendor_id)
+			@@product_array.find_all{|prod| prod.vendor_id == vendor_id}
 		end
 
 	end

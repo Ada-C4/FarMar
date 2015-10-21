@@ -82,7 +82,7 @@ describe FarMar::Product do
 
   	describe '.by_vendor(vendor_id)'do
   		it 'returns products sold with same vendor_id' do
-  			expect(FarMar::Product.all.by_vendor(6).length).to eq(6)
+  			expect(FarMar::Product.by_vendor(6).length).to eq(3)
   		end
   	end
   end
