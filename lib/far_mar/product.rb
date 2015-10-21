@@ -23,6 +23,9 @@ module FarMar
     end
 
     def vendor
+      FarMar::Vendor.all.find do |vendor|
+        vendor.id == @vendor_id
+      end
     end
 
     # def sales
