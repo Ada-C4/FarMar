@@ -47,4 +47,11 @@ describe FarMar::Product do
     end
   end
 
+  describe ".number_of_sales" do
+    it "returns the number of times this product has been sold" do
+      expect(@product.number_of_sales).to be_an Integer
+      expect(@product.number_of_sales).to eq 2
+    end
+  end
+
 end

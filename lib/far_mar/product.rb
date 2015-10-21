@@ -34,9 +34,10 @@ module FarMar
       end
     end
 
-    # def number_of_sales
-    # end
-    #
+    def number_of_sales
+      sales.length
+    end
+
     # def self.by_vendor(vendor_id)
     # end
   end
