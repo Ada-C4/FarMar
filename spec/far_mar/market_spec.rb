@@ -1,15 +1,20 @@
 require "spec_helper"
 
 describe FarMar::Market do
+  before :each do
+    @market = FarMar::Market.new({})
+    csv = CSV.read("support/markets.csv")
+  end
   describe "initialize" do
     it "creates an instance of a market" do
-      expect(FarMar::Market.new({})).to be_an_instance_of FarMar::Market
+      expect(@market).to be_an_instance_of FarMar::Market
     end
   end
 
   describe "self.all" do
+
     it "returns an array or all the markets" do
-      expect(FarMar::Market.all.length).to eq 500
+      expect(FarMar::Market.all.length).to eq csv.length
     end
 
     it "reads values correctly" do

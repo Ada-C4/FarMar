@@ -8,13 +8,13 @@ describe FarMar::Product do
   end
 
   describe "self.all" do
-    it "returns an array or all the markets" do
+    it "returns an array or all the products" do
       expect(FarMar::Product.all.length).to eq 8193
     end
   end
 
   describe "self.find" do
-    it "returns a market given an id" do
+    it "returns a product given an id" do
       expect(FarMar::Product.find(4).name).to eq "Yummy Fruit"
     end
   end

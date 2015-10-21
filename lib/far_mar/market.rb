@@ -47,10 +47,8 @@ module FarMar
 
     def vendors
       possibilities = FarMar::Vendor.all
-      print @id
-      print possibilities
-      associated_vendors = possibilities.find_all do |line|
-        @id == line.market_id
+      associated_vendors = possibilities.find_all do |each|
+        @id == each.market_id
       end
       return associated_vendors
     end

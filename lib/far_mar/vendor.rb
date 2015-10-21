@@ -34,5 +34,15 @@ module FarMar
         market_id: matched_line[3])
     end
 
+    def market
+      matched_market = FarMar::Market.all.find_all do |each|
+        @id == each.id
+      end
+      return matched_market
+    end
+
+    def product
+
+    end
   end
 end

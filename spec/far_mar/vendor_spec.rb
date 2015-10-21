@@ -8,13 +8,13 @@ describe FarMar::Vendor do
   end
 
   describe "self.all" do
-    it "returns an array or all the markets" do
+    it "returns an array or all the vendors" do
       expect(FarMar::Vendor.all.length).to eq 2690
     end
   end
 
   describe "self.find" do
-    it "returns a market given an id" do
+    it "returns a vendor given an id" do
       expect(FarMar::Vendor.find(4).name).to eq "Kris and Sons"
     end
   end
