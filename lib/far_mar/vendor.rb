@@ -12,12 +12,18 @@ module FarMar
     end
 
     def self.all
-      vendor_array = CSV.read("./support/vendors.csv")
+      @@vendors_all ||= []
 
-      vendor_array.map! do |vendor|
-        FarMar::Vendor.new(vendor[0],vendor[1],vendor[2],vendor[3])
+      if @@vendors_all == []
+
+        vendor_array = CSV.read("./support/vendors.csv")
+
+        vendor_array.map! do |vendor|
+          FarMar::Vendor.new(vendor[0],vendor[1],vendor[2],vendor[3])
+        end
+        @@vendors_all = vendor_array
       end
-        return vendor_array
+        return @@vendors_all
     end
 
     def self.find(id)

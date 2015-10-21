@@ -63,4 +63,7 @@ describe FarMar::Market do
       expect(market_15.id).to eq 15
     end
   end
+  # describe "#vendors(id)" do
+  #   it "" do
+  # end
 end

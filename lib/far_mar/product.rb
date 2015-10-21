@@ -11,12 +11,18 @@ module FarMar
     end
 
     def self.all
-      product_array = CSV.read("./support/products.csv")
+      @@products_all ||= []
 
-      product_array.map! do |product|
-        FarMar::Product.new(product[0],product[1],product[2])
+      if @@products_all == []
+
+        product_array = CSV.read("./support/products.csv")
+
+        product_array.map! do |product|
+          FarMar::Product.new(product[0],product[1],product[2])
+        end
+        @@products_all = product_array
       end
-        return product_array
+        return @@products_all
     end
 
     def self.find(id)

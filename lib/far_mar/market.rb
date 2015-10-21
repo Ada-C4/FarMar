@@ -14,15 +14,19 @@ module FarMar
       @zip = zip
     end
 
-
-
     def self.all
-      market_array = CSV.read("./support/markets.csv")
+      @@markets_all ||= []
 
-      market_array.map! do |market|
-        FarMar::Market.new(market[0],market[1],market[2], market[3], market[4], market[5], market[6])
+      if @@markets_all == []
+
+        markets_array = CSV.read("./support/markets.csv")
+
+        markets_array.map! do |market|
+          FarMar::Market.new(market[0],market[1],market[2], market[3], market[4], market[5], market[6])
+        end
+        @@markets_all = markets_array
       end
-        return market_array
+      return @@markets_all
     end
 
     def self.find(id)

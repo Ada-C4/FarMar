@@ -13,12 +13,18 @@ module FarMar
     end
 
     def self.all
-      sale_array = CSV.read("./support/sales.csv")
+      @@sales_all ||= []
 
-      sale_array.map! do |sale|
-        FarMar::Sale.new(sale[0],sale[1],sale[2],sale[3],sale[4])
+      if @@sales_all == []
+
+        sale_array = CSV.read("./support/sales.csv")
+
+        sale_array.map! do |sale|
+          FarMar::Sale.new(sale[0],sale[1],sale[2],sale[3],sale[4])
+        end
+        @@sales_all = sale_array
       end
-        return sale_array
+      return @@sales_all
     end
 
     def self.find(id)
