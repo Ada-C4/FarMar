@@ -38,5 +38,13 @@ describe FarMar::Market do
         expect(@market.vendors[0].name).to eq "Feil-Farrell"
       end
     end
+
+    describe "#products" do
+      it "returns all Products for the specific market instance" do
+        expect(@market.products).to be_an Array
+        expect(@market.products.length).to eq 13
+        expect(@market.products[1].name).to eq "Fierce Greens"
+      end
+    end
   end
 end

@@ -30,5 +30,17 @@ module FarMar
     def vendors
       return FarMar::Vendor.all.find_all {|vendor| vendor.market_id == @id}
     end
+
+    def products
+      vendors = FarMar::Vendor.by_market(@id)
+      all_products = []
+      vendors.each do |vendor|
+        products = vendor.products
+        products.each do |product|
+          all_products << product
+        end
+      end
+      return all_products
+    end
   end
 end
