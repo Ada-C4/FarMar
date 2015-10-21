@@ -3,8 +3,6 @@ module FarMar
    class Market
      attr_reader :id, :name, :address, :city, :county, :state, :zip
 
-     @@market_objects_array = []
-
      def initialize(id = "", name = "", address = "", city = "", county = "", state = "", zip = "")
        @id = id
        @name = name
@@ -15,17 +13,22 @@ module FarMar
        @zip = zip
      end
 
-    #method for inputting csv file to generate markets
-    #market_csv is the path to a csv file
+    #method for inputting csv file to reutrn an array of market instances
+    #market_csv is the path to a csv file.
      def self.all(market_csv)
        market_info = CSV.read(market_csv)
+       markets = []
        market_info.each do |a|
-         Market.new(a[0], a[1], a[2], a[3], a[4], a[5], a[6])
+         markets.push(Market.new(a[0], a[1], a[2], a[3], a[4], a[5], a[6]))
        end
+       markets
      end
 
-     def self.find(id)
-      #  returns instance where the value matches the parameter
+     #method to return a market instance for which the id matches the parameter
+     #input a csv and an id
+     def self.find(market_csv, id)
+       all = self.all(market_csv)
+       all.find {|n| n.id == id }
      end
 
      def vendors

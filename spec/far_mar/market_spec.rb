@@ -23,14 +23,20 @@ describe FarMar::Market do
   end
 
   describe "self.all" do
-    it "creates a collection of market objects from csv" do
+    it "creates an array of market objects from csv" do
       all = FarMar::Market.all("./support/markets.csv")
       my_csv = CSV.read("./support/markets.csv")
       expect(all.length).to eq my_csv.length
       expect(all).to be_an_instance_of Array
+      expect(all[0].class).to eq FarMar::Market
+      expect(all[11].zip).to eq "12051"
     end
-
   end
 
-
+  describe "self.find" do
+    it "returns an instance of a market matching the passed id" do
+      id2 = FarMar::Market.find("./support/markets.csv",2)
+      expect(id2.county).to eq "Preston"
+    end
+  end
 end
