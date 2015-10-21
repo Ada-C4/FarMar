@@ -34,6 +34,10 @@ module FarMar
     # returns a collection of FarMar::Sale objects where the purchase time
     # is between the two times given as arguments
     def self.between(beginning_time, end_time)
+      return [] if
+        beginning_time.class != DateTime ||
+        end_time.class != DateTime ||
+        end_time <= beginning_time
       return FarMar::Sale.all_objects.find_all { |sale_obj| sale_obj.purchase_time > beginning_time && sale_obj.purchase_time < end_time }
     end
 

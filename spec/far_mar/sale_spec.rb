@@ -70,9 +70,17 @@ describe FarMar do
     end
 
     describe "#between(beginning_time, end_time)" do
+      beginning = FarMar::Sale.find(1990).purchase_time
+      ending = FarMar::Sale.find(3602).purchase_time
+
+      it "returns empty array if parameters not DateTime" do
+        expect(FarMar::Sale.between('a', 'b')).to eq([])
+      end
+      it "returns empty array if end time is before or equal to beginning" do
+        expect(FarMar::Sale.between(ending, beginning)).to eq([])
+      end
       it "returns all sales where the purchase time is between two times given" do
-        beginning = FarMar::Sale.find(1990).purchase_time
-        ending = FarMar::Sale.find(3602).purchase_time
+
         between_array = FarMar::Sale.between(beginning, ending)
         expect(between_array).to be_an_instance_of(Array)
         expect(between_array.length).to eq(24)
