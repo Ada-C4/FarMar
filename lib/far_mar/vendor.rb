@@ -53,7 +53,9 @@ module FarMar
       end
 
       return revenue
+    end
 
+    def self.by_market(market_id)
     end
   end
 end

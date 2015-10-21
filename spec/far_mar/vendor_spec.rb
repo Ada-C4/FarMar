@@ -69,4 +69,17 @@ describe FarMar::Vendor do
       expect(@vendor1.revenue).to eq 61749
     end
   end
+  describe "#self.by_market" do
+    it "returns an array" do
+      expect(FarMar::Vendor.by_market(100)).to be_an Array
+    end
+    it "returns array composed of instances of vendors class" do
+      expect(FarMar::Vendor.by_market(100)[0]).to be_instance_of FarMar::Vendor
+      expect(FarMar::Vendor.by_market(100)[-1]).to be_instance_of FarMar::Vendor
+    end
+    it "returns correct number of vendors" do
+      expect(FarMar::Vendor.by_market(100).length).to eq 6
+      expect(FarMar::Vendor.by_market(400).length).to eq 10
+    end
+  end
 end
