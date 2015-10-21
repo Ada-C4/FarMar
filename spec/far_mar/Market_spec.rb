@@ -1,7 +1,7 @@
 require 'spec_helper'
 describe FarMar::Market do
   before :each do
-    @market = FarMar::Market.new("1", "People's Co-op Farmers Market", "30th and Burnside", "Portland", "Multnomah", "Oregon", "97202")
+    @market = FarMar::Market.new("500", "Montefiore Medical Center Farmers Market_Thursday", "111 E. 210th Street", "Bronx", "Bronx", "New York", "10467")
   end
   describe "#new" do
     it "creates a new Market instance" do
@@ -19,6 +19,14 @@ describe FarMar::Market do
   describe "#find(id)" do
     it "returns the market instance with an id matching the parameter" do
       expect(FarMar::Market.find(9).id).to eq 9
+    end
+  end
+  describe ".vendors" do
+    it "returns collection of all vendor instances with market_id matching market instance's id" do
+      expect(@market.vendors.length).to eq 10
+    end
+    it "returns a collection of vendor instances" do
+      expect(@market.vendors[0].class).to eq FarMar::Vendor
     end
   end
 end
