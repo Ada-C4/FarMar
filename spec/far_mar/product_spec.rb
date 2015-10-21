@@ -55,4 +55,13 @@ describe "initialize" do
     end
   end
 
+  describe "#self.by_vendor(vendor_id)" do
+    it "returns all products associated with the specific vendor_id" do
+      expect(FarMar::Product.by_vendor(1).length).to eq 1
+      expect(FarMar::Product.by_vendor(1)[0].name).to eq "Dry Beets"
+      expect(FarMar::Product.by_vendor(21).length).to eq 5
+      expect(FarMar::Product.by_vendor(21)[0].name).to eq "Cheerful Fish"
+    end
+  end
+
 end
