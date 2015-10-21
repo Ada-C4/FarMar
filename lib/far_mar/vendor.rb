@@ -42,5 +42,12 @@ module FarMar
     def market
       return FarMar::Market.find(@market_id)
     end
+
+    # returns the sum of all of the vendor's sales (in cents)
+    def revenue
+      sales_array = sales
+      sales_array.inject(0) { |sum, sale_obj| sum + sale_obj.amount }
+    end
+
   end
 end
