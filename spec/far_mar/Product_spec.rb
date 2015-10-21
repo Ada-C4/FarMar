@@ -28,4 +28,15 @@ describe FarMar::Product do
       expect(vendor.name).to eq "Durgan-Moen"
     end
   end
+  describe ".sales" do
+    it "returns a collection of sales instances whose product_id matches the product's id" do
+      expect(@product.sales.length).to eq 2
+      expect(@product.sales[0].class).to eq FarMar::Sale
+    end
+  end
+  describe ".number_of_sales" do
+    it "returns number of sales instances whose product_id matches the product's id" do
+      expect(@product.number_of_sales).to eq 2
+    end
+  end
 end

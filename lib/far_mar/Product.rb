@@ -26,5 +26,13 @@ module FarMar
         vendor.id == self.vendor_id
       end
     end
+    def sales
+      FarMar::Sale.all.find_all do |sale|
+        sale.product_id == self.id
+      end
+    end
+    def number_of_sales
+      sales.length
+    end
   end
 end
