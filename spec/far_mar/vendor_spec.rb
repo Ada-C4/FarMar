@@ -62,4 +62,13 @@ describe FarMar::Vendor do
       expect(vendor.products[3].vendor_id).to eq 11
     end
   end
+  describe "#sales" do
+    it "returns all sales associated with the vendor" do
+      vendor = FarMar::Vendor.new("4","Kris and Sons","5","1")
+    expect(vendor.sales).to be_an Array
+    expect(vendor.sales[3]).to be_an_instance_of FarMar::Sale
+    expect(vendor.sales[1].vendor_id).to eq 4
+
+    end
+  end
 end
