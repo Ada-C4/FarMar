@@ -21,4 +21,10 @@ describe FarMar::Vendor do
       expect(FarMar::Vendor.find(556).id).to eq 556
     end
   end
+  describe ".market" do
+    it "returns the market instance whose id matches the vendor's market_id" do
+      expect(@vendor.market.id).to eq 1
+      expect(@vendor.market.name).to eq "People's Co-op Farmers Market"
+    end
+  end
 end

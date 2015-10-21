@@ -18,5 +18,10 @@ module FarMar
         vendor.id == id
       end
     end
+    def market
+      FarMar::Market.all.find do |market|
+        market.id == self.market_id
+      end
+    end
   end
 end
