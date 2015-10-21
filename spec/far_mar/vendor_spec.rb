@@ -68,14 +68,17 @@ describe FarMar::Vendor do
 		end
 	end
 
-	describe '.by_market(market_id)' do
-		it 'returns all Vendors for given market_id' do
-			
-		end
-	end
-
 	describe '#revenue' do
 		
+	end
+
+	describe '.by_market(market_id)' do
+		it 'returns all Vendors for given market_id' do
+			expect(FarMar::Vendor.by_market(1).length).to eq(6)
+		end
+		it 'returns only instances of Vendors' do
+			expect(FarMar::Vendor.by_market(1)[rand(0..5)]).to be_an_instance_of(FarMar::Vendor)
+		end
 	end
 
 end
