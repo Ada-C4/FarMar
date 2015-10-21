@@ -14,13 +14,18 @@ module FarMar
 
 
     def self.all
-      market_array = []
-      CSV.read("./support/markets.csv").each do |market|
-        new_market = FarMar::Market.new(market)
-        market_array.push(new_market)
+      @@market_array ||=  []
+
+      if @@market_array == []
+        CSV.read("./support/markets.csv").each do |market|
+          new_market = FarMar::Market.new(market)
+          @@market_array.push(new_market)
+        end
       end
-      return market_array
+      
+      return @@market_array
     end
+
 
     def self.find(id)
       FarMar::Market.all.find do |market|
