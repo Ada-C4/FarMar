@@ -2,10 +2,13 @@ module FarMar
   class Vendor < FarMar_Base
     attr_reader :id, :name, :emp_num, :market_id
     FILENAME = './support/vendors.csv'
-    @@all_objects = []
 
     def initialize(vendor_hash)
       super(vendor_hash)
+    end
+
+    def self.all_objects
+      @@all_objects ||= self.all
     end
 
     def self.convert_to_hash(array)

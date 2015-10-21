@@ -2,10 +2,13 @@ module FarMar
   class Product < FarMar_Base
     attr_reader :id, :name, :vendor_id
     FILENAME = './support/products.csv'
-    @@all_objects = []
 
     def initialize(product_hash)
       super(product_hash)
+    end
+
+    def self.all_objects
+      @@all_objects ||= self.all
     end
 
     # Converts an array to a hash for passing to product instantiation
