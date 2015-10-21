@@ -29,5 +29,12 @@ module FarMar
       end
     end
 
+    def sales
+      sales = FarMar::Sale.all.find_all do |sale|
+        sale.product_id == self.id
+      end
+      return sales
+    end
+
   end
 end

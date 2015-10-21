@@ -1,7 +1,7 @@
 require "spec_helper"
 describe FarMar do
   describe FarMar::Product do
-    
+
     before :each do
       product_info = CSV.open("./support/products.csv", 'r') { |csv| csv.first }
       @product = FarMar::Product.new(product_info)
@@ -52,6 +52,15 @@ describe FarMar do
       end
       it "returns the Vendor with the matching id" do
         expect(@product.vendor_id).to eq(@product.vendor.id)
+      end
+    end
+
+    describe "#sales" do
+      it "returns a collection" do
+        expect(@product.sales).to be_an(Array)
+      end
+      it "returns instances of Sales" do
+        expect(@product.sales[0]).to be_an_instance_of(FarMar::Sale) if @product.sales.length > 0
       end
     end
 
