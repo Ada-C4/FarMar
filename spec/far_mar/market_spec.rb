@@ -75,4 +75,19 @@ describe FarMar::Market do
       expect(@market.vendor_of_the_day(@date)).to be_an_instance_of FarMar::Vendor
     end
   end
+  describe "#worst_vendor" do
+    it "returns the vendor with the lowest revenue" do
+      @id = 1
+      @market = FarMar::Market.find(@id)
+      expect(@market.worst_vendor).to be_an_instance_of FarMar::Vendor
+    end
+  end
+  describe "#failure_of_the_day(date)" do
+    it "returns the worst vendor for a specific date" do
+      @id = 1
+      @market = FarMar::Market.find(@id)
+      @date = "2013-11-07 04:34:56 -0800"
+      expect(@market.failure_of_the_day(@date)).to be_an_instance_of FarMar::Vendor
+    end
+  end
 end

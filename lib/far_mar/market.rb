@@ -85,8 +85,28 @@ module FarMar
 
         day_sales.inject(0) { |sum, sale| sum + sale.amount }
       end
-
-
     end
+
+    def worst_vendor
+      vendor_list = self.vendors
+
+      vendor_list.min_by do |vendor|
+        vendor.revenue
+      end
+    end
+
+    def failure_of_the_day(date)
+      date = DateTime.parse(date)
+      vendor_list = self.vendors
+
+      vendor_list.min_by do |vendor|
+        day_sales = vendor.sales.find_all do |sale|
+          sale.purchase_time == date
+        end
+
+        day_sales.inject(0) { |sum, sale| sum + sale.amount }
+      end
+    end
+
   end
 end
