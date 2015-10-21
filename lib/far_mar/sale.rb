@@ -29,5 +29,9 @@ module FarMar
       return FarMar::Product.all.find {|product| product.id == @product_id}
     end
 
+    def self.between(beginning_time, end_time)
+      self.all.find_all {|sale| sale.purchase_time.between?(beginning_time, end_time)}
+    end
+
   end
 end

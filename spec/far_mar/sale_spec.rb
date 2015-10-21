@@ -48,4 +48,21 @@ describe FarMar::Sale do
       expect(@sale2.product.name).to eq "Happy Mushrooms"
     end
   end
+
+
+  describe "#self.between(beginning_time, end_time)" do
+        before :each do
+          @beginning_time = DateTime.strptime("2013-11-06 08:35:40 -0800", "%Y-%m-%d %H:%M:%S %z")
+          @end_time = DateTime.strptime("2013-11-13 08:35:16 -0800", "%Y-%m-%d %H:%M:%S %z")
+        end
+        it "returns a collection" do
+          expect(FarMar::Sale.between(@beginning_time, @end_time)).to be_an(Array)
+        end
+        it "returns Sale objects" do
+          expect(FarMar::Sale.between(@beginning_time, @end_time)[0]).to be_an_instance_of FarMar::Sale
+        end
+        it "returns FarMar::Sale objects that have a purchase_time between beginning_time and end_time" do
+          expect(FarMar::Sale.between(@beginning_time, @end_time).length).to eq 12798
+        end
+      end
 end
