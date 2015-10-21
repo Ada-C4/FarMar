@@ -3,8 +3,8 @@ describe FarMar do
   describe FarMar::Vendor do
 
     before :each do
-      vendor1_info = ["1","Feil-Farrell","8","1"]
-      @vendor = FarMar::Vendor.new(vendor1_info)
+      vendor_info = ["1","Feil-Farrell","8","1"]
+      @vendor = FarMar::Vendor.new(vendor_info)
       vendor2_info = ["2","Hamill, Kilback and Pfeffer","5","1"]
       @vendor2 = FarMar::Vendor.new(vendor2_info)
       vendor51_info = ["51","Bernier Inc","1","12"]

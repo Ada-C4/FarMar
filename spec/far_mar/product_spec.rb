@@ -5,6 +5,8 @@ describe FarMar do
     before :each do
       product_info = ["1","Dry Beets","1"]
       @product = FarMar::Product.new(product_info)
+      product3_info = ["3","Heavy Chicken","2"]
+      @product3 = FarMar::Product.new(product3_info)
     end
 
     describe "#initialize" do
@@ -70,6 +72,7 @@ describe FarMar do
       end
       it "returns the correct number of sales" do
         expect(@product.number_of_sales).to eq(7)
+        expect(@product3.number_of_sales).to eq(0)
       end
     end
 
