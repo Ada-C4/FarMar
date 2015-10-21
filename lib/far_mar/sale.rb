@@ -23,14 +23,7 @@ module FarMar
 
     # returns all of the sales with the given product id
     def self.by_product(product_id)
-      csv_file = CSV.read(FILENAME)
-      matches = csv_file.find_all { |row| row[4].to_i == product_id }
-      sales = []
-      matches.each do |sales_array|
-        sales_hash = convert_to_hash(sales_array)
-        sales.push(FarMar::Sale.new(sales_hash))
-      end
-      return sales
+      FarMar::Sale.all_objects.find_all { |sale| sale.product_id == product_id }
     end
   end
 end
