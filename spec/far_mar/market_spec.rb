@@ -56,18 +56,19 @@ describe FarMar do
     end
 
     describe "#vendors" do
-      let(:market) {FarMar::Market.new({
-        :id => 20,
-        :name => "Scottdale Farmers Market",
-        :address => "1 Centennial Way",
-        :city => "Scottdale",
-        :county => "Westmoreland",
-        :state => "Pennsylvania",
-        :zip => "15683"
-        })}
+      let(:sample_market) {
+        FarMar::Market.new({
+          :id => 20,
+          :name => "Scottdale Farmers Market",
+          :address => "1 Centennial Way",
+          :city => "Scottdale",
+          :county => "Westmoreland",
+          :state => "Pennsylvania",
+          :zip => "15683" })
+        }
       it "returns array of vendors for the market" do
-        vendors = :market.vendors
-        expect(vendors).to be_an(array)
+        vendors = sample_market.vendors
+        expect(vendors).to be_an(Array)
         expect(vendors.length).to eq(7)
         expect(vendors[-1]).to be_an_instance_of(FarMar::Vendor)
         expect(vendors[0].name).to eq("Davis Group")
