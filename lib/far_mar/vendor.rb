@@ -36,5 +36,11 @@ module FarMar
     def sales
       return FarMar::Sale.by_vendor(@id)
     end
+
+    # returns the FarMar::Market instance that is associate with this vendor
+    # using the FarMar::Vendor market_id field
+    def market
+      return FarMar::Market.find(@market_id)
+    end
   end
 end
