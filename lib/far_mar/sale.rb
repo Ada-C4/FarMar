@@ -6,12 +6,12 @@ module FarMar
 		attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_id
 
 		def initialize(sale_id, amount, purchase_time, vendor_id, product_id)
-			@sale_id = sale_id
-			@amount = amount
+			@sale_id = sale_id.to_i
+			@amount = amount.to_i
 			purchase_time = purchase_time.to_s
 			@purchase_time = DateTime.strptime(purchase_time, "%Y-%m-%d %H:%M:%S %z")
-			@vendor_id = vendor_id
-			@product_id = product_id
+			@vendor_id = vendor_id.to_i
+			@product_id = product_id.to_i
 		end
 
 		def self.all
@@ -21,6 +21,11 @@ module FarMar
         sales_array.push(sale)
       end
 			return sales_array
+		end
+
+		def self.find(id)
+			FarMar::Sale.all.find {|sale| 
+				sale.sale_id == id}
 		end
 
 	end

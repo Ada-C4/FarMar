@@ -26,7 +26,7 @@ describe FarMar::Sale do
 
   describe  '.find' do
     it 'returns a matching sale instance' do
-      expect(FarMar::Sale.find(15).product_id).to be eq(4)
+      expect(FarMar::Sale.find(15).amount).to eq(8924)
     end
   end
 

@@ -26,8 +26,6 @@ module FarMar
 
     def self.find(id)
       FarMar::Market.all.find {|mar| mar.market_id == id }
-
-
     end
 
 
