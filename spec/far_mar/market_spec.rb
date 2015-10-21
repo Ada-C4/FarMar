@@ -25,4 +25,10 @@ end
     end
   end
 
+  describe ".get_vendor" do
+    it "returns all accounts with same market id" do
+      expect(@market.get_vendor).to be_an Array
+    end
+  end
+
 end

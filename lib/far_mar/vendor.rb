@@ -30,6 +30,18 @@ module FarMar
         end
       end
     end
+    def get_market
+      FarMar::Market.all.find do |market|
+        market.id == @id
+      end
+    end
+
+    def get_products
+      FarMar::Product.all.find_all do |product|
+        product.vendor_id == @id
+      end
+
+    end
 
 
   end

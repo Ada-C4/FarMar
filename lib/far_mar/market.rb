@@ -3,9 +3,9 @@ require "csv"
 module FarMar
   class Market
     attr_accessor :id, :name, :address, :city, :county, :state, :zip
-    attr_reader :object
 
-    def initialize (id, name, address, city, county, state, zip)
+
+    def initialize(id, name, address, city, county, state, zip)
       @id = id.to_i
       @name = name
       @address = address
@@ -13,7 +13,7 @@ module FarMar
       @county = county
       @state = state
       @zip = zip
-      @object = 
+
 
     end
 
@@ -37,12 +37,10 @@ module FarMar
       end
     end
 
-    def initialize
-      object =
+    def get_vendor
+      FarMar::Vendor.all.find_all do |vendor|
+        vendor.market_id == @id
+      end
     end
-
-
-
-
   end
 end
