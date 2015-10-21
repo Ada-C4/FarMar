@@ -21,6 +21,7 @@ module FarMar
     end
 
     def self.find(id)
+      all.find{|vendor| vendor.id == id}
     end
 
     # def market
