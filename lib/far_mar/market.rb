@@ -32,11 +32,11 @@ module FarMar
       market_array.find do |market|
         market.id == id
       end
-      # markets.find do |market|
-      #   market.id = id
-      # end
     end
 
+    def vendors
+      return FarMar::Vendor.find_by_market_id(self.id)
+    end
 
 
 

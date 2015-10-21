@@ -23,4 +23,21 @@ describe FarMar::Market do
       expect(market1.city).to eq("Portland")
     end
   end
+
+  describe "vendors" do
+    before :each do
+      @market_array = @market.vendors
+    end
+
+    it "returns a collection of FarMar::Vendor" do
+      expect(@market_array).to be_an_instance_of(Array)
+    end
+
+
+  end
 end
+
+#     it "return vendors that associated with the market"
+#       expact(@market_array).to include
+#   end
+# end
