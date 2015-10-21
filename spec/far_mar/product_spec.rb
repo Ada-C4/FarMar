@@ -40,4 +40,16 @@ describe FarMar::Product do
     end
   end
 
+  describe "#sales" do
+    it "does not return an empty array" do
+      product = @products[0]
+      expect(product.sales).not_to eq []
+    end
+
+    it "returns the expected number of sales" do
+      product = @products[0]
+      expect(product.sales.length).to eq 7
+    end
+  end
+
 end

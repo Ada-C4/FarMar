@@ -35,6 +35,9 @@ module FarMar
 
     # Returns a collection for FarMar::Sale instances associated with the product
     def sales
+      all_sales = FarMar::Sale.all
+      matched_sales = all_sales.find_all { |sale| sale.product_id == self.product_id }
+      return matched_sales
     end
 
     # Returns the number of times this product has been sold

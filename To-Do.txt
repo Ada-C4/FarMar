@@ -5,3 +5,4 @@
 # Improve #vendors spec - suspect this could be written more efficiently
 # Write the product method for vendor
 # Rewrite the vendor by_market spec - using length but should be testing result accuracy
+# Rewrite tests to take test data
