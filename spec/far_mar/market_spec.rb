@@ -1,6 +1,5 @@
 require "./spec/spec_helper"
 
-
 describe FarMar::Market do
   describe "initialize" do
     before :each do
