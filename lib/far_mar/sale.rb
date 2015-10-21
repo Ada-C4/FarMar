@@ -4,7 +4,7 @@ module FarMar
     def initialize(id, amount, purchase_time, vendor_id, product_id)
       @id = id.to_i
       @amount = amount
-      @purchase_time = purchase_time
+      @purchase_time = purchase_time.to_s
       @vendor_id = vendor_id
       @product_id = product_id
     end
