@@ -45,4 +45,12 @@ describe FarMar::Vendor do
       expect(@vendor.products[0].name). to eq "Dry Beets"
     end
   end
+
+  describe "#sales" do
+    it "returns all Sales for the specific vendor instance" do
+      expect(@vendor.sales.length).to eq 7
+      expect(@vendor.sales[0].amount).to eq 9290
+    end
+  end
+
 end

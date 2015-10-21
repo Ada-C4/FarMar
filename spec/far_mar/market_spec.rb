@@ -13,7 +13,7 @@ describe FarMar::Market do
 
     describe "#self.all" do
       it "returns an Array" do
-        expect(FarMar::Market.all).to be_an_instance_of Array
+        expect(FarMar::Market.all).to be_an Array
       end
       it "returns all 500 instances in csv file" do
         expect(FarMar::Market.all.length).to eq 500
@@ -34,6 +34,7 @@ describe FarMar::Market do
 
     describe "#vendors" do
       it "returns all Vendors for the specific market instance" do
+        expect(@market.vendors).to be_an Array
         expect(@market.vendors.length).to eq 6
         expect(@market.vendors[0].name).to eq "Feil-Farrell"
       end
