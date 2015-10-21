@@ -1,7 +1,7 @@
 require 'spec_helper'
 describe FarMar::Sale do
   before :each do
-    @sale = FarMar::Sale.new("1", "9290", "2013-11-07 04:34:56 -0800", "1", "1")
+    @sale = FarMar::Sale.new("3339", "7316", "2013-11-11 13:56:55 -0800", "742", "2213")
   end
   describe "#new" do
     it "creates a new Sale instance" do
@@ -19,6 +19,12 @@ describe FarMar::Sale do
   describe "#find(id)" do
     it "returns the sales instance with an id matching the parameter" do
       expect(FarMar::Sale.find(20).id).to eq 20
+    end
+  end
+  describe ".vendor" do
+    it "returns the vendor instance whose id matches the sale's vendor_id" do
+      expect(@sale.vendor.id).to eq 742
+      expect(@sale.vendor.name).to eq "Beer, Heathcote and Leffler"
     end
   end
 end
