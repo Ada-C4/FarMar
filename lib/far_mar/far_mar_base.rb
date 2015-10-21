@@ -22,6 +22,7 @@ module FarMar
         end
         self.class_variable_set(:@@all_objects, objects)
       end
+      self.all_objects
     end
 
     def self.find(id)
