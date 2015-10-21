@@ -16,5 +16,10 @@ module FarMar
       sale_hash[:product_id] = sale_array[4].to_i
       return sale_hash
     end
+
+    # returns all of the sales with the given product id
+    def self.by_product(product_id)
+      
+    end
   end
 end
