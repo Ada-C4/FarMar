@@ -27,4 +27,29 @@ describe ".find" do
     expect(FarMar::Sale.find(test_id)).to eq @sales[2]
   end
 end
+
+describe "#vendor" do
+  it "returns a vendor object for the current sale" do
+    sale = @sales[1]
+    expect(sale.vendor).to be_an_instance_of FarMar::Vendor
+  end
+
+  it "returns the correct vendor object for a sale" do
+    sale = @sales[1]
+    expect(sale.vendor.vendor_name).to eq "Feil-Farrell"
+  end
+end
+
+describe "#product" do
+  it "returns a product object for the current sale" do
+    sale = @sales[1]
+    expect(sale.product).to be_an_instance_of FarMar::Product
+  end
+
+  it "returns the correct product object for a sale" do
+    sale = @sales[1]
+    expect(sale.product.product_name).to eq "Dry Beets"
+  end
+end
+
 end
