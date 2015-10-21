@@ -39,7 +39,7 @@ module FarMar
 
     # returns the number of times the product has been sold
     def number_of_sales
-
+      return sales.length
     end
   end
 end
