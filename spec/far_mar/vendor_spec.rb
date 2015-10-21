@@ -77,4 +77,16 @@ describe FarMar::Vendor do
       expect(test_vendor.sales.length).to eq 7
     end
   end
+
+  describe "#revenue" do
+    it "returns a fixnum value" do
+      test_vendor = FarMar::Vendor.find(1)
+      expect(test_vendor.revenue).to be_an_instance_of Fixnum
+    end
+
+    it "returns the correct value for example data" do
+      test_vendor = FarMar::Vendor.find(1)
+      expect(test_vendor.revenue).to eq 38259
+    end
+  end
 end

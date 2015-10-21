@@ -50,6 +50,12 @@ module FarMar
 
       # Returns the sum of all the vendor's sale (in cents)
       def revenue
+        total = 0
+        all_sales = self.sales
+        all_sales.each do |sale|
+          total += sale.amount
+        end
+        return total
       end
 
       # Returns all of the vendors with the given market ID

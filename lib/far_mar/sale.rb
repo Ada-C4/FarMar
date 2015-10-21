@@ -1,7 +1,7 @@
 module FarMar
   class Sale
     #sale_csv = CSV.read("support/sales.csv")
-    attr_accessor :sale_id, :vendor_id, :product_id
+    attr_accessor :sale_id, :vendor_id, :product_id, :amount
     def initialize(sale_hash)
       @sale_id       = sale_hash[:id].to_i
       @amount        = sale_hash[:amount].to_i
