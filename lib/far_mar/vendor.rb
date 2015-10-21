@@ -38,6 +38,19 @@ module FarMar
       return products_array = FarMar::Product.by_vendor(self.id)
     end
 
+    def sales
+      return Farmar::Sale.by_vendor(self.id)
+    end
+
+
+    def revenue
+      sale_array = FarMar::Sale.by_vendor(self.id)
+      return sale_array.inject(0){|sum, sale| sum + sale.amount}
+    end
+
+
+    #  return sale_array.inject(0) {|sum, sale.amount| sum + sale.amount}
+    #end
 
   end
 end

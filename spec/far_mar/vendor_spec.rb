@@ -38,16 +38,26 @@ describe FarMar::Vendor do
     end
 
     describe "products" do
-      # it "returns a collection of with the vendor id" do
-      #
-      # end
-
       it "return an Array of products" do
         expect(@vendor.products).to be_an (Array)
       end
-
     end
 
+    describe "sales" do
+      it "return an Array of sales" do
+        expect(FarMar::Sale.by_vendor(1)).to be_an(Array)
+      end
+    end
+
+    describe "revenue" do
+      it "return an integer" do
+      expect(@vendor.revenue).to be_an_instance_of(Fixnum)
+      end
+
+      it "sum it all the vendor's sales" do
+        expect(@vendor.revenue).to eq 2977
+      end
+    end
 
 
 end
