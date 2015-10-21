@@ -79,5 +79,11 @@ describe FarMar::Product do
   		@product1 = FarMar::Product.new(165,"Striped Apples",51)
   		expect(@product1.number_of_sales).to eq(0) 
   	end
+
+  	describe '.by_vendor(vendor_id)'do
+  		it 'returns products sold with same vendor_id' do
+  			expect(FarMar::Product.all.by_vendor(6).length).to eq(6)
+  		end
+  	end
   end
 end
