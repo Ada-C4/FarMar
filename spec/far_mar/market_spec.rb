@@ -2,9 +2,6 @@ require "spec_helper"
 
 describe FarMar do
   describe FarMar::Market do
-    before :each do
-    end
-
     describe "initialize" do
       it "creates an instance of a Market" do
         @market_hash = {
@@ -61,13 +58,24 @@ describe FarMar do
     end
 
     describe "find_vendors" do
+      before :each do
+        @market = FarMar::Market.new({
+        :id => 123,
+        :name => "market name",
+        :address => "market address",
+        :city => "market city",
+        :county => "market county",
+        :state => "market state",
+        :zip => 12345
+        })
+      end
       it "returns an array" do
         market_id = 1
-        expect(FarMar::Market.find_vendors(market_id)).to be_an Array
+        expect(@market.find_vendors(market_id)).to be_an Array
       end
       it "has Vendor objects in the array" do
         market_id = 1
-        expect(FarMar::Market.find_vendors(market_id)[0]).to be_an_instance_of FarMar::Vendor
+        expect(@market.find_vendors(market_id)[0]).to be_an_instance_of FarMar::Vendor
       end
     end
   end

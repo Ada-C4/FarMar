@@ -56,7 +56,7 @@ module FarMar
       return @id
     end
 
-    def self.find_vendors(market_id)
+    def find_vendors(market_id)
       #finds all the vendors for a particular market
       #searches the vendor.all objects for the market_id
       vendors_csv = CSV.read("./support/vendors.csv")

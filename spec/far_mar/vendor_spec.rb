@@ -31,5 +31,24 @@ describe FarMar do
         expect(vendor.id).to eq 1
       end
     end
+
+    describe "find_market" do
+      before :each do
+        @vendor = FarMar::Vendor.new({
+          :id => 123,
+          :name => "vendor name",
+          :num_employees => 18,
+          :market_id => 24
+          })
+      end
+      it "returns a Market object" do
+        expect(@vendor.find_market(1)).to be_an_instance_of FarMar::Market
+      end
+      it "returns a Market object which has a market id that matches the vendor's market id" do
+        num = 1
+        market = @vendor.find_market(num)
+        expect(market.id).to eq num
+      end
+    end
   end
 end

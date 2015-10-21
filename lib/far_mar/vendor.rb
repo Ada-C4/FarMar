@@ -43,5 +43,9 @@ module FarMar
       def id
         return @id
       end
+
+      def find_market(market_id)
+        return FarMar::Market.find(market_id)
+      end
   end
 end
