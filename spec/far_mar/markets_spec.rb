@@ -8,10 +8,6 @@ describe FarMar::Market do
       @market_test = FarMar::Market.new(0, "name", "1234 street", "city", "county", "state", 12345)
       expect(@market_test).to be_an_instance_of FarMar::Market
     end
-    it "converts the csv file to an array" do
-      @market_test = FarMar::Market.new(0, "name", "1234 street", "city", "county", "state", 12345)
-      expect(FarMar::Market.all).to be_an Array
-    end
 
     describe "self.all"
       it "returns an array" do

@@ -29,7 +29,6 @@ module FarMar
     def self.all
       market_array = CSV.read("./support/markets.csv")
       all_markets_array = []
-      num_of_markets = 0
         market_array.each do |single_array|
           id = single_array[0]
           name = single_array[1]
@@ -46,8 +45,7 @@ module FarMar
 # # - `self.find(id)` - returns an instance of Market where the value of the `id` field in the CSV matches the passed parameter.
 
     def self.find_market(market_id)
-      all_the_markets = FarMar::Market.all
-      all_the_markets.find do |single_market|
+      FarMar::Market.all.find do |single_market|
         if single_market.id == market_id.to_s
         var = []
         var = ["#{single_market.id}", "#{single_market.name}", "#{single_market.address}", "#{single_market.city}", "#{single_market.county}", "#{single_market.state}", "#{single_market.zip}"]
