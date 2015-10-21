@@ -1,7 +1,6 @@
 module FarMar
   class Market
-
-    attr_accessor :id, :name, :markets
+    attr_accessor :id, :name, :markets_all
     def initialize(market_hash)
       @id      = market_hash[:id].to_i
       @name    = market_hash[:name]
@@ -13,16 +12,17 @@ module FarMar
     end
 
     def self.all
-      @markets = []
-      markets_csv = CSV.read("support/markets.csv")
-
-      markets_csv.each do |id, name, address, city, county, state, zip|
-        hash = {:id => id, :name => name, :address => address, :city => city, :county => county, :state => state, :zip => zip}
-        market = FarMar::Market.new(hash)
-        @markets.push(market)
-
+      @@markets_all ||= []
+      if @@markets_all == []
+        #binding.pry
+        markets_csv = CSV.read("support/markets.csv")
+        markets_csv.each do |id, name, address, city, county, state, zip|
+          hash = {:id => id, :name => name, :address => address, :city => city, :county => county, :state => state, :zip => zip}
+          market = FarMar::Market.new(hash)
+          @@markets_all.push(market)
+        end
       end
-      return @markets
+      return @markets = @@markets_all
     end
 
     def self.find(id)

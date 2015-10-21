@@ -10,22 +10,22 @@ module FarMar
 
     # Return a collection of all Product instances, representing all the products described in the CSV
     def self.all
-      @products = []
-      products_csv = CSV.read("support/products.csv")
+      @@products ||= []
+      if @@products == []
+        products_csv = CSV.read("support/products.csv")
 
-      products_csv.each do |id, name, vendor_id|
-        hash = {:id => id, :name => name, :vendor_id => vendor_id}
-        product = FarMar::Product.new(hash)
-        @products.push(product)
+        products_csv.each do |id, name, vendor_id|
+          hash = {:id => id, :name => name, :vendor_id => vendor_id}
+          product = FarMar::Product.new(hash)
+          @@products.push(product)
+        end
       end
-      return @products
+      return @@products
     end
 
     # Returns an instance of Product with the passed in ID
     def self.find(id)
-      @products.find do |product|
-        product.product_id == id
-      end
+      @@products.find { |product| product.product_id == id }
     end
 
     # Returns the FarMar::Vendor instance that is associated with the product
