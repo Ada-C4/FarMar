@@ -2,11 +2,11 @@ module FarMar
 
    class Product
      attr_reader :ID, :name, :vendor_id
-      
+
      def self.all
      end
 
-     def self.find(id)
+     def self.find()
      end
 
      def self.by_vendor(vendor_id)

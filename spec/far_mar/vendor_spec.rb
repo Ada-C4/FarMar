@@ -9,5 +9,60 @@ describe FarMar::Vendor do
     it "creates a new instance of a vendor" do
       expect(@vendor).to be_an_instance_of FarMar::Vendor
     end
+
+    it "by default assigns empty strings to instance variables" do
+      expect(@vendor.name).to eq ""
+      expect(@vendor.employees).to eq ""
+    end
+
+    it "accepts parameters passed in" do
+      @vendor2 = FarMar::Vendor.new("23", "Best vendor", "9", "5")
+      expect(@vendor2.name).to eq "Best vendor"
+      expect(@vendor2.employees).to eq "9"
+    end
+  end
+
+  describe "self.all" do
+    context "default csv is passed in" do
+      it "creates an array of vendor objects from default csv" do
+        all = FarMar::Vendor.all
+        my_csv = CSV.read("./support/vendors.csv")
+        expect(all.length).to eq my_csv.length
+        expect(all).to be_an_instance_of Array
+        expect(all[0].class).to eq FarMar::Vendor
+        expect(all[19].name).to eq "Ledner Group"
+      end
+    end
+
+    context "non-default csv is passed in" do
+      it "creates an array of vendor objects from default csv" do
+        all = FarMar::Vendor.all("./support/vendors2.csv")
+        my_csv = CSV.read("./support/vendors2.csv")
+        expect(all.length).to eq my_csv.length
+        expect(all).to be_an_instance_of Array
+        expect(all[0].class).to eq FarMar::Vendor
+        expect(all[5].employees).to eq "8000"
+      end
+    end
+  end
+
+  describe "self.find" do
+    context "default csv is passed in" do
+      it "returns an instance of a vendor matching the passed id" do
+        id15 = FarMar::Vendor.find(15)
+        id33 = FarMar::Vendor.find(33)
+        expect(id15.name).to eq "Hyatt-King"
+        expect(id33.class).to eq FarMar::Vendor
+        expect(id33.employees).to eq "2"
+      end
+    end
+
+    context "non-default csv is passed in" do
+      it "returns an instance of a vendor matching the passed id" do
+        id9 = FarMar::Vendor.find(9, "./support/vendors2.csv")
+        expect(id9.name).to eq "Fakey Fake Vendor"
+        expect(id9.class).to eq FarMar::Vendor
+      end
+    end
   end
 end

@@ -9,7 +9,7 @@ module FarMar
      def self.all
      end
 
-     def self.find(id)
+     def self.find()
      end
 
      def self.between(beginning_time, end_time)
