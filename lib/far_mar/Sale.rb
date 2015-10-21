@@ -28,5 +28,17 @@ module FarMar
         vendor.id == self.vendor_id
       end
     end
+    def product
+      FarMar::Product.all.find do |product|
+        product.id == self.product_id
+      end
+    end
+    def self.between(beginning_time, end_time)
+      beginning_time = DateTime.strptime(beginning_time, "%Y-%m-%d %H:%M:%S %z")
+      end_time = DateTime.strptime(end_time, "%Y-%m-%d %H:%M:%S %z")
+      self.all.find_all do |sale|
+        sale.purchase_time > beginning_time && sale.purchase_time < end_time
+      end
+    end
   end
 end
