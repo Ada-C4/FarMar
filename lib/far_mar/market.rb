@@ -13,7 +13,7 @@ module FarMar
     end
 
     def self.all
-      # if @@market_array is nil, reads the csv and creates the array
+      # if @@all_markets is nil, reads the csv and creates the array
       # otherwise uses array already in memory
       @@all_markets ||= CSV.read('./support/markets.csv').map do |col|
          FarMar::Market.new({
