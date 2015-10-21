@@ -34,4 +34,10 @@ describe FarMar::Product do
 		end
 	end
 
+	  describe  '.find' do
+    it 'returns a matching product instance' do
+      expect(FarMar::Product.find(10).name).to eq("Black Apples")
+    end
+  end
+
 end
