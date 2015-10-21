@@ -27,5 +27,16 @@ module FarMar
       end
     end
 
+    def self.between(start_time,stop_time)
+    end
+
+    def locate_vendors
+    end
+
+    def locate_products
+    end
+
+
+
   end
 end

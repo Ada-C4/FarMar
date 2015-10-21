@@ -26,5 +26,17 @@ module FarMar
         id == product.id
       end
     end
+
+    def self.by_vendor(vendor_id)
+    end  
+
+    def list_vendors
+    end
+
+    def list_sales
+    end
+
+    def number_of_sales
+    end
   end
 end

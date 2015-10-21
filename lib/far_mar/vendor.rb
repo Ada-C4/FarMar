@@ -27,5 +27,20 @@ module FarMar
         id == vendor.id
       end
     end
+
+    def self.by_market(market_id)
+    end
+
+    def list_markets
+    end
+
+    def list_products
+    end
+
+    def list_sales
+    end
+
+    def revenue
+    end
   end
 end
