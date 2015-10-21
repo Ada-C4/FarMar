@@ -2,11 +2,12 @@ require "spec_helper"
 describe FarMar do
   describe FarMar::Market do
 
+    before :each do
+      market_info = ["1","People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202"]
+      @market = FarMar::Market.new(market_info)
+    end
+
     describe "#initialize" do
-      before :each do
-        market_info = CSV.open("./support/markets.csv", 'r') { |csv| csv.first }
-        @market = FarMar::Market.new(market_info)
-      end
       it "creates a new instance of the Market class" do
         expect(@market).to be_an_instance_of(FarMar::Market)
       end
@@ -45,10 +46,6 @@ describe FarMar do
       end
 
       describe "#vendors" do
-        before :each do
-          market_info = CSV.open("./support/markets.csv", 'r') { |csv| csv.first }
-          @market = FarMar::Market.new(market_info)
-        end
         it "returns a collection" do
           expect(@market.vendors).to be_an(Array)
         end
