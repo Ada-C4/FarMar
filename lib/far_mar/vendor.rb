@@ -10,11 +10,11 @@ module FarMar
     end
 
     def market
-      FarMar::Market.find(@market_id)
+      Market.find(@market_id)
     end
 
     def products
-      products_list = FarMar::Product.all
+      products_list = Product.all
 
       return products_list.find_all do |instance|
         @id == instance.vendor_id
@@ -22,7 +22,7 @@ module FarMar
     end
 
     def sales
-      sales_list = FarMar::Sale.all
+      sales_list = Sale.all
 
       return sales_list.find_all do |instance|
         @id == instance.vendor_id
@@ -52,7 +52,7 @@ module FarMar
 
       if @@vendors_list == []
         CSV.foreach("./support/vendors.csv") do |row|
-          vendor = FarMar::Vendor.new(row[0], row[1], row[2], row[3])
+          vendor = Vendor.new(row[0], row[1], row[2], row[3])
           @@vendors_list.push(vendor)
         end
       end

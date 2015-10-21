@@ -9,11 +9,11 @@ module FarMar
     end
 
     def vendor
-      FarMar::Vendor.find(@vendor_id)
+      Vendor.find(@vendor_id)
     end
 
     def sales
-      sales_list = FarMar::Sale.all
+      sales_list = Sale.all
 
       return sales_list.find_all do |instance|
         @id == instance.product_id
@@ -37,11 +37,11 @@ module FarMar
 
       if @@products_list == []
         CSV.foreach("./support/products.csv") do |row|
-          product = FarMar::Product.new(row[0], row[1], row[2])
+          product = Product.new(row[0], row[1], row[2])
           @@products_list.push(product)
         end
       end
-      
+
       return @@products_list
     end
 

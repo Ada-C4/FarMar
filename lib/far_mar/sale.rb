@@ -11,11 +11,11 @@ module FarMar
     end
 
     def vendor
-      FarMar::Vendor.find(@vendor_id)
+      Vendor.find(@vendor_id)
     end
 
     def product
-      FarMar::Product.find(@product_id)
+      Product.find(@product_id)
     end
 
     def self.between(beginning_time, end_time)
@@ -34,7 +34,7 @@ module FarMar
 
       if @@sales_list == []
         CSV.foreach("./support/sales.csv") do |row|
-          sale = FarMar::Sale.new(row[0], row[1], row[2], row[3], row[4])
+          sale = Sale.new(row[0], row[1], row[2], row[3], row[4])
           @@sales_list.push(sale)
         end
       end

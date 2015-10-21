@@ -13,11 +13,22 @@ module FarMar
     end
 
     def vendors
-      vendors_list = FarMar::Vendor.all
+      vendors_list = Vendor.all
 
       return vendors_list.find_all do |instance|
         @id == instance.market_id
       end
+    end
+
+    def products
+      market_products = []
+      vendors_list = self.vendors
+
+      vendors_list.each do |vendor|
+        market_products += vendor.products
+      end
+
+      return market_products
     end
 
     def self.all
@@ -25,7 +36,7 @@ module FarMar
 
       if @@markets_list == []
         CSV.foreach("./support/markets.csv") do |row|
-          market = FarMar::Market.new(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
+          market = Market.new(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
           @@markets_list.push(market)
         end
       end

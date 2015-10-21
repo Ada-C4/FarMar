@@ -27,7 +27,7 @@ describe FarMar::Market do
   describe "self.find(id)" do
     it "finds a market using its ID" do
       @id = 400
-      expect(FarMar::Market.find(@id).id).to eq FarMar::Market.find(@id).id 
+      expect(FarMar::Market.find(@id).id).to eq FarMar::Market.find(@id).id
     end
   end
   describe "#vendors" do
@@ -38,6 +38,16 @@ describe FarMar::Market do
     end
     it "creates an array with Vendor instances" do
       expect(@market.vendors[0]).to be_an_instance_of FarMar::Vendor
+    end
+  end
+  describe "#products" do
+    it "returns an array" do
+      @id = 1
+      @market = FarMar::Market.find(@id)
+      expect(@market.products).to be_an Array
+    end
+    it "creates an array of Product instances" do
+      expect(@market.products[0]).to be_an_instance_of FarMar::Product
     end
   end
 end
