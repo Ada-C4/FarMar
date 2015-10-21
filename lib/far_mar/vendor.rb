@@ -25,7 +25,13 @@ module FarMar
     end
 
     def market
+      #returns the FarMar::Market instance that is associated
+      #with this vendor using the FarMar::Vendor market_id field
+      FarMar::Market.all.find do |market|
+        @market_id == market.id
+      end
     end
+
     #
     # def products
     # end
