@@ -59,5 +59,12 @@ describe FarMar::Vendor do
       end
     end
 
+    describe "by_market" do
+      it "returns an Array" do
+        expect(FarMar::Vendor.by_market(2)).to be_an_instance_of(Array)
+      end
+    end
+
+
 
 end

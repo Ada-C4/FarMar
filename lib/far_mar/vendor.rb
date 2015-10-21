@@ -48,6 +48,12 @@ module FarMar
       return sale_array.inject(0){|sum, sale| sum + sale.amount}
     end
 
+    def self.by_market(market_id)
+      vendor_array = self.all
+      vendor_array.find_all do |vendor|
+        vendor.market_id == market_id
+      end
+    end
 
     #  return sale_array.inject(0) {|sum, sale.amount| sum + sale.amount}
     #end
