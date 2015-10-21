@@ -5,15 +5,18 @@ describe FarMar::Vendor do
     @vendor = FarMar::Vendor.new(45,"Hyatt, Conroy and Ortiz",5,10)
   end
 
-  context "initializing" do
-    it "returns a vendor object" do
+  context "#initializing" do
+    it "creates an instance of @vendor" do
       expect(@vendor).to be_an_instance_of FarMar::Vendor
     end
   end
 
-  context "#self.all" do
-    it "only returns instances in the vendors.csv file" do
-      expect(FarMar::Vendor.all()).to be_truthy
+  context ".self.all" do
+    it "returns an array" do
+      expect(FarMar::Vendor.all().class).to be Array
+    end
+    it "returns instances of all lines in vendors.csv" do
+      expect(FarMar::Vendor.all().length).to eq 2690
     end
   end
 end

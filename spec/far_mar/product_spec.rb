@@ -11,7 +11,7 @@ describe FarMar::Product do
     end
   end
 
-  context "#self.all" do
+  context ".self.all" do
     it "only returns instances in the products.csv file" do
       expect(FarMar::Product.all()).to be_truthy
     end

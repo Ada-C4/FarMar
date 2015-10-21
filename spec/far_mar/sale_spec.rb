@@ -11,7 +11,7 @@ describe FarMar::Sale do
     end
   end
 
-  context "#self.all" do
+  context ".self.all" do
     it "only returns instances in the sales.csv file" do
       expect(FarMar::Sale.all()).to be_truthy
     end
