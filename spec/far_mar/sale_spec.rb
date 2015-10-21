@@ -60,5 +60,13 @@ describe FarMar do
         expect(sample_vendor.name).to eq("Reynolds, Schmitt and Klocko")
       end
     end
+
+    describe "#product" do
+      it "returns the Product associate with the sale" do
+        sample_product = sample_sale.product
+        expect(sample_product.id).to eq(sample_sale.product_id)
+        expect(sample_product.name).to eq("Gorgeous Fish")
+      end
+    end
   end
 end
