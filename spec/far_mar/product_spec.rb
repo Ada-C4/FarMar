@@ -3,7 +3,7 @@ describe FarMar do
   describe FarMar::Product do
 
     before :each do
-      product_info = CSV.open("./support/products.csv", 'r') { |csv| csv.first }
+      product_info = ["1","Dry Beets","1"]
       @product = FarMar::Product.new(product_info)
     end
 

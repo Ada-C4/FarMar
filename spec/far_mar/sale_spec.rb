@@ -3,7 +3,7 @@ describe FarMar do
   describe FarMar::Sale do
 
     before :each do
-      sale_info = CSV.open("./support/sales.csv", 'r') { |csv| csv.first }
+      sale_info = ["1","9290","2013-11-07 04:34:56 -0800","1","1"]
       @sale = FarMar::Sale.new(sale_info)
     end
 

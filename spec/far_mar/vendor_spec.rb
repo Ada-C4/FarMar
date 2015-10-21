@@ -3,7 +3,7 @@ describe FarMar do
   describe FarMar::Vendor do
 
     before :each do
-      vendor_info = CSV.open("./support/vendors.csv", 'r') { |csv| csv.first }
+      vendor_info = ["1","Feil-Farrell","8","1"]
       @vendor = FarMar::Vendor.new(vendor_info)
     end
 
