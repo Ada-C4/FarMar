@@ -77,4 +77,12 @@ describe FarMar::Vendor do
       expect(vendor.revenue).to eq 39719
     end
   end
+  describe "self.by_market(market_id)" do
+    it "returns all of the vendors with a given market_id" do
+      market_vendors_9 = FarMar::Vendor.by_market(9)
+      expect(market_vendors_9).to be_an Array
+      expect(market_vendors_9[2]).to be_an_instance_of FarMar::Vendor
+      expect(market_vendors_9[3].market_id).to eq 9
+    end
+  end
 end

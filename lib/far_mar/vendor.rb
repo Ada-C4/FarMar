@@ -61,6 +61,13 @@ module FarMar
       return revenue
     end
 
+    def self.by_market(market_id)
+      bymarket = FarMar::Vendor.all.find_all do |vendor|
+        vendor.market_id == market_id
+      end
+    return bymarket
+    end
+
   end
 
 end
