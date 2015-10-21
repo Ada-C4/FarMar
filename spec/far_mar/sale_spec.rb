@@ -46,4 +46,15 @@ describe FarMar::Sale do
       expect(@sale2.product.name).to eq "Nom nom Beef"
     end
   end
+  describe "self.between(beginning_time, end_time)" do
+    it "returns an array" do
+      expect(FarMar::Sale.between("2013-11-10 05:19:05 -0800","2013-11-08 15:18:32 -0800")).to be_an Array
+    end
+    it "returns array of correct length" do
+      expect(FarMar::Sale.between("2013-11-10 02:44:56 -0800","2013-11-10 02:44:56 -0800").length).to eq 1
+    end
+    it "returns correct first item in array" do
+      expect(FarMar::Sale.between("2013-11-10 02:44:56 -0800","2013-11-10 02:44:56 -0800")[0].id).to eq 2
+    end
+  end
 end
