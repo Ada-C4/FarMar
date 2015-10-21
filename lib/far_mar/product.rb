@@ -22,9 +22,9 @@ module FarMar
       all.find{|product| product.id == id}
     end
 
-    # def vendor
-    # end
-    #
+    def vendor
+    end
+
     # def sales
     # end
     #

@@ -33,4 +33,11 @@ describe FarMar::Product do
     end
   end
 
+  describe ".vendor" do
+    it "returns the Vendor instance that is associated with this product" do
+      expect(@product.vendor).to be_an_instance_of FarMar::Vendor
+      expect(@product.vendor.name).to eq "Labadie-Tremblay"
+    end
+  end
+
 end
