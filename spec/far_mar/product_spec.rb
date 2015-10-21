@@ -58,5 +58,14 @@ describe FarMar do
         expect(sales[-1].id).to eq(38)
       end
     end
+
+    describe "#vendor" do
+      it "returns the Vendor associated with this Product" do
+        sample_vendor = sample_product.vendor
+        expect(sample_vendor).to be_an_instance_of(Vendor)
+        expect(sample_vendor.id).to eq(sample_product.vendor_id)
+        expect(sample_vendor.name).to eq("Bechtelar Inc")
+      end
+    end
   end
 end
