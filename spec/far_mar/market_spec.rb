@@ -11,11 +11,11 @@ describe FarMar::Market do
     end
   end
 
-  # context "#self.all" do
-  #   it "only returns instances in the markets.csv file" do
-  #     expect(FarMar::Market.all(99999)).to be_falsey
-  #   end
-  # end
+  context "#self.all" do
+    it "only returns instances in the markets.csv file" do
+      expect(FarMar::Market.all()).to be_truthy
+    end
+  end
 
   # context "" do
   #   it "" do
