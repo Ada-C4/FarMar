@@ -40,9 +40,14 @@ describe FarMar::Product do
     end
   end
 
-  # describe "number_of_sales" do
-  #   it "returns how many time this product got sold"
-  #   expect(@product.number_of_sales).to eq 1
-  # end
+  describe "number_of_sales" do
+    it "returns how many time this product got sold" do
+    expect(@product.number_of_sales).to eq 1
+    end
+
+    it "return an integer" do
+      expect(@product.number_of_sales).to be_an_instance_of(Fixnum)
+    end
+  end
 
 end

@@ -40,9 +40,10 @@ module FarMar
         sale.product_id == self.id
       end
     end
-    #
-    # def number_of_sales
-    # end
+
+    def number_of_sales
+      return self.sales.length
+    end
 
   end
 end
