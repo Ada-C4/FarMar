@@ -36,7 +36,7 @@ describe FarMar do
     end
 
     describe ".by_market(market_id)" do
-      it "returns nil for an invalid market_id" do
+      it "returns empty array for an invalid market_id" do
         expect(FarMar::Vendor.by_market('a')).to eq([])
         expect(FarMar::Vendor.by_market([1, 2])).to eq([])
         expect(FarMar::Vendor.by_market(-5)).to eq([])

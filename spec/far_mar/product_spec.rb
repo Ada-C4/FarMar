@@ -37,5 +37,21 @@ describe FarMar do
         expect(result.vendor_id).to eq(6)
       end
     end
+
+    describe ".by_vendor(vendor_id)" do
+      it "returns empty array for an invalid vendor_id" do
+        expect(FarMar::Product.by_vendor('a')).to eq([])
+        expect(FarMar::Product.by_vendor([1, 2])).to eq([])
+        expect(FarMar::Product.by_vendor(-5)).to eq([])
+        expect(FarMar::Product.by_vendor(999999999999)).to eq([])
+      end
+
+      it "returns all the products with the given vendor_id" do
+        products = FarMar::Product.by_vendor(91)
+        expect(products).to be_an_instance_of(Array)
+        expect(products.length).to eq(3)
+        expect(products[-1].id).to eq(285)
+      end
+    end
   end
 end
