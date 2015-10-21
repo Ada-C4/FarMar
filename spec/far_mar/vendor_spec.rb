@@ -53,4 +53,10 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "#revenue" do
+    it "returns the sum of sales for a specific vendor instance" do
+      expect(@vendor.revenue).to eq 38259
+    end
+  end
+
 end

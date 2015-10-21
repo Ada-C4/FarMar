@@ -32,5 +32,12 @@ module FarMar
       return FarMar::Sale.all.find_all {|sale| sale.vendor_id == @id}
     end
 
+    def revenue
+      total_revenue = 0
+      sales.each do |sale|
+        total_revenue += sale.amount
+      end
+      return total_revenue
+    end
   end
 end
