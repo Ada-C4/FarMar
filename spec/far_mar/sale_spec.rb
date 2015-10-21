@@ -10,4 +10,10 @@ describe FarMar::Sale do
       expect(@sale).to be_an_instance_of FarMar::Sale
     end
   end
+
+  context "#self.all" do
+    it "only returns instances in the sales.csv file" do
+      expect(FarMar::Sale.all()).to be_truthy
+    end
+  end
 end

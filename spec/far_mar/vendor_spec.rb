@@ -10,4 +10,10 @@ describe FarMar::Vendor do
       expect(@vendor).to be_an_instance_of FarMar::Vendor
     end
   end
+
+  context "#self.all" do
+    it "only returns instances in the vendors.csv file" do
+      expect(FarMar::Vendor.all()).to be_truthy
+    end
+  end
 end
