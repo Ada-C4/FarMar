@@ -51,5 +51,42 @@ module FarMar
         instance.id == id
       end
     end
+
+    def self.search(search_term)
+      search_term = search_term.downcase
+      search_results = []
+      market_list = self.all
+
+      market_list.each do |market|
+        if market.name.downcase.include?(search_term) || market.vendors.any? { |vendor| vendor.name.downcase.include?(search_term) }
+            search_results << market
+        end
+      end
+
+      return search_results.uniq
+    end
+
+    def preferred_vendor
+      vendor_list = self.vendors
+
+      vendor_list.max_by do |vendor|
+        vendor.revenue
+      end
+    end
+
+    def vendor_of_the_day(date)
+      date = DateTime.parse(date)
+      vendor_list = self.vendors
+
+      vendor_list.max_by do |vendor|
+        day_sales = vendor.sales.find_all do |sale|
+          sale.purchase_time == date
+        end
+
+        day_sales.inject(0) { |sum, sale| sum + sale.amount }
+      end
+
+
+    end
   end
 end

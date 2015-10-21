@@ -50,4 +50,29 @@ describe FarMar::Market do
       expect(@market.products[0]).to be_an_instance_of FarMar::Product
     end
   end
+  describe "#self.search(search_term)" do
+    it "creates an array" do
+      expect(FarMar::Market.search("Donnelly")).to be_an Array
+    end
+    it "returns an array with Market instances" do
+      expect(FarMar::Market.search("Donnelly")[0]).to be_an_instance_of FarMar::Market
+      expect(FarMar::Market.search("toy and sons")[0]).to be_an_instance_of FarMar::Market
+      expect(FarMar::Market.search("Donnelly").length).to be < FarMar::Market.all.length
+    end
+  end
+  describe "#preferred_vendor" do
+    it "returns the vendor with the highest revenue" do
+      @id = 1
+      @market = FarMar::Market.find(@id)
+      expect(@market.preferred_vendor).to be_an_instance_of FarMar::Vendor
+    end
+  end
+  describe "#vendor_of_the_day(date)" do
+    it "returns the preferred vendor for a specific date" do
+      @id = 1
+      @market = FarMar::Market.find(@id)
+      @date = "2013-11-07 04:34:56 -0800"
+      expect(@market.vendor_of_the_day(@date)).to be_an_instance_of FarMar::Vendor
+    end
+  end
 end

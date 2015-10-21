@@ -25,7 +25,7 @@ module FarMar
       sales_list = self.all
 
       sales_list.find_all do |instance|
-        beginning_time < instance.purchase_time && instance.purchase_time < end_time
+        beginning_time <= instance.purchase_time && instance.purchase_time <= end_time
       end
     end
 
