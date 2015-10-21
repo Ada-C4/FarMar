@@ -52,4 +52,10 @@ describe FarMar::Vendor do
     end
   end
 
+  describe ".revenue" do
+    it "returns the the sum of all of the vendor's sales, in cents" do
+      expect(@vendor.revenue).to be_an Integer
+      expect(@vendor.revenue).to eq 38259
+    end
+  end
 end
