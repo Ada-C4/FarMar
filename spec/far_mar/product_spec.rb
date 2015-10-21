@@ -26,4 +26,11 @@ describe FarMar::Product do
     end
   end
 
+  describe "#find" do
+    it "returns the instance of Product matching the input id" do
+      expect(FarMar::Product.find(1)).to be_an_instance_of FarMar::Product
+      expect(FarMar::Product.find(3).name).to eq "Heavy Chicken"
+    end
+  end
+
 end
