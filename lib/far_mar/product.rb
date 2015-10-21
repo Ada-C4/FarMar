@@ -9,6 +9,13 @@ module FarMar
     end
 
     def self.all
+      @@all_products ||= CSV.read('./support/products.csv').map do |col|
+         FarMar::Product.new({
+           id: col[0],
+           name: col[1],
+           vendor_id: col[2]
+         })
+       end
     end
 
     def self.find(id)
