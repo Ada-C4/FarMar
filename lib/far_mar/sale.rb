@@ -11,9 +11,12 @@ module FarMar
     end
 
     def self.all
-      CSV.read("support/sales.csv").map do |line|
-        FarMar::Sale.new(line[0].to_i, line[1].to_i, line[2], line[3].to_i, line[4].to_i)
+      if @all_sales.nil? || @all_sales.empty? 
+        @all_sales = CSV.read("support/sales.csv").map do |line|
+          FarMar::Sale.new(line[0].to_i, line[1].to_i, line[2], line[3].to_i, line[4].to_i)
+        end
       end
+      return @all_sales
     end
 
     def self.find(id)

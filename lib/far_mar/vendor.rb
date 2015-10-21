@@ -10,9 +10,12 @@ module FarMar
     end
 
     def self.all
-      CSV.read("support/vendors.csv").map do |line|
-        FarMar::Vendor.new(line[0].to_i, line[1], line[2].to_i, line[3].to_i)
+      if @all_vendors.nil? || @all_vendors.empty?
+        @all_vendors =CSV.read("support/vendors.csv").map do |line|
+          FarMar::Vendor.new(line[0].to_i, line[1], line[2].to_i, line[3].to_i)
+        end
       end
+      return @all_vendors
     end
 
     def self.find(id)
