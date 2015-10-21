@@ -3,6 +3,7 @@ require "spec_helper"
 describe FarMar::Product do
   before :each do
     @product = FarMar::Product.new(12, "Gorgeous Fish", 6)
+    @product_2 = FarMar::Product.new(8193, "Cruel Beef", 2690)
   end
 
   context "initializing" do
@@ -17,6 +18,17 @@ describe FarMar::Product do
     end
     it "returns instances of all lines in the csv" do
       expect(FarMar::Product.all().length).to eq 8193
+    end
+  end
+
+  context ".self.find(id)" do
+    it "returns an instance of Product" do
+      expect(@product.class).to be FarMar::Product
+    end
+
+    it "returns an instance with the same id as the value in the CSV file" do
+      expect(@product.id).to eq 12
+      expect(@product_2.id).to eq 8193
     end
   end
 
