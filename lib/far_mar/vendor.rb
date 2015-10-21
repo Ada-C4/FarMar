@@ -2,7 +2,7 @@ module FarMar
 
    class Vendor
      attr_reader :id, :name, :employees, :market_id
-     
+
      def initialize(id = "", name = "", employees = "", market_id = "")
        @id = id
        @name = name

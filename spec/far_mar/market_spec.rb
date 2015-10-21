@@ -6,6 +6,7 @@ describe FarMar::Market do
     before :each do
       @market = FarMar::Market.new
     end
+
     it "creates a new instance of a market" do
       expect(@market).to be_an_instance_of FarMar::Market
     end
@@ -16,7 +17,7 @@ describe FarMar::Market do
     end
 
     it "accepts parameters passed in" do
-      @market2 = FarMar::Market.new("", "Best Market","","","","","45555")
+      @market2 = FarMar::Market.new("3", "Best Market","","","","","45555")
       expect(@market2.name).to eq "Best Market"
       expect(@market2.zip).to eq "45555"
     end
@@ -63,6 +64,14 @@ describe FarMar::Market do
         expect(id4.county).to eq "New Fundon"
         expect(id4.class).to eq FarMar::Market
       end
+    end
+  end
+
+  describe "#vendors" do
+    it "returns an array of vendor instances with the associated market id" do
+      @market3 = FarMar::Market.new("3", "Best Market","","","","","45555")
+      expect(@market3.id).to eq "3"
+      expect(@market3.vendors.class).to be_an_instance_of Array
     end
   end
 end
