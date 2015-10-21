@@ -68,7 +68,13 @@ describe FarMar::Vendor do
     expect(vendor.sales).to be_an Array
     expect(vendor.sales[3]).to be_an_instance_of FarMar::Sale
     expect(vendor.sales[1].vendor_id).to eq 4
-
+    end
+  end
+  describe "#revenue" do
+    it "returns the sum of the vendor's sales" do
+        vendor = FarMar::Vendor.new("7","Bechtelar Inc","4","2")
+      expect(vendor.revenue).to be_a Fixnum
+      expect(vendor.revenue).to eq 39719
     end
   end
 end

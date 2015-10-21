@@ -52,6 +52,15 @@ module FarMar
     return sales
     end
 
+    def revenue
+      sales = self.sales
+      revenue = 0
+      sales.each do |sale|
+        revenue += sale.amount
+      end
+      return revenue
+    end
+
   end
 
 end
