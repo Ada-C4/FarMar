@@ -1,6 +1,6 @@
 module FarMar
   class Sale
-    attr_reader :id, :vendor_id, :product_id, :amount
+    attr_reader :id, :vendor_id, :product_id, :amount, :purchase_time
 
     def initialize(sale_info)
       @id = sale_info[0].to_i
@@ -35,6 +35,13 @@ module FarMar
       FarMar::Product.all.find do |product|
         product.id == self.product_id
       end
+    end
+
+    def self.between(beginning_time, end_time)
+      sales_between = FarMar::Sale.all.find_all do |sale|
+        sale.purchase_time.between?(beginning_time,end_time)
+      end
+      return sales_between
     end
 
   end
