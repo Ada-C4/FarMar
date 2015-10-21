@@ -27,6 +27,12 @@ module FarMar
       end
     end
 
+    def self.by_vendor(vendor_id)
+      FarMar::Product.all.find_all do |product_instance|
+        product_instance.vendor_id == vendor_id
+      end
+    end
+
     def vendor
       FarMar::Vendor.all.find do |vendor_instance|
         vendor_instance.id == @vendor_id

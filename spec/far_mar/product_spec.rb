@@ -63,4 +63,18 @@ describe FarMar::Product do
       expect(@product2.number_of_sales).to eq 1
     end
   end
+  describe "#self.by_vendor(vendor_id)" do
+    it "returns an array" do
+      expect(FarMar::Product.by_vendor(5)).to be_an Array
+      expect(FarMar::Product.by_vendor(100)).to be_an Array
+    end
+    it "returns correct length of array" do
+      expect(FarMar::Product.by_vendor(5).length).to eq 3
+      expect(FarMar::Product.by_vendor(100).length).to eq 5
+    end
+    it "returns correct first item in array" do
+      expect(FarMar::Product.by_vendor(5)[0].id).to eq 8
+      expect(FarMar::Product.by_vendor(100)[0].id).to eq 307
+    end
+  end
 end
