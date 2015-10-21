@@ -84,7 +84,7 @@ module FarMar
         return sales_array
       end
 
-      def total_sales(vendor_id)
+      def revenue(vendor_id)
         sales = find_sales(vendor_id)
         #sales is an array of Sale objects
         sum = 0

@@ -85,7 +85,7 @@ describe FarMar do
       end
     end
 
-    describe "total_sales" do
+    describe "revenue" do
       before :each do
         @vendor = FarMar::Vendor.new({
           :id => 1,
@@ -95,7 +95,7 @@ describe FarMar do
           })
       end
       it "returns an integer" do
-        expect(@vendor.total_sales(@vendor.id)).to be_a Fixnum
+        expect(@vendor.revenue(@vendor.id)).to be_a Fixnum
       end
     end
   end
