@@ -36,5 +36,10 @@ module FarMar
     def sales
       return FarMar::Sale.by_product(@id)
     end
+
+    # returns the number of times the product has been sold
+    def number_of_sales
+
+    end
   end
 end

@@ -67,5 +67,11 @@ describe FarMar do
         expect(sample_vendor.name).to eq("Bechtelar Inc")
       end
     end
+
+    describe "#number_of_sales" do
+      it "returns the number of times the product has been sold" do
+        expect(sample_product.number_of_sales).to eq(7)
+      end
+    end
   end
 end
