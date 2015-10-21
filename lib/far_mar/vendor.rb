@@ -1,3 +1,5 @@
+require 'pry'
+
 module FarMar
   class Vendor
     attr_accessor :id, :name, :no_employees, :market_id
@@ -30,7 +32,13 @@ module FarMar
     end
 
     def revenue
-      self.sales.inject(0) { |sum, sale| sum + sale.amount }
+      @revenue ||= 0
+
+      if @revenue == 0
+        @revenue = self.sales.inject(0) { |sum, sale| sum + sale.amount }
+      end
+
+      return @revenue
     end
 
     def self.by_market(market_id)
@@ -61,5 +69,19 @@ module FarMar
         instance.id == id
       end
     end
+
+    def self.most_revenue(n)
+      @@best_vendors ||= []
+      vendors_list = self.all
+
+      if @@best_vendors == []
+        @@best_vendors = vendors_list.sort_by do |vendor|
+          vendor.revenue
+        end
+      end
+
+      return @@best_vendors.last(n).reverse
+    end
+
   end
 end
