@@ -1,5 +1,12 @@
 module FarMar
   class Product
+    attr_reader :id, :name, :vendor_id
+
+    def initialize(product_hash)
+      @id = product_hash[:id].to_i
+      @name = product_hash[:name]
+      @vendor_id = product_hash[:vendor_id].to_i
+    end
 
     def self.all
     end

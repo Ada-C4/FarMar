@@ -2,7 +2,11 @@ require "spec_helper"
 
 describe FarMar::Product do
   before :each do
-    @product = FarMar::Product.new
+    @product = FarMar::Product.new({
+      id: "56",
+      name: "Nom nom Beef",
+      vendor_id: "19"
+      })
   end
 
   describe ".new" do
