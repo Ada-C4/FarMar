@@ -30,4 +30,11 @@ describe "initialize" do
     end
   end
 
+  describe "#vendor" do
+    it "returns the Farmar::Vendor instance that is associated with the specific product" do
+      expect(@product.vendor).to be_an_instance_of FarMar::Vendor
+      expect(@product.vendor.name).to eq "Feil-Farrell"
+    end
+  end
+
 end

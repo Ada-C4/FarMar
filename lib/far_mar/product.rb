@@ -18,5 +18,9 @@ module FarMar
       match = CSV.open("support/products.csv").find { |n| n[0].to_i == id}
       return FarMar::Product.new(match[0].to_i, match[1], match[2].to_i)
     end
+
+    def vendor
+      return FarMar::Vendor.all.find {|vendor| vendor.id == @vendor_id}
+    end
   end
 end
