@@ -61,7 +61,6 @@ describe FarMar::Vendor do
     it "returns the correct number of sales" do
       test_vendor = FarMar::Vendor.find(1)
       expect(test_vendor.sales.length).to eq 7
-
     end
   end
 end
