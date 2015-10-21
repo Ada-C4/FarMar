@@ -64,5 +64,24 @@ module FarMar
         #products_array is an array of Vendor objects
         return products_array
       end
+
+      def find_sales(vendor_id)
+        sales_csv = CSV.read("./support/sales.csv")
+        matches = sales_csv.find_all {|sale| sale[3].to_i == vendor_id}
+        # matches is an array
+        sales_array = []
+        matches.each do |line|
+          sale = FarMar::Sale.new({
+            :id => line[0].to_i,
+            :amount => line[1],
+            :purchase_time => line[2],
+            :vendor_id => line[3].to_i,
+            :product_id => line[4].to_i
+          })
+          sales_array.push(sale)
+        end
+        #sales_array is an array of Vendor objects
+        return sales_array
+      end
   end
 end
