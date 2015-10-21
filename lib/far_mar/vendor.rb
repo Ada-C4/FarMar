@@ -11,7 +11,7 @@ module FarMar
 
       # Returns a collection of Vendor instances, representing all the vendors described in the CSV
       def self.all
-        # Using a class variable for the
+        # Only reload the CSV if @vendors is empty array
         @vendors ||= []
         if @vendors == []
           vendors_csv = CSV.read("support/vendors.csv")

@@ -12,17 +12,18 @@ module FarMar
     end
 
     def self.all
-      @markets_all ||= []
-      if @markets_all == []
+      # Only reload the CSV if @markets is empty array
+      @markets ||= []
+      if @markets == []
         #binding.pry
         markets_csv = CSV.read("support/markets.csv")
         markets_csv.each do |id, name, address, city, county, state, zip|
           hash = {:id => id, :name => name, :address => address, :city => city, :county => county, :state => state, :zip => zip}
           market = FarMar::Market.new(hash)
-          @markets_all.push(market)
+          @markets.push(market)
         end
       end
-      return @markets = @markets_all
+      return @markets 
     end
 
     def self.find(id)

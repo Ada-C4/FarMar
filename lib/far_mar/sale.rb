@@ -13,6 +13,7 @@ module FarMar
 
     # Returns a collection of Sale instances, representing all of the sales described in the CSV
     def self.all
+      # Only reload the CSV is sales is empty array
       @sales ||= []
       if @sales == []
         sales_csv = CSV.read("support/sales.csv")

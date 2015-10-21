@@ -10,6 +10,7 @@ module FarMar
 
     # Return a collection of all Product instances, representing all the products described in the CSV
     def self.all
+      # Only reload the CSV if @products is empty array
       @products ||= []
       if @products == []
         products_csv = CSV.read("support/products.csv")
