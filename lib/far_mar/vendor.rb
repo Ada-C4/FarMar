@@ -1,10 +1,10 @@
 module FarMar
   class Vendor
-    attr_accessor :id, :name, :address, :market_id
+    attr_accessor :id, :name, :num_employees, :market_id
       def initialize(vendor_hash)
         @id = vendor_hash[:id]
         @name = vendor_hash[:name]
-        @address = vendor_hash[:address]
+        @num_employees = vendor_hash[:num_employees]
         @market_id = vendor_hash[:market_id]
       end
 
@@ -16,7 +16,7 @@ module FarMar
         {
           :id => line[0].to_i,
           :name => line[1],
-          :address => line[2],
+          :num_employees => line[2],
           :market_id => line[3].to_i
           }
         )
@@ -32,7 +32,7 @@ module FarMar
         {
           :id => match[0].to_i,
           :name => match[1],
-          :address => match[2],
+          :num_employees => match[2],
           :market_id => match[3].to_i
           }
         )

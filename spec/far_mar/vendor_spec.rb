@@ -7,7 +7,7 @@ describe FarMar do
         @vendor_hash = {
         :id => 123,
         :name => "vendor name",
-        :num_employees => "vendor address",
+        :num_employees => "number of employees",
         :market_id => 456
         }
         expect(FarMar::Vendor.new(@vendor_hash)).to be_an_instance_of FarMar::Vendor
