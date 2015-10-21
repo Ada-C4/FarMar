@@ -48,4 +48,11 @@ describe "initialize" do
     end
   end
 
+  describe "#number_of_sales" do
+    it "returns the number of sales associated with the specific Product" do
+      expect(@product.number_of_sales).to eq 7
+      expect(@product2.number_of_sales).to eq 5
+    end
+  end
+
 end
