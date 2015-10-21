@@ -77,5 +77,11 @@ describe FarMar do
         expect(sample_market.name).to eq("Riverside Farmers' Market")
       end
     end
+
+    describe "#revenue" do
+      it "returns the sum of all the vendor's sales" do
+        expect(sample_vendor.revenue).to eq(17211)
+      end
+    end
   end
 end
