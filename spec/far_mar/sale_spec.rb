@@ -68,6 +68,8 @@ describe FarMar do
       before :each do
         @beginning_time = DateTime.strptime("2013-11-06 08:35:40 -0800", "%Y-%m-%d %H:%M:%S %z")
         @end_time = DateTime.strptime("2013-11-13 08:35:16 -0800", "%Y-%m-%d %H:%M:%S %z")
+        @begin2 = DateTime.strptime("2013-11-06 08:35:40 -0800", "%Y-%m-%d %H:%M:%S %z")
+        @end2 = DateTime.strptime("2013-11-06 08:42:09 -0800", "%Y-%m-%d %H:%M:%S %z")
       end
       it "returns a collection" do
         expect(FarMar::Sale.between(@beginning_time, @end_time)).to be_an(Array)
@@ -77,6 +79,7 @@ describe FarMar do
       end
       it "returns the correct number of Sale instances" do
         expect(FarMar::Sale.between(@beginning_time, @end_time).length).to eq(12798)
+        expect(FarMar::Sale.between(@begin2, @end2).length).to eq(10)
       end
     end
 
