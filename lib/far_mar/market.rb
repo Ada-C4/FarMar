@@ -12,7 +12,6 @@ module FarMar
       @zip = market_info[6]
     end
 
-
     def self.all
       @@market_array ||=  []
 
@@ -22,10 +21,9 @@ module FarMar
           @@market_array.push(new_market)
         end
       end
-      
+
       return @@market_array
     end
-
 
     def self.find(id)
       FarMar::Market.all.find do |market|
