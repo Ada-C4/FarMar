@@ -32,10 +32,19 @@ describe "initialize" do
   end
 
   describe "#vendor" do
-    it "returns the Farmar::Vendor instance that is associated with the specific product" do
+    it "returns the Farmar::Vendor instance that is associated with the specific Product" do
       expect(@product.vendor).to be_an_instance_of FarMar::Vendor
       expect(@product.vendor.name).to eq "Feil-Farrell"
       expect(@product2.vendor.name).to eq "Ledner Group"
+    end
+  end
+
+  describe "#sales" do
+    it "returns all FarMar::Sale instances associated with the specific Product" do
+      expect(@product.sales.length).to eq 7
+      expect(@product.sales[0].id).to eq 1
+      expect(@product2.sales.length).to eq 5
+      expect(@product2.sales[0].id).to eq 101
     end
   end
 
