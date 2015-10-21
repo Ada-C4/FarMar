@@ -2,7 +2,16 @@ require "spec_helper"
 
 describe FarMar::Market do
   before :each do
-    @market = FarMar::Market.new(1,"People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202")
+
+    @market = FarMar::Market.new({
+      id:       "1",
+      name:     "People's Co-op Farmers Market",
+      address:  "30th and Burnside",
+      city:     "Portland",
+      county:   "Multnomah",
+      state:    "Oregon",
+      zip:      "97202"
+    })
   end
 
   describe ".new" do
@@ -28,6 +37,7 @@ describe FarMar::Market do
   describe "#find" do
     it "returns the instance of Market matching the input id" do
       expect(FarMar::Market.find(1)).to be_an_instance_of FarMar::Market
+      expect(FarMar::Market.find(1).name).to eq "People's Co-op Farmers Market"
     end
   end
 

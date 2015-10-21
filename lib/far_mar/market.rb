@@ -1,31 +1,38 @@
 module FarMar
   class Market
+    attr_reader :id, :name, :address, :city, :county, :state, :zip
 
-    def initialize(id, name, address, city, county, state, zip)
-      @id = id.to_i
-      @name = name
-      @address = address
-      @city = city
-      @county = county
-      @state = state
-      @zip = zip
+    def initialize(market_hash)
+      @id = market_hash[:id].to_i
+      @name = market_hash[:name]
+      @address = market_hash[:address]
+      @city = market_hash[:city]
+      @county = market_hash[:county]
+      @state = market_hash[:state]
+      @zip = market_hash[:zip]
     end
 
 
     def self.all
-      markets_array = []
-      CSV.open('./support/markets.csv').each do |col|
-        market = FarMar::Market.new(col[0],col[1],col[2],col[3],col[4],col[5],col[6])
-        markets_array.push(market)
+      # if @@market_array is nil, reads the csv and creates the array
+      # otherwise uses array already in memory
+      @@markets_array ||= CSV.read('./support/markets.csv').map do |col|
+        FarMar::Market.new({
+          id: col[0],
+          name: col[1],
+          address: col[2],
+          city: col[3],
+          county: col[4],
+          state: col[5],
+          zip: col[6]
+        })
       end
-      return markets_array
     end
 
     def self.find(id)
-      match = CSV.open('./support/markets.csv').find do |market|
-        market[0].to_i == id
+      all.find do |market|
+        market.id == id
       end
-      found = FarMar::Market.new(match[0],match[1],match[2],match[3],match[4],match[5],match[6])
     end
 
     # def vendors
