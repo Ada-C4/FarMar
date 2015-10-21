@@ -49,4 +49,18 @@ describe FarMar::Product do
   	end
   end
 
+  describe '#sales' do
+  	before :each do
+  		@product = FarMar::Product.new(9,"Large Mushrooms",5)
+  	end
+  	it 'returns an array' do
+  		expect(@product.sales).to be_an_instance_of(Array)
+  	end
+  	it 'returns all sales of product' do
+  		expect(@product.sales.length).to eq(3)
+  	end
+  	it 'returns Sales instances' do
+  		expect(@products.sales[rand(0..2)]).to be_an_instance_of(FarMar::Sale)
+  	end
+  end
 end
