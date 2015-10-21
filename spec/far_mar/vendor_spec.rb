@@ -37,4 +37,21 @@ describe FarMar::Vendor do
 		end
 	end
 
+	describe '#market' do
+		vendor = FarMar::Vendor.new(5,"Reynolds, Schmitt and Klocko",3,1)
+		it 'returns the market associated with Vendor instance' do
+			expect(vendor.market).to eq(1)
+		end
+	end
+
+	describe '.products()' do
+		it 'returns an array' do
+			length = FarMar::Vendor.all.length - 1
+			expect(FarMar::Vendor.products(rand(0..length))).to be_an_instance_of(Array)
+		end
+		it 'returns all products for a vendor' do
+			expect(FarMar::Vendor.products(5).lenght).to eq(3)
+		end
+	end
+
 end

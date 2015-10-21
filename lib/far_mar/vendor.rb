@@ -3,13 +3,13 @@
 module FarMar
 
 	class Vendor
-		attr_reader :vendor_id, :name, :employees, :market_id
+		attr_reader :vendor_id, :name, :employees, :market
 
-		def initialize(vendor_id, name, employees, market_id)
+		def initialize(vendor_id, name, employees, market)
 			@vendor_id = vendor_id.to_i
 			@name = name
 			@employees = employees
-			@market_id = market_id.to_i
+			@market = market.to_i
 		end
 
 		def self.all
@@ -21,8 +21,12 @@ module FarMar
       return vendor_array
 		end
 
-		def self.find(id)
- 			FarMar::Vendor.all.find {|ven| ven.vendor_id == id}
+		def self.find(vendor_id)
+ 			FarMar::Vendor.all.find {|ven| ven.vendor_id == vendor_id}
+		end
+
+		def products(vendor_id)
+			
 		end
 
 	end
