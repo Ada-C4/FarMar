@@ -71,5 +71,18 @@ describe FarMar do
       end
     end
 
+    describe "#sales" do
+      before :each do
+        vendor_info = CSV.open("./support/vendors.csv", 'r') { |csv| csv.first }
+        @vendor = FarMar::Vendor.new(vendor_info)
+      end
+      it "returns a collection" do
+        expect(@vendor.sales).to be_an(Array)
+      end
+      it "returns instances of Sales" do
+        expect(@vendor.sales[0]).to be_an_instance_of(FarMar::Sale) if @vendor.sales.length > 0
+      end
+    end
+
   end
 end
