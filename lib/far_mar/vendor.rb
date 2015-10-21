@@ -41,7 +41,9 @@ module FarMar
 
       # Returns a collection of FarMar::Sale instances that are associated with the vendor
       def sales
-        ## COME BACK TO THIS METHOD ONCE SALES HAS BEEN BUILT OUT
+        sales = FarMar::Sale.all
+        matched_sales = sales.find_all { |sale| sale.vendor_id == self.vendor_id}
+        return matched_sales
       end
 
       # Returns the sum of all the vendor's sale (in cents)
