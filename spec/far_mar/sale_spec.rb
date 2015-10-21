@@ -1,11 +1,12 @@
 require "./spec/spec_helper"
 
 describe FarMar::Sale do
+  before :each do
+    @sale = FarMar::Sale.new(1, 9290, "2013-11-07 04:34:56 -0800", 1, 1)
+    @sale2 = FarMar::Sale.new(175, 5824, "2013-11-07 21:51:51 -0800", 34, 105)
+  end
+  
   describe "initialize" do
-    before :each do
-      @sale = FarMar::Sale.new(1, 9290, "2013-11-07 04:34:56 -0800", 1, 1)
-    end
-
     it "creates an instance of Farmar::Sale class" do
       expect(@sale).to be_an_instance_of FarMar::Sale
     end
@@ -29,6 +30,14 @@ describe FarMar::Sale do
     it "returns the FarMar::Sale with the specified id" do
       expect(FarMar::Sale.find(2)).to be_an_instance_of FarMar::Sale
       expect(FarMar::Sale.find(2).amount).to eq 2262
+    end
+  end
+
+  describe "vendor" do
+    it "returns the FarMar::Vendor instance that is associated with this sale" do
+      expect(@sale.vendor).to be_an_instance_of FarMar::Vendor
+      expect(@sale.vendor.id).to eq 1
+      expect(@sale2.vendor.id).to eq 34
     end
   end
 end
