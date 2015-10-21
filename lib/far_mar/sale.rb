@@ -37,5 +37,8 @@ module FarMar
     end
 
     # returns the Product that is associated with the sale
+    def product
+      return FarMar::Product.find(@product_id)
+    end
   end
 end
