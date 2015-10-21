@@ -55,16 +55,17 @@ end
 describe '.between' do
   before :each do
     @start_date = DateTime.parse("2013-11-06 08:00:00 -0800")
-    @end_date   = DateTime.parse("2013-11-06 09:00:00 -0800")
+    @end_date   = DateTime.parse("2013-11-07 00:00:00 -0800")
   end
   it "returns a non-empty array of sale objects" do
-    expect(FarMar::Sale.between( @start_date , @end_date )).to be_an_instance_of Array
-    expect(FarMar::Sale.between( @start_date , @end_date )).not_to eq []
-    expect(FarMar::Sale.between( @start_date , @end_date )[0]).to be_an_instance_of FarMar::Sale
+    expect(FarMar::Sale.between(@start_date , @end_date)).to be_an_instance_of Array
+    expect(FarMar::Sale.between(@start_date , @end_date)).not_to eq []
+    expect(FarMar::Sale.between(@start_date , @end_date)[0]).to be_an_instance_of FarMar::Sale
   end
 
   it "returns the expected sale objects" do
-    expect(FarMar::Sale.between( @start_date , @end_date )[1].sale_id).to eq 1931
+    expect(FarMar::Sale.between(@start_date , @end_date)[1].sale_id).to eq 1931
+    expect(FarMar::Sale.between(@start_date, @end_date).length).to eq 1113
   end
 
 

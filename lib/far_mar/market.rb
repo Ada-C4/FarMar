@@ -1,7 +1,7 @@
 module FarMar
   class Market
 
-    attr_accessor :id, :name, :address, :city, :county, :state, :zip, :markets
+    attr_accessor :id, :name, :markets
     def initialize(market_hash)
       @id      = market_hash[:id].to_i
       @name    = market_hash[:name]

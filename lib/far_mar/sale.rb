@@ -46,7 +46,7 @@ module FarMar
       all_sales = FarMar::Sale.all
       sales_between = []
       all_sales.find_all do |sale|
-        if sale.purchase_time > beginning_time || sale.purchase_time < end_time
+        if sale.purchase_time > beginning_time && sale.purchase_time < end_time
           sales_between.push(sale)
         end
       end
