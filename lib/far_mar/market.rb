@@ -15,14 +15,16 @@ module FarMar
     end
 
     def self.all
-      all_markets = []
+      @@all_markets ||= []
 
-      CSV.read("./support/markets.csv").each do |line|
-        y = FarMar::Market.new(line[0].to_i, line[1], line[2], line[3], line[4], line[5], line[6])
-        all_markets.push(y)
+      if @@all_markets == []
+        CSV.read("./support/markets.csv").each do |line|
+          y = FarMar::Market.new(line[0].to_i, line[1], line[2], line[3], line[4], line[5], line[6])
+          @@all_markets.push(y)
+        end
       end
 
-      return all_markets
+      return @@all_markets
     end
 
     def self.find(id)
@@ -35,8 +37,24 @@ module FarMar
       FarMar::Vendor.all.find_all do |vendor_instance|
         vendor_instance.market_id == @id
       end
-
     end
 
+    def products
+      # empty array to fill with collection of products
+      all_products = []
+
+      # get a collection of all vendors
+      all_vendors = vendors
+
+      # to each vendor instance, run the products method to get a list of products,
+      # then push all of those proudcts into an array
+      all_vendors.each do |vendor_instance|
+        all_products.push(vendor_instance.products)
+      end
+
+      # need to flatten all products so it doesn't return an array of arrays
+      return all_products.flatten!
+
+    end
   end
 end

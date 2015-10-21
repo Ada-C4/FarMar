@@ -11,7 +11,7 @@ describe FarMar::Sale do
       expect(@sale2).to be_instance_of FarMar::Sale
     end
   end
-  describe "#self.all" do
+  describe ".self.all" do
     it "returns an array" do
       expect(FarMar::Sale.all).to be_an Array
     end
@@ -19,7 +19,7 @@ describe FarMar::Sale do
       expect(FarMar::Sale.all.length).to eq 12798
     end
   end
-  describe "#self.find(id)" do
+  describe ".self.find(id)" do
     it "returns an instance of FarMar::Sale" do
       expect(FarMar::Sale.find(1)).to be_instance_of FarMar::Sale
     end
@@ -46,7 +46,7 @@ describe FarMar::Sale do
       expect(@sale2.product.name).to eq "Nom nom Beef"
     end
   end
-  describe "self.between(beginning_time, end_time)" do
+  describe ".self.between(beginning_time, end_time)" do
     it "returns an array" do
       expect(FarMar::Sale.between("2013-11-10 05:19:05 -0800","2013-11-08 15:18:32 -0800")).to be_an Array
     end

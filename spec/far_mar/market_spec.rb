@@ -48,4 +48,16 @@ describe FarMar::Market do
       expect(@market2.vendors[0].name).to eq "McLaughlin-Metz"
     end
   end
+  describe "#products" do
+    it "returns an array" do
+      expect(@market1.products).to be_an Array
+    end
+    it "returns an array of FarMar::Product instances" do
+      expect(@market1.products[0]).to be_instance_of FarMar::Product
+    end
+    it "returns correct first instance of FarMar::Vendor" do
+      expect(@market1.products[0].id).to eq 1594
+      expect(@market2.products[0].id).to eq 6370
+    end
+  end
 end
