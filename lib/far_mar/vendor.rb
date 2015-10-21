@@ -31,7 +31,7 @@ module FarMar
      # returns a collection of FarMar::Product instances that are
      # associated by the FarMar::Product vendor_id field
      def products
-       
+       return FarMar::Product.by_vendor(@id)
      end
   end
 end
