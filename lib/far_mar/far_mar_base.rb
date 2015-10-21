@@ -26,15 +26,6 @@ module FarMar
     end
 
     def self.find(id)
-      # binding.pry
-      # csv_file = CSV.read(self::FILENAME)
-      # match_record = csv_file.find { |a| a[0].to_i == id}
-      # if match_record == nil
-      #   return nil
-      # else
-      #   hash = self.convert_to_hash(match_record)
-      #   return self.new(hash)
-      # end
       self.all_objects.find { |obj| obj.id == id }
     end
 

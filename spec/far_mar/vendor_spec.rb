@@ -58,5 +58,15 @@ describe FarMar do
         expect(products[-1].name).to eq("Cheerful Bread")
       end
     end
+
+    describe "#sales" do
+      it "returns a collection of Sales with the vendor's ID" do
+        sales = sample_vendor.sales
+        expect(sales).to be_an(Array)
+        expect(sales.length).to eq(7)
+        expect(sales[0].id).to eq(313)
+        expect(sales[-1].id).to eq(319)
+      end
+    end
   end
 end
