@@ -28,6 +28,10 @@ module FarMar
       FarMar::Market.all.find {|mar| mar.market_id == id }
     end
 
+    def self.vendors(id)
+      FarMar::Vendor.all.find_all {|ven| ven.market_id == id }
+    end
+
 
   end
 
