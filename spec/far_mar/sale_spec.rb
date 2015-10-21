@@ -1,7 +1,7 @@
 require "spec_helper"
 describe FarMar do
   describe FarMar::Sale do
-    
+
     before :each do
       sale_info = CSV.open("./support/sales.csv", 'r') { |csv| csv.first }
       @sale = FarMar::Sale.new(sale_info)
@@ -43,6 +43,15 @@ describe FarMar do
       end
       it "returns the Sale with the matching id" do
         expect(FarMar::Sale.find(@id).id).to eq(@id)
+      end
+    end
+
+    describe "#vendor" do
+      it "returns an instance of the Vendor class" do
+        expect(@sale.vendor).to be_an_instance_of(FarMar::Vendor)
+      end
+      it "returns the Vendor with the matching id" do
+        expect(@sale.vendor_id).to eq(@sale.vendor.id)
       end
     end
 
