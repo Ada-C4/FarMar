@@ -3,8 +3,12 @@ describe FarMar do
   describe FarMar::Vendor do
 
     before :each do
-      vendor_info = ["1","Feil-Farrell","8","1"]
-      @vendor = FarMar::Vendor.new(vendor_info)
+      vendor1_info = ["1","Feil-Farrell","8","1"]
+      @vendor = FarMar::Vendor.new(vendor1_info)
+      vendor2_info = ["2","Hamill, Kilback and Pfeffer","5","1"]
+      @vendor2 = FarMar::Vendor.new(vendor2_info)
+      vendor51_info = ["51","Bernier Inc","1","12"]
+      @vendor51 = FarMar::Vendor.new(vendor51_info)
     end
 
     describe "#initialize" do
@@ -13,6 +17,7 @@ describe FarMar do
       end
       it "retrieves the vendor ID from the vendor info array" do
         expect(@vendor.id).to eq(1)
+        expect(@vendor51.id).to eq(51)
       end
     end
 
@@ -67,6 +72,7 @@ describe FarMar do
     describe "#sales" do
       it "returns a collection" do
         expect(@vendor.sales).to be_an(Array)
+        expect(@vendor51.sales).to be_an(Array)
       end
       it "returns instances of Sales" do
         expect(@vendor.sales[0]).to be_an_instance_of(FarMar::Sale) if @vendor.sales.length > 0
@@ -79,6 +85,8 @@ describe FarMar do
       end
       it "returns the sum of sales" do
         expect(@vendor.revenue).to eq(38259)
+        expect(@vendor2.revenue).to eq(5727)
+        expect(@vendor51.revenue).to eq(0)
       end
     end
 
