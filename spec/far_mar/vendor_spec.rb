@@ -26,6 +26,5 @@ describe FarMar do
         expect(find_test.name).to eq "Hyatt-King"
       end
     end
-
   end
 end
