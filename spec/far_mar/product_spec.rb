@@ -64,5 +64,14 @@ describe FarMar do
       end
     end
 
+    describe "#number_of_sales" do
+      it "returns a number" do
+        expect(@product.number_of_sales).to be_a(Fixnum)
+      end
+      it "returns the correct number of sales" do
+        expect(@product.number_of_sales).to eq(7)
+      end
+    end
+
   end
 end
