@@ -23,14 +23,23 @@ describe FarMar::Vendor do
   end
   describe ".market" do
     it "returns the market instance whose id matches the vendor's market_id" do
-      expect(@vendor.market.id).to eq 500
-      expect(@vendor.market.name).to eq "Montefiore Medical Center Farmers Market_Thursday"
+      market = @vendor.market
+      expect(market.id).to eq 500
+      expect(market.name).to eq "Montefiore Medical Center Farmers Market_Thursday"
     end
   end
   describe ".products" do
     it "returns a collection of all product instances whose vendor_id matches the vendor's id" do
-      expect(@vendor.products.length).to eq 5
-      expect(@vendor.products[3].class).to eq FarMar::Product
+      product = @vendor.products
+      expect(product.length).to eq 5
+      expect(product[3].class).to eq FarMar::Product
+    end
+  end
+  describe ".sales" do
+    it "returns a collection of all sales instances whose vendor_id matches the vendor's id" do
+      sale = @vendor.sales
+      expect(sale.length).to eq 2
+      expect(sale[1].class).to eq FarMar::Sale
     end
   end
 end
