@@ -15,5 +15,17 @@ module FarMar
       product_hash[:vendor_id] = product_array[2].to_i
       return product_hash
     end
+
+    # returns all of the products with the given vendor_id
+    def self.by_vendor(product_id)
+      csv_file = CSV.read(FILENAME)
+      matches = csv_file.find_all { |row| row[2].to_i == product_id }
+      products = []
+      matches.each do |product_array|
+        product_hash = convert_to_hash(product_array)
+        products.push(FarMar::Product.new(product_hash))
+      end
+      return products
+    end
   end
 end
