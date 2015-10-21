@@ -47,5 +47,12 @@ describe FarMar::Product do
     end
   end
 
-
+  describe "self.by_vendor(vendor_id)" do
+    it "returns all of the products with the given vendor_id" do
+      products_by_vendor = FarMar::Product.by_vendor(2)
+      expect(products_by_vendor).to be_an Array
+      expect(products_by_vendor.length).to eq 2
+      expect(products_by_vendor[0].product_id).to eq 2
+    end
+  end
 end

@@ -47,5 +47,11 @@ module FarMar
     def number_of_sales
       return sales.length
     end
+
+    def self.by_vendor(vendor_id)
+      vendor = FarMar::Vendor.find(vendor_id)
+      return vendor.products
+    end
+
   end
 end
