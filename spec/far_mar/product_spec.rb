@@ -22,5 +22,12 @@ describe FarMar::Product do
       expect(FarMar::Product.find(8).name).to eq("Shaky Honey")
     end
   end
-  
+
+  describe "by_vendor" do
+    it "return products by vendor id" do
+      vendor_array = FarMar::Product.by_vendor(2)
+      expect(vendor_array[0].id).to eq 2
+    end
+  end
+
 end

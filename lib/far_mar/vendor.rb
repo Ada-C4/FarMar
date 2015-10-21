@@ -34,6 +34,10 @@ module FarMar
       end
     end
 
+    def products
+      return products_array = FarMar::Product.by_vendor(self.id)
+    end
+
 
   end
 end

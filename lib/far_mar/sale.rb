@@ -9,6 +9,7 @@ module FarMar
       @purchase_time =  DateTime.parse(purchase_time)#DateTime.strptime(purchase_time, "%Y-%m-%d %H:%M:%S %z")
       @vendor_id = vendor_id
       @product_id = product_id
+      # @sale_array = self.all  -check it later
 
     end
 
@@ -29,5 +30,11 @@ module FarMar
       end
     end
 
+    def self.by_vendor(id)
+      sale_array = self.all
+      sale_array.find_all do |sale|
+        sale.vendor_id == id
+      end
+    end
   end
 end

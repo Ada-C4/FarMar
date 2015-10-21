@@ -22,5 +22,19 @@ describe FarMar::Sale do
       expect(FarMar::Sale.find(11).amount).to eq(1030)
     end
   end
-  
+
+  describe "by_vendor" do
+    before :each do
+      @sale_array = FarMar::Sale.by_vendor(1)
+    end
+
+    it "return an array of sales " do
+    expect(@sale_array).to be_an(Array)
+    end
+
+    it "return an array by vendor id" do
+      expect(@sale_array[0].id).to eq 1
+    end
+  end
+
 end
