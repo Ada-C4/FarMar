@@ -68,5 +68,14 @@ describe FarMar do
         expect(sales[-1].id).to eq(319)
       end
     end
+
+    describe "#market" do
+      it "returns the market associated with the vendor" do
+        sample_market = sample_vendor.market
+        expect(sample_market).to be_an_instance_of(FarMar::Market)
+        expect(sample_market.id).to eq(sample_vendor.market_id)
+        expect(sample_market.name).to eq("Riverside Farmers' Market")
+      end
+    end
   end
 end
