@@ -1,5 +1,6 @@
 module FarMar
   class Sale
+    attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
 
     def initialize(sale_hash)
       @id = sale_hash[:id].to_i
@@ -22,6 +23,7 @@ module FarMar
     end
 
     def self.find(id)
+      all.find{|sale| sale.id == id}
     end
 
     # def vendor

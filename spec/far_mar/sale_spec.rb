@@ -28,4 +28,11 @@ describe FarMar::Sale do
     end
   end
 
+  describe "#find" do
+    it "returns the instance of Sale matching the input id" do
+      expect(FarMar::Sale.find(1)).to be_an_instance_of FarMar::Sale
+      expect(FarMar::Sale.find(2).amount).to eq 2262
+    end
+  end
+
 end
