@@ -30,7 +30,11 @@ module FarMar
 		end
 
 		def vendor
-			FarMar::Vendor.all.find {|ven| ven.vendor_id == vendor_id}
+			FarMar::Vendor.all.find {|ven| ven.vendor_id == @vendor_id}
+		end
+
+		def product
+			FarMar::Product.all.find {|pro| pro.product_id == @product_id}
 		end
 
 	end

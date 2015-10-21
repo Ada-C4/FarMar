@@ -57,11 +57,9 @@ describe FarMar::Product do
   		expect(@product.sales).to be_an_instance_of(Array)
   	end
   	it 'returns all sales of product' do
-  		expect(@product.sales.length).to eq(3)
-  	end
-  	it 'works when zero sales have occured' do
   		product1 = FarMar::Product.new(165,"Striped Apples",51)
-  		expect(product1.sales.length).to eq(0)
+      expect(product1.sales.length).to eq(0)
+      expect(@product.sales.length).to eq(3)
   	end
   	it 'returns Sales instances' do
   		expect(@product.sales[rand(0..2)]).to be_an_instance_of(FarMar::Sale)

@@ -21,6 +21,7 @@ describe FarMar::Sale do
     it 'contains all sales from CSV' do 
       csv = CSV.read("support/sales.csv")
       expect(@sale_array.length).to eq csv.length
+
     end
   end
 
@@ -34,6 +35,13 @@ describe FarMar::Sale do
     it 'returns Vendor that is associated with Sale' do
       sale = FarMar::Sale.new(14,4978,"2013-11-10 01:51:24 -0800",3,4)
       expect(sale.vendor.name).to eq("Breitenberg Inc")
+    end
+  end
+
+  describe 'product' do
+    it 'returns Product associated with the Sale' do
+      sale = FarMar::Sale.new(14,4978,"2013-11-10 01:51:24 -0800",3,4)
+      expect(sale.product.name).to eq("Yummy Fruit")
     end
   end
 
