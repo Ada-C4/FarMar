@@ -39,4 +39,11 @@ describe FarMar::Product do
       expect(@product.number_of_sales).to eq 2
     end
   end
+  describe "#by_vendor(vendor_id)" do
+    it "returns all product instances whose vendor_id matches the parameter passed in" do
+      vendor = FarMar::Product.by_vendor(2672)
+      expect(vendor.length).to eq 4
+      expect(vendor[3].name).to eq "Energetic Pretzel"
+    end
+  end
 end
