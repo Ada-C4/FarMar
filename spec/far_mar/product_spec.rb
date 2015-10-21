@@ -37,4 +37,21 @@ describe FarMar::Product do
       expect(@product2.vendor.name).to eq "Howe LLC"
     end
   end
+  describe "#sales" do
+    it "returns an instance of FarMar::Sale" do
+      expect(@product1.sales).to be_an Array
+    end
+    it "returns array of instances of FarMar::Sale" do
+      expect(@product1.sales[0]).to be_instance_of FarMar::Sale
+      expect(@product1.sales[-1]).to be_instance_of FarMar::Sale
+    end
+    it "returns correct array length" do
+      expect(@product1.sales.length).to eq 2
+      expect(@product2.sales.length).to eq 1
+    end
+    it "returns correct first instance of FarMar::Vendor" do
+      expect(@product1.sales[0].id).to eq 18
+      expect(@product2.sales[0].id).to eq 19
+    end
+  end
 end
