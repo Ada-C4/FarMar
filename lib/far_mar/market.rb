@@ -19,6 +19,11 @@ module FarMar
       return market_hash
     end
 
+    def self.all
+      @@all_objects ||= super
+      return @@all_objects
+    end
+
     def vendors
       return FarMar::Vendor.by_market(@id)
     end

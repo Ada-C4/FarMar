@@ -2,6 +2,7 @@ module FarMar
   class Sale < FarMar_Base
     attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
     FILENAME = './support/sales.csv'
+    @@all_objects = []
 
     def initialize(sale_hash)
       super(sale_hash)
