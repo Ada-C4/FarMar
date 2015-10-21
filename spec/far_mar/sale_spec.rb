@@ -68,5 +68,13 @@ describe FarMar do
         expect(sample_product.name).to eq("Gorgeous Fish")
       end
     end
+
+    describe "#between(beginning_time, end_time)" do
+      it "returns all sales where the purchase time is between two times given" do
+        beginning = FarMar::Sale.find(1990).purchase_time
+        ending = FarMar::Sale.find(3602).purchase_time
+        expect(FarMar::Sale.between(beginning, ending)).to eq(24)
+      end
+    end
   end
 end
