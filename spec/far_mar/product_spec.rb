@@ -9,6 +9,7 @@ describe FarMar::Product do
     it "creates a new instance of a product" do
       expect(@product).to be_an_instance_of FarMar::Product
     end
+
     it "by default assigns empty strings to instance variables" do
       expect(@product.name).to eq ""
       expect(@product.vendor_id).to eq ""
@@ -64,4 +65,4 @@ describe FarMar::Product do
       end
     end
   end
-  end
+end
