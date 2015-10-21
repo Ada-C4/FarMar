@@ -31,6 +31,12 @@ module FarMar
       return FarMar::Sale.all_objects.find_all { |sale| sale.vendor_id == vendor_id }
     end
 
+    # returns a collection of FarMar::Sale objects where the purchase time
+    # is between the two times given as arguments
+    def self.between(beginning_time, end_time)
+      return FarMar::Sale.all_objects.find_all { |sale_obj| sale_obj.purchase_time > beginning_time && sale_obj.purchase_time < end_time }
+    end
+
     # returns the Vendor that is associated with the sale
     def vendor
       return FarMar::Vendor.find(@vendor_id)

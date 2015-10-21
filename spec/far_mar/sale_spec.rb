@@ -73,7 +73,9 @@ describe FarMar do
       it "returns all sales where the purchase time is between two times given" do
         beginning = FarMar::Sale.find(1990).purchase_time
         ending = FarMar::Sale.find(3602).purchase_time
-        expect(FarMar::Sale.between(beginning, ending)).to eq(24)
+        between_array = FarMar::Sale.between(beginning, ending)
+        expect(between_array).to be_an_instance_of(Array)
+        expect(between_array.length).to eq(24)
       end
     end
   end
