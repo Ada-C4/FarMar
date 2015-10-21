@@ -17,5 +17,9 @@ module FarMar
           vendor_array.push(list_of_vendors)
         end
       end
+
+      # def self.find(id)
+      # end
+
   end
 end
