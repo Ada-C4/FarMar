@@ -59,4 +59,17 @@ describe FarMar::Product do
     end
   end
 
+  describe ".by_vendor" do
+    it "returns an array of vendor objects" do
+      vendor_id = 1
+      expect(FarMar::Product.by_vendor(vendor_id)).to be_an_instance_of Array
+      expect(FarMar::Product.by_vendor(vendor_id)).not_to eq []
+    end
+
+    it "returns the expected vendors" do
+      vendor_id = 2
+      expect(FarMar::Product.by_vendor(vendor_id).length).to eq 2
+    end
+  end
+
 end

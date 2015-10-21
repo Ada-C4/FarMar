@@ -47,6 +47,9 @@ module FarMar
 
     # Returns all of the products with the given Vendor ID
     def self.by_vendor(vendor_id)
+      all_products = FarMar::Product.all
+      matched_products = all_products.find_all { |product| product.vendor_id == vendor_id }
+      return matched_products
     end
 
   end
