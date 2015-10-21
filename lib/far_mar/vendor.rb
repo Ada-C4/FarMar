@@ -2,10 +2,10 @@ module FarMar
   class Vendor
     attr_accessor :id, :name, :employee_no, :market_id
     def initialize(vendor_hash)
-      @id = vendor_hash[:id]
+      @id = vendor_hash[:id].to_i
       @name = vendor_hash[:name]
-      @employee_no = vendor_hash[:employee_no]
-      @market_id = vendor_hash[:market_id]
+      @employee_no = vendor_hash[:employee_no].to_i
+      @market_id = vendor_hash[:market_id].to_i
     end
 
     def self.all
@@ -65,10 +65,10 @@ module FarMar
       return revenue
     end
 
+#WHY IS THIS NOT WORKING
     def self.by_market(market_id)
       possibilities = self.all
-      vendor_party = []
-      match = possibilities.find do |each|
+      vendor_party = possibilities.find do |each|
         market_id == each.market_id
         vendor_party.push(match)
         binding.pry

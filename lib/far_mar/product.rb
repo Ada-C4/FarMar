@@ -2,9 +2,9 @@ module FarMar
   class Product
     attr_accessor :id, :name, :vendor_id
     def initialize(product_hash)
-      @id = product_hash[:id]
+      @id = product_hash[:id].to_i
       @name = product_hash[:name]
-      @vendor_id = product_hash[:vendor_id]
+      @vendor_id = product_hash[:vendor_id].to_i
     end
 
     def self.all
@@ -43,6 +43,17 @@ module FarMar
         @id == each.product_id
       end
       return all_sales
+    end
+
+    def number_of_sales
+      self.sales.length
+    end
+
+    def self.by_vendor(vendor_id)
+      product_party = FarMar::Product.all.find_all do |each|
+        vendor_id.to_i == each.vendor_id
+      end
+      return product_party
     end
   end
 end
