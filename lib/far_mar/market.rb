@@ -6,13 +6,13 @@ module FarMar
     attr_reader :market_id, :name, :address, :city, :county, :state, :zip
 
   	def initialize(market_id, name, address, city, county, state, zip)
-  		@market_id = market_id
+  		@market_id = market_id.to_i
   		@name = name
   		@address = address
   		@city = city
   		@county = county
   		@state = state
-  		@zip = zip	
+  		@zip = zip
   	end
 
   	def self.all
@@ -23,6 +23,13 @@ module FarMar
       end
       return market_array
   	end
+
+    def self.find(id)
+      FarMar::Market.all.find {|mar| mar.market_id == id }
+
+
+    end
+
 
   end
 

@@ -22,10 +22,7 @@ module FarMar
 		end
 
 		def self.find(id)
-			vendor_array = FarMar::Vendor.all
-			vendor = vendor_array.find do |vendor| 
-				vendor.vendor_id == id 
-			end
+ 			FarMar::Vendor.all.find {|ven| ven.vendor_id == id}
 		end
 
 	end

@@ -35,4 +35,10 @@ describe FarMar::Market do
 		end
 	end
 
+	describe '.find(id)' do
+		it 'returns a matching market instance' do
+			expect(FarMar::Market.find(16).zip).to eq("60546")
+		end
+	end
+
 end
