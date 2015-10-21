@@ -51,8 +51,26 @@ describe FarMar::Market do
       sample_market = @markets[1]
       expect(sample_market.products).to be_an_instance_of Array
       expect(sample_market.products).not_to eq []
+    end
+
+    it "returns the correct products for a given market" do
+      sample_market = @markets[1]
       expect(sample_market.products.length).to eq 9
       expect(sample_market.products[0].product_name).to eq "Stupendous Carrots"
     end
+  end
+
+  describe "#preferred_vendor" do
+    it "returns a vendor object" do
+      sample_market = @markets[1]
+      expect(sample_market.preferred_vendor).to be_an_instance_of FarMar::Vendor
+    end
+    it "returns the vendor object with the highest revenue" do
+      sample_market = @markets[1]
+      all_vendors = sample_market.vendors
+      max = all_vendors.max_by { |i| i.revenue}
+      expect(sample_market.preferred_vendor).to eq max
+    end
+
   end
 end

@@ -53,15 +53,21 @@ module FarMar
 
   # Returns a collection of Market instances where the market name or vendor name contain the search term
   def self.search(search_term)
+    #FarMar::Market.all
+    #FarMar::Vendor.all
+    # WORK IN PROGRESS
   end
 
   # Returns the vendor with the highest revenue
   def preferred_vendor
+    all_vendors = self.vendors
+    all_vendors.sort_by! { |vendor| vendor.revenue}
+    return all_vendors[-1]
   end
 
   # Returns the vendor with highest revenue for the given date
-  def preferred_vendor(date)
-  end
+  # def preferred_vendor(date)
+  # end
 
   # Returns the vendor with the lowest revenue
   def worst_vendor
