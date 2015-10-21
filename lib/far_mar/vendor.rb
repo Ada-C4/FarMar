@@ -56,6 +56,9 @@ module FarMar
     end
 
     def self.by_market(market_id)
+      FarMar::Vendor.all.find_all do |vendor_instance|
+        vendor_instance.market_id == market_id
+      end
     end
   end
 end
