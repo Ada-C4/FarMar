@@ -3,6 +3,7 @@ require "spec_helper"
 describe FarMar::Market do
   before :each do
     @market = FarMar::Market.new("14", "Hartford Farmers Market", "1 Block North of Highway 60 on Rural Street","Hartford","Washington", "Wisconsin", "53027")
+    @market_2 = FarMar::Market.new("500", "Montefiore Medical Center Farmers Market_Thursday", "111 E. 210th Street", "Bronx", "Bronx", "New York","10467")
   end
 
   context "initializing" do
@@ -21,8 +22,13 @@ describe FarMar::Market do
   end
 
   context ".self.find(id)" do
-    it "returns an instance with a specific id" do
-      expect(FarMar::Market.find(14)).to be_truthy
+    it "returns an instance of Market" do
+      expect(@market.class).to be FarMar::Market
+    end
+
+    it "returns an instance with the same id as the value in the CSV file" do
+      expect(@market.id).to eq 14
+      expect(@market_2.id).to eq 500
     end
   end
 
