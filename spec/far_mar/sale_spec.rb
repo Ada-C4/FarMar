@@ -51,4 +51,13 @@ describe FarMar::Sale do
       expect(FarMar::Sale.find(@id).product.id).to eq 1
     end
   end
+  describe "self.between(beginning_time, end_time)" do
+    it "returns an array" do
+      @beginning_time = "2013-11-07 04:34:56 -0800"
+      @end_time = "2013-11-10 11:31:16 -0800"
+      expect(FarMar::Sale.between(@beginning_time, @end_time)).to be_an Array
+      @end_time = @beginning_time
+      expect(FarMar::Sale.between(@beginning_time, @end_time)).to be_an Array
+    end
+  end
 end

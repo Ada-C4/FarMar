@@ -18,16 +18,28 @@ module FarMar
       FarMar::Product.find(@product_id)
     end
 
-    def self.all
-      sales_list = []
-      sales_csv = CSV.read("./support/sales.csv")
+    def self.between(beginning_time, end_time)
+      beginning_time = DateTime.parse(beginning_time)
+      end_time = DateTime.parse(end_time)
 
-      sales_csv.each do |row|
-        sale = FarMar::Sale.new(row[0], row[1], row[2], row[3], row[4])
-        sales_list.push(sale)
+      sales_list = self.all
+
+      sales_list.find_all do |instance|
+        beginning_time < instance.purchase_time && instance.purchase_time < end_time
+      end
+    end
+
+    def self.all
+      @@sales_list ||= []
+
+      if @@sales_list == []
+        CSV.foreach("./support/sales.csv") do |row|
+          sale = FarMar::Sale.new(row[0], row[1], row[2], row[3], row[4])
+          @@sales_list.push(sale)
+        end
       end
 
-      return sales_list
+      return @@sales_list
     end
 
     def self.find(id)

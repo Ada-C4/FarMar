@@ -21,15 +21,16 @@ module FarMar
     end
 
     def self.all
-      markets_list = []
-      markets_csv = CSV.read("./support/markets.csv")
+      @@markets_list ||= []
 
-      markets_csv.each do |row|
-        market = FarMar::Market.new(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
-        markets_list.push(market)
+      if @@markets_list == []
+        CSV.foreach("./support/markets.csv") do |row|
+          market = FarMar::Market.new(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
+          @@markets_list.push(market)
+        end
       end
 
-      return markets_list
+      return @@markets_list
     end
 
     def self.find(id)

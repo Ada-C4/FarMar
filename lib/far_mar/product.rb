@@ -33,15 +33,16 @@ module FarMar
     end
 
     def self.all
-      products_list = []
-      products_csv = CSV.read("./support/products.csv")
+      @@products_list ||= []
 
-      products_csv.each do |row|
-        product = FarMar::Product.new(row[0], row[1], row[2])
-        products_list.push(product)
+      if @@products_list == []
+        CSV.foreach("./support/products.csv") do |row|
+          product = FarMar::Product.new(row[0], row[1], row[2])
+          @@products_list.push(product)
+        end
       end
-
-      return products_list
+      
+      return @@products_list
     end
 
     def self.find(id)
