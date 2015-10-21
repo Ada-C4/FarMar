@@ -35,6 +35,14 @@ module FarMar
 			FarMar::Sale.all.find_all { |sale| sale.vendor_id == vendor_id }
 		end
 
+		def revenue
+			
+		end
+
+		def self.by_market(market_id)
+			FarMar::Vendor.all.find_all {|ven| ven.market == market_id }
+		end
+
 	end
 
 end

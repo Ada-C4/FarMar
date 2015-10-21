@@ -69,7 +69,12 @@ describe FarMar::Vendor do
 	end
 
 	describe '#revenue' do
-		
+		it 'totals sales for Vendor' do
+			vendor = FarMar::Vendor.new(51,"Bernier Inc",1,12)
+			vendor1 = FarMar::Vendor.new(18,"Von-Hamill",10,5)
+			expect(vendor.revenue).to eq(0)
+			expect(vendor1.revenue).to eq(9749)
+		end
 	end
 
 	describe '.by_market(market_id)' do
