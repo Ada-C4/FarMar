@@ -43,6 +43,19 @@ describe FarMar do
           expect(FarMar::Market.find(@id).id).to eq(@id)
         end
       end
+
+      describe "#vendors" do
+        before :each do
+          market_info = CSV.open("./support/markets.csv", 'r') { |csv| csv.first }
+          @market = FarMar::Market.new(market_info)
+        end
+        it "returns a collection" do
+          expect(@market.vendors).to be_an(Array)
+        end
+        it "returns instances of Vendors" do
+          expect(@market.vendors[0]).to be_an_instance_of(FarMar::Vendor) if @market.vendors.length > 0
+        end
+      end
     end
 
   end

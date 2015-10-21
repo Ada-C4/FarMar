@@ -28,5 +28,12 @@ module FarMar
       end
     end
 
+    def vendors
+      vendors = FarMar::Vendor.all.find_all do |vendor|
+        vendor.market_id == self.id
+      end
+      return vendors
+    end
+
   end
 end
