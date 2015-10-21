@@ -2,19 +2,14 @@ require 'spec_helper'
 
 describe FarMar do
   describe FarMar::Product do
-
+    product_hash = FarMar::Product.convert_to_hash(["14","Stupendous Carrots","7"])
+    let(:sample_product) { FarMar::Product.new(product_hash) }
     describe "#initialize" do
       it "creates a new Product instance" do
-        fake_hash = {
-          :id => 1,
-          :name => "Crispy Spiders",
-          :vendor_id => 5555
-        }
-        product = FarMar::Product.new(fake_hash)
-        expect(product).to be_an_instance_of(FarMar::Product)
-        expect(product.id).to eq(1)
-        expect(product.name).to eq("Crispy Spiders")
-        expect(product.vendor_id).to eq(5555)
+        expect(sample_product).to be_an_instance_of(FarMar::Product)
+        expect(sample_product.id).to eq(14)
+        expect(sample_product.name).to eq("Stupendous Carrots")
+        expect(sample_product.vendor_id).to eq(7)
       end
     end
 
@@ -51,6 +46,16 @@ describe FarMar do
         expect(products).to be_an_instance_of(Array)
         expect(products.length).to eq(3)
         expect(products[-1].id).to eq(285)
+      end
+    end
+
+    describe "#sales" do
+      it "returns array of Sales that match the product id" do
+        sales = sample.product.sales
+        expect(sales).to be_an_instance_of(Array)
+        expect(sales.length).to eq(7)
+        expect(sales[0].id).to eq(32)
+        expect(sales[-1].id).to eq(38)
       end
     end
   end
