@@ -40,5 +40,12 @@ module FarMar
       return self.sales.length
     end
 
+    def self.by_vendor(vendor_id)
+      vendor_products = FarMar::Product.all.find_all do |product|
+        product.id == vendor_id
+      end
+      return vendor_products
+    end
+
   end
 end

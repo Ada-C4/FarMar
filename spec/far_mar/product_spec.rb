@@ -73,5 +73,17 @@ describe FarMar do
       end
     end
 
+    describe ".by_vendor(vendor_id)" do
+      before :each do
+        @vendor_id = rand(1..2690)
+      end
+      it "returns a collection" do
+        expect(FarMar::Product.by_vendor(@vendor_id)).to be_an(Array)
+      end
+      it "returns instances of Products" do
+        expect(FarMar::Product.by_vendor(@vendor_id)[0]).to be_an_instance_of(FarMar::Product) if FarMar::Product.by_vendor(@vendor_id).length > 0
+      end
+    end
+
   end
 end
