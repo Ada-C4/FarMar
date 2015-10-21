@@ -40,6 +40,10 @@ module FarMar
         return @id
       end
 
+      def vendor_id
+        return @vendor_id
+      end
+
       def find_vendor(vendor_id)
         FarMar::Vendor.find(vendor_id)
       end
@@ -68,6 +72,13 @@ module FarMar
         total = 0
         sales.each {|sale| total += 1}
         return total
+      end
+
+      def self.by_vendor(vendor_id)
+        all_products = FarMar::Product.all
+        #all_products is an array of Vendor objects
+        matches = all_products.find_all {|product| product.vendor_id == vendor_id}
+        return matches
       end
   end
 end

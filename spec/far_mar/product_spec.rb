@@ -75,5 +75,14 @@ describe FarMar do
           expect(@product.number_of_sales(@product.id)).to eq 7
         end
       end
+
+      describe "self.by_vendor" do
+        it "returns an array" do
+          expect(FarMar::Product.by_vendor(1)).to be_an Array
+        end
+        it "has Product instances in the array" do
+          expect(FarMar::Product.by_vendor(1)[0]).to be_an_instance_of FarMar::Product
+        end
+      end
   end
 end
