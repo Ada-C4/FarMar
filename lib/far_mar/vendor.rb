@@ -25,8 +25,8 @@ module FarMar
  			FarMar::Vendor.all.find {|ven| ven.vendor_id == vendor_id}
 		end
 
-		def products(vendor_id)
-			
+		def self.products(vendor_id)
+			FarMar::Product.all.find_all { |pro| pro.vendor_id == vendor_id}
 		end
 
 	end
