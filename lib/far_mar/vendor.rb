@@ -24,7 +24,7 @@ module FarMar
 		end
 
 		def self.find(vendor_id)
- 			FarMar::Vendor.all.find {|ven| ven.vendor_id == vendor_id}
+ 			@@vendor_array.find {|ven| ven.vendor_id == vendor_id}
 		end
 
 		def products
@@ -36,7 +36,12 @@ module FarMar
 		end
 
 		def revenue
-			
+			sales_array = self.sales
+			sales_array.map! do |sale|
+				sale.amount
+			end
+			total = sales_array.inject(0, :+)
+			return total
 		end
 
 		def self.by_market(market_id)
