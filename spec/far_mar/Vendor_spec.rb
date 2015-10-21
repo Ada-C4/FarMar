@@ -42,4 +42,9 @@ describe FarMar::Vendor do
       expect(sale[1].class).to eq FarMar::Sale
     end
   end
+  describe ".revenue" do
+    it "returns the sum of all amounts for sales instances whose vendor_id matches the vendor's id" do
+      expect(@vendor.revenue).to eq 7586
+    end
+  end
 end

@@ -33,5 +33,11 @@ module FarMar
         sale.vendor_id == self.id
       end
     end
+    def revenue
+      amounts = self.sales.map do |sale|
+        sale.amount
+      end
+      amounts.inject(0) { |result, sale| result + sale }
+    end
   end
 end
