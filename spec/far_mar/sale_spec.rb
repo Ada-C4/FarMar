@@ -30,4 +30,11 @@ describe FarMar::Sale do
     end
   end
 
+  describe '#vendor' do
+    it 'returns Vendor that is associated with Sale' do
+      sale = FarMar::Sale.new(14,4978,"2013-11-10 01:51:24 -0800",3,4)
+      expect(sale.vendor.name).to eq("Kris and Sons")
+    end
+  end
+
 end
