@@ -15,4 +15,15 @@ describe FarMar::Product do
     end
   end
 
+  describe "#all" do
+    all_products = FarMar::Product.all
+    it "returns a collection of all product instances in the csv" do
+      expect(all_products.class).to eq Array
+      expect(all_products[0]).to be_an_instance_of FarMar::Product
+      expect(all_products[-1]).to be_an_instance_of FarMar::Product
+      csv = CSV.read("support/products.csv")
+      expect(all_products.length).to eq csv.length
+    end
+  end
+
 end
