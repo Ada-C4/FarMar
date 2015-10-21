@@ -31,6 +31,18 @@ describe FarMar do
         expect(FarMar::Market.all[market_total - 1]).to be_an_instance_of(FarMar::Market)
         expect(FarMar::Market.all[market_total]).to be nil
       end
+
+      describe ".find(id)" do
+        before :each do
+          @id = rand(1..500)
+        end
+        it "returns an instance of Market" do
+          expect(FarMar::Market.find(@id)).to be_an_instance_of(FarMar::Market)
+        end
+        it "returns the Market with the matching id" do
+          expect(FarMar::Market.find(@id).id).to eq(@id)
+        end
+      end
     end
 
   end

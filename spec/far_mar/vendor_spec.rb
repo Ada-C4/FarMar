@@ -33,5 +33,17 @@ describe FarMar do
       end
     end
 
+    describe ".find(id)" do
+      before :each do
+        @id = rand(1..2690)
+      end
+      it "returns an instance of Vendor" do
+        expect(FarMar::Vendor.find(@id)).to be_an_instance_of(FarMar::Vendor)
+      end
+      it "returns the Vendor with the matching id" do
+        expect(FarMar::Vendor.find(@id).id).to eq(@id)
+      end
+    end
+
   end
 end

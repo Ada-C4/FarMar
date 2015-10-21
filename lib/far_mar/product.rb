@@ -17,5 +17,12 @@ module FarMar
       return product_array
     end
 
+    def self.find(id)
+      FarMar::Product.all.find do |product|
+        product.id == id
+      end
+    end
+
+
   end
 end

@@ -5,7 +5,7 @@ module FarMar
     def initialize(sale_info)
       @id = sale_info[0].to_i
       @amount = sale_info[1].to_i
-      @purchase_time = DateTime.strptime(sale_info[2], "%Y-%m-%d %H:%M:%S %z") 
+      @purchase_time = DateTime.strptime(sale_info[2], "%Y-%m-%d %H:%M:%S %z")
       @vendor_id = sale_info[3].to_i
       @product_id = sale_info[4].to_i
     end
@@ -18,5 +18,12 @@ module FarMar
       end
       return sale_array
     end
+
+    def self.find(id)
+      FarMar::Sale.all.find do |sale|
+        sale.id == id
+      end
+    end
+
   end
 end

@@ -22,5 +22,11 @@ module FarMar
       return market_array
     end
 
+    def self.find(id)
+      FarMar::Market.all.find do |market|
+        market.id == id
+      end
+    end
+
   end
 end
