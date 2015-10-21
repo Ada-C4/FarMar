@@ -43,5 +43,29 @@ module FarMar
       end
       return vendor_products_array
     end
+
+    def sales
+      vendor_sales_array = []
+      sale_array = FarMar::Sale.all
+      sale_array.each do |sale|
+        if sale.vendor_id == @vendor_id
+          vendor_sales_array.push(sale)
+        end
+      end
+      return vendor_sales_array
+    end
+
+    def revenue
+      total_revenue = 0
+      sales.each do |sale|
+        total_revenue += sale.amount
+      end
+      return total_revenue
+    end
+
+    def self.by_market(market_id)
+      market = FarMar::Market.find(market_id)
+      return market.vendors
+    end
   end
 end
