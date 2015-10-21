@@ -44,13 +44,26 @@ describe FarMar::Vendor do
 		end
 	end
 
-	describe '.products()' do
+	describe '.products(vendor_id)' do
 		it 'returns an array' do
 			length = FarMar::Vendor.all.length - 1
 			expect(FarMar::Vendor.products(rand(0..length))).to be_an_instance_of(Array)
 		end
 		it 'returns all products for a vendor' do
-			expect(FarMar::Vendor.products(5).lenght).to eq(3)
+			expect(FarMar::Vendor.products(5).length).to eq(3)
+		end
+		# I feel like I could use let for the length variable, 
+		# but I'm having trouble figure it out
+		it 'contains only Product instances'do
+			length = FarMar::Vendor.all.length - 1
+			expect(FarMar::Vendor.products(rand(0..length))[0]).to be_an_instance_of(FarMar::Product)
+		end
+	end
+
+	describe '.sales(vendor_id)' do
+		it 'returns all sales per vendor' do
+			expect(FarMar::Vendor.sales(6).length).to eq(1)
+			expect(FarMar::Vendor.sales(15).length).to eq(7)
 		end
 	end
 
