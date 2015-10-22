@@ -1,9 +1,12 @@
 require "spec_helper"
 
 describe FarMar::Sale do
+  before :each do
+    @sale = FarMar::Sale.new({})
+  end
   describe "initialize" do
     it "creates an instance of a sale" do
-      expect(FarMar::Sale.new({})).to be_an_instance_of FarMar::Sale
+      expect(@sale).to be_an_instance_of FarMar::Sale
     end
   end
 
@@ -15,7 +18,7 @@ describe FarMar::Sale do
 
   describe "self.find" do
     it "returns a sale given an id" do
-      expect(FarMar::Sale.find(4).amount).to eq "1634"
+      expect(FarMar::Sale.find(4).amount).to eq 1634
     end
   end
 end

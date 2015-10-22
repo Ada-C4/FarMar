@@ -55,17 +55,23 @@ module FarMar
 
     def products
       all_products = []
-      self.vendors.each do |each|
-        all_products.push(each.products)
+      self.vendors.each do |vendor|
+        vendor.products.each do |product|
+          all_products.push(product) if !all_products.include?(product)
+        end
       end
       return all_products
     end
 
     def self.search(search_term)
-      FarMar::Market.all.find_all do |each|
-        if include?(search_term)
-        end
+      results = []
+      FarMar::Market.all.find_all do |market|
+        results.push(market) if market.name.match(/search_term/)
       end
+      FarMar::Vendor.all.find_all do |vendor|
+        results.push(vendor) if vendor.name.match(/search_term/)
+      end
+      return results
     end
 
     def preferred_vendor
@@ -73,8 +79,15 @@ module FarMar
     end
 
     def preferred_vendor(date)
-      self.vendors.sort_by { |vendor| vendor.revenue}.last
-
+      self.vendors.each do |vendor|
+      rev = 0
+       vendor.sales.each do |sale|
+         sale.purchase_time
+         if purchase_time.to_date == date
+           rev += sale.amount
+         end
+       end
+      end
     end
   end
 end
