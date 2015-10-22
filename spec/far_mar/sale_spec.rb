@@ -7,11 +7,11 @@ describe FarMar do
     describe "#initialize" do
       it "creates a new Sale instance" do
         expect(sample_sale).to be_an_instance_of(FarMar::Sale)
-        expect(sample_sale.id).to eq(1)
-        expect(sample_sale.amount).to eq(9290)
-        expect(sample_sale.purchase_time.class).to be(DateTime)
-        expect(sample_sale.vendor_id).to eq(5)
-        expect(sample_sale.product_id).to eq(12)
+      end
+      sale_hash.each do |attr, val|
+        it "assigns the #{attr} attribute correctly" do
+          expect(sample_sale.instance_variable_get("@#{attr}")).to eq(val)
+        end
       end
     end
     describe ".all" do
