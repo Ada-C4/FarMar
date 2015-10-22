@@ -39,6 +39,12 @@ module FarMar
       end
     end
 
+    def product
+      FarMar::Product.all.find do |product|
+        product.id == @product_id
+      end
+    end
+
   end
 
 end

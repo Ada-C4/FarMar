@@ -60,4 +60,11 @@ describe FarMar::Sale do
       expect(sale.vendor.id).to be 5
     end
   end
+  describe "#product" do
+    it "returns the product associated with the sale" do
+      sale = FarMar::Sale.new("27","2851","2013-11-13 04:14:40 -0800","5","10")
+      expect(sale.product).to be_an_instance_of FarMar::Product
+      expect(sale.product.id).to be 10
+    end
+  end
 end
