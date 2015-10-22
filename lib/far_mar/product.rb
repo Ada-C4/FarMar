@@ -16,14 +16,14 @@ module FarMar
       end
 
       def self.all()
-        @@products_all ||= []
-        if @@products_all == []
-          @@products_all = CSV.read("./support/products.csv")
-          @@products_all.map! do |line|
+        @products_all ||= []
+        if @products_all == []
+          @products_all = CSV.read("./support/products.csv")
+          @products_all.map! do |line|
             self.new(self.create_product_hash(line))
           end
         end
-        return @@products_all
+        return @products_all
       end
 
       def self.find(id)

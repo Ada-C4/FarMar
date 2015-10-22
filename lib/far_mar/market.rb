@@ -27,14 +27,14 @@ module FarMar
     end
 
     def self.all()
-      @@markets_all ||= []
-      if @@markets_all == []
-        @@markets_all = CSV.read("./support/markets.csv")
-        @@markets_all.map! do |line|
+      @markets_all ||= []
+      if @markets_all == []
+        @markets_all = CSV.read("./support/markets.csv")
+        @markets_all.map! do |line|
           self.new(self.create_market_hash(line))
         end
       end
-      return @@markets_all
+      return @markets_all
     end
 
     def self.find(id)

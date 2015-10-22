@@ -20,14 +20,14 @@ module FarMar
       end
 
       def self.all()
-        @@sales_all ||= []
-        if @@sales_all == []
-          @@sales_all = CSV.read("./support/sales.csv")
-          @@sales_all.map! do |line|
+        @sales_all ||= []
+        if @sales_all == []
+          @sales_all = CSV.read("./support/sales.csv")
+          @sales_all.map! do |line|
             self.new(self.create_sale_hash(line))
           end
         end
-        return @@sales_all
+        return @sales_all
       end
 
       def self.find(id)
@@ -51,6 +51,7 @@ module FarMar
       end
 
       def self.between(beginning_time, end_time)
+        # add input validation
         matching_sales_array = []
         self.all.find_all do |sale|
           sale.purchase_time >= beginning_time && sale.purchase_time <= end_time
