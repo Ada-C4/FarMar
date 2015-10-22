@@ -9,6 +9,7 @@ describe FarMar::Market do
   describe "initialize" do
     it "creates an instance of a market" do
       expect(@market1).to be_an_instance_of FarMar::Market
+      expect(@market1.id).to eq 1
     end
   end
 
@@ -56,16 +57,16 @@ describe FarMar::Market do
     end
   end
 
-  describe ".search()" do
-    before :each do
-      @search_test = FarMar::Market.search("School")
-    end
-    it "returns an array" do
-      expect(@search_test).to be_an Array
-    end
-
-    it "returns the correct number of items" do
-      expect(@search_test.length).to eq 3
-    end
-  end
+  # describe ".search()" do
+  #   before :each do
+  #     @search_test = FarMar::Market.search("School")
+  #   end
+  #   it "returns an array" do
+  #     expect(@search_test).to be_an Array
+  #   end
+  #
+  #   it "returns the correct number of items" do
+  #     expect(@search_test.length).to eq 3
+  #   end
+  # end
 end

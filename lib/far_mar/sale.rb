@@ -38,26 +38,27 @@ module FarMar
     end
 
     def vendor
-      associated_vendor = FarMar::Vendor.all.find_all do |each|
-        @vendor_id == each.id
-      end
-      return associated_vendor
+      # associated_vendor = FarMar::Vendor.all.find_all do |each|
+      #   @vendor_id == each.id
+      # end
+      # return associated_vendor
+      
+      return FarMar::Vendor.find(@vendor_id)
+
     end
 
     def product
-      associated_product = FarMar::Product.all.find_all do |each|
-        @product_id == each.id
-      end
-      return associated_product
+      return FarMar::Product.find(@product_id)
+
     end
 
-    def self.between(beginning_time, end_time)
-      #beginning_time = DateTime.parse(beginning_time)
-      #end_time = DateTime.parse(end_time)
-      all_between = []
-      self.all do |each|
-        all_between.push(each) if each.purchase_time >= beginning_time && each.purchase_time <= end_time
-      end
-    end
+    # def self.between(beginning_time, end_time)
+    #   #beginning_time = DateTime.parse(beginning_time)
+    #   #end_time = DateTime.parse(end_time)
+    #   all_between = []
+    #   self.all do |each|
+    #     all_between.push(each) if each.purchase_time >= beginning_time && each.purchase_time <= end_time
+    #   end
+    # end
   end
 end
