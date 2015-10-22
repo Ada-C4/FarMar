@@ -79,5 +79,17 @@ describe FarMar do
         expect(max_vendor2.revenue).to eq(44789)
       end
     end
+
+    describe "#worst_vendor" do
+      it "returns the market's vendor with the lowest revenue" do
+        min_vendor1 = sample_market.worst_vendor
+        expect(min_vendor1).to be_an_instance_of(FarMar::Vendor)
+        expect(min_vendor1.id).to eq(350)
+        min_vendor2 = sample_market2.worst_vendor
+        expect(min_vendor2).to be_an_instance_of(FarMar::Vendor)
+        expect(min_vendor2.id).to eq(105)
+        expect(min_vendor2.revenue).to eq(1810)
+      end
+    end
   end
 end
