@@ -67,8 +67,11 @@ describe FarMar::Vendor do
   end
 
   describe "#market" do
-    it do
-      
+    it "returns the market instance associated with the given vendor" do
+      @vendor3 = FarMar::Vendor.new("4", "Best vendor", "9", "5")
+      market_match = @vendor3.market("./support/markets2.csv")
+      expect(market_match).to be_an_instance_of FarMar::Market
+      expect(market_match.id).to eq "5"
     end
   end
 end

@@ -28,15 +28,12 @@ module FarMar
      def self.by_market(market_id)
      end
 
-     #returns the markets with an id matching that of a given vendor instance
+     #returns the market with an id matching that of a given vendor instance
      def market(market_csv = "./support/markets.csv" )
-       market_matches = (Market.all).find_all {|n| n.id == self.market_id}
+       market_match = (Market.all).find {|n| n.id == self.market_id}
+       return market_match
      end
 
-     def vendors(vendors_csv = "./support/vendors.csv")
-       vendor_matches = (Vendor.all).find_all {|n| n.market_id == self.id}
-       return vendor_matches
-     end
 
      def products
      end
