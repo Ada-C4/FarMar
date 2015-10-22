@@ -19,13 +19,21 @@ module FarMar
        return vendors
      end
 
-     def self.find(search_id, csv = "./support/vendors.csv")
+     #helper method for class methods to search vendors
+     def self.find_by(var, search_param, csv = "./support/vendors.csv")
        all = self.all(csv)
-       match = (all.find {|n| n.id == search_id.to_s})
+       match = (all.find {|n| n.send(var) == search_param.to_s})
        return match
      end
 
-     def self.by_market(market_id)
+     #returns an array of vendors with the given id
+     def self.find(search_id, csv = "./support/vendors.csv")
+       self.find_by(:id, search_id, csv)
+     end
+
+     #returns an array of vendors with the given market_id
+     def self.by_market(search_market_id, csv = "./support/vendors.csv")
+       self.find_by(:market_id, search_market_id, csv)
      end
 
      #returns the market with an id matching that of a given vendor instance
