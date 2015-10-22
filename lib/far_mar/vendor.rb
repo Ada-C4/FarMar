@@ -91,5 +91,17 @@ module FarMar
       return total_revenue
     end
 
+    def vendor_revenue_by_date(date)
+      date = Date.parse(date.to_s)
+      day_sales = self.sales.find_all do |sale|
+        date == sale.purchase_time.to_date
+      end
+      day_revenue = 0
+      day_sales.each do |sale|
+        day_revenue = day_revenue + sale.amount
+      end
+      return day_revenue
+    end
+
   end
 end

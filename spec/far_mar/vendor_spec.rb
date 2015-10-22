@@ -7,6 +7,10 @@ describe FarMar do
       @vendor = FarMar::Vendor.new(vendor_info)
       vendor2_info = ["2","Hamill, Kilback and Pfeffer","5","1"]
       @vendor2 = FarMar::Vendor.new(vendor2_info)
+      vendor7_info = ["7","Bechtelar Inc","4","2"]
+      @vendor7 = FarMar::Vendor.new(vendor7_info)
+      vendor8_info = ["8","Stamm Inc","2","2"]
+      @vendor8 = FarMar::Vendor.new(vendor8_info)
       vendor51_info = ["51","Bernier Inc","1","12"]
       @vendor51 = FarMar::Vendor.new(vendor51_info)
     end
@@ -140,6 +144,21 @@ describe FarMar do
       end
       it "returns a number" do
         expect(FarMar::Vendor.revenue_by_date(@date)).to be_a(Fixnum)
+      end
+      it "returns the total revenue" do
+        expect(FarMar::Vendor.revenue_by_date(@date)).to eq(9060582)
+      end
+    end
+
+    describe "#vendor_revenue_by_date(date)" do
+      before :each do
+        @date = "2013-11-07"
+      end
+      it "returns a number" do
+        expect(@vendor7.vendor_revenue_by_date(@date)).to be_a(Fixnum)
+      end
+      it "returns the revenue for that date" do
+        expect(@vendor7.vendor_revenue_by_date(@date)).to eq(12377)
       end
     end
 
