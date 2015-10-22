@@ -69,6 +69,12 @@ describe FarMar::Vendor do
       end
     end
 
+    describe "best_revenue" do
+      it "return the vendor with the best revenue" do
+      expect(FarMar::Vendor.best_revenue(2)).to be_an_instance_of(FarMar::Vendor)
+      end
+    end
+
 
 
 end

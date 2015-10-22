@@ -45,6 +45,9 @@ module FarMar
       return FarMar::Vendor.market(self.id, true)
     end
 
+    def prefered_vendor
+      return FarMar::Vendor.best_revenue(self.id)
+     end
 
   end
 end

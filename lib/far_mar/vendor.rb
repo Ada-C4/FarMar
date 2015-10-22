@@ -63,6 +63,20 @@ module FarMar
       return sale_array.inject(0){|sum, sale| sum + sale.amount}
     end
 
+    def self.best_revenue(market_id)
+      vendors = self.by_market(market_id)
+      max = 0
+      winner = nil
+      vendors.each do |vendor|
+        revenue = vendor.revenue.to_i
+        if revenue > max
+        max = revenue
+        winner = vendor
+        end
+      end
+      return winner
+    end
+
     def self.by_market(market_id)
       @@array_all = self.all
       @@array_all.find_all do |vendor|

@@ -44,6 +44,11 @@ describe FarMar::Market do
     end
   end
 
+  describe "prefered_vendor" do
+    it "return the best seller vendor" do
+    expect(@market.prefered_vendor).to be_an_instance_of(FarMar::Vendor)
+    end
+  end
 end
 
 #     it "return vendors that associated with the market"
