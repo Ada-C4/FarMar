@@ -43,30 +43,12 @@ module FarMar
 
     # returns the vendor with the highest revenue from a market
     def preferred_vendor
-      matches = vendors
-      if matches.length == 0
-        return nil
-      elsif matches.length == 1
-        return matches[0]
-      else
-        revenues = matches.map { |v| v.revenue }
-        max_index = revenues.each_with_index.max[1]
-        return matches[max_index]
-      end
+      return vendors.max_by { |vend| vend.revenue }
     end
 
     # returns the vendor with the lowest revenue from a market
     def worst_vendor
-      matches = vendors
-      if matches.length == 0
-        return nil
-      elsif matches.length == 1
-        return matches[0]
-      else
-        revenues = matches.map { |v| v.revenue }
-        min_index = revenues.each_with_index.min[1]
-        return matches[min_index]
-      end
+      return vendors.min_by { |vend| vend.revenue }
     end
 
   end
