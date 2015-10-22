@@ -99,9 +99,9 @@ describe FarMar::Market do
       expect(@market3.worst_vendor.id).to eq 9
     end
     describe "#worst_vendor_on(date)" do
-      # it "returns an instance of FarMar::Vendor" do
-      #   expect(@market1.worst_vendor_on("2013-11-10")).to be_instance_of FarMar::Vendor
-      # end
+      it "returns an instance of FarMar::Vendor" do
+        expect(@market1.worst_vendor_on("2013-11-10")).to be_instance_of FarMar::Vendor
+      end
       it "returns correct instance of FarMar::Vendor" do
         @market3 = FarMar::Market.new(2, "name", "address", "city", "county", "state", "zip")
         expect(@market3.worst_vendor_on("2013-11-07").id).to eq 9

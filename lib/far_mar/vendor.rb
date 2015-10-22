@@ -62,5 +62,18 @@ module FarMar
         vendor_instance.market_id == market_id
       end
     end
+
+    def self.most_revenue(n)
+      vendors_by_revenue = []
+
+      all.each do |vendor|
+        vendors_by_revenue.push(vendor)
+      end
+
+      vendors_by_revenue = vendors_by_revenue.sort_by { |vendor| vendor.revenue }
+
+      return vendors_by_revenue[0...n]
+
+    end
   end
 end

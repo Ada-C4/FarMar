@@ -20,7 +20,7 @@ describe FarMar::Vendor do
       expect(FarMar::Vendor.all.length).to eq 2690
     end
   end
-  describe "#self.find(id)" do
+  describe ".self.find(id)" do
     it "returns an instance of FarMar::Vendor" do
       expect(FarMar::Vendor.find(1)).to be_instance_of FarMar::Vendor
       expect(FarMar::Vendor.find(2)).to be_instance_of FarMar::Vendor
@@ -69,7 +69,7 @@ describe FarMar::Vendor do
       expect(@vendor1.revenue).to eq 61749
     end
   end
-  describe "#self.by_market" do
+  describe ".self.by_market" do
     it "returns an array" do
       expect(FarMar::Vendor.by_market(100)).to be_an Array
     end
@@ -80,6 +80,20 @@ describe FarMar::Vendor do
     it "returns correct number of vendors" do
       expect(FarMar::Vendor.by_market(100).length).to eq 6
       expect(FarMar::Vendor.by_market(400).length).to eq 10
+    end
+  end
+  describe ".self.most_revenue(n)" do
+    it "returns an array" do
+      expect(FarMar::Vendor.most_revenue(5)).to be_an Array
+    end
+    it "returns an array of instances of FarMar::Vendor" do
+      expect(FarMar::Vendor.most_revenue(5)[0]).to be_instance_of FarMar::Vendor
+    end
+    it "returns array of correct length" do
+      expect(FarMar::Vendor.most_revenue(5).length).to eq 5
+    end
+    it "returns correct first instance in array, with highest revenue" do
+      expect(FarMar::Vendor.most_revenue(5)[0].revenue).to be >= FarMar::Vendor.most_revenue(5)[1].revenue
     end
   end
 end
