@@ -40,4 +40,10 @@ describe FarMar::Vendor do
         "70", "2838", "2013-11-09 13:30:15 -0800", "13", "38"]]
       end
 
+    describe "revenue"
+      it "returns the total of all of a given vendor's sales" do
+        @vend_test = FarMar::Vendor.new(13,"Grady, Hudson and Olson",11,4)
+        expect(@vend_test.revenue(13)).to eq 2848
+      end
+
 end

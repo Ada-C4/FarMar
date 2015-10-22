@@ -79,6 +79,9 @@ module FarMar
   end
 
 # - `revenue` - returns the the sum of all of the vendor's sales (in cents)
+  def revenue
+
+  end
 
 # - `self.by_market(market_id)` - returns all of the vendors with the given `market_id`
 
