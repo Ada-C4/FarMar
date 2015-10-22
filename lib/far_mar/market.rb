@@ -63,6 +63,7 @@ module FarMar
 
     def preferred_vendor
       ven = self.vendors
+      preferred = ven.max_by{|ven| ven.revenue}
     end
 
   end
