@@ -51,15 +51,13 @@ module FarMar
       end
 
       def self.between(beginning_time, end_time)
-        sales_csv = CSV.read("./support/sales.csv")
         matching_sales_array = []
-        sales_csv.find_all do |sale|
-          if DateTime.parse(sale[2]) >= beginning_time && DateTime.parse(sale[2]) <= end_time
-            new_sale = self.new(self.create_sale_hash(sale))
-            matching_sales_array.push(new_sale)
-          end
+        self.all.find_all do |sale|
+          sale.purchase_time >= beginning_time && sale.purchase_time <= end_time
+          matching_sales_array.push(sale)
         end
         return matching_sales_array
       end
+
   end
 end
