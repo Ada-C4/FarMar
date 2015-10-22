@@ -43,16 +43,13 @@ module FarMar
       end
 
       def find_sales(product_id)
-        sales_csv = CSV.read("./support/sales.csv")
-        matches = sales_csv.find_all {|sale| sale[4].to_i == product_id}
-        # matches is an array
         sales_array = []
-        matches.each do |line|
-          sale = FarMar::Sale.new(FarMar::Sale.create_sale_hash(line))
-          sales_array.push(sale)
+        FarMar::Sale.all.each do |sale|
+          if product_id == sale.product_id
+            sales_array.push(sale)
+          end
         end
-        #sales_array is an array of Vendor objects
-        return sales_array
+          return sales_array
       end
 
       def number_of_sales(product_id)

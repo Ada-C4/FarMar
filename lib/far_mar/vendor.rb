@@ -47,7 +47,7 @@ module FarMar
       def find_products(vendor_id)
         products_array = []
         FarMar::Product.all.each do |product|
-          if market_id == product.vendor_id
+          if vendor_id == product.vendor_id
             products_array.push(product)
           end
         end

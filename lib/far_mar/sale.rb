@@ -20,20 +20,18 @@ module FarMar
       end
 
       def self.all()
-        sales_csv = CSV.read("./support/sales.csv")
-        sales_array = []
-        sales_csv.each do |line|
-        new_sale = self.new(self.create_sale_hash(line))
-        sales_array.push(new_sale)
-      end
-      return sales_array
+        @@sales_all ||= []
+        if @@sales_all == []
+          @@sales_all = CSV.read("./support/sales.csv")
+          @@sales_all.map! do |line|
+            self.new(self.create_sale_hash(line))
+          end
+        end
+        return @@sales_all
       end
 
       def self.find(id)
-        sales_csv = CSV.read("./support/sales.csv")
-        match = sales_csv.find {|sale| sale[0].to_i == id}
-        new_sale = self.new(self.create_sale_hash(match))
-        return new_sale
+        self.all.find {|sale| sale.id == id}
       end
 
       def id
@@ -43,6 +41,10 @@ module FarMar
       def amount
         return @amount
       end
+
+      # def product_id
+      #   return @product_id
+      # end
 
       def find_vendor(vendor_id)
         FarMar::Vendor.find(vendor_id)
