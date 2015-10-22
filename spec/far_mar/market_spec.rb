@@ -73,6 +73,9 @@ describe FarMar do
         it "returns a collection" do
           expect(FarMar::Market.search(@search_term)).to be_an(Array)
         end
+        it "returns the correct number of matches" do
+          expect(FarMar::Market.search("school").length).to eq(3)
+        end
       end
     end
 
