@@ -42,10 +42,6 @@ module FarMar
         return @amount
       end
 
-      # def product_id
-      #   return @product_id
-      # end
-
       def find_vendor(vendor_id)
         FarMar::Vendor.find(vendor_id)
       end
