@@ -64,11 +64,15 @@ describe FarMar do
     end
 
     describe "self.between" do
+      before :each do
+        @beginning = DateTime.parse("2013-11-12 06:03:54 -0800")
+        @ending_time = DateTime.parse("2013-11-12 14:38:29 -0800")
+      end
       it "returns an array" do
-        expect(FarMar::Sale.between(a,b)).to be_an Array
+        expect(FarMar::Sale.between(@beginning,@ending_time)).to be_an Array
       end
       it "has instances of Sale in the array" do
-        expect(FarMar::Sale.between(a,b)[0]).to be_an_instance_of FarMar::Sale
+        expect(FarMar::Sale.between(@beginning,@ending_time)[0]).to be_an_instance_of FarMar::Sale
       end
     end
   end
