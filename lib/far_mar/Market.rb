@@ -30,5 +30,14 @@ module FarMar
         self.id == vendor.market_id
       end
     end
+    def products
+      products = []
+      vendors.map do |vendor|
+        vendor.products.map do |product|
+          products.push(product)
+        end
+      end
+      return products
+    end
   end
 end

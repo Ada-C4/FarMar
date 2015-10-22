@@ -29,4 +29,12 @@ describe FarMar::Market do
       expect(@market.vendors[0].class).to eq FarMar::Vendor
     end
   end
+  describe ".products" do
+    it "returns a collection of product instances associated through vendors" do
+      #vendor ids: 2681, 2682, 2683, 2684, 2685, 2686, 2687, 2688, 2689, 2690
+      expect(@market.products.length).to eq 34
+      expect(@market.products[0].class).to eq FarMar::Product
+    end
+  end
+  
 end
