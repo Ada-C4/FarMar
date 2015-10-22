@@ -77,6 +77,20 @@ module FarMar
       return winner
     end
 
+    def self.worst_revenue(market_id)
+      vendors = self.by_market(market_id)
+      min = 10000000000000000
+      looser = nil
+      vendors.each do |vendor|
+        revenue = vendor.revenue.to_i
+        if revenue < min
+        min = revenue
+        looser = vendor
+        end
+      end
+      return looser
+    end
+
     def self.by_market(market_id)
       @@array_all = self.all
       @@array_all.find_all do |vendor|
