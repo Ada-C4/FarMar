@@ -37,27 +37,22 @@ module FarMar
       return @@markets_all
     end
 
-      def self.find(id)
-        self.all.find {|market| market.id == id}
-      end
+    def self.find(id)
+      self.all.find {|market| market.id == id}
+    end
 
     def id
       return @id
     end
 
     def find_vendors(market_id)
-      #finds all the vendors for a particular market
-      #searches the vendor.all objects for the market_id
-      vendors_csv = CSV.read("./support/vendors.csv")
-      matches = vendors_csv.find_all {|vendor| vendor[3].to_i == market_id}
-      # matches is an array
       vendors_array = []
-      matches.each do |line|
-        vendor = FarMar::Vendor.new(FarMar::Vendor.create_vendor_hash(line))
-        vendors_array.push(vendor)
+      FarMar::Vendor.all.each do |vendor|
+        if market_id == vendor.market_id
+          vendors_array.push(vendor)
+        end
       end
-      #vendors_array is an array of Vendor objects
-      return vendors_array
+        return vendors_array
     end
 
   end

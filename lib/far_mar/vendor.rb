@@ -18,22 +18,19 @@ module FarMar
       end
 
       def self.all()
-        vendors_csv = CSV.read("./support/vendors.csv")
-        vendors_array = []
-        vendors_csv.each do |line|
-        new_vendor = self.new(self.create_vendor_hash(line))
-        vendors_array.push(new_vendor)
-      end
-      return vendors_array
+        @@vendors_all ||= []
+        if @@vendors_all == []
+          @@vendors_all = CSV.read("./support/vendors.csv")
+          @@vendors_all.map! do |line|
+            self.new(self.create_vendor_hash(line))
+          end
+        end
+        return @@vendors_all
       end
 
       def self.find(id)
-        vendors_csv = CSV.read("./support/vendors.csv")
-        match = vendors_csv.find {|vendor| vendor[0].to_i == id}
-        new_vendor = self.new(self.create_vendor_hash(match))
-        return new_vendor
+        self.all.find {|vendor| vendor.id == id}
       end
-
 
       def id
         return @id
