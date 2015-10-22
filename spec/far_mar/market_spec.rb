@@ -53,4 +53,19 @@ describe FarMar::Market do
 		end
 	end
 
+	describe '#products' do
+		before :each do
+			@market = FarmMar::Market.new(2,"Silverdale Farmers Market",98383,Silverdale,Kitsap,Washington,98383)
+		end
+		it 'returns FarMar::Product instances' do
+			expect(@market.products[0]).to be_an_instance_of(FarMar::Product)
+		end
+		it 'returns an array' do
+			expect(@market.products).to be_an_instance_of(Array)
+		end
+		it 'returns all products sold at the Market' do
+			expect(@market.products.length).to eq(9)
+		end
+	end
+
 end
