@@ -79,8 +79,13 @@ module FarMar
   end
 
 # - `revenue` - returns the the sum of all of the vendor's sales (in cents)
-  def revenue
-
+  def revenue(vend_id)
+    total_sales = 0
+    var = sales(vend_id)
+    var.each do |money|
+      total_sales += money[1].to_i
+    end
+    return total_sales
   end
 
 # - `self.by_market(market_id)` - returns all of the vendors with the given `market_id`
