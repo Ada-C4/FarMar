@@ -63,5 +63,21 @@ module FarMar
       return results
     end
 
+    def preferred_vendor
+      vendors = self.vendors
+      best_vendor = vendors.max_by do |vendor|
+        vendor.revenue
+      end
+      return best_vendor
+    end
+
+    def worst_vendor
+      vendors = self.vendors
+      worst_vendor = vendors.min_by do |vendor|
+        vendor.revenue
+      end
+      return worst_vendor
+    end
+
   end
 end

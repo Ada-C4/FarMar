@@ -77,7 +77,27 @@ describe FarMar do
           expect(FarMar::Market.search("school").length).to eq(3)
         end
       end
-    end
 
+      describe "#preferred_vendor" do
+        it "returns an instance of Vendor" do
+          expect(@market.preferred_vendor).to be_an_instance_of(FarMar::Vendor)
+        end
+        it "returns the Vendor with the most revenue" do
+          expect(@market.preferred_vendor.id).to eq(5)
+        end
+      end
+
+      describe "#worst_vendor" do
+        it "returns an instance of Vendor" do
+          expect(@market.worst_vendor).to be_an_instance_of(FarMar::Vendor)
+        end
+        it "returns the Vendor with the most revenue" do
+          expect(@market.worst_vendor.id).to eq(6)
+        end
+      end
+
+
+
+    end
   end
 end
