@@ -54,6 +54,21 @@ module FarMar
 
       # need to flatten all products so it doesn't return an array of arrays
       return all_products.flatten!
+    end
+
+    def self.search(search_term)
+      search_term_instances = []
+
+      markets = FarMar::Market.all
+
+
+      markets.each do |mkt_instance|
+        if mkt_instance.name.match(/#{search_term}/i)
+          search_term_instances.push(mkt_instance)
+        end
+      end
+
+      return search_term_instances
 
     end
   end

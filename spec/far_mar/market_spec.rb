@@ -60,4 +60,16 @@ describe FarMar::Market do
       expect(@market2.products[0].id).to eq 6370
     end
   end
+  describe ".self.search(search_term)" do
+    it "returns an array" do
+      expect(FarMar::Market.search("School")).to be_an Array
+    end
+    it "returns an array of FarMar::Market instances" do
+      expect(FarMar::Market.search("School")[0]).to be_instance_of FarMar::Market
+    end
+    it "returns correct num of results in array" do
+      expect(FarMar::Market.search("School").length).to eq 3
+      expect(FarMar::Market.search("green").length).to eq 54
+    end
+  end
 end
