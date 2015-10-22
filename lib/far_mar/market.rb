@@ -14,21 +14,22 @@ module FarMar
       @zip = market_hash[:zip]
     end
 
+    def self.create_market_hash(market_array)
+      market_hash = {}
+      market_hash[:id] = market_array[0].to_i
+      market_hash[:name] = market_array[1]
+      market_hash[:address] = market_array[2]
+      market_hash[:city] = market_array[3]
+      market_hash[:county] = market_array[4]
+      market_hash[:state] = market_array[5]
+      return market_hash
+    end
+
     def self.all()
       markets_csv = CSV.read("./support/markets.csv")
       markets_array = []
       markets_csv.each do |line|
-      new_market = FarMar::Market.new(
-      {
-        :id => line[0].to_i,
-        :name => line[1],
-        :address => line[2],
-        :city => line[3],
-        :county => line[4],
-        :state => line[5],
-        :zip => line[6]
-        }
-      )
+      new_market = FarMar::Market.new(self.create_market_hash(line))
       markets_array.push(new_market)
     end
     return markets_array
@@ -37,17 +38,7 @@ module FarMar
     def self.find(id)
       markets_csv = CSV.read("./support/markets.csv")
       match = markets_csv.find {|market| market[0].to_i == id}
-      new_market = FarMar::Market.new(
-      {
-        :id => match[0].to_i,
-        :name => match[1],
-        :address => match[2],
-        :city => match[3],
-        :county => match[4],
-        :state => match[5],
-        :zip => match[6]
-        }
-      )
+      new_market = FarMar::Market.new(self.create_market_hash(match))
       return new_market
     end
 
