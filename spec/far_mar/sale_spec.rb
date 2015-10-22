@@ -49,4 +49,12 @@ describe FarMar::Sale do
     end
   end
 
+  describe "#between" do
+    it "returns a collection of Sale instances where the purchase time is between the two times given." do
+      @begin = DateTime.parse("2013-11-12 06:03:50 -0800")
+      @end = DateTime.parse("2013-11-13 01:48:19 -0800")
+      expect(FarMar::Sale.between(@begin, @end)).to be_an Array
+    end
+  end
+
 end
