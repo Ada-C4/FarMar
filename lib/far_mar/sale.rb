@@ -9,7 +9,40 @@ module FarMar
     end
 
     def self.all_objects
-      @@all_objects ||= self.all
+      @@all_objects ||= self.all[0]
+    end
+
+    def self.vendor_stats
+      @@vendor_stats ||= self.all[1]
+    end
+
+    def self.all
+      if !self.class_variable_defined?(:@@all_objects) ||!self.class_variable_defined?(:@@vendor_stats)
+        csv_file = CSV.read(FILENAME)
+        # Create empty array which will hold all the objects
+        objects = []
+        stats = {}
+        csv_file.each do |row|
+          # Convert the array to a hash
+          sale_hash = convert_to_hash(row)
+          # Create an object from each row-hash in the csv file
+          temp = self.new(sale_hash)
+          # Push object to array of products
+          objects.push(temp)
+          # Populate the stats array
+          if stats[sale_hash[:vendor_id]].nil? # if there is no revenue yet
+            stats[sale_hash[:vendor_id]] = {}
+            stats[sale_hash[:vendor_id]][:revenue] = sale_hash[:amount] # store the first revenue
+            stats[sale_hash[:vendor_id]][:num_sales] = 1 # and tally 1 for number of sales
+          else
+            stats[sale_hash[:vendor_id]][:revenue] += sale_hash[:amount] # add the amount to the revenue
+            stats[sale_hash[:vendor_id]][:num_sales] += 1 # and add 1 to sale tally
+          end
+        end
+        return self.class_variable_set(:@@all_objects, objects), self.class_variable_set(:@@vendor_stats, stats)
+
+      end
+      self.all_objects
     end
 
     def self.convert_to_hash(sale_array)
