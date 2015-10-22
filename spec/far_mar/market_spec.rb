@@ -57,16 +57,22 @@ describe FarMar::Market do
     end
   end
 
-  # describe ".search()" do
-  #   before :each do
-  #     @search_test = FarMar::Market.search("School")
-  #   end
-  #   it "returns an array" do
-  #     expect(@search_test).to be_an Array
-  #   end
-  #
-  #   it "returns the correct number of items" do
-  #     expect(@search_test.length).to eq 3
-  #   end
-  # end
+  describe ".search()" do
+    before :each do
+      @search_test = FarMar::Market.search("School")
+    end
+    it "returns an array" do
+      expect(@search_test).to be_an Array
+    end
+
+    it "returns the correct number of items" do
+      expect(@search_test.length).to eq 3
+    end
+  end
+
+  describe "#pref_vendor" do
+    it "returns a vendor object" do
+      expect(@market1.pref_vendor).to be_an_instance_of FarMar::Vendor
+    end
+  end
 end
