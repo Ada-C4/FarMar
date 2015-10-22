@@ -38,28 +38,28 @@ describe FarMar::Market do
     end
   end
   describe "#search(search_term)" do
-    # it "returns market instances where the market name contains search_term" do
-    #   expect(FarMar::Market.search('braintree')[0].id).to eq 36
-    # end
-    # it "returns market instances where the vendor name contains search_term" do
-    #   expect(FarMar::Market.search("Eenhol")[1].id).to eq 21
-    # end
-    # it "returns all market and vendor instances where search_term is within the market or vendor name only" do
-    #   search = FarMar::Market.search("johns")
-    #   # 3 markets with "johns" in name
-    #   # 25 vendors with "johns" in name
-    #   expect(search.length).to eq 28
-    # end
-    # it "returns only market instances" do
-    #   search = FarMar::Market.search("johns")
-    #   incorrect_class = search.find_all do |instance|
-    #     instance.class != FarMar::Market
-    #     end
-    #   expect(incorrect_class).to eq []
-    # end
-    # it "returns empty array if no search results" do
-    #   expect(FarMar::Market.search("a;oeaifhgsoifgj ~~~")).to eq []
-    # end
+    it "returns market instances where the market name contains search_term" do
+      expect(FarMar::Market.search('braintree')[0].id).to eq 36
+    end
+    it "returns market instances where the vendor name contains search_term" do
+      expect(FarMar::Market.search("Eenhol")[1].id).to eq 21
+    end
+    it "returns all market and vendor instances where search_term is within the market or vendor name only" do
+      search = FarMar::Market.search("johns")
+      # 3 markets with "johns" in name
+      # 25 vendors with "johns" in name
+      expect(search.length).to eq 28
+    end
+    it "returns only market instances" do
+      search = FarMar::Market.search("johns")
+      incorrect_class = search.find_all do |instance|
+        instance.class != FarMar::Market
+        end
+      expect(incorrect_class).to eq []
+    end
+    it "returns empty array if no search results" do
+      expect(FarMar::Market.search("a;oeaifhgsoifgj ~~~")).to eq []
+    end
     it "does not duplicate (if same market and vendor)" do
       expect(FarMar::Market.search("").length).to eq 500
     end
