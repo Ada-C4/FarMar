@@ -5,6 +5,8 @@ describe FarMar do
     before :each do
       market_info = ["1","People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202"]
       @market = FarMar::Market.new(market_info)
+      market2_info = ["2","Silverdale Farmers Market","98383","Silverdale","Kitsap","Washington","98383"]
+      @market2 = FarMar::Market.new(market2_info)
     end
 
     describe "#initialize" do
@@ -87,12 +89,15 @@ describe FarMar do
         end
       end
 
-      describe "#preferred_vendor(date)" do
+      describe "#preferred_vendor_by_date(date)" do
         before :each do
-          @date = # some date, how to format??
+          @date = DateTime.strptime("2013-11-07", "%Y-%m-%d")
         end
         it "returns an instance of Vendor" do
-          expect(@market.preferred_vendor(@date)).to be_an_instance_of(FarMar::Vendor)
+          expect(@market.preferred_vendor_by_date(@date)).to be_an_instance_of(FarMar::Vendor)
+        end
+        it "returns the Vendor with the best sales that day" do
+          expect(@market2.preferred_vendor_by_date(@date).id).to eq(7) 
         end
       end
 
