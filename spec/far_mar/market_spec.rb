@@ -91,7 +91,7 @@ describe FarMar do
 
       describe "#preferred_vendor_by_date(date)" do
         before :each do
-          @date = DateTime.strptime("2013-11-07", "%Y-%m-%d")
+          @date = "2013-11-07"
         end
         it "returns an instance of Vendor" do
           expect(@market.preferred_vendor_by_date(@date)).to be_an_instance_of(FarMar::Vendor)
@@ -112,7 +112,7 @@ describe FarMar do
 
       describe "#worst_vendor_by_date(date)" do
         before :each do
-          @date = DateTime.strptime("2013-11-07", "%Y-%m-%d")
+          @date = "2013-11-07"
         end
         it "returns an instance of Vendor" do
           expect(@market.worst_vendor_by_date(@date)).to be_an_instance_of(FarMar::Vendor)

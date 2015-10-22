@@ -64,6 +64,32 @@ module FarMar
       return market_vendors
     end
 
+    def self.most_revenue(n)
+      sorted_vendors = FarMar::Vendor.all.sort_by do |vendor|
+        vendor.revenue
+      end
+      sorted_vendors.reverse!
+      return sorted_vendors[0..n-1]
+    end
+
+    def self.most_items(n)
+      sorted_vendors = FarMar::Vendor.all.sort_by do |vendor|
+        vendor.products.length
+      end
+      sorted_vendors.reverse!
+      return sorted_vendors[0..n-1]
+    end
+
+    def self.revenue_by_date(date)
+      date = Date.parse(date.to_s)
+      total_revenue = 0
+      day_sales = FarMar::Sale.all.each do |sale|
+        if sale.purchase_time.to_date == date
+          total_revenue = total_revenue + sale.amount
+        end
+      end
+      return total_revenue
+    end
 
   end
 end
