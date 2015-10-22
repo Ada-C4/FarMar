@@ -79,4 +79,12 @@ describe FarMar::Market do
       expect(products_26[1].vendor.market.id).to eq 26
     end
   end
+  describe "self.search(search_term)" do
+    it "returns market instances with search term in the market or vendor name" do
+      expect(FarMar::Market.search('school').length).to eq 3
+      expect(FarMar::Market.search('school').include?(FarMar::Market.find(75))).to be_truthy
+      expect(FarMar::Market.search('Sons').length).to eq 220
+      expect(FarMar::Market.search('sons').include?(FarMar::Market.find(269))).to be_truthy
+    end
+  end
 end
