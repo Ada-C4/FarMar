@@ -1,10 +1,11 @@
 module FarMar
   class Vendor < FarMar_Base
-    attr_reader :id, :name, :emp_num, :market_id
+    attr_reader :id, :name, :emp_num, :market_id, :revenue
     FILENAME = './support/vendors.csv'
 
     def initialize(vendor_hash)
       super(vendor_hash)
+      @revenue ||= revenue
     end
 
     def self.all_objects
