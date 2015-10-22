@@ -38,5 +38,17 @@ module FarMar
       return vendors
     end
 
+    def products
+      products = []
+      vendors = self.vendors
+      vendors.each do |vendor|
+        vendor_products = vendor.products
+        vendor_products.each do |vendor_product|
+          products.push(vendor_product)
+        end
+      end
+      return products
+    end
+
   end
 end

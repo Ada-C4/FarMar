@@ -53,6 +53,15 @@ describe FarMar do
           expect(@market.vendors[0]).to be_an_instance_of(FarMar::Vendor) if @market.vendors.length > 0
         end
       end
+
+      describe "#products" do
+        it "returns a collection" do
+          expect(@market.products).to be_an(Array)
+        end
+        it "returns instances of Products" do
+          expect(@market.products[0]).to be_an_instance_of(FarMar::Product) if @market.products.length > 0
+        end
+      end
     end
 
   end
