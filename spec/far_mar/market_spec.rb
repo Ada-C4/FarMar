@@ -97,7 +97,7 @@ describe FarMar do
           expect(@market.preferred_vendor_by_date(@date)).to be_an_instance_of(FarMar::Vendor)
         end
         it "returns the Vendor with the best sales that day" do
-          expect(@market2.preferred_vendor_by_date(@date).id).to eq(7) 
+          expect(@market2.preferred_vendor_by_date(@date).id).to eq(7)
         end
       end
 
@@ -107,6 +107,18 @@ describe FarMar do
         end
         it "returns the Vendor with the most revenue" do
           expect(@market.worst_vendor.id).to eq(6)
+        end
+      end
+
+      describe "#worst_vendor_by_date(date)" do
+        before :each do
+          @date = DateTime.strptime("2013-11-07", "%Y-%m-%d")
+        end
+        it "returns an instance of Vendor" do
+          expect(@market.worst_vendor_by_date(@date)).to be_an_instance_of(FarMar::Vendor)
+        end
+        it "returns the Vendor with the worst sales that day" do
+          expect(@market2.worst_vendor_by_date(@date).id).to eq(9)
         end
       end
 

@@ -100,5 +100,26 @@ module FarMar
       return worst_vendor
     end
 
+    def worst_vendor_by_date(date)
+      # expecting a string in the form yyyy-mm-dd
+      date = Date.parse(date.to_s)
+
+      vendors = self.vendors
+      vendor_hash = {}
+      vendors.each do |vendor|
+        vendor_sales = vendor.sales
+        day_sales = vendor_sales.find_all do |sale|
+          date == sale.purchase_time.to_date
+        end
+        day_revenue = 0
+        day_sales.each do |sale|
+          day_revenue = day_revenue + sale.amount
+        end
+        vendor_hash[vendor.id] = day_revenue
+      end
+      worst_vendor_id = vendor_hash.key(vendor_hash.values.min)
+      return FarMar::Vendor.find(worst_vendor_id)
+    end
+
   end
 end
