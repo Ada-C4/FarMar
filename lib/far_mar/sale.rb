@@ -52,6 +52,10 @@ module FarMar
     def vendor
       return FarMar::Vendor.find(self.vendor_id)
     end
-    
+
+    def product
+      return FarMar::Product.find(self.product_id)
+    end
+
   end
 end
