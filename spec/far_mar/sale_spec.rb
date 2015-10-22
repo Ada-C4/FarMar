@@ -54,6 +54,7 @@ describe FarMar::Sale do
       @begin = DateTime.parse("2013-11-12 06:03:50 -0800")
       @end = DateTime.parse("2013-11-13 01:48:19 -0800")
       expect(FarMar::Sale.between(@begin, @end)).to be_an Array
+      expect(FarMar::Sale.between(@begin, @end).first).to be_an_instance_of FarMar::Sale
     end
   end
 
