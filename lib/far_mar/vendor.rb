@@ -37,9 +37,9 @@ module FarMar
 
      #returns an Array of product instances that are associated by the FarMar::Product vendor_id field.
      def products(products_csv = "./support/products.csv")
-       all_products = Vendor.all(vendors_csv)
-       vendor_matches = (all_vendors.find_all {|n| n.market_id == self.id})
-       return vendor_matches
+       all_products = Product.all(products_csv)
+       product_matches = (all_products.find_all {|n| n.vendor_id == self.id})
+       return product_matches
      end
 
      def sales

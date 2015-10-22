@@ -75,4 +75,14 @@ describe FarMar::Vendor do
       expect(market_match.name).to eq "Secret Market"
     end
   end
+
+  describe "#products" do
+    it "returns an array of products associated with the given vendor" do
+      @vendor3 = FarMar::Vendor.new("4", "Best vendor", "9", "5")
+      product_matches = @vendor3.products("./support/products2.csv")
+      expect(product_matches).to be_an(Array)
+      expect(product_matches[0].vendor_id).to eq "4"
+      expect(product_matches[0].name).to eq "Special Apples"
+    end
+  end
 end
