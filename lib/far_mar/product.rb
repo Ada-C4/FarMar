@@ -4,7 +4,7 @@ module FarMar
     def initialize(id, name, vendor_id)
       @id = id.to_i
       @name = name
-      @vendor_id = vendor_id
+      @vendor_id = vendor_id.to_i
     end
 
     def self.all

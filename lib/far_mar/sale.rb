@@ -5,8 +5,8 @@ module FarMar
       @id = id.to_i
       @amount = amount
       @purchase_time = purchase_time.to_s
-      @vendor_id = vendor_id
-      @product_id = product_id
+      @vendor_id = vendor_id.to_i
+      @product_id = product_id.to_i
     end
 
     def self.all

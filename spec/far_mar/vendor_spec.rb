@@ -38,6 +38,12 @@ describe FarMar::Vendor do
       expect(@vendor_2.market.length).to eq 1
     end
   end
+
+  context"#products" do
+    it "returns a collection of Far::Mar product instances" do
+      expect(@vendor.products.class).to be Array
+    end
+  end
   end
 
 
