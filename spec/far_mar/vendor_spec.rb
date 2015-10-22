@@ -57,9 +57,19 @@ describe FarMar::Vendor do
   end
 
   describe ".revenue" do
-    it "returns the the sum of all of the vendor's sales, in cents" do
+    it "returns the sum of all of the vendor's sales, in cents" do
       expect(@vendor.revenue).to be_an Integer
       expect(@vendor.revenue).to eq 38259
+    end
+    it "returns the amount of the vendor's sale in cents, if only one sale" do
+      @vendor2 = FarMar::Vendor.new({
+        id: "2",
+        name: "Hamill, Kilback and Pfeffer",
+        employees: "5",
+        market_id: "1"
+        })
+        expect(@vendor2.revenue).to be_an Integer
+        expect(@vendor2.revenue).to eq 5727
     end
   end
 
