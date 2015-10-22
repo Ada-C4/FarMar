@@ -65,4 +65,12 @@ describe FarMar::Product do
       expect(product.number_of_sales).to eq 5
     end
   end
+  describe "self.by_vendor(vendor_id)" do
+    it "returns all products with a given vendor id" do
+        vendor_10_products = FarMar::Product.by_vendor(10)
+      expect(vendor_10_products).to be_an Array
+      expect(vendor_10_products[2]).to be_an_instance_of FarMar::Product
+      expect(vendor_10_products[3].vendor_id).to eq 10
+    end
+  end
 end
