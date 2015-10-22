@@ -23,9 +23,9 @@ describe FarMar::Product do
     end
   end
 
-  describe "vendor" do
+  describe "by_vendor" do
     it "return products by vendor id" do
-      vendor_array = FarMar::Product.vendor(2)
+      vendor_array = FarMar::Product.by_vendor(2)
       expect(vendor_array[0].id).to eq 2
     end
   end

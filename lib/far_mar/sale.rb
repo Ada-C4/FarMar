@@ -6,7 +6,7 @@ module FarMar
     def initialize (id, amount, purchase_time, vendor_id, product_id)
       @amount = amount
       @id = id
-      @purchase_time =  DateTime.parse(purchase_time)#DateTime.strptime(purchase_time, "%Y-%m-%d %H:%M:%S %z")
+      @purchase_time =  DateTime.strptime(purchase_time, "%Y-%m-%d %H:%M:%S %z" )
       @vendor_id = vendor_id
       @product_id = product_id
       # @sale_array = self.all  -check it later
@@ -37,6 +37,16 @@ module FarMar
       @@sale_all.find_all do |sale|
         sale.vendor_id == id
       end
+    end
+
+    def self.between(beginnig_time, end_time)
+      @@sale_all = self.all
+      array_sales = []
+      @@sale_all.map do |sale|
+        check = sale.purchase_time.between?(beginnig_time, end_time)
+        array_sales.push(sale) if check
+      end
+      return array_sales
     end
   end
 end

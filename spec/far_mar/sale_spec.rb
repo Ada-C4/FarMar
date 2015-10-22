@@ -37,4 +37,17 @@ describe FarMar::Sale do
     end
   end
 
+  describe "between" do
+    it "returns an array of sales" do
+      beginning_time = DateTime.strptime("2013-11-06 08:35:40 -0800", "%Y-%m-%d %H:%M:%S %z")
+      end_time = DateTime.strptime("2013-11-08 16:36:03 -0800", "%Y-%m-%d %H:%M:%S %z" )
+      expect(FarMar::Sale.between(beginning_time, end_time)).to be_an_instance_of(Array)
+    end
+    it "purchases between the two times" do
+      beginning_time = DateTime.strptime("2013-11-13 01:48:37 -0800", "%Y-%m-%d %H:%M:%S %z")
+      end_time = DateTime.strptime("2013-11-13 01:50:37 -0800", "%Y-%m-%d %H:%M:%S %z" )
+      sale = FarMar::Sale.between(beginning_time, end_time)
+      expect(sale[0].id).to eq(3)
+    end
+  end
 end

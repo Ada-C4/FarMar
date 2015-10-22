@@ -37,7 +37,7 @@ module FarMar
     end
 
     def products
-      return products_array = FarMar::Product.vendor(self.id)
+      return products_array = FarMar::Product.by_vendor(self.id)
     end
 
     def sales
