@@ -63,5 +63,16 @@ describe FarMar do
         expect(vendors[0].name).to eq("Davis Group")
       end
     end
+
+    describe "#products" do
+      it "returns all Products sold in the market" do
+        products = sample_market.products
+        expect(products).to be_an_instance_of(Array)
+        expect(products.length).to eq(4)
+        expect(products[0]).to be_an_instance_of(FarMar::Product)
+        expect(products[0].id).to eq(1073)
+        expect(products[-1].id).to eq(1076)
+      end
+    end
   end
 end
