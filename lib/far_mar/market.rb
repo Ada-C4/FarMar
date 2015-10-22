@@ -22,26 +22,24 @@ module FarMar
       market_hash[:city] = market_array[3]
       market_hash[:county] = market_array[4]
       market_hash[:state] = market_array[5]
+      market_hash[:zip] = market_array[6].to_i
       return market_hash
     end
 
     def self.all()
-      markets_csv = CSV.read("./support/markets.csv")
-      markets_array = []
-      markets_csv.each do |line|
-      new_market = self.new(self.create_market_hash(line))
-      markets_array.push(new_market)
-    end
-    return markets_array
-    end
-
-    def self.find(id)
-      markets_csv = CSV.read("./support/markets.csv")
-      match = markets_csv.find {|market| market[0].to_i == id}
-      new_market = self.new(self.create_market_hash(match))
-      return new_market
+      @@markets_all ||= []
+      if @@markets_all == []
+        @@markets_all = CSV.read("./support/markets.csv")
+        @@markets_all.map! do |line|
+          self.new(self.create_market_hash(line))
+        end
+      end
+      return @@markets_all
     end
 
+      def self.find(id)
+        self.all.find {|market| market.id == id}
+      end
 
     def id
       return @id
