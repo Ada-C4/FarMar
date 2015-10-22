@@ -21,7 +21,7 @@ describe FarMar::Market do
       end
     end
     describe "#address" do
-      it "returns the address focr the market" do
+      it "returns the address for the market" do
         expect(@market.address).to eq "123 Spring St"
       end
     end
@@ -68,6 +68,15 @@ describe FarMar::Market do
         expect(@market.vendors).to be_an Array
         expect(@market.vendors[3]).to be_an_instance_of FarMar::Vendor
         expect(@market.vendors[4].market_id).to eq 1
+    end
+  end
+  describe "#products" do
+    it "returns a collection of products sold at the market" do
+      market = FarMar::Market.new("26","Cheyenne Farmers Market","1 Depot Plaza","Cheyenne","Laramie","Wyoming","82001")
+      products_26 = market.products
+      expect(products_26).to be_an Array
+      expect(products_26[2]).to be_an_instance_of(FarMar::Product)
+      expect(products_26[1].vendor.market.id).to eq 26
     end
   end
 end
