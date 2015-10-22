@@ -4,4 +4,7 @@ SimpleCov.start
 # Here the . means the directory from where we ran RSpec
 require "./lib/far_mar"
 
-# FarmMar::Market.CONSTANT_FOR_CSV use a constant to call the CSV then rewrite it.
+FarMar::Market::CSV_FILE = "./support/sample_markets.csv"
+FarMar::Vendor::CSV_FILE = "./support/sample_vendors.csv"
+FarMar::Product::CSV_FILE = "./support/sample_products.csv"
+FarMar::Sale::CSV_FILE = "./support/sample_sales.csv"

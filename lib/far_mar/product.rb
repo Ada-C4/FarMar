@@ -1,6 +1,7 @@
 module FarMar
   class Product
     attr_accessor :id, :name, :vendor_id
+    CSV_FILE = "./support/products.csv"
 
     def initialize(id, name, vendor_id)
       @id = id.to_i
@@ -36,7 +37,7 @@ module FarMar
       @@products_list ||= []
 
       if @@products_list == []
-        CSV.foreach("./support/products.csv") do |row|
+        CSV.foreach(CSV_FILE) do |row|
           product = Product.new(row[0], row[1], row[2])
           @@products_list.push(product)
         end

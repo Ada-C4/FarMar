@@ -1,7 +1,7 @@
-require 'pry'
-
 module FarMar
   class Vendor
+    CSV_FILE = "./support/vendors.csv"
+
     attr_accessor :id, :name, :no_employees, :market_id
 
     def initialize(id, name, no_employees, market_id)
@@ -53,7 +53,7 @@ module FarMar
       @@vendors_list ||= []
 
       if @@vendors_list == []
-        CSV.foreach("./support/vendors.csv") do |row|
+        CSV.foreach(CSV_FILE) do |row|
           vendor = Vendor.new(row[0], row[1], row[2], row[3])
           @@vendors_list.push(vendor)
         end
@@ -87,15 +87,25 @@ module FarMar
     end
 
     def self.revenue(date)
-      sales_list = Sale.between(date, date)
+      date = Date.parse(date)
+      sales_list = Sale.all
 
-      sales_list.inject(0) { |sum, sale| sum + sale.amount}
+      sales_for_date = sales_list.find_all do |sale|
+        sale.purchase_time.to_date == date
+      end
+
+      sales_for_date.inject(0) { |sum, sale| sum + sale.amount}
     end
 
     def daily_sales(date)
-      sales_list = Sale.between(date, date)
+      date = Date.parse(date)
+      sales_list = Sale.all
 
-      vendor_sales = sales_list.find_all do |sale|
+      sales_for_date = sales_list.find_all do |sale|
+        sale.purchase_time.to_date == date
+      end
+
+      vendor_sales = sales_for_date.find_all do |sale|
         sale.vendor_id == self.id
       end
 

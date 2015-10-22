@@ -23,13 +23,13 @@ describe FarMar::Product do
       expect(FarMar::Product.all).to be_an Array
     end
     it "creates an array with instances of Product" do
-      expect(FarMar::Product.all[999]).to be_an_instance_of FarMar::Product
+      expect(FarMar::Product.all[0]).to be_an_instance_of FarMar::Product
     end
   end
   describe "self.find(id)" do
     it "finds a product using its ID" do
-      @id = 8171
-      expect(FarMar::Product.find(@id).id).to eq 8171
+      @id = 3
+      expect(FarMar::Product.find(@id).id).to eq 3
     end
   end
   describe "#vendor" do
@@ -53,14 +53,14 @@ describe FarMar::Product do
   end
   describe "#number_of_sales" do
     before :each do
-      @id = 1
+      @id = 23
       @product = FarMar::Product.find(@id)
     end
     it "returns an integer" do
       expect(@product.number_of_sales).to be_an Fixnum
     end
     it "counts the number of sales for a product" do
-      expect(@product.number_of_sales).to eq 7
+      expect(@product.number_of_sales).to eq 2
     end
   end
   describe "self.by_vendor(vendor_id)" do

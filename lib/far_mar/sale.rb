@@ -1,5 +1,7 @@
 module FarMar
   class Sale
+    CSV_FILE = "./support/sales.csv"
+
     attr_accessor :id, :amount, :purchase_time, :vendor_id, :product_id
 
     def initialize(id, amount, purchase_time, vendor_id, product_id)
@@ -33,7 +35,7 @@ module FarMar
       @@sales_list ||= []
 
       if @@sales_list == []
-        CSV.foreach("./support/sales.csv") do |row|
+        CSV.foreach(CSV_FILE) do |row|
           sale = Sale.new(row[0], row[1], row[2], row[3], row[4])
           @@sales_list.push(sale)
         end

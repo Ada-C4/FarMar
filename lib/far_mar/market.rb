@@ -1,6 +1,7 @@
 module FarMar
   class Market
     attr_accessor :id, :name, :address, :city, :county, :state, :zip
+    CSV_FILE = "./support/markets.csv"
 
     def initialize(id, name, address, city, county, state, zip)
       @id = id.to_i
@@ -35,7 +36,7 @@ module FarMar
       @@markets_list ||= []
 
       if @@markets_list == []
-        CSV.foreach("./support/markets.csv") do |row|
+        CSV.foreach(CSV_FILE) do |row|
           market = Market.new(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
           @@markets_list.push(market)
         end

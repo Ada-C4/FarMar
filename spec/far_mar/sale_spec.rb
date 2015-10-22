@@ -31,24 +31,23 @@ describe FarMar::Sale do
     end
   end
   describe "self.find(id)" do
-    it "returns the name of the product sold" do
-      @id = 11000
-      @sale = FarMar::Sale.find(@id)
-      expect(FarMar::Product.find(@sale.product_id)).to be_an_instance_of FarMar::Product
+    it "finds a sale using its ID" do
+      @id = 60
+      expect(FarMar::Sale.find(@id)).to be_an_instance_of FarMar::Sale
     end
   end
   describe "#vendor" do
     it "returns a Vendor instance associated with the sale" do
-      @id = 2
+      @id = 8
       expect(FarMar::Sale.find(@id).vendor).to be_an_instance_of FarMar::Vendor
-      expect(FarMar::Sale.find(@id).vendor.id).to eq 1
+      expect(FarMar::Sale.find(@id).vendor.id).to eq 2
     end
   end
   describe "#product" do
     it "returns a Product instance associated with the sale" do
-      @id = 2
+      @id = 9
       expect(FarMar::Sale.find(@id).product).to be_an_instance_of FarMar::Product
-      expect(FarMar::Sale.find(@id).product.id).to eq 1
+      expect(FarMar::Sale.find(@id).product.id).to eq 4
     end
   end
   describe "self.between(beginning_time, end_time)" do
