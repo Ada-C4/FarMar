@@ -23,15 +23,11 @@ module FarMar
     end
 
     def vendor
-      FarMar::Vendor.all.find do |vendor|
-        vendor.id == @vendor_id
-      end
+      FarMar::Vendor.all.find {|vendor| vendor.id == @vendor_id}
     end
 
     def sales
-      FarMar::Sale.all.find_all do |sale|
-        sale.product_id == @id
-      end
+      FarMar::Sale.all.find_all {|sale| sale.product_id == @id}
     end
 
     def number_of_sales
