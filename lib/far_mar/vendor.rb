@@ -67,13 +67,13 @@ module FarMar
 
 #WHY IS THIS NOT WORKING
     def self.by_market(market_id)
-      possibilities = self.all
-      vendor_party = possibilities.find do |each|
+      #possibilities = self.all
+      #vendor_party = possibilities.find_all do |each|
+        #market_id == each.market_id
+      return self.all.find_all do |each|
         market_id == each.market_id
-        vendor_party.push(match)
-        binding.pry
       end
-      return vendor_party
+      #return vendor_party
     end
   end
 end

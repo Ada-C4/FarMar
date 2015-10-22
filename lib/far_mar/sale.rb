@@ -52,8 +52,8 @@ module FarMar
     end
 
     def self.between(beginning_time, end_time)
-      beginning_time = DateTime.parse(beginning_time)
-      end_time = DateTime.parse(end_time)
+      #beginning_time = DateTime.parse(beginning_time)
+      #end_time = DateTime.parse(end_time)
       all_between = []
       self.all do |each|
         all_between.push(each) if each.purchase_time >= beginning_time && each.purchase_time <= end_time
