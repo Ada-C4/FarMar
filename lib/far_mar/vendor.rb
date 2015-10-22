@@ -6,7 +6,7 @@ module FarMar
     def initialize(vendor_hash)
       @id = vendor_hash[:id].to_i
       @name = vendor_hash[:name]
-      @team_size = vendor_hash[:team_size]
+      @team_size = vendor_hash[:team_size].to_i
       @market_id = vendor_hash[:market_id].to_i
     end
 
@@ -30,6 +30,8 @@ module FarMar
     end
 
     def self.by_market(market_id)
+      FarMar::Market.find(market_id).list_vendors
+      #list = FarMar::Market.list_vendors
     end
 
     def list_markets
@@ -40,16 +42,20 @@ module FarMar
       product_list = []
       FarMar::Product.all.each do |product|
         if id == product.vendor_id
-        #binding.pry
           product_list.push(product)
-          #binding.pry
         end
       end
       product_list
-      #binding.pry
     end
 
     def list_sales
+      sales_list = []
+      FarMar::Sale.all.each do |sale|
+        if id == sale.vendor_id
+          sales_list.push(sale)
+        end
+      end
+      sales_list
     end
 
     def revenue

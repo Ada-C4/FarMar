@@ -43,5 +43,25 @@ describe FarMar do
         end
       end
     end
+
+    describe "list_sales" do
+      it "returns array of sale instances" do
+        sale_test = FarMar::Vendor.find(50)
+        sale_test.list_sales.each do |sale|
+          expect(sale.vendor_id).to eq 50
+        end
+      end
+    end
+
+    describe "self.by_market" do
+      it "returns array of markets" do
+        testcase = FarMar::Vendor.by_market(27)
+        testcase.each do |vendor|
+          expect(vendor.list_markets.name).to eq "Pinckneyville Farmers Market"
+        end
+      end
+    end
+
+
   end
 end
