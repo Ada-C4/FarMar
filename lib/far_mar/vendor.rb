@@ -35,10 +35,11 @@ module FarMar
     end
 
     def market
-      matched_market = FarMar::Market.all.find_all do |each|
-        @id == each.id
-      end
-      return matched_market
+      # matched_market = FarMar::Market.all.find_all do |each|
+      #   @market_id == each.id
+      # end
+      # return matched_market
+      return FarMar::Market.find(@market_id)
     end
 
     def products
@@ -65,7 +66,6 @@ module FarMar
       return revenue
     end
 
-#WHY IS THIS NOT WORKING
     def self.by_market(market_id)
       #possibilities = self.all
       #vendor_party = possibilities.find_all do |each|
