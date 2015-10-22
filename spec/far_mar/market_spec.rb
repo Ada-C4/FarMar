@@ -3,7 +3,6 @@ require "spec_helper"
 describe FarMar::Market do
   before :each do
     @markets = FarMar::Market.all
-
   end
 
   describe "#new" do
@@ -86,7 +85,13 @@ describe FarMar::Market do
       min = all_vendors.min_by { |i| i.revenue}
       expect(sample_market.worst_vendor).to eq min
     end
+  end
 
+  describe ".search" do
+    it "returns the correct number of entries for the sample search" do
+      sample_search = 'school'
+      expect(FarMar::Market.search(sample_search).length).to eq 3
+    end
   end
 
 end

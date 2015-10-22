@@ -54,18 +54,19 @@ module FarMar
   # Returns a collection of Market instances where the market name or vendor name contain the search term
   def self.search(search_term)
     match_search = []
-    markets = FarMar::Market.all
-    vendors = FarMar::Vendor.all
+    markets = FarMar::Market.all("./support/markets.csv")
+    vendors = FarMar::Vendor.all("./support/vendors.csv")
     markets.each do |market|
-      if market.name.include? search_term
+      if market.name.downcase.include? search_term.downcase
         match_search.push(market)
       end
     end
     vendors.each do |vendor|
-      if vendor.name.include? search_term
+      if vendor.vendor_name.downcase.include? search_term.downcase
         match_search.push(vendor.market)
       end
     end
+    return match_search
   end
 
   def sorted_vendor
