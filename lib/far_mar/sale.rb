@@ -19,7 +19,7 @@ module FarMar
           @@sale_array.push(new_sale)
         end
       end
-      
+
       return @@sale_array
     end
 
@@ -42,6 +42,12 @@ module FarMar
     end
 
     def self.between(beginning_time, end_time)
+      if beginning_time.class == String
+        beginning_time = DateTime.strptime(beginning_time, "%Y-%m-%d %H:%M:%S %z")
+      end
+      if end_time.class == String
+        end_time = DateTime.strptime(end_time, "%Y-%m-%d %H:%M:%S %z")
+      end
       sales_between = FarMar::Sale.all.find_all do |sale|
         sale.purchase_time.between?(beginning_time,end_time)
       end
