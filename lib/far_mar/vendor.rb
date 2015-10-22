@@ -79,7 +79,7 @@ module FarMar
 
     def self.worst_revenue(market_id)
       vendors = self.by_market(market_id)
-      min = 10000000000000000
+      min = 10000000000
       looser = nil
       vendors.each do |vendor|
         revenue = vendor.revenue.to_i

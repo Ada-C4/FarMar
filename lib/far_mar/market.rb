@@ -49,5 +49,9 @@ module FarMar
       return FarMar::Vendor.best_revenue(self.id)
      end
 
+     def worst_vendor
+       return FarMar::Vendor.worst_revenue(self.id)
+     end
+
   end
 end

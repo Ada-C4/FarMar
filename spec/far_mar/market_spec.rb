@@ -49,6 +49,12 @@ describe FarMar::Market do
     expect(@market.prefered_vendor).to be_an_instance_of(FarMar::Vendor)
     end
   end
+
+  describe "worst vendor" do
+    it "returns a vendor" do
+      expect(@market.worst_vendor).to be_an_instance_of(FarMar::Vendor)
+    end
+  end
 end
 
 #     it "return vendors that associated with the market"
