@@ -18,4 +18,6 @@ describe FarMar::Product do
       expect(FarMar::Product.find(4).name).to eq "Yummy Fruit"
     end
   end
+
+  
 end

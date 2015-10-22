@@ -63,31 +63,31 @@ module FarMar
       return all_products
     end
 
-    def self.search(search_term)
-      results = []
-      FarMar::Market.all.find_all do |market|
-        results.push(market) if market.name.match(/search_term/)
-      end
-      FarMar::Vendor.all.find_all do |vendor|
-        results.push(vendor) if vendor.name.match(/search_term/)
-      end
-      return results
-    end
-
-    def preferred_vendor
-      self.vendors.sort_by { |vendor| vendor.revenue}.last
-    end
-
-    def preferred_vendor(date)
-      self.vendors.each do |vendor|
-      rev = 0
-       vendor.sales.each do |sale|
-         sale.purchase_time
-         if purchase_time.to_date == date
-           rev += sale.amount
-         end
-       end
-      end
-    end
+    # def self.search(search_term)
+    #   results = []
+    #   FarMar::Market.all.find_all do |market|
+    #     results.push(market) if market.name.match(/search_term/)
+    #   end
+    #   FarMar::Vendor.all.find_all do |vendor|
+    #     results.push(vendor) if vendor.name.match(/search_term/)
+    #   end
+    #   return results
+    # end
+    #
+    # def preferred_vendor
+    #   self.vendors.sort_by { |vendor| vendor.revenue}.last
+    # end
+    #
+    # def preferred_vendor(date)
+    #   self.vendors.each do |vendor|
+    #   rev = 0
+    #    vendor.sales.each do |sale|
+    #      sale.purchase_time
+    #      if purchase_time.to_date == date
+    #        rev += sale.amount
+    #      end
+    #    end
+    #   end
+    # end
   end
 end
