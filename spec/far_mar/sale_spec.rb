@@ -53,4 +53,11 @@ describe FarMar::Sale do
       expect(sale_100.id).to eq 100
     end
   end
+  describe "#vendor" do
+    it "returns the vendor associated with the sale" do
+      sale = FarMar::Sale.new("25","4951","2013-11-09 23:42:41 -0800","5","9")
+      expect(sale.vendor).to be_an_instance_of FarMar::Vendor
+      expect(sale.vendor.id).to be 5
+    end
+  end
 end
