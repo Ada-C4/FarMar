@@ -1,4 +1,5 @@
 require './lib/far_mar'
+require 'pry'
 module FarMar
   class Market
     attr_reader :id, :name, :address, :city, :county, :state, :zip
@@ -38,6 +39,21 @@ module FarMar
         end
       end
       return products
+    end
+    def self.search(search_term)
+      search_term = search_term.downcase
+      matching_markets = []
+      all.each do |market|
+        if (market.name.downcase.include? search_term) && !(matching_markets.include? market)
+            matching_markets.push(market)
+        end
+      end
+      FarMar::Vendor.all.each do |vendor|
+        if (vendor.name.downcase.include? search_term) && !(matching_markets.include? vendor.market)
+            matching_markets.push(vendor.market)
+        end
+      end
+      return matching_markets
     end
   end
 end
