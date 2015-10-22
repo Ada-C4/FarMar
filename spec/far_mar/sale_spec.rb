@@ -35,4 +35,11 @@ describe FarMar::Sale do
     end
   end
 
+  describe ".vendor" do
+    it "returns the Vendor instance associated with the sale" do
+      expect(@sale.vendor).to be_an_instance_of FarMar::Vendor
+      expect(@sale.vendor.name).to eq "Feil-Farrell"
+    end
+  end
+
 end

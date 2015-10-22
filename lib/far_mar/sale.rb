@@ -26,9 +26,12 @@ module FarMar
       all.find{|sale| sale.id == id}
     end
 
-    # def vendor
-    # end
-    #
+    def vendor
+      FarMar::Vendor.all.find do |vendor|
+        vendor.id == @vendor_id
+      end
+    end
+
     # def product
     # end
     #
