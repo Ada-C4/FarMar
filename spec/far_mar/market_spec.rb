@@ -65,10 +65,10 @@ describe FarMar::Market do
       end
     end
 
-    describe  "#preferred_vendor_date(date)" do
+    describe "#preferred_vendor_date(date)" do
       it "returns the vendor with the highest revenue for a given date" do
         expect(@market3.preferred_vendor_date(Date.parse("2013-11-10"))).to be_an_instance_of FarMar::Vendor
-        expect(@market3.preferred_vendor_date(Date.parse("2013-11-07")).name).to eq "Bechtelar Inc"
+        expect(@market3.preferred_vendor_date(Date.parse("2013-11-07")).id).to eq 7
       end
     end
 

@@ -44,17 +44,11 @@ module FarMar
 
     def self.search(search_term)
       markets = []
-      FarMar::Vendor.all.each do |vendor|
-        name = vendor.name.downcase
-        if name.include?(search_term.downcase)
-          markets << vendor.market
-        end
+      FarMar::Vendor.all.find_all do |vendor|
+        markets.push(vendor.market) if vendor.name.match(/#{search_term}/i)
       end
-      self.all.each do |market|
-        name = market.name.downcase
-        if name.include?(search_term.downcase)
-          markets << market
-        end
+      FarMar::Market.all.find_all do |market|
+        markets.push(market) if market.name.match(/#{search_term}/i)
       end
       return markets
     end
