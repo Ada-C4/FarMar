@@ -17,7 +17,7 @@ module FarMar
         {
           :id => line[0].to_i,
           :amount => line[1].to_i,
-          :purchase_time => line[2],
+          :purchase_time => DateTime.parse(line[2]),
           :vendor_id => line[3].to_i,
           :product_id => line[4].to_i
           }
@@ -34,7 +34,7 @@ module FarMar
         {
           :id => match[0].to_i,
           :amount => match[1].to_i,
-          :purchase_time => match[2],
+          :purchase_time => DateTime.parse(match[2]),
           :vendor_id => match[3].to_i,
           :product_id => match[4].to_i
           }
@@ -52,6 +52,13 @@ module FarMar
 
       def find_vendor(vendor_id)
         FarMar::Vendor.find(vendor_id)
+      end
+
+      def find_product(product_id)
+        FarMar::Product.find(product_id)
+      end
+
+      def self.between(beginning_time, end_time)
       end
   end
 end

@@ -57,7 +57,7 @@ module FarMar
           sale = FarMar::Sale.new({
             :id => line[0].to_i,
             :amount => line[1].to_i,
-            :purchase_time => line[2],
+            :purchase_time => DateTime.parse(line[2]),
             :vendor_id => line[3].to_i,
             :product_id => line[4].to_i
           })
