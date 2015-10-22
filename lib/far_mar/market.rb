@@ -91,6 +91,33 @@ module FarMar
       return ven_highest_revenue
     end
 
+    def prefered_vendor_on(date)
+
+      date = DateTime.strptime(date, "%Y-%m-%d").to_date
+      highest_revenue = 0
+      ven_highest_revenue = nil
+
+
+      vendors.each do |vendor_instance|
+        vendor_instance.sales.each do |sales_instance|
+          sales_on_date = []
+          revenue = 0
+          if sales_instance.purchase_time.to_date == date
+            sales_on_date.push(sales_instance.amount)
+          end
+          if sales_on_date.length > 0
+            sales_on_date.each {|amount| revenue += amount}
+            if revenue > highest_revenue
+              highest_revenue = revenue
+              ven_highest_revenue = vendor_instance
+            end
+          end
+        end
+      end
+      return ven_highest_revenue
+
+    end
+
     def worst_vendor
       lowest_revenue = Float::INFINITY
       ven_lowest_revenue = nil
@@ -103,8 +130,24 @@ module FarMar
         end
       end
       return ven_lowest_revenue
-
     end
+
+    # def worst_vendor_on(date)
+    #   date = DateTime.strptime(date, "%Y-%m-%d")
+    #   lowest_revenue = Float::INFINITY
+    #   ven_lowest_revenue = nil
+    #
+    #   vendors.each do |vendor_instance|
+    #     purchase_time = vendor_instance.sales.purchase_time
+    #     if purchase_time == date
+    #       vendor_instance
+    #       if
+    #
+    #     end
+    #   end
+
+        # ven_revenue = vendor_instance.revenue
+    # end
 
   end
 end
