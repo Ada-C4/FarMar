@@ -56,7 +56,7 @@ describe FarMar do
     end
 
     describe "find_market" do
-      it "returns a Market object" do
+      it "returns an instance of Market" do
         expect(@vendor.find_market(1)).to be_an_instance_of FarMar::Market
       end
       it "returns a Market object which has a market id that matches the vendor's market id" do
@@ -81,7 +81,7 @@ describe FarMar do
       it "has Product items in the array" do
         expect(@vendor.find_products(@vendor.id)[0]).to be_an_instance_of FarMar::Product
       end
-      it "had Product items that contain the correct vendor_id" do
+      it "has Product items that contain the correct vendor_id" do
         expect(@vendor.find_products(@vendor.id)[0].name).to eq "Dry Beets"
       end
       it "returns empty Array if the argument is not a Fixnum" do
