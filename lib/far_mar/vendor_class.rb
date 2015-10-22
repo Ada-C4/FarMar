@@ -51,10 +51,6 @@ module FarMar
         item_array = FarMar::Product.all
       when "sale"
         item_array = FarMar::Sale.all
-      when "market"
-        item_array = FarMar::Market.all
-      else
-        item_array = FarMar::Vendor.all
       end
       vendors_items = []
       item_array.find_all do |single_item|

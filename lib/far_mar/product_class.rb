@@ -35,9 +35,7 @@ end
     all_the_products = FarMar::Product.all
       all_the_products.find do |single_product|
         if single_product.id == product_id.to_s
-        var = []
-        var = ["#{single_product.id}", "#{single_product.name}", "#{single_product.vendor_id}"]
-        return var
+        return single_product
       end
       end
   end
