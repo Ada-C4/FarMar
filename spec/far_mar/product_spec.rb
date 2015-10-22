@@ -65,4 +65,13 @@ describe FarMar::Product do
       end
     end
   end
+
+  describe "self.by_vendor" do
+    it "returns an array of products with the given vendor_id" do
+    vendor_id5 = FarMar::Product.by_vendor(5, csv = "./support/products2.csv")
+    expect(vendor_id5).to be_an(Array)
+    expect(vendor_id5.empty?).to eq false
+    expect(vendor_id5[2].name).to eq "Black Apples"
+    end
+  end
 end

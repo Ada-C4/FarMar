@@ -74,7 +74,7 @@ describe FarMar::Market do
       vendor_matches = @market3.vendors("./support/vendors2.csv")
       expect(vendor_matches).to be_an(Array)
       expect(vendor_matches[0].market_id).to eq "3"
-      expect(vendor_matches[0].name).to eq "New Guy"
+      expect(vendor_matches[0].name).to eq "Fakey Fake Vendor"
     end
   end
 end
