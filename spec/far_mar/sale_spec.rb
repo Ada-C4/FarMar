@@ -67,4 +67,25 @@ describe FarMar::Sale do
       end
     end
   end
+
+  describe "#vendor" do
+    it "returns the vendor instance associated with the given sale" do
+      @sale3 = FarMar::Sale.new("4", "", "9", "7", "")
+      vendor_match = @sale3.vendor("./support/vendors2.csv")
+      expect(vendor_match).to be_an_instance_of FarMar::Vendor
+      expect(vendor_match.id).to eq "7"
+      expect(vendor_match.name).to eq "Bechtelar Inc"
+    end
+  end
+
+  describe "#product" do
+    it "returns the product instance associated with the given sale" do
+      @sale2 = FarMar::Sale.new("4", "", "9", "7", "2")
+      product_match = @sale2.product("./support/products2.csv")
+      expect(product_match).to be_an_instance_of FarMar::Product
+      expect(product_match.id).to eq "2"
+      expect(product_match.name).to eq "Fierce Greens"
+    end
+  end
+
 end

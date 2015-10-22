@@ -31,27 +31,27 @@ module FarMar
       return match
     end
 
-     def self.between(beginning_time, end_time)
-     end
+   def self.between(beginning_time, end_time)
+   end
 
   ######INSTANCE METHODS####
   #~~~~~search primary keyholders~~~~~~~~~~~#
   #returns the vendor with an id matching that of a given product instance
       #helper method to search multiple primary keyholders
-     def search_primary_keyholders(csv, klass)
-       search_in = klass.all(csv)
-       match = (search_in.find {|n| n.id == self.id})
-       return match
-     end
-
-     #returns the vendor with an id matching that of a given sale instance
-     def vendor(vendor_csv = "./support/vendors.csv")
-       search_primary_keyholders(vendor_csv, Vendor)
-     end
-
-     #returns the product with an id matching that of a given sale instance
-     def product(product_csv = "./support/products.csv")
-       search_primary_keyholders(product_csv, Product)
-     end
+   def search_primary_keyholders(var, klass, csv)
+     search_in = klass.all(csv)
+     match = (search_in.find {|n| n.id == self.send(var)})
+     return match
    end
+
+   #returns the vendor with an id matching that of a given sale instance
+   def vendor(vendor_csv = "./support/vendors.csv")
+     search_primary_keyholders(:vendor_id, Vendor, vendor_csv)
+   end
+
+   #returns the product with an id matching that of a given sale instance
+   def product(product_csv = "./support/products.csv")
+     search_primary_keyholders(:product_id, Product, product_csv)
+   end
+ end
 end
