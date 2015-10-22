@@ -38,6 +38,10 @@ module FarMar
         return @vendor_id
       end
 
+      def name
+        return @name
+      end
+
       def find_vendor(vendor_id)
         FarMar::Vendor.find(vendor_id)
       end

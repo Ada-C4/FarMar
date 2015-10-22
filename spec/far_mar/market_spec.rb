@@ -52,11 +52,11 @@ describe FarMar do
     end
 
     describe "self.find" do
-      it "returns an instance of market" do
+      it "returns an instance of Market" do
         num = rand(1..500)
         expect(FarMar::Market.find(num)).to be_an_instance_of FarMar::Market
       end
-      it "returns an instance of market with the correct ID" do
+      it "returns an instance of Market with the correct ID" do
         num = 1
         market = FarMar::Market.find(num)
         expect(market.id).to eq 1
