@@ -5,9 +5,9 @@ module FarMar
 
     attr_accessor :id, :amount, :purchase_time, :vendor_id, :product_id
 
-    def initialize(id, name, purchase_time, vendor_id, product_id)
+    def initialize(id, amount, purchase_time, vendor_id, product_id)
       @id = id.to_i
-      @name = name
+      @amount = amount.to_i
       @purchase_time = purchase_time
       @vendor_id = vendor_id.to_i
       @product_id = product_id.to_i
@@ -22,7 +22,7 @@ module FarMar
         @sales.push(Sale.new(line[0], line[1], line[2], line[3], line[4]))
       end
       return @sales
-      ## for optimization, say, if @sales has stuff in it, don't run it again, just return it. 
+      ## for optimization, say, if @sales has stuff in it, don't run it again, just return it.
     end
 
     def self.find(sale_id)

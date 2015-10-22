@@ -35,8 +35,8 @@ describe FarMar::Market do
       expect(@market.vendors).to be_an Array
     end
 
-    # it "returns an array" do
-    #   expect(@vendors.vendors).to eq 4
-    # end
+    it "has elements in the array" do
+      expect(@market.vendors.length).to eq 6
+    end
   end
 end
