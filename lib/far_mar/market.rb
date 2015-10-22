@@ -31,13 +31,11 @@ module FarMar
       return FarMar::Vendor.all.find_all {|vendor| vendor.market_id == @id}
     end
 
-    #returns all producs sold at the specific market
+    #returns all products sold at the specific market
     def products
-      vendors = FarMar::Vendor.by_market(@id)
       all_products = []
       vendors.each do |vendor|
-        products = vendor.products
-        products.each do |product|
+        vendor.products.each do |product|
           all_products << product
         end
       end
@@ -59,6 +57,10 @@ module FarMar
         end
       end
       return markets
+    end
+
+    def preferred_vendor
+
     end
   end
 end

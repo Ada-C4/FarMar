@@ -53,5 +53,12 @@ describe FarMar::Market do
         expect(FarMar::Market.search("School")[0].id). to eq 75
       end
     end
+
+    # describe "#preferred_vendor" do
+    #   it "returns the vendor with the highest revenue" do
+    #     expect(@market.preferred_vendor.name).to eq
+    #     expect(@market2.preferred_vendor.name).to eq
+    #   end
+    # end
   end
 end
