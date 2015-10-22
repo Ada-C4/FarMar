@@ -46,4 +46,10 @@ describe FarMar::Vendor do
         expect(@vend_test.revenue(13)).to eq 2848
       end
 
+    describe "self.by_market(market_id)"
+      it "gives all of the vendors that attend a given market" do
+        expect(FarMar::Vendor.by_market()).to eq [["10","Kertzmann LLC"],["11", "Donnelly-Quigley"],[
+        "12","Windler Inc"]]
+      end
+
 end

@@ -89,6 +89,10 @@ module FarMar
   end
 
 # - `self.by_market(market_id)` - returns all of the vendors with the given `market_id`
+  def self.by_market(market_id)
+
+  end
+
 
   end
 end
