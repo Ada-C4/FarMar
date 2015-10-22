@@ -1,11 +1,12 @@
 module FarMar
   class Vendor < FarMar_Base
-    attr_reader :id, :name, :emp_num, :market_id, :revenue
+    attr_reader :id, :name, :emp_num, :market_id, :num_sales
     FILENAME = './support/vendors.csv'
 
     def initialize(vendor_hash)
+      # rev = FarMar::Sale.vendor_stats[@id][:revenue]
+      # num = FarMar::Sale.vendor_stats[@id][:num_sales]
       super(vendor_hash)
-      @revenue ||= revenue
     end
 
     def self.all_objects
@@ -56,8 +57,8 @@ module FarMar
 
     # returns the sum of all of the vendor's sales (in cents)
     def revenue
-      sales_array = sales
-      sales_array.inject(0) { |sum, sale_obj| sum + sale_obj.amount }
+      rev = FarMar::Sale.vendor_stats[@id][:revenue]
+      rev.nil? ? (return @revenue = 0) : (return @revenue = rev)
     end
 
   end
