@@ -43,5 +43,12 @@ describe FarMar::Product do
       expect(product_25.id).to eq 25
     end
   end
+  describe "#vendor" do
+    it "returns the vendor associated with this product" do
+      product = FarMar::Product.new("15","Comfortable Pretzel","8")
+      expect(product.vendor).to be_an_instance_of FarMar::Vendor
+      expect(product.vendor.id).to eq 8
+    end
+  end
 
 end
