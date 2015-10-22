@@ -40,6 +40,10 @@ module FarMar
       return FarMar::Vendor.market(self.id)
     end
 
+    def products
+      # return FarMar::Product.by_market(self.id)
+      return FarMar::Vendor.market(self.id, true)
+    end
 
 
   end

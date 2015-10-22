@@ -63,6 +63,10 @@ describe FarMar::Vendor do
       it "returns an Array" do
         expect(FarMar::Vendor.by_market(2)).to be_an_instance_of(Array)
       end
+
+      it "return the right array" do
+        expect(FarMar::Vendor.by_market(2)[0].id).to eq 7
+      end
     end
 
 

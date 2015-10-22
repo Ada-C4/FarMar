@@ -22,17 +22,26 @@ module FarMar
     end
 
     def self.find(id)
-      product_array = self.all
-      product_array.find do |product|
+      @@product_all = self.all
+      @@product_all.find do |product|
         product.id == id
       end
     end
 
     def self.by_vendor(vendor_id)
+      @@product_all = self.all
       @@product_all.find_all do |product|
         product.vendor_id == vendor_id
       end
     end
+    # 
+    # def self.by_market(market_id)
+    #   @@product_all = self.all
+    #   @@product_all.find_all do |product|
+    #     product.market_id == market_id
+    #   end
+    # end
+
 
     def sales
       sales_array = FarMar::Sale.all

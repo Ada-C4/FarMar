@@ -29,10 +29,23 @@ module FarMar
       end
     end
 
-    def self.market(id)
+# found all the vendors in the market - with default of salfe.
+# if the test = true => it return all the products in that market.
+    def self.market(id, extra_test = false)
       @@array_all = self.all
-      @@array_all.find_all do |vendor|
-        vendor.market_id == id
+      if extra_test == false
+        @@array_all.find_all do |vendor|
+          vendor.market_id == id
+        end
+      else
+        final_array = []
+        products_array = FarMar::Product.all
+        @@array_all.each do |vendor|
+          products_array.each do |product|
+            final_array.push(product) if (product.vendor_id == vendor.id) && (vendor.id == id)
+          end
+        end
+        return final_array
       end
     end
 
@@ -57,6 +70,6 @@ module FarMar
       end
     end
 
-    
+
   end
 end

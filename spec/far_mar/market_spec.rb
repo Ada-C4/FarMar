@@ -32,8 +32,18 @@ describe FarMar::Market do
     it "returns a collection of FarMar::Vendor" do
       expect(@market_array).to be_an_instance_of(Array)
     end
-
   end
+
+  describe "products" do
+    it "return an array of products" do
+    expect(@market.products).to be_an(Array)
+    end
+
+    it "return the right array" do
+    expect(@market.products[0].id).to eq 732
+    end
+  end
+
 end
 
 #     it "return vendors that associated with the market"
