@@ -44,12 +44,16 @@ module FarMar
       end
     end
 
+    # def revenue
+    #   total_revenue = 0
+    #   sales.each do |sale|
+    #     total_revenue += sale.amount
+    #   end
+    #   return total_revenue
+    # end
+
     def revenue
-      total_revenue = 0
-      sales.each do |sale|
-        total_revenue += sale.amount
-      end
-      return total_revenue
+        sales.reduce(0) {|sum, sale| sum + sale.amount}
     end
 
     def self.by_market(market_id)
