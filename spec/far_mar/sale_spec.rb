@@ -42,4 +42,11 @@ describe FarMar::Sale do
     end
   end
 
+  describe ".product" do
+    it "returns the Product instance associated with the sale" do
+      expect(@sale.product).to be_an_instance_of FarMar::Product
+      expect(@sale.product.name).to eq "Dry Beets"
+    end
+  end
+
 end

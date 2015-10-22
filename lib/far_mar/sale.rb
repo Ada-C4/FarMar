@@ -32,9 +32,12 @@ module FarMar
       end
     end
 
-    # def product
-    # end
-    #
+    def product
+      FarMar::Product.all.find do |product|
+        product.id == @product_id
+      end
+    end
+
     # def self.between(beginning_time, end_time)
     # end
   end
