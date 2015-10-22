@@ -72,7 +72,7 @@ describe FarMar do
       it "returns the market's vendor with the highest revenue" do
         max_vendor1 = sample_market.preferred_vendor
         expect(max_vendor1).to be_an_instance_of(FarMar::Vendor)
-        expect(max_vendor1.id).to eq(64)
+        expect(max_vendor1.id).to eq(350)
         max_vendor2 = sample_market2.preferred_vendor
         expect(max_vendor2).to be_an_instance_of(FarMar::Vendor)
         expect(max_vendor2.id).to eq(102)

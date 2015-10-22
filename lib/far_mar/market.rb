@@ -24,10 +24,14 @@ module FarMar
       return market_hash
     end
 
+    # Returns a collection of FarMar::Vendor instances that are associated
+    # with the market by the market_id field
     def vendors
       return FarMar::Vendor.by_market(@id)
     end
 
+    # returns a collection of FarMar::Product instances that are associated
+    # to the market through the FarMar::Vendor class
     def products
       products = []
       v = vendors
@@ -35,6 +39,20 @@ module FarMar
         products += vendor.products
       end
       return products
+    end
+
+    # returns the vendor with the highest revenue from a market
+    def preferred_vendor
+      matches = vendors
+      if matches.length == 0
+        return nil
+      elsif matches.length == 1
+        return matches[0]
+      else
+        revenues = matches.map { |v| v.revenue }
+        max_index = revenues.each_with_index.max[1]
+        return matches[max_index]
+      end
     end
 
   end
