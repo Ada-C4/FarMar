@@ -39,12 +39,19 @@ describe FarMar::Vendor do
     end
   end
 
-  context"#products" do
-    it "returns a collection of Far::Mar product instances" do
+  context "#products" do
+    it "returns a collection of FarMar::Product product instances" do
       expect(@vendor.products.class).to be Array
     end
   end
+
+  context "#sales" do
+    it "returns a collection of FarMar::Sale sale instances" do
+      expect(@vendor.sales.class).to be Array
+    end
   end
+
+  
 
 
 end
