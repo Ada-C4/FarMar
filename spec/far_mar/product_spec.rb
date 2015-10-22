@@ -58,5 +58,11 @@ describe FarMar::Product do
       expect(product.sales[2].product_id).to eq 50
     end
   end
-
+  describe "#number_of_sales" do
+    it "returns the number of times the product has been sold" do
+      product = FarMar::Product.new("41","Thundering Carrots","15")
+      expect(product.number_of_sales).to be_a Fixnum
+      expect(product.number_of_sales).to eq 5
+    end
+  end
 end

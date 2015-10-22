@@ -44,6 +44,11 @@ module FarMar
       return productsales
     end
 
+    def number_of_sales
+      self.sales.length
+    end
+
+
   end
 
 end
