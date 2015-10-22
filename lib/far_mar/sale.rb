@@ -5,6 +5,7 @@ module FarMar
 
     def initialize(sale_hash)
       super(sale_hash)
+      # FarMar::Vendor.all_objects[@vendor_id].revenue += @amount
     end
 
     def self.all_objects

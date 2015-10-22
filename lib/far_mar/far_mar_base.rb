@@ -15,9 +15,9 @@ module FarMar
         csv_file.each do |row|
           # Convert the array to a hash
           csv_hash = self.convert_to_hash(row)
-          # Create a product object from each row-hash in the csv file
+          # Create an object from each row-hash in the csv file
           temp = self.new(csv_hash)
-          # Push product object to array of products
+          # Push object to array of products
           objects.push(temp)
         end
         self.class_variable_set(:@@all_objects, objects)
