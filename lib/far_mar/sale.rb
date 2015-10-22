@@ -15,6 +15,7 @@ module FarMar
     #  @open_date = DateTime.strptime(open_date, "%Y-%m-%d %H:%M:%S %z")
     #     end
 
+  ######CLASS METHODS####
     def self.all(csv = "./support/sales.csv")
       sales_info = CSV.read(csv)
       sales = []
@@ -33,13 +34,24 @@ module FarMar
      def self.between(beginning_time, end_time)
      end
 
-     def vendor
+  ######INSTANCE METHODS####
+  #~~~~~search primary keyholders~~~~~~~~~~~#
+  #returns the vendor with an id matching that of a given product instance
+      #helper method to search multiple primary keyholders
+     def search_primary_keyholders(csv, klass)
+       search_in = klass.all(csv)
+       match = (search_in.find {|n| n.id == self.id})
+       return match
      end
 
-     def product
+     #returns the vendor with an id matching that of a given sale instance
+     def vendor(vendor_csv = "./support/vendors.csv")
+       search_primary_keyholders(vendor_csv, Vendor)
      end
 
-
+     #returns the product with an id matching that of a given sale instance
+     def product(product_csv = "./support/products.csv")
+       search_primary_keyholders(product_csv, Product)
+     end
    end
-
 end

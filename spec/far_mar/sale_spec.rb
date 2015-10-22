@@ -61,7 +61,7 @@ describe FarMar::Sale do
     context "non-default csv is passed in" do
       it "returns an instance of a sale matching the passed id" do
         id9 = FarMar::Sale.find(9, "./support/sales2.csv")
-        expect(id9.vendor_id).to eq "3"
+        expect(id9.vendor_id).to eq "4"
         expect(id9.amount).to eq "9100"
         expect(id9.class).to eq FarMar::Sale
       end
