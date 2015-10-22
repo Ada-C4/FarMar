@@ -31,4 +31,16 @@ describe FarMar::Sale do
       expect(@sale_2.id).to eq 12001
     end
   end
+
+  context "#product" do
+    it "returns an instance of product" do
+      expect(@sale.product).to be_an_instance_of FarMar::Product
+    end
+
+    it "returns the right product" do
+      expect(@sale.product.id).to eq 4
+      expect(@sale_2.product.id).to eq 8192
+    end
+  end
+
 end
