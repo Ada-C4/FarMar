@@ -36,5 +36,13 @@ module FarMar
       end
       return market_vendor_array
     end
+    def products
+      market_products = []
+      vendor_array = self.vendors
+      vendor_array.each do |vendor|
+        market_products += vendor.products
+      end
+      return market_products
+    end
   end
 end
