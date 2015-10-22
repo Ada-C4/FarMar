@@ -65,4 +65,10 @@ describe FarMar::Vendor do
       end
     end
   end
+
+  describe "#market" do
+    it do
+      
+    end
+  end
 end

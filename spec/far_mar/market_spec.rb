@@ -29,7 +29,7 @@ describe FarMar::Market do
         all = FarMar::Market.all
         my_csv = CSV.read("./support/markets.csv")
         expect(all.length).to eq my_csv.length
-        expect(all).to be_an_instance_of Array
+        expect(all).to be_an(Array)
         expect(all[0].class).to eq FarMar::Market
         expect(all[11].zip).to eq "12051"
       end
@@ -67,11 +67,13 @@ describe FarMar::Market do
     end
   end
 
+  #as smaller csv named vendors2.csv proved acceptable in previous tests, use it for this test as well, for the sake of decreasing test time
   describe "#vendors" do
     it "returns an array of vendor instances with the associated market id" do
       @market3 = FarMar::Market.new("3", "Best Market","","","","","45555")
-      expect(@market3.vendors).to be_an_instance_of Array
-      expect(@market3.vendors[0].market_id).to eq "3"
+      vendor_matches = @market3.vendors("./support/vendors2.csv")
+      expect(vendor_matches).to be_an(Array)
+      expect(vendor_matches[0].market_id).to eq "3"
     end
   end
 end
