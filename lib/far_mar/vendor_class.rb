@@ -66,6 +66,17 @@ module FarMar
   end
 
 # - `sales` - returns a collection of `FarMar::Sale` instances that are associated by the `vendor_id` field.
+  def sales(vend_id)
+    vend = FarMar::Vendor.find_vendor(vend_id)
+    sales_array = FarMar::Sale.all
+    vendors_sales = []
+    sales_array.find_all do |single_sales|
+      if single_sales.vendor_id == vend_id.to_s
+        vendors_sales.push(["#{single_sales.id}", "#{single_sales.amount}", "#{single_sales.purchase_time}", "#{single_sales.vendor_id}", "#{single_sales.product_id}"])
+        end
+      end
+    return vendors_sales
+  end
 
 # - `revenue` - returns the the sum of all of the vendor's sales (in cents)
 

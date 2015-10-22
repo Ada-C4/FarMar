@@ -23,14 +23,21 @@ describe FarMar::Vendor do
 
     describe "market"
       it "returns a market information for the given vendor" do
-      @vend_test2 = FarMar::Vendor.new("9","Quigley, Breitenberg and Schuster","2","2")
-        expect(@vend_test2.market(9)).to eq ["2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383"]
+      @vend_test = FarMar::Vendor.new("9","Quigley, Breitenberg and Schuster","2","2")
+        expect(@vend_test.market(9)).to eq ["2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383"]
       end
 
     describe "products"
-      it "returns product information for the given vendor" do
-        @vend_test2 = FarMar::Vendor.new("9","Quigley, Breitenberg and Schuster","2","2")
-        expect(@vend_test2.products(9)).to eq [["19","Jealous Burrito","9"], ["20", "Tall Pretzel", "9"], ["21", "Embarrassed Bread", "9"], ["22", "Purring Beets", "9"]]
+      it "returns information for the products of a given vendor" do
+        @vend_test = FarMar::Vendor.new("9","Quigley, Breitenberg and Schuster","2","2")
+        expect(@vend_test.products(9)).to eq [["19","Jealous Burrito","9"], ["20", "Tall Pretzel", "9"], ["21", "Embarrassed Bread", "9"], ["22", "Purring Beets", "9"]]
+      end
+
+    describe "sales"
+      it "returns information for the sales associated with a given vendor" do
+        @vend_test = FarMar::Vendor.new(13,"Grady, Hudson and Olson",11,4)
+        expect(@vend_test.sales(13)).to eq [["69", "10", "2013-11-10 00:03:56 -0800", "13", "38"], [
+        "70", "2838", "2013-11-09 13:30:15 -0800", "13", "38"]]
       end
 
 end
