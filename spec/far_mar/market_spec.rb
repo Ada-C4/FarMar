@@ -68,4 +68,19 @@ describe FarMar::Market do
 		end
 	end
 
+	describe '.search(search_term)' do
+		before :each do
+			@search_return = FarMar::Market.search("school")
+		end
+		it 'returns an array' do
+			expect(@search_return).to be_an_instance_of(Array)
+		end
+		it 'contains Market Instances' do
+			expect(@search_return[0]).to be_an_instance_of(FarMar::Market)
+		end
+		it 'returns Markets w search_term in @name || @vendor_name' do
+			expect(@search_return.length).to eq(3)
+		end
+	end
+
 end
