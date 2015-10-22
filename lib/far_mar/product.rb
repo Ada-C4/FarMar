@@ -37,14 +37,25 @@ module FarMar
      end
 
   ######INSTANCE METHODS####
-     def vendor
+
+  #~~~~~search primary keyholder~~~~~~~~~~~#
+  #returns the vendor with an id matching that of a given product instance
+     def vendor(vendor_csv = "./support/vendors.csv")
+       all_vendors = Vendor.all(vendor_csv)
+       vendor_match = (all_vendors.find {|n| n.id == self.vendor_id})
+       return vendor_match
      end
 
-     def sales
+    #~~~~~search foreign keyholder~~~~~~~~~~~#
+    #returns an array of sales with the given product id
+     def sales(sales_csv = "./support/sales.csv")
+        all_sales = Sale.all(sales_csv)
+        matches = (all_sales.find_all {|n| n.product_id == self.id})
+        return matches
      end
+
 
      def number_of_sales
      end
-
-   end
+  end
 end

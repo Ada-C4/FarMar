@@ -74,4 +74,24 @@ describe FarMar::Product do
     expect(vendor_id5[2].name).to eq "Black Apples"
     end
   end
+
+  describe "#vendor" do
+      it "returns the vendor instance associated with the given product id" do
+        @product6 = FarMar::Product.new("6", "Cold Ham", "6")
+        vendor_match = @product6.vendor("./support/vendors2.csv")
+        expect(vendor_match).to be_an_instance_of FarMar::Vendor
+        expect(vendor_match.id).to eq "6"
+        expect(vendor_match.name).to eq "Zulauf and Sons"
+      end
+  end
+
+  describe "#sales" do
+    it "returns an array of sales associated with the given product" do
+      @product4 = FarMar::Product.new("4", "Silly Product", "5")
+      sale_matches = @product4.sales("./support/sales2.csv")
+      expect(sale_matches).to be_an(Array)
+      expect(sale_matches[1].product_id).to eq "4"
+      expect(sale_matches[1].amount).to eq "5160"
+    end
+  end
 end

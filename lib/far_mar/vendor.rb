@@ -39,6 +39,7 @@ module FarMar
 
 
    #####INSTANCE METHODS######
+   #~~~~~search primary keyholder~~~~~~~~~~~#
      #returns the market with an id matching that of a given vendor instance
      def market(market_csv = "./support/markets.csv" )
        all_markets = Market.all(market_csv)
@@ -46,7 +47,7 @@ module FarMar
        return market_match
      end
 
-
+     #~~~~~search foreign keyholders~~~~~~~~~~~#
      # to assist with the .products and .sales methods
      def search_foreign_keyholders(csv, klass)
        search_in = klass.all(csv)
