@@ -10,11 +10,11 @@ module FarMar
       end
 
       # Returns a collection of Vendor instances, representing all the vendors described in the CSV
-      def self.all
+      def self.all(csv = "support/vendors.csv")
         # Only reload the CSV if @vendors is empty array
         @@vendors ||= []
         if @@vendors == []
-          vendors_csv = CSV.read("support/vendors.csv")
+          vendors_csv = CSV.read(csv)
 
           vendors_csv.each do |id, name, num_employees, market_id|
             hash = {:id => id, :name => name, :employees => num_employees, :market_id => market_id}
@@ -45,10 +45,15 @@ module FarMar
       end
 
       # Returns a collection of FarMar::Sale instances that are associated with the vendor
-      def sales
+      def sales(date = nil)
         sales = FarMar::Sale.all
-        matched_sales = sales.find_all { |sale| sale.vendor_id == self.vendor_id}
-        return matched_sales
+        if date == nil
+          matched_sales = sales.find_all { |sale| sale.vendor_id == self.vendor_id}
+          return matched_sales
+        else
+          # purchase_day = date.strftime()
+          # matched_sales = sales.find_all { |sale| sale.vendor_id == self.vendor_id && sale.purchase_time}
+        end
       end
 
       # Returns the sum of all the vendor's sale (in cents)
@@ -67,5 +72,15 @@ module FarMar
         matched_vendors = vendors.find_all { |vendor| vendor.market_id == market_id}
         return matched_vendors
       end
+
+      # Returns the top n vendor instances ranked by total revenue
+      # def self.most_revenue(n)
+      #   vendors = FarMar::Vendor.all
+      #   if n < vendors.length
+      #     max = vendors.max_by! { |vendor| vendor.revenue}
+      #     return max
+      #   end
+      # end
+
   end
 end

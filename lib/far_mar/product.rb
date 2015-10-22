@@ -9,11 +9,11 @@ module FarMar
     end
 
     # Return a collection of all Product instances, representing all the products described in the CSV
-    def self.all
+    def self.all(csv = "support/products.csv")
       # Only reload the CSV if @products is empty array
       @@products ||= []
       if @@products == []
-        products_csv = CSV.read("support/products.csv")
+        products_csv = CSV.read(csv)
 
         products_csv.each do |id, name, vendor_id|
           hash = {:id => id, :name => name, :vendor_id => vendor_id}

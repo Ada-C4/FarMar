@@ -89,4 +89,13 @@ describe FarMar::Vendor do
       expect(test_vendor.revenue).to eq 38259
     end
   end
+
+  # describe ".most_revenue" do
+  #   it "returns an array of n values" do
+  #     number_of_vals = 3
+  #     expect(FarMar::Vendor.most_revenue(number_of_vals).length).to eq number_of_vals
+  #     expect(FarMar::Vendor.most_revenue(number_of_vals)).to be_an_instance_of Array
+  #   end
+  # end
+  
 end
