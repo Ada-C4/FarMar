@@ -36,5 +36,16 @@ module FarMar
       end
       return vendor_array
     end
+
+    def sales
+      sales_array = []
+      sales_list = FarMar::Sale.all
+        sales_list.find_all do |i|
+          if i.product_id == id
+            sales_array.push(i)
+          end
+        end
+      return sales_array
+    end
   end
 end
