@@ -1,3 +1,4 @@
+require "pry"
 module FarMar
 
   class Vendor
@@ -32,9 +33,20 @@ module FarMar
     end
 
     def list_markets
+      FarMar::Market.find(market_id)
     end
 
     def list_products
+      product_list = []
+      FarMar::Product.all.each do |product|
+        if id == product.vendor_id
+        #binding.pry
+          product_list.push(product)
+          #binding.pry
+        end
+      end
+      product_list
+      #binding.pry
     end
 
     def list_sales

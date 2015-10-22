@@ -26,5 +26,22 @@ describe FarMar do
         expect(find_test.name).to eq "Hyatt-King"
       end
     end
+
+    describe "list_markets" do
+      it "returns specific market instance" do
+        market_test = FarMar::Vendor.find(20)
+        expect(market_test.list_markets.name).to eq "Jefferson City Farmer's Market"
+
+      end
+    end
+
+    describe "list_products" do
+      it "returns array of product instances" do
+        product_test = FarMar::Vendor.find(100)
+        product_test.list_products.each do |product|
+          expect(product.vendor_id).to eq 100
+        end
+      end
+    end
   end
 end

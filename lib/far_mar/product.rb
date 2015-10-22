@@ -3,9 +3,9 @@ module FarMar
   class Product
     attr_accessor :id, :name, :vendor_id
     def initialize(product_hash)
-      @id = product_hash[:id]
+      @id = product_hash[:id].to_i
       @name= product_hash[:name]
-      @vendor_id= product_hash[:vendor_id]
+      @vendor_id= product_hash[:vendor_id].to_i
     end
 
     def self.all
@@ -16,6 +16,7 @@ module FarMar
           product_hash = {:id => id.to_i, :name => name, :vendor_id => vendor_id}
           product = FarMar::Product.new(product_hash)
           @@products_all.push(product)
+
         end
       end
       return @@products_all
@@ -28,7 +29,7 @@ module FarMar
     end
 
     def self.by_vendor(vendor_id)
-    end  
+    end
 
     def list_vendors
     end
