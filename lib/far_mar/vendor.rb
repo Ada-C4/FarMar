@@ -65,9 +65,13 @@ module FarMar
        search_foreign_keyholders(sales_csv, Sale)
      end
 
-     def revenue
+     #~~~~~special fun method~~~~~~~~~~~#
+     #returns the the sum of all of a vendor instance's sales (in cents)
+     def revenue(csv = "./support/sales.csv")
+       total = 0
+       sales = self.sales(csv)
+       sales.each {|n| total += n.amount.to_i}
+       return total
      end
-
    end
-
 end

@@ -97,11 +97,19 @@ describe FarMar::Vendor do
 
   describe "#sales" do
     it "returns an array of sales associated with the given vendor" do
-      @vendor3 = FarMar::Vendor.new("4", "Best vendor", "9", "5")
-      sale_matches = @vendor3.sales("./support/sales2.csv")
+      @vendor4 = FarMar::Vendor.new("4", "Best vendor", "9", "5")
+      sale_matches = @vendor4.sales("./support/sales2.csv")
       expect(sale_matches).to be_an(Array)
       expect(sale_matches[0].vendor_id).to eq "4"
       expect(sale_matches[0].id).to eq "8"
+    end
+  end
+
+  describe "#revenue" do
+    it "returns the the sum of all of the vendor's sales (in cents)" do
+      @vendor4 = FarMar::Vendor.new("4", "Best vendor", "9", "5")
+      total_revenue = @vendor4.revenue("./support/sales2.csv")
+      expect(total_revenue).to eq 14827
     end
   end
 end
