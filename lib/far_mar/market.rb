@@ -1,6 +1,6 @@
 module FarMar
   class Market
-    attr_reader :id
+    attr_reader :id, :name
 
     def initialize(market_info)
       @id = market_info[0].to_i
@@ -48,6 +48,19 @@ module FarMar
         end
       end
       return products
+    end
+
+    def self.search(search_term)
+      results = []
+      name_matches = FarMar::Market.all.find_all do |market|
+        market.name.downcase.include?(search_term.downcase)
+      end
+      name_matches.each { |match| results.push(match)}
+      vendor_matches = FarMar::Vendor.all.find_all do |vendor|
+        vendor.name.downcase.include?(search_term.downcase)
+      end
+      vendor_matches.each { |match| results.push(match)}
+      return results
     end
 
   end

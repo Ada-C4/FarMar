@@ -62,7 +62,16 @@ describe FarMar do
           expect(@market.products[0]).to be_an_instance_of(FarMar::Product) if @market.products.length > 0
         end
         it "contains Products from Vendors at that Market" do
-          expect(@market.products[0].vendor_id).to eq(@market.id)
+          expect(@market.products[0].vendor_id).to eq(@market.id) if @market.products.length > 0
+        end
+      end
+
+      describe ".search(search_term)" do
+        before :each do
+          @search_term = "school"
+        end
+        it "returns a collection" do
+          expect(FarMar::Market.search(@search_term)).to be_an(Array)
         end
       end
     end
