@@ -22,9 +22,9 @@ module FarMar
       return @products
     end
 
+    # Returns an instance of product where the value of the id in the csv
+    # matches the passed parameter.
     def self.find(product_id)
-      # Returns an instance of product where the value of the id in the csv
-      # matches the passed parameter.
       all.each do |product|
         if product.id == product_id
           return product # the instance of the vendor.
@@ -32,20 +32,43 @@ module FarMar
       end
     end
 
-    def vendor(vendor_id)
-      # Returns the instance of the vendor, given the vendor_id of the product.
+    # Returns the instance of the Vendor by the product vendor_id.
+    def vendor
+      FarMar::Vendor.all.each do |vend|
+        if vend.id == vendor_id
+          return vend
+        end
+      end
     end
 
-    def sales(product_id)
-      # Returns array of the sales associated with the product_id
+    # Returns array of sales where the product_id equals the Product ID
+    def sales
+      sales_array = []
+      FarMar::Sale.all.find_all do |sales|
+        if sales.product_id == id
+          sales_array.push(sales)
+        end
+      end
     end
 
+    # Returns the number of times this product has been sold.
     def number_of_sales
-      # Returns the number of times this product has been sold.
+      count = 0
+      FarMar::Sale.all.each do |s|
+        if s.product_id == id
+            count += 1
+        end
+      end
+      return count
     end
 
-    def self.by_vendor(vendor_id)
-      # Returns all of the products matching the vendor_id
+    # Returns all of the products matching the vendor_id
+    def self.by_vendor(vend_id)
     end
+
+
+
+
+
   end
 end

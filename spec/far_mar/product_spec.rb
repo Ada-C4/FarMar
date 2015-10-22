@@ -26,4 +26,30 @@ describe FarMar::Product do
       expect(FarMar::Product.find(2).id).to eq 2
     end
   end
+
+  describe "#vendor" do
+    it "returns a single vendor" do
+      expect(@product.vendor).to be_an_instance_of FarMar::Vendor
+    end
+  end
+
+  describe "#sales" do
+    it "returns an array of sales" do
+      expect(@product.sales).to be_an Array
+    end
+  end
+
+  describe "#number_of_sales" do
+    it "returns number of times the product has been sold" do
+      expect(@product.number_of_sales).to be >= 0
+    end
+  end
+
+  describe ".by_vendor" do
+    it "returns an array" do
+      expect(FarMar::Product.by_vendor(1)).to be_an Array
+    end
+  end
+
+
 end
