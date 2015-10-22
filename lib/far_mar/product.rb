@@ -16,20 +16,18 @@ module FarMar
       end
 
       def self.all()
-        products_csv = CSV.read("./support/products.csv")
-        products_array = []
-        products_csv.each do |line|
-        new_product = self.new(self.create_product_hash(line))
-        products_array.push(new_product)
-      end
-      return products_array
+        @@products_all ||= []
+        if @@products_all == []
+          @@products_all = CSV.read("./support/products.csv")
+          @@products_all.map! do |line|
+            self.new(self.create_product_hash(line))
+          end
+        end
+        return @@products_all
       end
 
       def self.find(id)
-        products_csv = CSV.read("./support/products.csv")
-        match = products_csv.find {|product| product[0].to_i == id}
-        new_product = self.new(self.create_product_hash(match))
-        return new_product
+        self.all.find {|product| product.id == id}
       end
 
       def id
