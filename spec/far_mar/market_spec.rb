@@ -48,4 +48,11 @@ describe FarMar::Market do
     end
   end
 
+  describe ".products" do
+    it "returns a collection of product instances associated with the market" do
+      expect(@market.products).to be_an Array
+      expect(@market.products.length).to eq 13
+    end
+  end
+
 end

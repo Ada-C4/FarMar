@@ -43,6 +43,12 @@ module FarMar
       end
     end
 
+    def products
+      # if just .map, this would give back an array of an array of instances
+      # .flat_map is like calling .flatten on the .map array
+      vendors.flat_map{|vendor| vendor.products }
+    end
+
 
   end
 end
