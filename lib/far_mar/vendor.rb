@@ -83,7 +83,7 @@ module FarMar
     def self.revenue_by_date(date)
       date = Date.parse(date.to_s)
       total_revenue = 0
-      day_sales = FarMar::Sale.all.each do |sale|
+      FarMar::Sale.all.each do |sale|
         if sale.purchase_time.to_date == date
           total_revenue = total_revenue + sale.amount
         end
