@@ -32,10 +32,11 @@ module FarMar
     end
 
     def vendor
-      matched_vendor = FarMar::Vendor.all.find_all do |each|
-        @vendor_id == each.id
-      end
-      return matched_vendor
+      # matched_vendor = FarMar::Vendor.all.find_all do |each|
+      #   @vendor_id == each.id
+      # end
+      # return matched_vendor
+      return FarMar::Vendor.find(@vendor_id)
     end
 
     def sales
