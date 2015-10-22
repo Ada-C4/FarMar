@@ -29,10 +29,10 @@ describe FarMar do
         expect(FarMar::Product.all.length).to eq(@products.size)
       end
       it "contains instances of the Product class" do
-        vendor_total = FarMar::Product.all.length
+        product_total = FarMar::Product.all.length
         expect(FarMar::Product.all[0]).to be_an_instance_of(FarMar::Product)
-        expect(FarMar::Product.all[vendor_total - 1]).to be_an_instance_of(FarMar::Product)
-        expect(FarMar::Product.all[vendor_total]).to be nil
+        expect(FarMar::Product.all[product_total - 1]).to be_an_instance_of(FarMar::Product)
+        expect(FarMar::Product.all[product_total]).to be nil
       end
     end
 
