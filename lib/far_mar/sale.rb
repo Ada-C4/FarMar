@@ -28,6 +28,14 @@ module FarMar
     end
 
     def self.between(start_time,stop_time)
+      start_time = DateTime.parse(start_time.to_s)
+      stop_time = DateTime.parse(stop_time.to_s)
+      time_span_sales = []
+      FarMar::Sale.all.each do |sale|
+        if purchase_time.between?(start_time,stop_time)
+          time_span_sales.push(sale)
+        end
+      end
     end
 
     def list_vendors

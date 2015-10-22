@@ -27,6 +27,13 @@ describe FarMar do
       end
     end
 
+    describe "self.between(start,stop)" do
+      it "returns array of sale instances" do
+        time_test = FarMar::Sale.between(9:00,16:00)
+        expect(time_test.length).to eq 9
+      end
+    end
+
     describe "list_vendors" do
       it "returns specific vendor instance" do
         vendor_test = FarMar::Sale.find(455)
@@ -37,7 +44,7 @@ describe FarMar do
     describe "list_products" do
       it "returns specific product instance" do
         product_test = FarMar::Sale.find(413)
-        expect(product_test.list_products.name).to eq "Moen, Thiel and Osinski"
+        expect(product_test.list_products.name).to eq "– Mushrooms"
       end
     end
 
