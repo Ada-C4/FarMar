@@ -4,10 +4,8 @@ module FarMar
     FILENAME = './support/vendors.csv'
 
     def initialize(vendor_hash)
-      # rev = FarMar::Sale.vendor_stats[@id][:revenue]
-      # num = FarMar::Sale.vendor_stats[@id][:num_sales]
       super(vendor_hash)
-      @revenue = nil
+      @revenue = revenue
     end
 
     def self.all_objects
@@ -34,18 +32,9 @@ module FarMar
         n.class != Fixnum ||
         n < 0 ||
         n > FarMar::Vendor.all_objects.length
-      id_rev = {}
-      FarMar::Vendor.all_objects.each do |vendor_obj|
-        id_rev[vendor_obj.id] = vendor_obj.revenue
-      end
-      backwards_revs = id_rev.sort_by {|id, revenue| revenue }
-      sorted_revs = backwards_revs.reverse
-      sorted_rev_results = sorted_revs[0, n]
-      results = []
-      sorted_rev_results.each do |item|
-        results.push(FarMar::Vendor.find(item[0]))
-      end
-      return results
+      backwards = FarMar::Vendor.all_objects.sort_by{ |vendor_obj| vendor_obj.revenue }
+      sorted = backwards.reverse
+      return sorted[0, n]
     end
 
     # returns a collection of FarMar::Product instances that are
