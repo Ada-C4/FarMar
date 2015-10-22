@@ -46,8 +46,24 @@ module FarMar
 
 
 # - `market` - returns the `FarMar::Market` instance that is associated with this vendor using the `FarMar::Vendor` `market_id` field
+  def market(vend_id)
+    vend = FarMar::Vendor.find_vendor(vend_id)
+    market = FarMar::Market.find_market(vend[3])
+    return market
+  end
 
 # - `products` - returns a collection of `FarMar::Product` instances that are associated by the `FarMar::Product` `vendor_id` field.
+  def products(vend_id)
+    vend = FarMar::Vendor.find_vendor(vend_id)
+    product_array = FarMar::Product.all
+    vendors_products = []
+    product_array.find_all do |single_product|
+      if single_product.vendor_id == vend_id.to_s
+        vendors_products.push(["#{single_product.id}", "#{single_product.name}", "#{single_product.vendor_id}"])
+      end
+    end
+    return vendors_products
+  end
 
 # - `sales` - returns a collection of `FarMar::Sale` instances that are associated by the `vendor_id` field.
 

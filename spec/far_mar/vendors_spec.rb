@@ -21,4 +21,16 @@ describe FarMar::Vendor do
         expect(FarMar::Vendor.find_vendor(6)).to eq ["6", "Zulauf and Sons", "8", "1"]
       end
 
+    describe "market"
+      it "returns a market information for the given vendor" do
+      @vend_test2 = FarMar::Vendor.new("9","Quigley, Breitenberg and Schuster","2","2")
+        expect(@vend_test2.market(9)).to eq ["2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383"]
+      end
+
+    describe "products"
+      it "returns product information for the given vendor" do
+        @vend_test2 = FarMar::Vendor.new("9","Quigley, Breitenberg and Schuster","2","2")
+        expect(@vend_test2.products(9)).to eq [["19","Jealous Burrito","9"], ["20", "Tall Pretzel", "9"], ["21", "Embarrassed Bread", "9"], ["22", "Purring Beets", "9"]]
+      end
+
 end
