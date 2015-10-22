@@ -7,10 +7,11 @@ describe FarMar do
     describe "#initialize" do
       it "creates a new Vendor instance" do
         expect(sample_vendor).to be_an_instance_of(FarMar::Vendor)
-        expect(sample_vendor.id).to eq(70)
-        expect(sample_vendor.name).to eq("Eichmann Group")
-        expect(sample_vendor.emp_num).to eq(8)
-        expect(sample_vendor.market_id).to eq(16)
+      end
+      vendor_hash.each do |attr, val|
+        it "assigns the #{attr} attribute correctly" do
+          expect(sample_vendor.instance_variable_get("@#{attr}")).to eq(val)
+        end
       end
     end
     describe "self.all" do
