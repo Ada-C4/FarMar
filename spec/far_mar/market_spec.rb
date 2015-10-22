@@ -55,4 +55,12 @@ describe FarMar::Market do
     end
   end
 
+  describe "#search(search_term)" do
+    it "returns a collection of Market instances where the market or vendor name contain the search term" do
+      expect(FarMar::Market.search("school")).to be_an Array
+      expect(FarMar::Market.search("school").length).to eq 3
+      expect(FarMar::Market.search("schmitt").length).to eq 15
+    end
+  end
+
 end

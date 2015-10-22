@@ -49,6 +49,12 @@ module FarMar
       vendors.flat_map{|vendor| vendor.products }
     end
 
+    def self.search(search_term)
+      all.find_all do |market|
+        market.name.downcase.include?(search_term.downcase) ||
+        market.vendors.any?{|vendor| vendor.name.downcase.include?(search_term.downcase)}
+      end
+    end
 
   end
 end
