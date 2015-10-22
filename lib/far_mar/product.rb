@@ -19,7 +19,7 @@ module FarMar
         products_csv = CSV.read("./support/products.csv")
         products_array = []
         products_csv.each do |line|
-        new_product = FarMar::Product.new(self.create_product_hash(line))
+        new_product = self.new(self.create_product_hash(line))
         products_array.push(new_product)
       end
       return products_array
@@ -28,7 +28,7 @@ module FarMar
       def self.find(id)
         products_csv = CSV.read("./support/products.csv")
         match = products_csv.find {|product| product[0].to_i == id}
-        new_product = FarMar::Product.new(self.create_product_hash(match))
+        new_product = self.new(self.create_product_hash(match))
         return new_product
       end
 
@@ -50,13 +50,7 @@ module FarMar
         # matches is an array
         sales_array = []
         matches.each do |line|
-          sale = FarMar::Sale.new({
-            :id => line[0].to_i,
-            :amount => line[1].to_i,
-            :purchase_time => DateTime.parse(line[2]),
-            :vendor_id => line[3].to_i,
-            :product_id => line[4].to_i
-          })
+          sale = FarMar::Sale.new(FarMar::Sale.create_sale_hash(line))
           sales_array.push(sale)
         end
         #sales_array is an array of Vendor objects
@@ -71,7 +65,7 @@ module FarMar
       end
 
       def self.by_vendor(vendor_id)
-        all_products = FarMar::Product.all
+        all_products = self.all
         #all_products is an array of Vendor objects
         matches = all_products.find_all {|product| product.vendor_id == vendor_id}
         return matches

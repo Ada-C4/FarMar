@@ -9,19 +9,21 @@ module FarMar
         @product_id = sale_hash[:product_id]
       end
 
+      def self.create_sale_hash(sale_array)
+        sale_hash = {}
+        sale_hash[:id] = sale_array[0].to_i
+        sale_hash[:amount] = sale_array[1].to_i
+        sale_hash[:purchase_time] = DateTime.parse(sale_array[2])
+        sale_hash[:vendor_id] = sale_array[3].to_i
+        sale_hash[:product_id] = sale_array[4].to_i
+        return sale_hash
+      end
+
       def self.all()
         sales_csv = CSV.read("./support/sales.csv")
         sales_array = []
         sales_csv.each do |line|
-        new_sale = FarMar::Sale.new(
-        {
-          :id => line[0].to_i,
-          :amount => line[1].to_i,
-          :purchase_time => DateTime.parse(line[2]),
-          :vendor_id => line[3].to_i,
-          :product_id => line[4].to_i
-          }
-        )
+        new_sale = self.new(self.create_sale_hash(line))
         sales_array.push(new_sale)
       end
       return sales_array
@@ -30,15 +32,7 @@ module FarMar
       def self.find(id)
         sales_csv = CSV.read("./support/sales.csv")
         match = sales_csv.find {|sale| sale[0].to_i == id}
-        new_sale = FarMar::Sale.new(
-        {
-          :id => match[0].to_i,
-          :amount => match[1].to_i,
-          :purchase_time => DateTime.parse(match[2]),
-          :vendor_id => match[3].to_i,
-          :product_id => match[4].to_i
-          }
-        )
+        new_sale = self.new(self.create_sale_hash(match))
         return new_sale
       end
 
@@ -63,15 +57,7 @@ module FarMar
         matching_sales_array = []
         sales_csv.find_all do |sale|
           if DateTime.parse(sale[2]) >= beginning_time && DateTime.parse(sale[2]) <= end_time
-            new_sale = FarMar::Sale.new(
-            {
-              :id => sale[0].to_i,
-              :amount => sale[1].to_i,
-              :purchase_time => DateTime.parse(sale[2]),
-              :vendor_id => sale[3].to_i,
-              :product_id => sale[4].to_i
-              }
-            )
+            new_sale = self.new(self.create_sale_hash(sale))
             matching_sales_array.push(new_sale)
           end
         end

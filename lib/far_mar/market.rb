@@ -29,7 +29,7 @@ module FarMar
       markets_csv = CSV.read("./support/markets.csv")
       markets_array = []
       markets_csv.each do |line|
-      new_market = FarMar::Market.new(self.create_market_hash(line))
+      new_market = self.new(self.create_market_hash(line))
       markets_array.push(new_market)
     end
     return markets_array
@@ -38,7 +38,7 @@ module FarMar
     def self.find(id)
       markets_csv = CSV.read("./support/markets.csv")
       match = markets_csv.find {|market| market[0].to_i == id}
-      new_market = FarMar::Market.new(self.create_market_hash(match))
+      new_market = self.new(self.create_market_hash(match))
       return new_market
     end
 
