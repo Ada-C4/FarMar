@@ -23,7 +23,7 @@ module FarMar
 		end
 
 		def self.find(id)
-			FarMar::Product.all.find {|pro| pro.product_id == id}
+			@@product_array.find {|pro| pro.product_id == id}
 		end
 
 		def vendor

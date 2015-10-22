@@ -27,7 +27,7 @@ module FarMar
   	end
 
     def self.find(id)
-      FarMar::Market.all.find {|mar| mar.market_id == id }
+      @@market_array.find {|mar| mar.market_id == id }
     end
 
     def vendors
@@ -43,6 +43,27 @@ module FarMar
       return prod_array.flatten
     end
 
+    def self.search(search_term)
+      search_term = search_term.downcase
+      match_markets = []
+      @@market_array.each do |market|
+        match_markets.push(market) if market.name.downcase.match(/#{search_term}/)
+      end
+      match_vendors = []
+      FarMar::Vendor.all.each do |vendor|
+        match_vendors.push(vendor) if vendor.name.downcase.match(/#{search_term}/)
+       end
+       match_vendors.map! {|vendor| vendor.market}
+       match_vendors.each do |market_id|
+         market = FarMar::Market.find(market_id)
+         match_markets.push(market)
+       end
+       return match_markets
+    end
+
+    def preferred_vendor
+      ven = self.vendors
+    end
 
   end
 

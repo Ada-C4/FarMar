@@ -78,8 +78,26 @@ describe FarMar::Market do
 		it 'contains Market Instances' do
 			expect(@search_return[0]).to be_an_instance_of(FarMar::Market)
 		end
-		it 'returns Markets w search_term in @name || @vendor_name' do
+		it 'returns Markets w search_term in @name' do
 			expect(@search_return.length).to eq(3)
+		end
+		it 'returns Markets w search term in Vendor @name' do
+			@search = FarMar::Market.search("Donnelly")
+			expect(@search.length).to eq(18)
+			expect(@search[0].market_id).to eq(3)
+		end
+
+	end
+
+	describe '#preferred_vendor' do
+		before :each do
+			@market = FarMar::Market.new(2,"Silverdale Farmers Market",98383,"Silverdale","Kitsap","Washington",98383)
+		end
+		it 'returns a Vendor' do
+			expect(@market.preferred_vendor).to be_an_instance_of(FarMar::Vendor)
+		end
+		it 'returns Vendor with highest revenue' do
+			expect(@market.preferred_vendor.name).to eq("Stamm Inc")
 		end
 	end
 

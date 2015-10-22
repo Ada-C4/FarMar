@@ -26,7 +26,7 @@ module FarMar
 		end
 
 		def self.find(id)
-			FarMar::Sale.all.find {|sale| sale.sale_id == id}
+			@@sales_array.find {|sale| sale.sale_id == id}
 		end
 
 		def vendor
