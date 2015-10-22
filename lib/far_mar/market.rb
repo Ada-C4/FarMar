@@ -78,7 +78,6 @@ module FarMar
     end
 
     def prefered_vendor
-
       highest_revenue = 0
       ven_highest_revenue = nil
 
@@ -90,6 +89,21 @@ module FarMar
         end
       end
       return ven_highest_revenue
+    end
+
+    def worst_vendor
+      lowest_revenue = Float::INFINITY
+      ven_lowest_revenue = nil
+
+      vendors.each do |vendor_instance|
+        ven_revenue = vendor_instance.revenue
+        if ven_revenue < lowest_revenue
+          lowest_revenue = ven_revenue
+          ven_lowest_revenue = vendor_instance
+        end
+      end
+      return ven_lowest_revenue
+
     end
 
   end
