@@ -17,7 +17,7 @@ module FarMar
           @@product_array.push(new_product)
         end
       end
-      
+
       return @@product_array
     end
 
@@ -40,6 +40,15 @@ module FarMar
       return sales
     end
 
+    def product_revenue
+      product_revenue = 0
+      sales = self.sales
+      sales.each do |sale|
+        product_revenue = product_revenue + sale.amount
+      end
+      return product_revenue
+    end
+
     def number_of_sales
       return self.sales.length
     end
@@ -49,6 +58,19 @@ module FarMar
         product.id == vendor_id
       end
       return vendor_products
+    end
+
+    def self.most_revenue(n)
+      sorted_products = FarMar::Product.all.sort_by do |product|
+        product_revenue = 0
+        product_sales = product.sales
+        product_sales.each do |sale|
+          product_revenue = product_revenue + sale.amount
+        end
+        product_revenue
+      end
+      sorted_products.reverse!
+      return sorted_products[0..n-1]
     end
 
   end

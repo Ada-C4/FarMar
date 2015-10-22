@@ -106,37 +106,37 @@ describe FarMar do
       end
     end
 
-    # describe ".most_revenue(n)" do
-    #   before :each do
-    #     @n = 2
-    #   end
-    #   it "returns a collection" do
-    #     expect(FarMar::Vendor.most_revenue(@n)).to be_an(Array)
-    #   end
-    #   it "returns a list of Vendors" do
-    #     expect(FarMar::Vendor.most_revenue(2)[0]).to be_an_instance_of(FarMar::Vendor)
-    #     expect(FarMar::Vendor.most_revenue(2)[1]).to be_an_instance_of(FarMar::Vendor)
-    #   end
-    #   it "returns an ranked list, sorted highest to lowest" do
-    #     expect(FarMar::Vendor.most_revenue(2)[0].revenue).to be > FarMar::Vendor.most_revenue(2)[1].revenue if FarMar::Vendor.most_revenue(2).length > 1
-    #   end
-    # end
-    #
-    # describe ".most_items(n)" do
-    #   before :each do
-    #     @n = 2
-    #   end
-    #   it "returns a collection" do
-    #     expect(FarMar::Vendor.most_items(@n)).to be_an(Array)
-    #   end
-    #   it "returns a list of Vendors" do
-    #     expect(FarMar::Vendor.most_items(@n)[0]).to be_an_instance_of(FarMar::Vendor)
-    #     expect(FarMar::Vendor.most_items(@n)[1]).to be_an_instance_of(FarMar::Vendor)
-    #   end
-    #   it "returns a ranked list, sorted highest to lowest" do
-    #     expect(FarMar::Vendor.most_items(2)[0].products.length).to be >= FarMar::Vendor.most_items(2)[1].products.length if FarMar::Vendor.most_items(2).length > 1
-    #   end
-    # end
+    describe ".most_revenue(n)" do
+      before :each do
+        @n = 2
+      end
+      it "returns a collection" do
+        expect(FarMar::Vendor.most_revenue(@n)).to be_an(Array)
+      end
+      it "returns a list of Vendors" do
+        expect(FarMar::Vendor.most_revenue(2)[0]).to be_an_instance_of(FarMar::Vendor)
+        expect(FarMar::Vendor.most_revenue(2)[1]).to be_an_instance_of(FarMar::Vendor)
+      end
+      it "returns an ranked list, sorted highest to lowest" do
+        expect(FarMar::Vendor.most_revenue(2)[0].revenue).to be > FarMar::Vendor.most_revenue(2)[1].revenue if FarMar::Vendor.most_revenue(2).length > 1
+      end
+    end
+
+    describe ".most_items(n)" do
+      before :each do
+        @n = 2
+      end
+      it "returns a collection" do
+        expect(FarMar::Vendor.most_items(@n)).to be_an(Array)
+      end
+      it "returns a list of Vendors" do
+        expect(FarMar::Vendor.most_items(@n)[0]).to be_an_instance_of(FarMar::Vendor)
+        expect(FarMar::Vendor.most_items(@n)[1]).to be_an_instance_of(FarMar::Vendor)
+      end
+      it "returns a ranked list, sorted highest to lowest" do
+        expect(FarMar::Vendor.most_items(2)[0].products.length).to be >= FarMar::Vendor.most_items(2)[1].products.length if FarMar::Vendor.most_items(2).length > 1
+      end
+    end
 
     describe ".revenue_by_date(date)" do
       before :each do

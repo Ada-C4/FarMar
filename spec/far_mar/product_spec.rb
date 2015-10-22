@@ -66,6 +66,16 @@ describe FarMar do
       end
     end
 
+    describe "#product_revenue" do
+      it "returns a number" do
+        expect(@product.product_revenue).to be_a(Fixnum)
+      end
+      it "calculates the total product revenue" do
+        expect(@product.product_revenue).to eq(38259)
+        expect(@product3.product_revenue).to eq(0)
+      end
+    end
+
     describe "#number_of_sales" do
       it "returns a number" do
         expect(@product.number_of_sales).to be_a(Fixnum)
@@ -85,6 +95,22 @@ describe FarMar do
       end
       it "returns instances of Products" do
         expect(FarMar::Product.by_vendor(@vendor_id)[0]).to be_an_instance_of(FarMar::Product) if FarMar::Product.by_vendor(@vendor_id).length > 0
+      end
+    end
+
+    describe ".most_revenue(n)" do
+      before :each do
+        @n = 2
+      end
+      it "returns a collection" do
+        expect(FarMar::Product.most_revenue(@n)).to be_an(Array)
+      end
+      it "returns a list of Products" do
+        expect(FarMar::Product.most_revenue(2)[0]).to be_an_instance_of(FarMar::Product)
+        expect(FarMar::Product.most_revenue(2)[1]).to be_an_instance_of(FarMar::Product)
+      end
+      it "is an ordered list" do
+        expect(FarMar::Product.most_revenue(@n)[0].product_revenue).to be >= FarMar::Product.most_revenue(2)[1].product_revenue if FarMar::Product.most_revenue(2).length > 1
       end
     end
 
