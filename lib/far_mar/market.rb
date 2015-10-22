@@ -14,10 +14,9 @@ module FarMar
     end
 
     def self.all
-      markets = []
-      market_array = CSV.read("support/markets.csv")
-      market_array.each do |line|
-      new_market = Market.new(
+      if @market_array.nil?|| @market_array.empty?
+        @market_array = CSV.read("support/markets.csv").map do |line|
+        Market.new(
         id: line[0],
         name: line[1],
         address: line[2],
@@ -25,9 +24,9 @@ module FarMar
         county: line[4],
         state: line[5],
         zip: line[6])
-        markets.push(new_market)
+        end
       end
-      return markets
+      return @market_array
     end
 
     def self.find(id)
@@ -69,7 +68,7 @@ module FarMar
         results.push(market) if market.name.match(/#{search_term}/i)
       end
       FarMar::Vendor.all.find_all do |vendor|
-        results.push(vendor) if vendor.name.match(/#{search_term}/i)
+        results.push(vendor.market) if vendor.name.match(/#{search_term}/i)
       end
       return results
     end
@@ -78,16 +77,22 @@ module FarMar
       self.vendors.sort_by { |vendor| vendor.revenue}.last
     end
 
-    def prefered_vendor(date)
+    def preferred_vendor(date)
       self.vendors.each do |vendor|
       rev = 0
+      max_rev = 0
+      max_vendor = nil
        vendor.sales.each do |sale|
          if sale.purchase_time.to_date == date
            rev += sale.amount
          end
-         return rev
        end
+        if rev > max_rev
+          rev = max_rev
+          max_vendor = vendor
+        end
       end
+      return max_vendor
     end
   end
 end

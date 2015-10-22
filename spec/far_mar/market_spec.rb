@@ -4,6 +4,7 @@ describe FarMar::Market do
   before :each do
     # csv = CSV.read("support/markets.csv")
     @market1 = FarMar::Market.new(:id => 1, :name => "People's Co-op Farmers Market", :address => "30th and Burnside", :city => "Portland", :county => "Multnomah", :state => "Oregon", :zip => 97202)
+    @market2 = FarMar::Market.new(:id => 1, :name => "People's Co-op Farmers Market", :address => "30th and Burnside", :city => "Portland", :county => "Multnomah", :state => "Oregon", :zip => 97202)
   end
 
   describe "initialize" do
@@ -75,4 +76,12 @@ describe FarMar::Market do
       expect(@market1.pref_vendor).to be_an_instance_of FarMar::Vendor
     end
   end
+
+#   describe "#preferred_vendor(date)"do
+#     it "returns a vendor correctly" do
+#       expect( market (2) Date.parse("2013-11-07")).id).to eq 7
+#     end
+#   end
+# 
+#   expect market (2) Date.parse("2013-11-07")).id).to eq 7
 end
