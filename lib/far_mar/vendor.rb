@@ -10,6 +10,7 @@ module FarMar
        @market_id = market_id
      end
 
+    ######CLASS METHODS####
      def self.all(csv = "./support/vendors.csv")
        vendors_info = CSV.read(csv)
        vendors = []
@@ -22,13 +23,13 @@ module FarMar
      #helper method for class methods to search vendors
      def self.find_by(var, search_param, csv = "./support/vendors.csv")
        all = self.all(csv)
-       match = (all.find {|n| n.send(var) == search_param.to_s})
+       match = (all.find_all {|n| n.send(var) == search_param.to_s})
        return match
      end
 
-     #returns an array of vendors with the given id
+     #returns the vendor with the given id.
      def self.find(search_id, csv = "./support/vendors.csv")
-       self.find_by(:id, search_id, csv)
+       self.find_by(:id, search_id, csv)[0]
      end
 
      #returns an array of vendors with the given market_id
@@ -36,6 +37,8 @@ module FarMar
        self.find_by(:market_id, search_market_id, csv)
      end
 
+
+   #####INSTANCE METHODS######
      #returns the market with an id matching that of a given vendor instance
      def market(market_csv = "./support/markets.csv" )
        all_markets = Market.all(market_csv)

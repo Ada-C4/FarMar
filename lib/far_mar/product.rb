@@ -18,11 +18,22 @@ module FarMar
        return products
      end
 
-     def self.find(search_id, csv = "./support/products.csv")
+     def self.find_by(var, search_param, csv = "./support/products.csv")
        all = self.all(csv)
-       match = (all.find {|n| n.id == search_id.to_s})
+       match = (all.find {|n| n.send(var) == search_param.to_s})
        return match
      end
+
+     #returns an array of products with the given id
+     def self.find(search_id, csv = "./support/products.csv")
+       self.find_by(:id, search_id, csv)
+     end
+
+     #returns an array of products with the given market_id
+     def self.by_market(search_market_id, csv = "./support/vendors.csv")
+       self.find_by(:market_id, search_market_id, csv)
+     end
+
 
      def self.by_vendor(vendor_id)
      end

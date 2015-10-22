@@ -66,6 +66,15 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "self.by_market" do
+    it "returns an array of vendors matching the passed market_id" do
+    market_id3 = FarMar::Vendor.by_market(3, csv = "./support/vendors2.csv")
+    expect(market_id3).to be_an(Array)
+    expect(market_id3.empty?).to eq false
+    expect(market_id3[0].name).to eq "Fakey Fake Vendor"
+    end
+  end
+
   describe "#market" do
     it "returns the market instance associated with the given vendor" do
       @vendor3 = FarMar::Vendor.new("4", "Best vendor", "9", "5")
