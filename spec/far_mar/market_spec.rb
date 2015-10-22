@@ -46,5 +46,12 @@ describe FarMar::Market do
         expect(@market.products[1].name).to eq "Fierce Greens"
       end
     end
+
+    describe "#self.search(search_term)" do
+      it "returns all Markets where the market or vendor name contain the search term" do
+        expect(FarMar::Market.search("School").length).to eq 3
+        expect(FarMar::Market.search("School")[0].id). to eq 75
+      end
+    end
   end
 end

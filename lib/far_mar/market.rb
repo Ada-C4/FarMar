@@ -31,6 +31,7 @@ module FarMar
       return FarMar::Vendor.all.find_all {|vendor| vendor.market_id == @id}
     end
 
+    #returns all producs sold at the specific market
     def products
       vendors = FarMar::Vendor.by_market(@id)
       all_products = []
@@ -41,6 +42,23 @@ module FarMar
         end
       end
       return all_products
+    end
+
+    def self.search(search_term)
+      markets = []
+      FarMar::Vendor.all.each do |vendor|
+        name = vendor.name.downcase
+        if name.include?(search_term.downcase)
+          markets << vendor.market
+        end
+      end
+      self.all.each do |market|
+        name = market.name.downcase
+        if name.include?(search_term.downcase)
+          markets << market
+        end
+      end
+      return markets
     end
   end
 end
