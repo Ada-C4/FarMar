@@ -70,8 +70,8 @@ describe FarMar::Market do
   describe "#vendors" do
     it "returns an array of vendor instances with the associated market id" do
       @market3 = FarMar::Market.new("3", "Best Market","","","","","45555")
-      expect(@market3.id).to eq "3"
-      expect(@market3.vendors.class).to be_an_instance_of Array
+      expect(@market3.vendors).to be_an_instance_of Array
+      expect(@market3.vendors[0].market_id).to eq "3"
     end
   end
 end

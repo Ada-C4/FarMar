@@ -35,12 +35,10 @@ module FarMar
 
      #need to look through the vendors and find the one with this market id
      #can use default or other csv
-     #returns instances
      #market doesn't know the vendor id, but vendors have market ids
    def vendors(vendors_csv = "./support/vendors.csv")
-     all_vendors = Vendor.all
-     all_vendors.find_all {|n| n.market_id == self.id}
-     return all_vendors
+     vendor_matches = (Vendor.all).find_all {|n| n.market_id == self.id}
+     return vendor_matches
    end
   end
 end
