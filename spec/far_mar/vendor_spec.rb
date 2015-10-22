@@ -67,7 +67,7 @@ describe FarMar::Vendor do
   end
   describe "#revenue" do
     it "returns the sum of the vendor's sales" do
-      @id = 1
+      @id = 2
       @vendor = FarMar::Vendor.find(@id)
       expect(@vendor.revenue.class).to eq Fixnum
     end
@@ -81,11 +81,37 @@ describe FarMar::Vendor do
   end
   describe "self.most_revenue(n)" do
     it "returns an array" do
-      expect(FarMar::Vendor.most_revenue(5)).to be_an Array
+      expect(FarMar::Vendor.most_revenue(2)).to be_an Array
     end
     it "returns an array of n or less Vendor instances" do
-      expect(FarMar::Vendor.most_revenue(5)[0]).to be_an_instance_of FarMar::Vendor
-      expect(FarMar::Vendor.most_revenue(5)[0].revenue).to be > FarMar::Vendor.most_revenue(5)[1].revenue
+      expect(FarMar::Vendor.most_revenue(2)[0]).to be_an_instance_of FarMar::Vendor
+      expect(FarMar::Vendor.most_revenue(2)[0].revenue).to be >= FarMar::Vendor.most_revenue(2)[1].revenue
+    end
+  end
+  describe "self.most_items(n)" do
+    it "returns an array" do
+      expect(FarMar::Vendor.most_items(2)).to be_an Array
+    end
+    it "returns an array with n or less Vendor instances" do
+      expect(FarMar::Vendor.most_items(2)[0]).to be_an_instance_of FarMar::Vendor
+      expect(FarMar::Vendor.most_items(2)[0].products.length).to be >= FarMar::Vendor.most_items(2)[1].products.length
+    end
+  end
+  describe "self.revenue(date)" do
+    it "returns a Fixnum" do
+      @date = "2013-11-07 04:34:56 -0800"
+      expect(FarMar::Vendor.revenue(@date)).to be_an Fixnum
+    end
+  end
+  describe "daily_sales(date)" do
+    it "returns a Fixnum" do
+      @date = "2013-11-07 04:34:56 -0800"
+      @id = 2
+      @vendor = FarMar::Vendor.find(@id)
+      expect(@vendor.daily_sales(@date)).to be_an Fixnum
+      expect(@vendor.daily_sales(@date)).to eq 0
+      @date = "2013-11-12 06:03:54 -0800"
+      expect(@vendor.daily_sales(@date)).to eq 5727
     end
   end
 end

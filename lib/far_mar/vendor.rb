@@ -71,16 +71,35 @@ module FarMar
     end
 
     def self.most_revenue(n)
-      @@best_vendors ||= []
       vendors_list = self.all
 
-      if @@best_vendors == []
-        @@best_vendors = vendors_list.sort_by do |vendor|
-          vendor.revenue
-        end
+      vendors_list.max_by(n) do |vendor|
+        vendor.revenue
+      end
+    end
+
+    def self.most_items(n)
+      vendors_list = self.all
+
+      vendors_list.max_by(n) do |vendor|
+        vendor.products.length
+      end
+    end
+
+    def self.revenue(date)
+      sales_list = Sale.between(date, date)
+
+      sales_list.inject(0) { |sum, sale| sum + sale.amount}
+    end
+
+    def daily_sales(date)
+      sales_list = Sale.between(date, date)
+
+      vendor_sales = sales_list.find_all do |sale|
+        sale.vendor_id == self.id
       end
 
-      return @@best_vendors.last(n).reverse
+      vendor_sales.inject(0) { |sum, sale| sum + sale.amount}
     end
 
   end

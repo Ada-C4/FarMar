@@ -52,5 +52,14 @@ module FarMar
         instance.id == id
       end
     end
+
+    def self.most_revenue(n)
+      products_list = self.all
+
+      products_list.max_by(n) do |product|
+        product.sales.inject(0) { |sum, sale| sum + sale.amount }
+      end
+    end
+
   end
 end

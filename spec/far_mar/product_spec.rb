@@ -74,4 +74,12 @@ describe FarMar::Product do
       expect(FarMar::Product.by_vendor(@vendor_id)[0]).to be_an_instance_of FarMar::Product
     end
   end
+  describe "self.most_revenue(n)" do
+    it "returns an array" do
+      expect(FarMar::Product.most_revenue(2)).to be_an Array
+    end
+    it "returns an array of n or less Vendor instances" do
+      expect(FarMar::Product.most_revenue(2)[0]).to be_an_instance_of FarMar::Product
+    end
+  end
 end
