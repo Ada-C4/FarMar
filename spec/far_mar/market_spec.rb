@@ -61,6 +61,9 @@ describe FarMar do
         it "returns instances of Products" do
           expect(@market.products[0]).to be_an_instance_of(FarMar::Product) if @market.products.length > 0
         end
+        it "contains Products from Vendors at that Market" do
+          expect(@market.products[0].vendor_id).to eq(@market.id)
+        end
       end
     end
 
