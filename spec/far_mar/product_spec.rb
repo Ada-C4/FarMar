@@ -49,6 +49,9 @@ describe FarMar::Product do
     it "returns an array" do
       expect(FarMar::Product.by_vendor(1)).to be_an Array
     end
+    it "returns a certain number of instances" do
+      expect(FarMar::Product.by_vendor(5).length).to eq 3
+    end
   end
 
 

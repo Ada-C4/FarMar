@@ -64,11 +64,13 @@ module FarMar
 
     # Returns all of the products matching the vendor_id
     def self.by_vendor(vend_id)
+      product_array = []
+      self.all.find_all do |prod|
+        if prod.vendor_id == vend_id
+          product_array.push(prod)
+        end
+      end
+      return product_array
     end
-
-
-
-
-
   end
 end
