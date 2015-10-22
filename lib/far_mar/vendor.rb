@@ -53,11 +53,7 @@ module FarMar
         # matches is an array
         products_array = []
         matches.each do |line|
-          product = FarMar::Product.new({
-          :id => line[0].to_i,
-          :name => line[1],
-          :vendor_id => line[2].to_i
-          })
+          product = FarMar::Product.new(FarMar::Product.create_product_hash(line))
           products_array.push(product)
         end
         #products_array is an array of Vendor objects
