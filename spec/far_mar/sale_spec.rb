@@ -67,4 +67,13 @@ describe FarMar::Sale do
       expect(sale.product.id).to be 10
     end
   end
+  describe "self.between(beginning_time, end_time)" do
+    it "returns a collection of sales in the given time range" do
+      sales_range = FarMar::Sale.between("2013-11-06 14:55:25 -0800", "2013-11-08 06:49:47 -0800")
+      expect(sales_range).to be_an Array
+      expect(sales_range[2]).to be_an_instance_of FarMar::Sale
+      expect(sales_range.min_by { |sale| sale.purchase_time }.purchase_time).to eq DateTime.parse("2013-11-06 14:55:25 -0800")
+      expect(sales_range.max_by { |sale| sale.purchase_time }.purchase_time).to eq DateTime.parse("2013-11-08 06:49:47 -0800")
+    end
+  end
 end

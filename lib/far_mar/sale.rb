@@ -45,6 +45,14 @@ module FarMar
       end
     end
 
+    def self.between(beginning_time, end_time)
+      beginning_time = DateTime.parse(beginning_time)
+      end_time = DateTime.parse(end_time)
+      FarMar::Sale.all.find_all do |sale|
+        sale.purchase_time >= beginning_time && sale.purchase_time <= end_time
+      end
+    end
   end
+
 
 end
