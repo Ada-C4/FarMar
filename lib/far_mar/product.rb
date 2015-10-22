@@ -38,7 +38,8 @@ module FarMar
       sales.length
     end
 
-    # def self.by_vendor(vendor_id)
-    # end
+    def self.by_vendor(vendor_id)
+      all.find_all{|product| product.vendor_id == vendor_id}
+    end
   end
 end

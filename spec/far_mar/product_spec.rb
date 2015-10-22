@@ -54,4 +54,11 @@ describe FarMar::Product do
     end
   end
 
+  describe "#by_vendor" do
+    it "returns all of the products with the given vendor_id" do
+      expect(FarMar::Product.by_vendor(1)).to be_an Array
+      expect(FarMar::Product.by_vendor(1).length).to eq 1
+    end
+  end
+
 end
