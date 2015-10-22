@@ -35,14 +35,22 @@ module FarMar
        return market_match
      end
 
-     #returns an Array of product instances that are associated by the FarMar::Product vendor_id field.
-     def products(products_csv = "./support/products.csv")
-       all_products = Product.all(products_csv)
-       product_matches = (all_products.find_all {|n| n.vendor_id == self.id})
-       return product_matches
+
+     # to assist with the .products and .sales methods
+     def search_foreign_keyholders(csv, klass)
+       search_in = klass.all(csv)
+       matches = (search_in.find_all {|n| n.vendor_id == self.id})
+       return matches
      end
 
-     def sales
+      #returns an Array of product instances that are associated by the FarMar::Product vendor_id field.
+     def products(products_csv = "./support/products.csv")
+       search_foreign_keyholders(products_csv, Product)
+     end
+
+     #returns an array of FarMar::Sale instances that are associated by the vendor_id field.
+     def sales(sales_csv = "./support/sales.csv")
+       search_foreign_keyholders(sales_csv, Sale)
      end
 
      def revenue
