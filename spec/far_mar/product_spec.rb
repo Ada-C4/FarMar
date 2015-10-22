@@ -7,9 +7,11 @@ describe FarMar do
     describe "#initialize" do
       it "creates a new Product instance" do
         expect(sample_product).to be_an_instance_of(FarMar::Product)
-        expect(sample_product.id).to eq(14)
-        expect(sample_product.name).to eq("Stupendous Carrots")
-        expect(sample_product.vendor_id).to eq(7)
+      end
+      product_hash.each do |attr, val|
+        it "assigns the #{attr} attribute correctly" do
+          expect(sample_product.instance_variable_get("@#{attr}")).to eq(val)
+        end
       end
     end
 
