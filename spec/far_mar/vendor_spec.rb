@@ -31,7 +31,8 @@ describe FarMar::Vendor do
       expect(@vendor.id).to eq 45
       expect(@vendor_2.id).to eq 2690
     end
-
+  end
+  
   context "#market" do
     it "returns an instance of FarMar::Market associated with the vendor" do
       expect(@vendor.market.length).to eq 1
@@ -50,5 +51,5 @@ describe FarMar::Vendor do
       expect(@vendor.sales.class).to be Array
     end
   end
-  
+
 end
