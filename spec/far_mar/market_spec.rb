@@ -94,6 +94,15 @@ describe FarMar::Market do
       min = all_vendors.min_by { |i| i.revenue}
       expect(sample_market.worst_vendor).to eq min
     end
+    it "when passed a date, returns a vendor objects" do
+      sample_market = @markets[1]
+      expect(sample_market.worst_vendor(2013,11,7)).not_to eq nil
+      expect(sample_market.worst_vendor(2013,11,7)).to be_an_instance_of FarMar::Vendor
+    end
+    it "when passed a date, returns the expected vendor" do
+      sample_market = @markets[1]
+      expect(sample_market.worst_vendor(2013,11,7).vendor_name).to eq "Quigley, Breitenberg and Schuster"
+    end
   end
 
   describe ".search" do
