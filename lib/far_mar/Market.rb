@@ -55,5 +55,10 @@ module FarMar
       end
       return matching_markets
     end
+    def preferred_vendor
+      vendors.max_by do |vendor|
+        vendor.revenue
+      end
+    end
   end
 end
