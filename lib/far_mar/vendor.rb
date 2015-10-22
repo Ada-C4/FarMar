@@ -7,6 +7,7 @@ module FarMar
       # rev = FarMar::Sale.vendor_stats[@id][:revenue]
       # num = FarMar::Sale.vendor_stats[@id][:num_sales]
       super(vendor_hash)
+      @revenue = nil
     end
 
     def self.all_objects
@@ -33,8 +34,18 @@ module FarMar
         n.class != Fixnum ||
         n < 0 ||
         n > FarMar::Vendor.all_objects.length
-      sorted = FarMar::Vendor.all_objects.sort_by { |v| v.revenue }
-      return sorted[-n, n].reverse
+      id_rev = {}
+      FarMar::Vendor.all_objects.each do |vendor_obj|
+        id_rev[vendor_obj.id] = vendor_obj.revenue
+      end
+      backwards_revs = id_rev.sort_by {|id, revenue| revenue }
+      sorted_revs = backwards_revs.reverse
+      sorted_rev_results = sorted_revs[0, n]
+      results = []
+      sorted_rev_results.each do |item|
+        results.push(FarMar::Vendor.find(item[0]))
+      end
+      return results
     end
 
     # returns a collection of FarMar::Product instances that are
@@ -57,8 +68,13 @@ module FarMar
 
     # returns the sum of all of the vendor's sales (in cents)
     def revenue
-      rev = FarMar::Sale.vendor_stats[@id][:revenue]
-      rev.nil? ? (return @revenue = 0) : (return @revenue = rev)
+      return @revenue if !@revenue.nil?
+      results = FarMar::Sale.vendor_stats
+      if results[@id].nil?
+        @revenue = 0
+      else
+        @revenue = results[@id][:revenue]
+      end
     end
 
   end
