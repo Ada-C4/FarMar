@@ -72,6 +72,7 @@ describe FarMar::Vendor do
       market_match = @vendor3.market("./support/markets2.csv")
       expect(market_match).to be_an_instance_of FarMar::Market
       expect(market_match.id).to eq "5"
+      expect(market_match.name).to eq "Secret Market"
     end
   end
 end
