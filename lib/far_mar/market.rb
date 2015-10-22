@@ -28,5 +28,14 @@ module FarMar
       return FarMar::Vendor.by_market(@id)
     end
 
+    def products
+      products = []
+      v = vendors
+      v.each do |vendor|
+        products += vendor.products
+      end
+      return products
+    end
+
   end
 end

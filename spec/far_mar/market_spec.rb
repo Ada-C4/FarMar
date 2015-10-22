@@ -4,6 +4,7 @@ describe FarMar do
   describe FarMar::Market do
     market_hash = FarMar::Market.convert_to_hash(["64","Oakmont Farmers Market","1 W Eagle Road","Havertown","Delaware","Pennsylvania","19083"])
     let(:sample_market) { FarMar::Market.new(market_hash)}
+    let(:sample_market2) { FarMar::Market.new({ :id => 20, :name => "Scottdale Farmers Market", :address => "1 Centennial Way", :city => "Scottdale", :county => "Westmoreland", :state => "Pennsylvania", :zip => "15683" })}
     describe "#initialize" do
       it "creates a new Market instance" do
         expect(sample_market).to be_an_instance_of(FarMar::Market)
@@ -45,18 +46,8 @@ describe FarMar do
     end
 
     describe "#vendors" do
-      let(:sample_market) {
-        FarMar::Market.new({
-          :id => 20,
-          :name => "Scottdale Farmers Market",
-          :address => "1 Centennial Way",
-          :city => "Scottdale",
-          :county => "Westmoreland",
-          :state => "Pennsylvania",
-          :zip => "15683" })
-        }
       it "returns array of vendors for the market" do
-        vendors = sample_market.vendors
+        vendors = sample_market2.vendors
         expect(vendors).to be_an(Array)
         expect(vendors.length).to eq(7)
         expect(vendors[-1]).to be_an_instance_of(FarMar::Vendor)
@@ -72,6 +63,8 @@ describe FarMar do
         expect(products[0]).to be_an_instance_of(FarMar::Product)
         expect(products[0].id).to eq(1073)
         expect(products[-1].id).to eq(1076)
+        products2 = sample_market2.products
+        expect(products2.length).to eq(22)
       end
     end
   end
