@@ -61,5 +61,9 @@ module FarMar
     def self.most_revenue(n)
       return FarMar::Vendor.all.max_by(n) {|vendor| vendor.revenue}
     end
+
+    def self.most_items(n)
+      return FarMar::Vendor.all.max_by(n) {|vendor| vendor.products.length}
+    end
   end
 end
