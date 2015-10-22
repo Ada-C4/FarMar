@@ -52,5 +52,29 @@ module FarMar
       end
       return associated_vendors
     end
+
+    def products
+      all_products = []
+      self.vendors.each do |each|
+        all_products.push(each.products)
+      end
+      return all_products
+    end
+
+    def self.search(search_term)
+      FarMar::Market.all.find_all do |each|
+        if include?(search_term)
+        end
+      end
+    end
+
+    def preferred_vendor
+      self.vendors.sort_by { |vendor| vendor.revenue}.last
+    end
+
+    def preferred_vendor(date)
+      self.vendors.sort_by { |vendor| vendor.revenue}.last
+
+    end
   end
 end
