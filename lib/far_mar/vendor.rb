@@ -57,5 +57,9 @@ module FarMar
       market = FarMar::Market.find(market_id)
       return market.vendors
     end
+
+    def self.most_revenue(n)
+      return FarMar::Vendor.all.max_by(n) {|vendor| vendor.revenue}
+    end
   end
 end

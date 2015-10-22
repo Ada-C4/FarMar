@@ -73,4 +73,13 @@ describe FarMar::Vendor do
       expect(FarMar::Vendor.by_market(20)[0].name).to eq "Davis Group"
     end
   end
+
+  describe "#self.most_revenue(n)" do
+    it "returns the top n vendor(s) with the hightest revenue" do
+      expect(FarMar::Vendor.most_revenue(3)).to be_an Array
+      expect(FarMar::Vendor.most_revenue(3).length).to eq 3
+      expect(FarMar::Vendor.most_revenue(3)[0].id).to eq 2590
+      expect(FarMar::Vendor.most_revenue(3)[0].revenue > FarMar::Vendor.most_revenue(3)[1].revenue).to eq true
+    end
+  end
 end
