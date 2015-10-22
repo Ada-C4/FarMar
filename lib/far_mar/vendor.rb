@@ -43,6 +43,16 @@ module FarMar
       return total_revenue
     end
 
+    def revenue_date(date)
+      total_revenue = 0
+      sales.each do |sale|
+        if sale.purchase_time.to_date == date
+          total_revenue += sale.amount
+        end
+      end
+      return total_revenue
+    end
+
     def self.by_market(market_id)
       market = FarMar::Market.find(market_id)
       return market.vendors

@@ -60,15 +60,19 @@ module FarMar
     end
 
     def preferred_vendor
-      pref_vendor = nil
-      max_revenue = 0
-      vendors.each do |vendor|
-        if vendor.revenue > max_revenue
-          max_revenue = vendor.revenue
-          pref_vendor = vendor
-        end
-      end
-      return pref_vendor
+      return vendors.max_by {|vendor| vendor.revenue}
+    end
+
+    def preferred_vendor_date(date)
+      return vendors.max_by {|vendor| vendor.revenue_date(date)}
+    end
+
+    def worst_vendor
+      return vendors.min_by {|vendor| vendor.revenue}
+    end
+
+    def worst_vendor_date(date)
+      return vendors.min_by {|vendor| vendor.revenue_date(date)}
     end
   end
 end
