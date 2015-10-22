@@ -2,22 +2,14 @@ require 'spec_helper'
 
 describe FarMar do
   describe FarMar::Market do
+    market_hash = FarMar::Market.convert_to_hash(["64","Oakmont Farmers Market","1 W Eagle Road","Havertown","Delaware","Pennsylvania","19083"])
+    let(:sample_market) { FarMar::Market.new(market_hash)}
     describe "#initialize" do
       it "creates a new Market instance" do
-        fake_hash = {
-          :id => 1,
-          :name => "Holiday",
-          :address => "118 N 180th St",
-          :city => "Shoreline",
-          :county => "King County",
-          :state => "WA",
-          :zip => "98133"
-        }
-        new_market = FarMar::Market.new(fake_hash)
-        expect(new_market).to be_an_instance_of(FarMar::Market)
-        expect(new_market.id).to eq(1)
-        expect(new_market.name).to eq("Holiday")
-        expect(new_market.zip).to eq("98133")
+        expect(sample_market).to be_an_instance_of(FarMar::Market)
+        expect(sample_market.id).to eq(64)
+        expect(sample_market.name).to eq("Oakmont Farmers Market")
+        expect(sample_market.zip).to eq("19083")
 
         # I tried to iterate over the original hash but that was a fail.
         # fake_hash.each do |k, v|

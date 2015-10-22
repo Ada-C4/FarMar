@@ -20,6 +20,7 @@ module FarMar
       market_hash[:city] = market_array[3]
       market_hash[:county] = market_array[4]
       market_hash[:state] = market_array[5]
+      market_hash[:zip] = market_array[6]
       return market_hash
     end
 
