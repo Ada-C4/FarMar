@@ -4,6 +4,7 @@ describe FarMar::Market do
   describe "initialize" do
     before :each do
       @market = FarMar::Market.new(1, "People's Co-op Farmers Market", "30th and Burnside", "Portland", "Multnomah", "Oregon", "97202")
+      @market2 = FarMar::Market.new(54, "Crescent City Farmers Market", "1 South Summit Street", "Crescent City", "Putnam", "Florida", "32112")
     end
 
     it "creates an instance of Farmar::Market class" do
@@ -54,11 +55,11 @@ describe FarMar::Market do
       end
     end
 
-    # describe "#preferred_vendor" do
-    #   it "returns the vendor with the highest revenue" do
-    #     expect(@market.preferred_vendor.name).to eq
-    #     expect(@market2.preferred_vendor.name).to eq
-    #   end
-    # end
+    describe "#preferred_vendor" do
+      it "returns the vendor with the highest revenue" do
+        expect(@market.preferred_vendor.name).to eq "Reynolds, Schmitt and Klocko"
+        expect(@market2.preferred_vendor.name).to eq "Denesik and Sons"
+      end
+    end
   end
 end
