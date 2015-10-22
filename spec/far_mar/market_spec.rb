@@ -72,4 +72,18 @@ describe FarMar::Market do
       expect(FarMar::Market.search("green").length).to eq 54
     end
   end
+  describe "#prefered_vendor" do
+    it "returns an instance of FarMar::Vendor" do
+      expect(@market1.prefered_vendor).to be_instance_of FarMar::Vendor
+    end
+    it "returns correct instance of FarMar::Vendor" do
+      @market3 = FarMar::Market.new(2, "name", "address", "city", "county", "state", "zip")
+      expect(@market3.prefered_vendor.id).to eq 8
+    end
+  end
+  describe "worst_vendor" do
+    it "returns an instance of FarMar::Vendor" do
+      expect(@market1.prefered_vendor).to be_instance_of FarMar::Vendor
+    end
+  end
 end

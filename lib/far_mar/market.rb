@@ -74,9 +74,23 @@ module FarMar
           end
         end
       end
-
       return search_term_instances
-
     end
+
+    def prefered_vendor
+
+      highest_revenue = 0
+      ven_highest_revenue = nil
+
+      vendors.each do |vendor_instance|
+        ven_revenue = vendor_instance.revenue
+        if ven_revenue > highest_revenue
+          highest_revenue = ven_revenue
+          ven_highest_revenue = vendor_instance
+        end
+      end
+      return ven_highest_revenue
+    end
+
   end
 end
