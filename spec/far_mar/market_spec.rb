@@ -87,4 +87,12 @@ describe FarMar::Market do
       expect(FarMar::Market.search('sons').include?(FarMar::Market.find(269))).to be_truthy
     end
   end
+  describe "#prefered_vendor" do
+    it "returns the vendor at the market with highest revenue" do
+      market_1 = FarMar::Market.new("1","People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202")
+      expect(market_1.prefered_vendor).to be_an_instance_of FarMar::Vendor
+      expect(market_1.prefered_vendor.id).to eq 5
+      expect(market_1.prefered_vendor.revenue).to eq 61749
+    end
+  end
 end

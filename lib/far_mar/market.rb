@@ -52,8 +52,6 @@ module FarMar
       return market_products
     end
 
-    #returns a collection
-    # of FarMar::Market instances where the market name or vendor name contain the search_term
     def self.search(search_term)
       search_term = search_term.downcase
       name_search_results = FarMar::Market.all.find_all do |market|
@@ -68,6 +66,13 @@ module FarMar
       return name_search_results + vendor_search_results
     end
 
+    def prefered_vendor
+      market_vendors = self.vendors
+      top_vendor = market_vendors.max_by do |vendor|
+        vendor.revenue
+      end
+      return top_vendor
+    end
 
   end
 end
