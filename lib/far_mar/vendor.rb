@@ -33,7 +33,18 @@ module FarMar
         n.class != Fixnum ||
         n < 0 ||
         n > FarMar::Vendor.all_objects.length
-      backwards = FarMar::Vendor.all_objects.sort_by{ |vendor_obj| vendor_obj.revenue }
+      backwards = FarMar::Vendor.all_objects.sort_by { |vendor_obj| vendor_obj.revenue }
+      sorted = backwards.reverse
+      return sorted[0, n]
+    end
+
+    # returns the top n vendor instances ranked by total number of items sold
+    def self.most_items(n)
+      return [] if
+        n.class != Fixnum ||
+        n < 0 ||
+        n > FarMar::Vendor.all_objects.length
+      backwards = FarMar::Vendor.all_objects.sort_by { |vendor_obj| vendor_obj.num_sales }
       sorted = backwards.reverse
       return sorted[0, n]
     end

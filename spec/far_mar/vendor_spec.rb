@@ -79,7 +79,7 @@ describe FarMar do
         top_thirty = FarMar::Vendor.most_items(30)
         expect(top_item).to be_an_instance_of(Array)
         expect(top_item.length).to eq(1)
-        expect(top_item.num_sales).to eq(18)
+        expect(top_item[0].num_sales).to eq(18)
         expect(top_thirty).to be_an_instance_of(Array)
         expect(top_thirty.length).to eq(30)
         expect(top_thirty[-1].num_sales).to eq(17)
