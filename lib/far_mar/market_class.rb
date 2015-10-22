@@ -47,9 +47,7 @@ module FarMar
     def self.find_market(market_id)
       FarMar::Market.all.find do |single_market|
         if single_market.id == market_id.to_s
-        var = []
-        var = ["#{single_market.id}", "#{single_market.name}", "#{single_market.address}", "#{single_market.city}", "#{single_market.county}", "#{single_market.state}", "#{single_market.zip}"]
-        return var
+        return single_market
       end
       end
     end

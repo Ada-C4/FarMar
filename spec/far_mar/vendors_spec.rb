@@ -17,27 +17,34 @@ describe FarMar::Vendor do
     end
 
     describe "self.find_vendor"
-      it "retuns the information for a given vendor based on that vendor's ID" do
-        expect(FarMar::Vendor.find_vendor(6)).to eq ["6", "Zulauf and Sons", "8", "1"]
+      it "retuns an instace of Vendor class" do
+        expect(FarMar::Vendor.find_vendor(6)[0]).to be_an_instance_of FarMar::Vendor
+      end
+      it "returns the instance that matches the given id" do
+      @vend_test = FarMar::Vendor.find_vendor(6)[0]
+      expect(@vend_test.market_id).to eq "1"
       end
 
     describe "market"
-      it "returns a market information for the given vendor" do
+      it "returns a market instance for the given vendor" do
       @vend_test = FarMar::Vendor.new("9","Quigley, Breitenberg and Schuster","2","2")
-        expect(@vend_test.market(9)).to eq ["2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383"]
+        expect(@vend_test.market(9)).to be_an_instance_of FarMar::Market
+      end
+      it "returns a market instance for the given vendor" do
+      @vend_test = FarMar::Vendor.new("9","Quigley, Breitenberg and Schuster","2","2")
+        expect(@vend_test.market(9).zip).to eq "98383"
       end
 
     describe "products"
-      it "returns information for the products of a given vendor" do
+      it "returns instances for the products of a given vendor" do
         @vend_test = FarMar::Vendor.new("9","Quigley, Breitenberg and Schuster","2","2")
-        expect(@vend_test.products(9)).to eq [["19","Jealous Burrito","9"], ["20", "Tall Pretzel", "9"], ["21", "Embarrassed Bread", "9"], ["22", "Purring Beets", "9"]]
+        expect(@vend_test.products(9)[0]).to be_an_instance_of FarMar::Product
       end
 
     describe "sales"
       it "returns information for the sales associated with a given vendor" do
         @vend_test = FarMar::Vendor.new(13,"Grady, Hudson and Olson",11,4)
-        expect(@vend_test.sales(13)).to eq [["69", "10", "2013-11-10 00:03:56 -0800", "13", "38"], [
-        "70", "2838", "2013-11-09 13:30:15 -0800", "13", "38"]]
+        expect(@vend_test.sales(13)[0]).to be_an_instance_of FarMar::Sale
       end
 
     describe "revenue"
@@ -47,9 +54,12 @@ describe FarMar::Vendor do
       end
 
     describe "self.by_market(market_id)"
-      it "gives all of the vendors that attend a given market" do
-        expect(FarMar::Vendor.by_market()).to eq [["10","Kertzmann LLC"],["11", "Donnelly-Quigley"],[
-        "12","Windler Inc"]]
+      it "gives an array" do
+        expect(FarMar::Vendor.by_market(13)).to be_an Array
+      end
+      it "gives all of the instances of vendor that attend a given market" do
+        first_instance = FarMar::Vendor.by_market(13)[0]
+        expect(first_instance.id).to eq "54"
       end
 
 end
