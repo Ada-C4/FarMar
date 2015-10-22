@@ -87,6 +87,15 @@ describe FarMar do
         end
       end
 
+      describe "#preferred_vendor(date)" do
+        before :each do
+          @date = # some date, how to format??
+        end
+        it "returns an instance of Vendor" do
+          expect(@market.preferred_vendor(@date)).to be_an_instance_of(FarMar::Vendor)
+        end
+      end
+
       describe "#worst_vendor" do
         it "returns an instance of Vendor" do
           expect(@market.worst_vendor).to be_an_instance_of(FarMar::Vendor)

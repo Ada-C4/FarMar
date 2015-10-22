@@ -71,6 +71,10 @@ module FarMar
       return best_vendor
     end
 
+    def preferred_vendor(date)
+
+    end
+
     def worst_vendor
       vendors = self.vendors
       worst_vendor = vendors.min_by do |vendor|
