@@ -37,8 +37,9 @@ module FarMar
      #can use default or other csv
      #market doesn't know the vendor id, but vendors have market ids
    def vendors(vendors_csv = "./support/vendors.csv")
-     vendor_matches = (Vendor.all).find_all {|n| n.market_id == self.id}
+     all_vendors = Vendor.all(vendors_csv)
+     vendor_matches = (all_vendors.find_all {|n| n.market_id == self.id})
      return vendor_matches
    end
-  end
+ end
 end
