@@ -50,5 +50,13 @@ describe FarMar::Product do
       expect(product.vendor.id).to eq 8
     end
   end
+  describe "#sales" do
+    it "returns a collection of sales associated with the product" do
+      product = FarMar::Product.new("50","Quaint Bread","17")
+      expect(product.sales).to be_an Array
+      expect(product.sales[3]).to be_an_instance_of FarMar::Sale
+      expect(product.sales[2].product_id).to eq 50
+    end
+  end
 
 end
