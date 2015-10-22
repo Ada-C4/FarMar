@@ -55,7 +55,7 @@ describe FarMar::Market do
 
 	describe '#products' do
 		before :each do
-			@market = FarmMar::Market.new(2,"Silverdale Farmers Market",98383,Silverdale,Kitsap,Washington,98383)
+			@market = FarMar::Market.new(2,"Silverdale Farmers Market",98383,"Silverdale","Kitsap","Washington",98383)
 		end
 		it 'returns FarMar::Product instances' do
 			expect(@market.products[0]).to be_an_instance_of(FarMar::Product)

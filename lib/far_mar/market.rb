@@ -34,6 +34,15 @@ module FarMar
       FarMar::Vendor.all.find_all {|ven| ven.market == market_id }
     end
 
+    def products
+      ven_array = self.vendors
+      prod_array = []
+      ven_array.each do |ven|
+        prod_array.push(ven.products)
+        end
+      return prod_array.flatten
+    end
+
 
   end
 
