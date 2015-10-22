@@ -6,7 +6,7 @@ module FarMar
     def initialize(sale_id, amount, purchase_time, vendor_id, product_id)
       @sale_id = sale_id
       @amount = amount
-      @purchase_time = purchase_time
+      @purchase_time = DateTime.strptime(purchase_time, "%Y-%m-%d %H:%M:%S %z")
       @vendor_id = vendor_id
       @product_id = product_id
     end
@@ -41,6 +41,14 @@ module FarMar
         if row.product_id == @product_id
           return row
         end
+      end
+    end
+
+    def self.between(beginning_time, end_time)
+      sales_by_time = []
+      FarMar::Sale.all.find_all do |sale_object|
+        sale_object.purchase_time >= beginning_time && sale_object.purchase_time <= end_time
+        sales_by_time.push(sale_object)
       end
     end
   end
