@@ -40,7 +40,6 @@ module FarMar
 
     def self.between(beginning_time, end_time)
       all.find_all do |sale|
-        #(sale.purchase_time > beginning_time) && (sale.purchase_time < end_time)
         sale.purchase_time.between?(beginning_time, end_time)
       end
     end
