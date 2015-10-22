@@ -57,8 +57,6 @@ module FarMar
       end
     end
 
-    #  return sale_array.inject(0) {|sum, sale.amount| sum + sale.amount}
-    #end
-
+    
   end
 end

@@ -48,5 +48,10 @@ module FarMar
       end
       return array_sales
     end
+
+    def vendor
+      return FarMar::Vendor.find(self.vendor_id)
+    end
+    
   end
 end

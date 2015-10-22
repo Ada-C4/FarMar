@@ -50,4 +50,11 @@ describe FarMar::Sale do
       expect(sale[0].id).to eq(3)
     end
   end
+
+  describe "vendor" do
+    it "return the vendor the associated with the sale" do
+      expect(@sale.vendor.name).to eq("Breitenberg Inc")
+    end
+
+  end
 end
