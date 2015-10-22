@@ -73,19 +73,46 @@ module FarMar
     @all_vendors ||= []
     if @all_vendors == []
       @all_vendors = self.vendors
-      @all_vendors.sort_by! { |vendor| vendor.revenue }
+      #@all_vendors.sort_by! { |vendor| vendor.revenue }
     end
     return @all_vendors
   end
   # Returns the vendor with the highest revenue
   # Can take a date as an input to return the vendor with the highest revenue on a given date
-  def preferred_vendor(date = nil)
-    sorted_vendor
-    if date == nil
+  # date must be provided as year, month, day
+  def preferred_vendor(year = nil, month = nil, day = nil)
+    vendors = sorted_vendor
+    sales_day = []
+    if day == nil
+      vendors.sort_by! { |vendor| vendor.revenue }
       return @all_vendors[-1]
     else
+      start_time = DateTime.new(year,month,day)
+      end_time = start_time + 1
 
-      ## ACCOMODATE TAKING A DATE AS INPUT HERE
+      sales = FarMar::Sale.all
+      sales.each do |sale|
+        if sale.purchase_time.day >= start_time.day && sale.purchase_time.day < end_time.day
+          sales_day.push(sale)
+        end
+      end
+      sales_day.sort_by!{ |sale| sale.sale_id }
+
+      market_sales = []
+      vendors.each do |vendor|
+        sales_day.each do |sale|
+          if vendor.vendor_id == sale.vendor_id
+            market_sales.push(sale)
+          end
+        end
+      end
+
+      vendor_hash = Hash.new(0)
+      market_sales.each do |sale|
+        vendor_hash[sale.vendor_id] += sale.amount
+      end
+      sorted = vendor_hash.sort_by { |vendor, rev| rev}
+      return FarMar::Vendor.find(sorted[-1][0])
     end
   end
 

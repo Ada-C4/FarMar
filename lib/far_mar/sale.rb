@@ -6,6 +6,9 @@ module FarMar
       @sale_id       = sale_hash[:id].to_i
       @amount        = sale_hash[:amount].to_i
       @purchase_time = DateTime.parse(sale_hash[:purchase_time])
+
+      #DateTime.strptime('2001-02-03T04:05:06+07:00', '%Y-%m-%dT%H:%M:%S%z')
+                          #=> #<DateTime: 2001-02-03T04:05:06+07:00 ...>
       #@purchase_time = sale_hash[:purchase_time] ### NEEDS TO BE DATETIME
       @vendor_id     = sale_hash[:vendor_id].to_i
       @product_id    = sale_hash[:product_id].to_i

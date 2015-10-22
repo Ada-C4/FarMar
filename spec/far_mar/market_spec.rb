@@ -70,6 +70,15 @@ describe FarMar::Market do
       max = all_vendors.max_by { |i| i.revenue}
       expect(sample_market.preferred_vendor).to eq max
     end
+    it "when passed a date, returns a vendor objects" do
+      sample_market = @markets[1]
+      expect(sample_market.preferred_vendor(2013,11,7)).not_to eq nil
+      expect(sample_market.preferred_vendor(2013,11,7)).to be_an_instance_of FarMar::Vendor
+    end
+    it "when passed a date, returns the expected vendor" do
+      sample_market = @markets[1]
+      expect(sample_market.preferred_vendor(2013,11,7).vendor_name).to eq "Bechtelar Inc"
+    end
 
   end
 
@@ -91,6 +100,10 @@ describe FarMar::Market do
     it "returns the correct number of entries for the sample search" do
       sample_search = 'school'
       expect(FarMar::Market.search(sample_search).length).to eq 3
+    end
+
+    it "returns can also search for vendors" do
+      expect(FarMar::Market.search("Watsica")[0].name).to eq "Charlestown Farmers Market"
     end
   end
 
