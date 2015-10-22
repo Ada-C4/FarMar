@@ -7,14 +7,11 @@ describe FarMar do
     describe "#initialize" do
       it "creates a new Market instance" do
         expect(sample_market).to be_an_instance_of(FarMar::Market)
-        expect(sample_market.id).to eq(64)
-        expect(sample_market.name).to eq("Oakmont Farmers Market")
-        expect(sample_market.zip).to eq("19083")
-
-        # I tried to iterate over the original hash but that was a fail.
-        # fake_hash.each do |k, v|
-        #   expect(new_market.k.to_s).to eq(v)
-        # end
+      end
+      market_hash.each do |attr, val|
+        it "assigns the #{attr} attribute correctly" do
+          expect(sample_market.instance_variable_get("@#{attr}")).to eq(val)
+        end
       end
     end
 
