@@ -1,16 +1,16 @@
 require 'csv'
 module FarMar
   class Product
-    attr_reader :id, :name, :vendor_id, :product_csv
+    attr_reader :id, :name, :vendor_id, :products_csv
     def initialize(product_hash)
       @id = product_hash[:id].to_i
       @name = product_hash[:name]
       @vendor_id = product_hash[:vendor_id].to_i
-      @product_csv = ("./support/products.csv")
+      @products_csv = ("./support/products.csv")
     end
 
     def self.all
-      @@products_all ||=
+      @@product_all ||=
 
         CSV.read("support/products.csv").map do |row|
           #binding.pry
@@ -24,8 +24,8 @@ module FarMar
 
     def self.find(id)
       # all_markets = FarMar::Market.all
-      all.find(id) do |product|
-        market.id == id
+      all.find do |product|
+        product.id == id
       end
     end
   end

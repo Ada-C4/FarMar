@@ -11,7 +11,7 @@ module FarMar
     end
 
     def self.all
-      @@vendors_all ||=
+      @@vendor_all ||=
 
         CSV.read("support/vendors.csv").map do |row|
           #binding.pry
@@ -26,8 +26,8 @@ module FarMar
 
     def self.find(id)
       # all_markets = FarMar::Market.all
-      all.find(id) do |vendors|
-        vendors.id == id
+      all.find do |vendor|
+        vendor.id == id
       end
     end
   end

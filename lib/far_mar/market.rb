@@ -1,5 +1,5 @@
 require 'csv'
-require 'pry'
+
 module FarMar
   class Market
     attr_reader :id, :name, :address, :city, :county, :state, :zip,  :market_csv
@@ -37,6 +37,14 @@ module FarMar
       # all_markets = FarMar::Market.all
       all.find do |market|
         market.id == id
+      end
+    end
+
+    def vendors
+      #create an empty array
+        #match FarMar::Market id with FarMar:: Vendor id
+      FarMar::Vendors.all.find_all do |vendor|
+        vendor.market.id == @id
       end
     end
   end
