@@ -2,13 +2,13 @@ require "pry"
 require "csv"
 module FarMar
   class Sale
-    attr_accessor :id, :Amount, :Purchase_time, :vendor_id, :product_id
+    attr_accessor :id, :amount, :purchase_time, :vendor_id, :product_id
 
     def initialize (id, amount, purchase_time, vendor_id, product_id)
       @id = id.to_i
       @amount = amount.to_i
       @purchase_time = purchase_time.to_i
-      @vnedor_id = vendor_id
+      @vendor_id = vendor_id.to_i
       @product_id = product_id.to_i
     end
 

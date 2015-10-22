@@ -32,7 +32,7 @@ module FarMar
     end
     def get_market
       FarMar::Market.all.find do |market|
-        market.id == @id
+        market.id == @market_id
       end
     end
 
@@ -40,9 +40,27 @@ module FarMar
       FarMar::Product.all.find_all do |product|
         product.vendor_id == @id
       end
-
     end
 
+    def get_sales
+      FarMar::Sale.all.find_all do |sale|
+        sale.vendor_id == @id
+      end
+    end
 
+    def revenue
+      total = 0
+      get_sales.each do |sale|
+        total = total + sale.amount
+      end
+      return total
+    end
+
+    def self.by_market(market_id)
+      FarMar::Vendor.all.find_all do |vendor|
+        vendor.market_id == market_id
+
+      end
+    end
   end
 end

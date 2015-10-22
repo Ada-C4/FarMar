@@ -37,4 +37,22 @@ end
         expect(@vendor.get_products).to be_an_instance_of Array
       end
     end
+
+    describe ".get_sales" do
+      it "returns all accounts with the vendor id" do
+        expect(@vendor.get_sales).to be_an_instance_of Array
+      end
+    end
+
+    describe "revenue" do
+      it "returns the amount of vendor sales in cents" do
+      expect(@vendor.revenue).to eq 38259
+    end
+
+    describe ".by_market" do
+      it "returns all of the vendors with the given market_id" do
+        expect(FarMar::Vendor.by_market(2)).to be_an_instance_of Array
+      end
+    end
+  end
 end
