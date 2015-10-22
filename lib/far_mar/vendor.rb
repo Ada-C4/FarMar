@@ -1,11 +1,12 @@
 module FarMar
   class Vendor < FarMar_Base
-    attr_reader :id, :name, :emp_num, :market_id, :num_sales
+    attr_reader :id, :name, :emp_num, :market_id
     FILENAME = './support/vendors.csv'
 
     def initialize(vendor_hash)
       super(vendor_hash)
       @revenue = revenue
+      @num_sales = num_sales
     end
 
     def self.all_objects
@@ -63,6 +64,16 @@ module FarMar
         @revenue = 0
       else
         @revenue = results[@id][:revenue]
+      end
+    end
+
+    def num_sales
+      return @num_sales if !@num_sales.nil?
+      results = FarMar::Sale.vendor_stats
+      if results[@id].nil?
+        @num_sales = 0
+      else
+        @num_sales = results[@id][:num_sales]
       end
     end
 

@@ -68,6 +68,24 @@ describe FarMar do
       end
     end
 
+    describe ".most_items(n)" do
+      it "returns an empty array when n is invalid" do
+        expect(FarMar::Vendor.most_items(-1)).to eq([])
+        expect(FarMar::Vendor.most_items('a')).to eq([])
+        expect(FarMar::Vendor.most_items(9999999999999999)).to eq([])
+      end
+      it "returns the top n vendor instances ranked by number of items sold" do
+        top_item = FarMar::Vendor.most_items(1)
+        top_thirty = FarMar::Vendor.most_items(30)
+        expect(top_item).to be_an_instance_of(Array)
+        expect(top_item.length).to eq(1)
+        expect(top_item.num_sales).to eq(18)
+        expect(top_thirty).to be_an_instance_of(Array)
+        expect(top_thirty.length).to eq(30)
+        expect(top_thirty[-1].num_sales).to eq(17)
+      end
+    end
+
     describe "#products" do
       it "returns a collection of Products with the vendor's ID" do
         products = sample_vendor.products
