@@ -61,10 +61,17 @@ module FarMar
 
       markets = FarMar::Market.all
 
-
       markets.each do |mkt_instance|
         if mkt_instance.name.match(/#{search_term}/i)
           search_term_instances.push(mkt_instance)
+        end
+
+        mkt_vendors = mkt_instance.vendors
+
+        mkt_vendors.each do |vendor_instance|
+          if vendor_instance.name.match(/#{search_term}/i)
+            search_term_instances.push(mkt_instance)
+          end
         end
       end
 
