@@ -29,15 +29,25 @@ module FarMar
     end
 
     def self.by_vendor(vendor_id)
+      FarMar::Vendor.find(vendor_id).list_products
     end
 
     def list_vendors
+      FarMar::Vendor.find(vendor_id)
     end
 
     def list_sales
+      sales_list = []
+      FarMar::Sale.all.each do |sale|
+        if id == sale.product_id
+          sales_list.push(sale)
+        end
+      end
+      sales_list
     end
 
     def number_of_sales
+      list_sales.length
     end
   end
 end

@@ -30,10 +30,12 @@ module FarMar
     def self.between(start_time,stop_time)
     end
 
-    def locate_vendors
+    def list_vendors
+      FarMar::Vendor.find(vendor_id)
     end
 
-    def locate_products
+    def list_products
+      FarMar::Product.find(product_id)
     end
 
 

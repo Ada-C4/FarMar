@@ -26,5 +26,37 @@ describe FarMar do
         expect(find_test.name).to eq "Comfortable Pretzel"
       end
     end
+
+    describe "list_vendors" do
+      it "returns specific vendor instance" do
+        vendor_test = FarMar::Product.find(98)
+        expect(vendor_test.list_vendors.name).to eq "Jakubowski-Robel"
+      end
+    end
+
+    describe "list_sales" do
+      it "returns array of sale instances" do
+        sale_test = FarMar::Product.find(109)
+        sale_test.list_sales.each do |sale|
+          expect(sale.product_id).to eq 109
+        end
+      end
+    end
+
+    describe "number_of_sales" do
+      it "sums up total sale instances for specific product" do
+        number_test = FarMar::Product.find(8)
+        expect(number_test.number_of_sales).to eq 5
+      end
+    end
+
+    describe "self.by_vendor" do
+      it "returns array of products" do
+        testcase = FarMar::Product.by_vendor(202)
+        testcase.each do |product|
+          expect(product.list_vendors.name).to eq "Kerluke LLC"
+        end
+      end
+    end
   end
 end

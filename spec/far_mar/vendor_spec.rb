@@ -54,7 +54,7 @@ describe FarMar do
     end
 
     describe "self.by_market" do
-      it "returns array of markets" do
+      it "returns array of vendors" do
         testcase = FarMar::Vendor.by_market(27)
         testcase.each do |vendor|
           expect(vendor.list_markets.name).to eq "Pinckneyville Farmers Market"
@@ -62,6 +62,11 @@ describe FarMar do
       end
     end
 
-
+    describe "revenue" do
+      it "returns vendor's total $" do
+        vendor_example = FarMar::Vendor.find(68)
+        expect(vendor_example.revenue).to eq 31308
+      end
+    end
   end
 end

@@ -59,6 +59,11 @@ module FarMar
     end
 
     def revenue
+      money = 0
+      list_sales.each do |sale|
+        money += sale.amount
+      end
+      return money
     end
   end
 end
