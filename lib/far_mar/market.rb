@@ -55,12 +55,7 @@ module FarMar
       # matches is an array
       vendors_array = []
       matches.each do |line|
-        vendor = FarMar::Vendor.new({
-        :id => line[0].to_i,
-        :name => line[1],
-        :num_employees => line[2],
-        :market_id => line[3].to_i
-        })
+        vendor = FarMar::Vendor.new(FarMar::Vendor.create_vendor_hash(line))
         vendors_array.push(vendor)
       end
       #vendors_array is an array of Vendor objects
