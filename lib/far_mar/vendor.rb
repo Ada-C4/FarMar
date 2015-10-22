@@ -26,8 +26,18 @@ module FarMar
       FarMar::Vendor.all_objects.find_all { |vendor| vendor.market_id == market_id }
     end
 
-     # returns a collection of FarMar::Product instances that are
-     # associated by the FarMar::Product vendor_id field
+    # returns the top n vendor instances ranked by total number of items sold
+    def self.most_revenue(n)
+      return [] if
+        n.class != Fixnum ||
+        n < 0 ||
+        n > FarMar::Vendor.all_objects.length
+      sorted = FarMar::Vendor.all_objects.sort_by { |v| v.revenue }
+      return sorted[-n, n].reverse
+    end
+
+    # returns a collection of FarMar::Product instances that are
+    # associated by the FarMar::Product vendor_id field
     def products
       return FarMar::Product.by_vendor(@id)
     end
