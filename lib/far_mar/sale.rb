@@ -42,13 +42,16 @@ module FarMar
         return new_sale
       end
 
-
       def id
         return @id
       end
 
       def amount
         return @amount
+      end
+
+      def find_vendor(vendor_id)
+        FarMar::Vendor.find(vendor_id)
       end
   end
 end

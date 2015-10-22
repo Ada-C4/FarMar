@@ -32,5 +32,20 @@ describe FarMar do
         expect(sale.id).to eq 1
       end
     end
+
+    describe "find_vendor" do
+      before :each do
+        @sale = FarMar::Sale.new({
+          :id => 123,
+          :amount => 150,
+          :purchase_time => "2013-11-07 14:41:55 -0800",
+          :vendor_id => 456,
+          :product_id => 123
+        })
+      end
+      it "returns an instance of Vendor" do
+        expect(@sale.find_vendor(@sale.id)).to be_an_instance_of FarMar::Vendor
+      end
+    end
   end
 end
