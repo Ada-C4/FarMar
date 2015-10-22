@@ -50,8 +50,5 @@ describe FarMar::Vendor do
       expect(@vendor.sales.class).to be Array
     end
   end
-
   
-
-
 end
