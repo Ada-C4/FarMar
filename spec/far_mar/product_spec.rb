@@ -77,4 +77,18 @@ describe FarMar::Product do
       expect(FarMar::Product.by_vendor(100)[0].id).to eq 307
     end
   end
+  # describe ".self.most_revenue(n)" do
+  #   it "returns an array" do
+  #     expect(FarMar::Product.most_revenue(5)).to be_an Array
+  #   end
+  #   it "returns instances of Product class" do
+  #     expect(FarMar::Product.most_revenue(5)[0]).to be_instance_of FarMar::Product
+  #   end
+  #   it "returns correct length of array" do
+  #     expect(FarMar::Product.most_revenue(5).length).to eq 5
+  #   end
+  #   # it "returns correct first item in array" do
+  #   #   expect(FarMar::Product.by_vendor(5)[0].id).to eq 7848
+  #   # end
+  # end
 end

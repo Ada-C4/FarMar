@@ -110,7 +110,8 @@ module FarMar
       end
 
       return revenue
-
     end
+
+    
   end
 end

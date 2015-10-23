@@ -50,5 +50,15 @@ module FarMar
     def number_of_sales
       self.sales.length
     end
+
+    # def self.most_revenue(n)
+    #   most_revenue = []
+    #
+    #   all.each do |product_instance|
+    #       product_instance
+    #   end
+    #
+    #
+    # end
   end
 end
