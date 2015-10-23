@@ -7,6 +7,7 @@ module FarMar
       @vendor_id = product_hash[:vendor_id].to_i
     end
 
+#Creates a class variable to store csv values in order to save time reading while running the program multiple times. Method reads CSV file and uses .map to create a .new object for each line, returning the whole array of objects
     def self.all
       if @product_array.nil? || @product_array.empty?
         @product_array = CSV.read("support/products.csv").map do |line|
@@ -19,12 +20,13 @@ module FarMar
       return @product_array
     end
 
+#Find converts the csv file to an array, then uses .find to locate where the first value of each array in each line is equal to the id passed through as the argument. It then initializes an object with the values of the array on that idenitfied line.
     def self.find(id)
       product_array = CSV.read("support/products.csv")
       matched_line = product_array.find do |line|
         line[0].to_i == id
       end
-      specific_product = Product.new(
+      return specific_product = Product.new(
         id: matched_line[0],
         name: matched_line[1],
         vendor_id: matched_line[2])

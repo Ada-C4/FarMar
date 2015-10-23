@@ -8,6 +8,7 @@ module FarMar
       @market_id = vendor_hash[:market_id].to_i
     end
 
+#Creates a class variable to store csv values in order to save time reading while running the program multiple times. Method reads CSV file and uses .map to create a .new object for each line, returning the whole array of objects
     def self.all
       if @vendor_array.nil? || @vendor_array.empty?
         @vendor_array = CSV.read("support/vendors.csv").map do |line|
@@ -21,22 +22,25 @@ module FarMar
         return @vendor_array
     end
 
+#Goes through every line of the CSV file and compares the first value [0], the id, to the argument passed through the method, creating a new object with the data where those two valued are equivalent.
     def self.find(id)
       vendor_array = CSV.read("support/vendors.csv")
       matched_line = vendor_array.find do |line|
         line[0].to_i == id
       end
-      specific_vendor = Vendor.new(
+      return specific_vendor = Vendor.new(
         id: matched_line[0],
         name: matched_line[1],
         employee_no: matched_line[2],
         market_id: matched_line[3])
     end
 
+#Uses the Market find method passing the argument of the vendor's market id, which is in fact the id of the market.
     def market
       return FarMar::Market.find(@market_id)
     end
 
+#Creates an array of all the products, then uses find all to identify when the id of the vendor matches the vendor id of the product. Returns an array of all such matches
     def products
       possibilities = FarMar::Product.all
       associated_products = possibilities.find_all do |each|
@@ -45,6 +49,7 @@ module FarMar
       return associated_products
     end
 
+#Creates an array of all sales, then uses find all to identify when the id of the vendor matches the vendor id of the sale. Returns an array of all such matches.
     def sales
       possibilities = FarMar::Sale.all
       associated_sales = possibilities.find_all do |each|
@@ -53,6 +58,7 @@ module FarMar
       return associated_sales
     end
 
+#
     def revenue
       revenue = 0
       self.sales.each do |sale|

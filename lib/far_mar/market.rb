@@ -13,6 +13,7 @@ module FarMar
       @zip = market_hash[:zip]
     end
 
+#Creates a class variable to store csv values in order to save time reading while running the program multiple times. Method reads CSV file and uses .map to create a .new object for each line, returning the whole array of objects
     def self.all
       if @market_array.nil?|| @market_array.empty?
         @market_array = CSV.read("support/markets.csv").map do |line|
@@ -29,12 +30,13 @@ module FarMar
       return @market_array
     end
 
+#Find converts the csv file to an array, then uses .find to locate where the first value of each array in each line is equal to the id passed through as the argument. It then initializes an object with the values of the array on that idenitfied line.
     def self.find(id)
       market_array = CSV.read("support/markets.csv")
       matched_line = market_array.find do |line|
         line[0].to_i == id
       end
-      specific_market = Market.new(
+      return specific_market = Market.new(
         id: matched_line[0],
         name: matched_line[1],
         address: matched_line[2],
