@@ -86,6 +86,18 @@ describe FarMar do
       end
     end
 
+    describe ".find_by_name(match)" do
+      it "returns nil for no match" do
+        expect(FarMar::Vendor.find_by_name(3)).to be_nil
+        expect(FarMar::Vendor.find_by_name('xxxxxxxxxx')).to be_nil
+        expect(FarMar::Vendor.find_by_name([])).to be_nil
+      end
+      it "returns a single instance for matching the attribute" do
+        expect(FarMar::Vendor.find_by_name('Von-Hamill').id).to be(18)
+        expect(FarMar::Vendor.find_by_name('von-hamill').id).to be(18)
+      end
+    end
+
     describe "#products" do
       it "returns a collection of Products with the vendor's ID" do
         products = sample_vendor.products
