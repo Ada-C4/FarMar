@@ -71,10 +71,10 @@ describe FarMar::Vendor do
     end
   end
   describe "#revenue" do
-    it "returns the sum of the vendor's sales" do
-        vendor = FarMar::Vendor.new("7","Bechtelar Inc","4","2")
-      expect(vendor.revenue).to be_a Fixnum
-      expect(vendor.revenue).to eq 39719
+    it "returns the sum of the vendor's sales for all time, or on date if parameter is passed" do
+        vendor7 = FarMar::Vendor.new("7","Bechtelar Inc","4","2")
+      expect(vendor7.revenue).to be_a Fixnum
+      expect(vendor7.revenue).to eq 39719
     end
   end
   describe "self.by_market(market_id)" do
@@ -105,7 +105,7 @@ describe FarMar::Vendor do
   end
   describe "self.revenue(date)" do
     it "returns the total revenue on that date across all vendors" do
-      expect(FarMar::Vendor.revenue("2013-11-07")).to eq 9060582 
+      expect(FarMar::Vendor.revenue("2013-11-07")).to eq 9060582
     end
   end
 end

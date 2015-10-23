@@ -99,7 +99,7 @@ describe FarMar::Market do
     it "returns the vendor with the highest revenue for the given date" do
     market_4 = FarMar::Market.new("4","Preston Farmers’ Market","#1 Route 164","Preston","New London","Connecticut","")
     expect(market_4.prefered_vendor("2013-11-10")).to be_an_instance_of FarMar::Vendor
-    expect(market_4.prefered_vendor("2013-11-10").id).to be 15 #14 has no sales
+    expect(market_4.prefered_vendor("2013-11-10").id).to be 15
     end
   end
   describe "#worst_vendor" do

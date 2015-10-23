@@ -73,4 +73,12 @@ describe FarMar::Product do
       expect(vendor_10_products[3].vendor_id).to eq 10
     end
   end
+  # describe "self.most_revenue(n)" do
+  #   it "returns top n products ranked by revenue" do
+  #     top_products_4 = FarMar::Product.most_revenue(4)
+  #     expect(top_products_4).to be_an Array
+  #     expect(top_products_4[0]).to be_an_instance_of FarMar::Product
+  #     expect(top_products_4.length).to eq 4
+  #   end
+  # end
 end
