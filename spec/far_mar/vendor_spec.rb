@@ -94,4 +94,13 @@ describe FarMar::Vendor do
       expect(top_3[0].revenue >= top_3[2].revenue).to be_truthy
     end
   end
+  describe "self.most_items(n)" do
+    it "returns the top n vendor instances ranked by number of items sold" do
+      top_4 = FarMar::Vendor.most_items(4)
+      expect(top_4).to be_an Array
+      expect(top_4[0]).to be_an_instance_of FarMar::Vendor
+      expect(top_4.length).to eq 4
+      expect(top_4[0].products.length >= top_4[3].products.length).to be_truthy
+    end
+  end
 end

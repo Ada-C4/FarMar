@@ -77,6 +77,13 @@ module FarMar
       revenue_array.first(n)
     end
 
+    def self.most_items(n)
+      vendors_by_items = FarMar::Vendor.all.sort_by do |vendor|
+        vendor.products.length
+      end
+      vendors_by_items.first(n)
+    end
+
   end
 
 end
