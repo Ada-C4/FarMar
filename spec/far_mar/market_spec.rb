@@ -68,6 +68,7 @@ describe FarMar do
       end
     end
 
+    # Returns the vendor with the highest revenue
     describe "#preferred_vendor" do
       it "returns the market's vendor with the highest revenue" do
         max_vendor1 = sample_market.preferred_vendor
@@ -80,6 +81,7 @@ describe FarMar do
       end
     end
 
+    # Returns the vendor with the lowest revenue
     describe "#worst_vendor" do
       it "returns the market's vendor with the lowest revenue" do
         min_vendor1 = sample_market.worst_vendor
@@ -91,5 +93,37 @@ describe FarMar do
         expect(min_vendor2.revenue).to eq(1810)
       end
     end
+
+    # Returns the vendor with the highest revenue for the given date
+    describe "#preferred_vendor(date)" do
+      it "returns nil for an invalid date" do
+        expect(sample_market.preferred_vendor(123)).to be_nil
+        expect(sample_market.preferred_vendor('abc')).to be_nil
+      end
+      it "returns the vendor with the highest revenue for the given date" do
+        date = DateTime.parse("2013-11-12T13:07:19-08:00")
+        preferred = sample_market.preferred_vendor(date)
+        expect(preferred).to be_an_instance_of(FarMar::Vendor)
+        # TODO : Figure out expected
+        expect(preferred.revenue).to eq()
+      end
+    end
+
+    # Returns the vendor with the lowest revenue for the given date
+    describe "#worst_vendor(date)" do
+      it "returns nil for an invalid date" do
+        expect(sample_market.worst_vendor(123)).to be_nil
+        expect(sample_market.worst_vendor('abc')).to be_nil
+      end
+      it "returns the vendor with the highest revenue for the given date" do
+        date = DateTime.parse("2013-11-12T13:07:19-08:00")
+        worst = sample_market.worst_vendor(date)
+        expect(worst).to be_an_instance_of(FarMar::Vendor)
+        # TODO : Figure out expected
+        expect(worst.revenue).to eq()
+
+      end
+    end
+
   end
 end
