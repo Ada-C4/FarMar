@@ -37,9 +37,19 @@ module FarMar
         sale.vendor_id == self.id
       end
     end
-    def revenue
-      amounts = self.sales.map do |sale|
-        sale.amount
+    def revenue(date = nil)
+      if date == nil
+        amounts = self.sales.map do |sale|
+          sale.amount
+        end
+      else
+        date = DateTime.parse(date)
+        amounts = []
+        sales.each do |sale|
+          if sale.purchase_time.to_date == date.to_date
+            amounts.push(sale.amount)
+          end
+        end
       end
       amounts.inject(0) { |result, sale| result + sale }
     end

@@ -42,18 +42,38 @@ describe FarMar::Vendor do
       expect(sale[1].class).to eq FarMar::Sale
     end
   end
-  describe ".revenue" do
-    it "returns the sum of all amounts for sales instances whose vendor_id matches the vendor's id" do
-      @vendor_0_sales = FarMar::Vendor.new("51", "Bernier Inc", "1", "12")
-      expect(@vendor.revenue).to eq 7586
-      expect(@vendor_0_sales.revenue).to eq 0
-    end
-  end
   describe "#by_market(market_id)" do
     it "returns all vendor instances whose market_id matches the parameter passed in" do
       vendors = FarMar::Vendor.by_market(498)
       expect(vendors.length).to eq 2
       expect(vendors[1].class).to eq FarMar::Vendor
+    end
+  end
+  describe ".revenue(date)" do
+    context "when no date parameter is passed in" do
+      it "returns total revenue from all dates" do
+        expect(@vendor.revenue).to eq 7586
+      end
+      it "returns 0 when vendor had no sales" do
+        @vendor_0_sales = FarMar::Vendor.new("51", "Bernier Inc", "1", "12")
+        expect(@vendor_0_sales.revenue).to eq 0
+      end
+    end
+    context "when no sales happened on date" do
+      it "returns 0" do
+        expect(@vendor.revenue("2013-11-09")).to eq 0
+      end
+    end
+    context "when 1 sale happened on date" do
+      it "returns the sale amount" do
+        expect(@vendor.revenue("2013-11-10")).to eq 3793
+      end
+    end
+    context "when multiple sales happened on date" do
+      it "returns the sum of sales amounts for the date" do
+        @vendor2 = FarMar::Vendor.new("2687", "Pacocha Group", "5", "500")
+        expect(@vendor2.revenue("2013-11-12")).to eq 20781
+      end
     end
   end
 end
