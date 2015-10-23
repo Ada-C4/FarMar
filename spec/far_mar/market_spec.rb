@@ -31,14 +31,6 @@ describe FarMar::Market do
   end
 
   describe "#vendors" do
-    # before :each do
-    #   @market1 = FarMar::Market.find(1)
-    #   @vendor1 = FarMar::Vendor.find(1)
-    # end
-    # it "returns list of matched vendors to id" do
-    #   expect(@market1.vendors).to include (@vendor1)
-    # end
-
     it "returns an array" do
       expect(@market1.vendors).to be_an Array
     end
@@ -46,6 +38,7 @@ describe FarMar::Market do
     it "returns an array of vendors"do
       expect(@market1.vendors.first).to be_an_instance_of FarMar::Vendor
     end
+
   end
 
   describe "#products" do
@@ -82,6 +75,6 @@ describe FarMar::Market do
 #       expect( market (2) Date.parse("2013-11-07")).id).to eq 7
 #     end
 #   end
-# 
+#
 #   expect market (2) Date.parse("2013-11-07")).id).to eq 7
 end

@@ -10,18 +10,17 @@ module FarMar
     end
 
     def self.all
-      sales = []
-      sales_array = CSV.read("support/sales.csv")
-      sales_array.each do |line|
-      new_sale = Sale.new(
+      if @sales_array.nil? || @sales_array.empty?
+        @sales_array = CSV.read("support/sales.csv").map do |line|
+        Sale.new(
         id: line[0],
         amount: line[1],
         purchase_time: line[2],
         vendor_id: line[3],
         product_id: line[4])
-        sales.push(new_sale)
+        end
       end
-      return sales
+      return @sales_array
     end
 
     def self.find(id)
@@ -38,18 +37,12 @@ module FarMar
     end
 
     def vendor
-      # associated_vendor = FarMar::Vendor.all.find_all do |each|
-      #   @vendor_id == each.id
-      # end
-      # return associated_vendor
-      
       return FarMar::Vendor.find(@vendor_id)
 
     end
 
     def product
       return FarMar::Product.find(@product_id)
-
     end
 
     # def self.between(beginning_time, end_time)
