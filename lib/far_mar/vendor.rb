@@ -10,7 +10,7 @@ module FarMar
       end
 
       # Returns a collection of Vendor instances, representing all the vendors described in the CSV
-      def self.all(csv = "support/vendors.csv")
+      def self.all(csv = "./support/vendors.csv")
         # Only reload the CSV if @vendors is empty array
         @@vendors ||= []
         # Checking that the array doesn't contain test data
@@ -48,7 +48,7 @@ module FarMar
       end
 
       # Returns a collection of FarMar::Sale instances that are associated with the vendor
-      def sales(csv = "./test_data/test_sales.csv")
+      def sales(csv = "./support/sales.csv")
         sales = FarMar::Sale.all(csv)
         matched_sales = sales.find_all { |sale| sale.vendor_id == self.vendor_id}
         return matched_sales
@@ -72,24 +72,37 @@ module FarMar
       end
 
       # Returns the top n vendor instances ranked by total revenue
+      # Currently running on test data because the actual data takes a long time
       def self.most_revenue(n)
         return_array = []
         @@sales = []
         @@vendors = []
-        #vendors = FarMar::Vendor.all("./test_data/test_products.csv")
         vendors = FarMar::Vendor.all("./test_data/test_vendors.csv")
-
+        #vendors = FarMar::Vendor.all("./support/vendors.csv")
         vendor_sales = Hash.new(0)
         vendors.each do |vendor|
-          associated_sales = vendor.sales("./test_data/test_sales.csv")
-          #associated_sales = product.sales("./support/sales.csv")
-          revenue = 0
-          associated_sales.each do |sale|
-            revenue += sale.amount
-          end
-          vendor_sales[vendor.vendor_id] = revenue
+          vendor_sales[vendor.vendor_id] = vendor.revenue
         end
         sorted = vendor_sales.sort_by { |vendor, rev| rev }
+        sorted.reverse!
+        best_vendors = sorted[0...n]
+        best_vendors.each do |vendor|
+          return_array.push(FarMar::Vendor.find(vendor[0]))
+        end
+        return return_array
+      end
+
+      # Returns the top n vendor instances ranked by total number of items sold
+      def self.most_items(n, csv)
+        return_array = []
+        @@sales = []
+        @@vendors = []
+        vendors = FarMar::Vendor.all(csv)
+        vendor_sales = Hash.new(0)
+        vendors.each do |vendor|
+          vendor_sales[vendor.vendor_id] = vendor.sales(csv).length
+        end
+        sorted = vendor_sales.sort_by { |vendor, num| num }
         sorted.reverse!
         best_vendors = sorted[0...n]
         best_vendors.each do |vendor|

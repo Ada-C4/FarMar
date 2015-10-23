@@ -14,10 +14,10 @@ module FarMar
     def self.all(csv = "./support/sales.csv")
       # Only reload the CSV is sales is empty array
       @@sales ||= []
-      # Checking that the array doesn't contain test data
-      if @@sales.length == 105
-        @@sales = []
-      end
+      # Checking that the array doesn't contain test data - this seems to not be necessary
+      # if @@sales.length == 105
+      #   @@sales = []
+      # end
       if @@sales == []
         sales_csv = CSV.read(csv)
         sales_csv.each do |id, amount, purchase_time, vendor_id, product_id|

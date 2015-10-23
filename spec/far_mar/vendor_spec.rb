@@ -104,6 +104,22 @@ describe FarMar::Vendor do
     end
   end
 
+  describe ".most_items" do
+    it "returns an array of length n" do
+      result = FarMar::Vendor.most_items(10, "./test_data/test_vendors.csv")
+      expect(result.length).to eq 10
+      expect(result).to be_an_instance_of Array
+      expect(result[0]).to be_an_instance_of FarMar::Vendor
+    end
+    it "returns the correct product for a test data set" do
+      expected_vendor_name = "Dickens-Weissnat"
+      result = FarMar::Vendor.most_items(10, "./test_data/test_vendors.csv")
+      expect(result[0].vendor_name).to eq expected_vendor_name
+    end
+    it "restores sales to original data" do
+      expect(FarMar::Sale.all.length).to eq 12798
+    end
+  end
 
 
 end
