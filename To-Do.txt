@@ -5,3 +5,5 @@
 # Investigate .nip
 # accomodate multiple best and worst vendors
 # Make Product.most_revenue(n) work for the whole dataset
+# Make Vendor.most_revenue(n) work for the whole dataset
+# Make Vendor.most_items(n) work for the whole dataset
