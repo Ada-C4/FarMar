@@ -51,6 +51,7 @@ describe FarMar::Sale do
         expect(FarMar::Sale.find(10).purchase_time).to be_between @beginning_time, @end_time
         expect(sales_by_time).to be_an Array
         expect(sales_by_time[0]).to be_an Object
+        expect(sales_by_time).to include(FarMar::Sale.find(10))
       end
   end
 end

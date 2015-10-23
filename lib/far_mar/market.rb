@@ -1,3 +1,4 @@
+
 module FarMar
   class Market
 
@@ -14,12 +15,14 @@ module FarMar
     end
 
     def self.all
-      markets_csv = CSV.read("./support/markets.csv")
-      market_instances = []
-      markets_csv.each do |row|
-        market_instances.push(Market.new(row[0].to_i, row[1], row[2], row[3], row[4], row[5], row[6]))
+      @@market_instances ||= []
+      if @@market_instances == []
+        markets_csv = CSV.read("./support/markets.csv")
+        markets_csv.each do |row|
+          @@market_instances.push(Market.new(row[0].to_i, row[1], row[2], row[3], row[4], row[5], row[6]))
+        end
       end
-      return market_instances
+      return @@market_instances
     end
     def self.find(id)
         self.all.find do |market|
@@ -43,6 +46,29 @@ module FarMar
         market_products += vendor.products
       end
       return market_products
+    end
+    def self.search(search_term)
+      search_term = search_term.downcase
+      name_array = []
+      name_search = FarMar::Market.all.map do |market|
+        {market.name.downcase => market}
+      end
+      name_search2 = FarMar::Vendor.all.map do |vendor|
+        {vendor.name.downcase => FarMar::Market.find(vendor.market_id)}
+      end
+      (name_search + name_search2).each do |hash|
+        if hash.keys[0].include?(search_term)
+          name_array += hash.values
+        end
+      end
+      return name_array.uniq
+    end
+
+    def preferred_vendor
+      vendor_sales = []
+      sales_per_vendor = FarMar::Vendor.all.map do |vendor|
+        vendor.revenue
+      end
     end
   end
 end

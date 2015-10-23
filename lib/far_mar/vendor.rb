@@ -11,12 +11,14 @@ module FarMar
     end
 
     def self.all
-      vendor_csv = CSV.read("./support/vendors.csv")
-      vendor_instances = []
-      vendor_csv.each do |row|
-        vendor_instances.push(Vendor.new(row[0].to_i, row[1], row[2], row[3].to_i))
+      @@vendor_instances ||= []
+      if @@vendor_instances == []
+        vendor_csv = CSV.read("./support/vendors.csv")
+        vendor_csv.each do |row|
+          @@vendor_instances.push(Vendor.new(row[0].to_i, row[1], row[2], row[3].to_i))
+        end
       end
-      return vendor_instances
+      return @@vendor_instances
     end
     def self.find(id)
         self.all.find do |vendor|

@@ -39,4 +39,33 @@ describe FarMar::Market do
       expect(market_product_array[0]).to be_an_instance_of FarMar::Product
     end
   end
+
+  describe "self.search(search_term)" do
+    describe "does the search part of the method" do
+      it "searches market names" do
+        expect(FarMar::Market.find(4).name).to be_a String
+        expect(FarMar::Market.find(4).name).to include("Preston")
+      end
+      it "searches vendor names" do
+        expect(FarMar::Vendor.find(2).name).to be_a String
+        expect(FarMar::Vendor.find(2).name).to include("Hamill")
+      end
+    end
+    describe "creates a collection of market instances that contain search_term" do
+      it "creates a collection of markets from market name search" do
+        expect(FarMar::Market.search("People").length).to eq 2
+        expect(FarMar::Market.search("People")[0].market_id).to eq 1
+      end
+      it "creates a collection of markets from vendor name search" do
+        expect(FarMar::Market.search("Donnelly").length).to eq 17
+        expect(FarMar::Market.search("donnelly")[0].market_id).to eq 3
+      end
+    end
+
+    describe "preferred_vendor" do
+      it "returns the vendor with the highest revenue" do
+        expect(FarMar::Market..preferred_vendor).to be_an Object
+      end
+    end
+  end
 end
