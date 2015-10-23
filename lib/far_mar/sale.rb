@@ -20,7 +20,7 @@ module FarMar
       if @@sales_by_product.empty?
         CSV.read("./support/sales.csv").each do |sale|
           new_sale = FarMar::Sale.new(sale)
-          @@sales_by_product[sale[4].to_i].push(new_sale)
+          @@sales_by_product[new_sale.product_id].push(new_sale)
         end
       end
       return @@sales_by_product
@@ -32,7 +32,7 @@ module FarMar
       if @@sales_by_vendor.empty?
         CSV.read("./support/sales.csv").each do |sale|
           new_sale = FarMar::Sale.new(sale)
-          @@sales_by_vendor[sale[3].to_i].push(new_sale)
+          @@sales_by_vendor[new_sale.vendor_id].push(new_sale)
         end
       end
       return @@sales_by_vendor
