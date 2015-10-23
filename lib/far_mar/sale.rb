@@ -38,23 +38,25 @@ module FarMar
         product_id: matched_line[4])
     end
 
+#This passes the vendor_id of the sale as an argument to the vendor.find method in order to return the vendor to which the sale refers.
     def vendor
       return FarMar::Vendor.find(@vendor_id)
 
     end
 
+#This passes the product_id of the sale as an argument to the product find method in order to to return the product to which the sale refers.
     def product
       return FarMar::Product.find(@product_id)
     end
 
+#This method first tries to sanitize the arguments of time passed through; if they are strings it converts them to DateTimes. Next, it creates an array of all the sales and compares the purchase time of each sale to see if its value is between the values of the argument. It returns an array of all the sales that match that condition.
     def self.between(beginning_time, end_time)
       beginning_time = DateTime.parse(beginning_time) if beginning_time.class == String
       end_time = DateTime.parse(end_time) if end_time.class == String
-      print beginning_time
-      print end_time
-      self.all.find_all do |each|
+      matched_sales = self.all.find_all do |each|
        each.purchase_time >= beginning_time && each.purchase_time <= end_time
       end
+      return matched_sales
     end
   end
 end

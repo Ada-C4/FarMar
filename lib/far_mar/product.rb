@@ -32,10 +32,12 @@ module FarMar
         vendor_id: matched_line[2])
     end
 
+#Passes the vendor_id of the product to the vendor find method in order to return the vendor that sells this product.
     def vendor
       return FarMar::Vendor.find(@vendor_id)
     end
 
+#Creates an array of all the sales in order to find every sale in which the id of the product matches the product id of the sale. Returns an array of all of those matches.
     def sales
       all_sales = FarMar::Sale.all.find_all do |each|
         @id == each.product_id
@@ -43,15 +45,16 @@ module FarMar
       return all_sales
     end
 
+#Calls the sales method and calculates the length of that array, or how many sales are associated with this product.
     def number_of_sales
       self.sales.length
     end
 
+#Goes through an array of all the products to find where the vendor id of the product is equal to the vendor_id passed through as a parameter.
     def self.by_vendor(vendor_id)
-      product_party = FarMar::Product.all.find_all do |each|
-        vendor_id.to_i == each.vendor_id
+      return FarMar::Product.all.find_all do |each|
+        vendor_id == each.vendor_id
       end
-      return product_party
     end
   end
 end
