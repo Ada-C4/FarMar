@@ -66,6 +66,31 @@ module FarMar
       preferred = ven.max_by{|ven| ven.revenue}
     end
 
+    def preferred_vendor_by_date(date)
+      date = DateTime.strptime(date, "%Y-%m-%d").to_date
+      max_revenue = 0
+      pref_vend = nil
+      total = 0
+      self.vendors.each do |vendor_inst|
+        sales_array = []
+        vendor_inst.sales.each do |sale_inst|
+          if sale_inst.purchase_time.to_date == date
+            sales_array.push(sale_inst.amount)
+          end
+        end
+        if sales_array.length > 0
+          total = sales_array.inject(0, :+)
+          if total > max_revenue
+            binding.pry
+            max_revenue = total
+            pref_vend = vendor_inst
+          end
+        end
+        #binding.pry
+      end
+      return pref_vend
+    end
+
   end
 
 end
