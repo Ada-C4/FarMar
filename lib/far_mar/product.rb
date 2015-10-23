@@ -5,6 +5,7 @@ module FarMar
 
     def initialize(product_hash)
       super(product_hash)
+      @revenue = revenue
     end
 
     def self.all_objects
@@ -41,5 +42,17 @@ module FarMar
     def number_of_sales
       return sales.length
     end
+
+    # returns the total revenue for a given product
+    def revenue
+      return @revenue if !@revenue.nil?
+      results = FarMar::Sale.product_stats
+      if results[@id].nil?
+        @revenue = 0
+      else
+        @revenue = results[@id][:revenue]
+      end
+    end
+
   end
 end
