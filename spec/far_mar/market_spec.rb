@@ -35,5 +35,14 @@ describe FarMar do
         end
       end
     end
+
+    describe "products" do
+      it "shows it is returning product instances" do
+        market = FarMar::Market.find(100)
+        market.products.each do |goods|
+          expect(goods.name).to eq "candy"
+        end
+      end
+    end
   end
 end

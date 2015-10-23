@@ -43,5 +43,15 @@ module FarMar
       end
       vendor_list
     end
+
+    def products
+      vendors = FarMar::Vendor.by_market(id)
+      products = []
+      vendors.each do |vendor|
+        goods = vendor.list_products
+        products.push(goods)
+      end
+      products
+    end
   end
 end
