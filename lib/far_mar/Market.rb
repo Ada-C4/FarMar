@@ -19,7 +19,7 @@ module FarMar
           @@markets_all.push(FarMar::Market.new(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
         end
       end
-        return @@markets_all
+      return @@markets_all
     end
     def self.find(id)
       FarMar::Market.all.find do |market|

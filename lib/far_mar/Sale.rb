@@ -16,7 +16,7 @@ module FarMar
           @@sales_all.push(FarMar::Sale.new(row[0], row[1], row[2], row[3], row[4]))
         end
       end
-        return @@sales_all
+      return @@sales_all
     end
     def self.find(id)
       FarMar::Sale.all.find do |sale|
