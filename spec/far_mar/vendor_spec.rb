@@ -138,21 +138,21 @@ describe FarMar do
       end
     end
 
-    describe ".revenue(date)" do
+    describe ".revenue_on(date)" do
       it "returns 0 for invalid dates" do
-        expect(FarMar::Vendor.revenue(123)).to eq(0)
-        expect(FarMar::Vendor.revenue('abc')).to eq(0)
+        expect(FarMar::Vendor.revenue_on(123)).to eq(0)
+        expect(FarMar::Vendor.revenue_on('abc')).to eq(0)
       end
       it "returns the total revenue for the date across all vendors" do
         date1 = DateTime.parse("2013-11-12T13:07:19-08:00")
         date2 = DateTime.parse("2013-11-10T15:40:57-08:00")
-        match1 = FarMar::Vendor.revenue(date1)
-        match2 = FarMar::Vendor.revenue(date2)
+        match1 = FarMar::Vendor.revenue_on(date1)
+        match2 = FarMar::Vendor.revenue_on(date2)
         # date3 = DateTime.parse("2013-11-08T07:41:09-08:00")
         # date4 = DateTime.parse("2013-11-09T07:41:09-08:00")
-        expect(match1).to be_an_instance_of(Array)
+        expect(match1).to be_an_instance_of(Fixnum)
         expect(match1).to eq(8871052)
-        expect(match2).to be_an_instance_of(Array)
+        expect(match2).to be_an_instance_of(Fixnum)
         expect(match2).to eq(9119618)
       end
     end

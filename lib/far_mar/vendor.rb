@@ -70,8 +70,12 @@ module FarMar
       end
     end
 
-    # returns the vendor's revenue for a given date
-    def self.revenue(date)
+    # returns the total revenue across all vendors for a given date
+    def self.revenue_on(date)
+      return 0 if date.class != DateTime
+      match = FarMar::Sale.all_objects.select { |sale| sale.purchase_time.to_date == date.to_date }
+      rev = match.inject(0) { |sum, sale| sum + sale.amount }
+      return rev
     end
 
     # returns the total revenue for the specific date and vendor instance
