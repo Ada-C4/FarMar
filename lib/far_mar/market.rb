@@ -34,6 +34,7 @@ module FarMar
         market.id == id
       end
     end
+
     def vendors
     #  returns a collection of FarMar::Vendor instances
     #  that are associated with the market by the market_id field.
@@ -68,9 +69,16 @@ module FarMar
       vendors.max_by{|vendor|vendor.revenue}
     end
 
-    # def preferred_vendor(date)
+    # def preferred_vendor_date(date)
+    #   date = date.to_date
+    #   vendors.max_by{|vendor|vendor.revenue}
     #
     # end
+
+    def worst_vendor
+      vendors.min_by{|vendor|vendor.revenue}
+    end
+
 
   end
 end
