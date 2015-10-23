@@ -2,6 +2,7 @@ require "spec_helper"
 
 describe FarMar::Product do
   before :each do
+    @csv = CSV.read("support/products.csv")
     @product1 = FarMar::Product.new(:id => 1, :name => "Dry Beets", :vendor_id => 1)
   end
   describe "initialize" do
@@ -12,7 +13,7 @@ describe FarMar::Product do
 
   describe "self.all" do
     it "returns an array or all the products" do
-      expect(FarMar::Product.all.length).to eq 8193
+      expect(FarMar::Product.all.length).to eq @csv.length
     end
   end
 

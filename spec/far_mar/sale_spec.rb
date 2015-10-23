@@ -2,6 +2,7 @@ require "spec_helper"
 
 describe FarMar::Sale do
   before :each do
+    @csv = CSV.read("support/sales.csv")
     @sale1 = FarMar::Sale.new(:id =>1, :amount =>9290, :purchase_time =>"2013-11-07 04:34:56 -0800", :vendor_id => 1, :product_id => 1)
   end
 
@@ -13,7 +14,7 @@ describe FarMar::Sale do
 
   describe "self.all" do
     it "returns an array or all the sales" do
-      expect(FarMar::Sale.all.length).to eq 12798
+      expect(FarMar::Sale.all.length).to eq @csv.length
     end
   end
 

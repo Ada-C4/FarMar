@@ -1,8 +1,8 @@
 require "spec_helper"
 
 describe FarMar::Vendor do
-  attr_accessor :id, :name, :employee_no, :market_id
   before :each do
+    @csv = CSV.read("support/vendors.csv")
     @vendor1 = FarMar::Vendor.new(:id => 1, :name => "Feil-Farrell", :employee_no => 8, :market_id => 1)
   end
 
@@ -14,7 +14,7 @@ describe FarMar::Vendor do
 
   describe "self.all" do
     it "returns an array or all the vendors" do
-      expect(FarMar::Vendor.all.length).to eq 2690
+      expect(FarMar::Vendor.all.length).to eq @csv.length
     end
   end
 
