@@ -32,6 +32,10 @@ describe FarMar::Product do
     end
   end
 
-
+  context ".self.by_vendor(vendor_id)" do
+    it "returns all of the products with a given vendor id" do
+        expect(FarMar::Product.by_vendor(6).length).to eq 3
+    end
+  end
 
 end

@@ -45,5 +45,24 @@ module FarMar
     end
 
 
+    def self.between(beginning_time, end_time)
+      #returns a collection of FarMar::Sale
+      #objects where the purchase time is between the two times given as arguments
+      sales_between_times_array = []
+      list_of_sales = FarMar::Sale.all
+      list_of_sales.find_all do |sale|
+        if (beginning_time < sale.purchase_time) && (sale.purchase_time < end_time)
+          sales_between_times_array.push(sale)
+        end
+      end
+      return sales_between_times_array
+    end
+#       @begin = DateTime.strptime("2013-11-06 08:35:40 -0800", "%Y-%m-%d %H:%M:%S %z")
+# @end = DateTime.strptime("2013-11-13 08:35:16 -0800", "%Y-%m-%d
+#
+#       list_of_sales.each do |sale_object|
+#         sale_object.purchase_time > beginning_time && sale_object.purchase_time < end_time
+
+
   end
 end
