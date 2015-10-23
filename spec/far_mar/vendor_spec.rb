@@ -84,6 +84,7 @@ describe FarMar::Vendor do
     end
   end
 
+#this takes forever to run rspec!
   describe "#self.most_items(n)" do
     it "returns the top n vendors with the highest number of products" do
       expect(FarMar::Vendor.most_items(3)).to be_an Array
