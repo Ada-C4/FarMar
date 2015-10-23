@@ -103,4 +103,9 @@ describe FarMar::Vendor do
       expect(top_4[0].products.length >= top_4[3].products.length).to be_truthy
     end
   end
+  describe "self.revenue(date)" do
+    it "returns the total revenue on that date across all vendors" do
+      expect(FarMar::Vendor.revenue("2013-11-07")).to eq 9060582 
+    end
+  end
 end

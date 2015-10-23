@@ -84,6 +84,15 @@ module FarMar
       vendors_by_items.first(n)
     end
 
+    def self.revenue(date)
+      total_revenue = 0
+      FarMar::Vendor.all.each do |vendor|
+        total_revenue += vendor.revenue(date)
+      end
+      return total_revenue
+
+    end
+
   end
 
 end
