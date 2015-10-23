@@ -11,7 +11,7 @@ module FarMar
 
     def self.all()
       if !instance_variable_defined?("@all")
-        instance_variable_set("@all", CSV.read(filepath))
+        instance_variable_set("@all", CSV.read(self.filepath))
         @all.map! do |line|
           self.new(self.create_hash(line))
         end
@@ -27,6 +27,6 @@ module FarMar
     def id
       return @id
     end
-    
+
   end
 end

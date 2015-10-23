@@ -3,18 +3,21 @@ require "pry"
 
 module FarMar
   attr_accessor :id, :name, :address, :city, :county, :state, :zip
-  class Market
-    def initialize(market_hash)
-      @id = market_hash[:id]
-      @name = market_hash[:name]
-      @address = market_hash[:address]
-      @city = market_hash[:city]
-      @county = market_hash[:county]
-      @state = market_hash[:state]
-      @zip = market_hash[:zip]
+  class Market < FarMar::FarMarParent
+    # def initialize(market_hash)
+    #   @id = market_hash[:id]
+    #   @name = market_hash[:name]
+    #   @address = market_hash[:address]
+    #   @city = market_hash[:city]
+    #   @county = market_hash[:county]
+    #   @state = market_hash[:state]
+    #   @zip = market_hash[:zip]
+    # end
+    def self.filepath
+      "./support/markets.csv"
     end
 
-    def self.create_market_hash(market_array)
+    def self.create_hash(market_array)
       market_hash = {}
       market_hash[:id] = market_array[0].to_i
       market_hash[:name] = market_array[1]
@@ -26,24 +29,24 @@ module FarMar
       return market_hash
     end
 
-    def self.all()
-      @markets_all ||= []
-      if @markets_all == []
-        @markets_all = CSV.read("./support/markets.csv")
-        @markets_all.map! do |line|
-          self.new(self.create_market_hash(line))
-        end
-      end
-      return @markets_all
-    end
-
-    def self.find(id)
-      self.all.find {|market| market.id == id}
-    end
-
-    def id
-      return @id
-    end
+    # def self.all()
+    #   @markets_all ||= []
+    #   if @markets_all == []
+    #     @markets_all = CSV.read("./support/markets.csv")
+    #     @markets_all.map! do |line|
+    #       self.new(self.create_market_hash(line))
+    #     end
+    #   end
+    #   return @markets_all
+    # end
+    #
+    # def self.find(id)
+    #   self.all.find {|market| market.id == id}
+    # end
+    #
+    # def id
+    #   return @id
+    # end
 
     def find_vendors(market_id)
       vendors_array = []

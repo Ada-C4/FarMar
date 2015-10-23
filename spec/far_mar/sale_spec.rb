@@ -40,7 +40,6 @@ describe FarMar do
     describe "self.find" do
       it "returns an instance of sale" do
         num = rand(11000..12001)
-        puts num
         expect(FarMar::Sale.find(num)).to be_an_instance_of FarMar::Sale
       end
       it "returns an instance of sale with the correct ID" do
