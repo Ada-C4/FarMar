@@ -18,6 +18,10 @@ module FarMar
         return @market_id
       end
 
+      def name
+        return @name
+      end
+
       def find_market(market_id)
         return FarMar::Market.find(market_id)
       end

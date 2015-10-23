@@ -1,5 +1,11 @@
 require "spec_helper"
 
+# describe object_returns_array do
+#   it "returns an array" do
+#     expect(object.all).to be_an Array
+#   end
+# end
+
 describe FarMar do
   describe FarMar::Market do
     before :all do
@@ -114,5 +120,21 @@ describe FarMar do
         expect(@market.find_products(-1)).to eq []
       end
     end
+
+    describe "self.search" do
+      before :each do
+        @search_term = "food"
+      end
+        it "returns an array" do
+          expect(FarMar::Market.search(@search_term)).to be_an Array
+        end
+        it "has Market objects in the array" do
+          expect(FarMar::Market.search(@search_term)[0]).to be_an_instance_of FarMar::Market
+        end
+        it "has only Market objects in the array, not Vendors" do
+          expect(FarMar::Market.search(@search_term).last).to be_an_instance_of FarMar::Market
+        end
+      end
+
   end
 end

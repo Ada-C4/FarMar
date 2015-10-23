@@ -40,5 +40,27 @@ module FarMar
       return products_array.flatten
     end
 
+    def name
+      return @name
+    end
+
+    def self.search(search_term)
+      results = []
+      market_list = self.all.find_all do |market|
+        market_name = market.name.downcase
+        market_name.include?(search_term.downcase)
+      end
+      vendor_list = FarMar::Vendor.all.find_all do |vendor|
+        vendor_name = vendor.name.downcase
+        vendor_name.include?(search_term.downcase)
+      end
+      vendor_list.map! do |vendor|
+        FarMar::Vendor.find_market(FarMar::Vendor.market_id)
+      end
+      results.push(market_list)
+      results.push(vendor_list)
+      return results.flatten
+    end
+
   end
 end
