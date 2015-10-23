@@ -45,6 +45,7 @@ module FarMar
     end
 
     def self.search(search_term)
+      #need to sanitize input, needs to be a string only
       results = []
       market_list = self.all.find_all do |market|
         market_name = market.name.downcase
@@ -61,6 +62,19 @@ module FarMar
       results.push(vendor_list)
       return results.flatten
     end
+
+    # def preferred_vendor
+    #   results = []
+    #   # this is an array of vendor objects
+    #   vendors = find_vendors(self.id)
+    #   # this calculates the revenue per vendor
+    #   vendors.each do |vendor|
+    #     moniez = vendor.revenue(vendor.id)
+    #     results.push([vendor, moniez])
+    #   end
+    #   # need to return highest revenue vendor
+    #   results.
+    # end
 
   end
 end
