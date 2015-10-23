@@ -59,9 +59,10 @@ module FarMar
       products_array = []
       vendors = find_vendors(market_id)
       vendors.each do |vendor|
-        products_array += vendor.find_products(vendor.id)
+        products = vendor.find_products(vendor.id)
+        products_array.push(products)
       end
-      return products_array
+      return products_array.flatten
     end
 
   end
