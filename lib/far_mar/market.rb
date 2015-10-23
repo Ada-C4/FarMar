@@ -31,11 +31,11 @@ module FarMar
 
       return market_products
     end
-
+    
     def self.all
       @@markets_list ||= []
 
-      if @@markets_list == []
+      if @@markets_list.empty?
         CSV.foreach(CSV_FILE) do |row|
           market = Market.new(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
           @@markets_list.push(market)

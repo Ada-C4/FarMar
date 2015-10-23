@@ -1,4 +1,5 @@
 require "spec_helper"
+require 'pry'
 
 describe FarMar::Vendor do
   before :each do
@@ -49,6 +50,7 @@ describe FarMar::Vendor do
       expect(@vendor.products.length).to eq 4
     end
     it "creates an array with vendor products" do
+      # binding.pry
       expect(@vendor.products[0]).to be_an_instance_of FarMar::Product
     end
   end

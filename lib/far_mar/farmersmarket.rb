@@ -2,9 +2,6 @@ module FarMar
   class FarmersMarket
     class << self
 
-      # some way to dynamically call a method
-      # obj.public_send(method_name) if obj.respond_to? method_name
-
       ["id", "name", "address", "city", "county", "state", "zip"].each do |attribute|
 	      define_method("find_by_#{attribute}") do |argument|
           list = self.all

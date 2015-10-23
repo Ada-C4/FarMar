@@ -1,3 +1,4 @@
+require 'pry'
 module FarMar
   class Sale < FarmersMarket
     CSV_FILE = "./support/sales.csv"
@@ -34,14 +35,31 @@ module FarMar
     def self.all
       @@sales_list ||= []
 
-      if @@sales_list == []
+      if @@sales_list.empty?
+        # @@master_hash = Hash.new
+        @@sales_by_product = Hash.new {|hash, key| hash[key] = []}
+        # revenue_by_product = Hash.new {|hash, key| hash[key] = 0}
+
         CSV.foreach(CSV_FILE) do |row|
           sale = Sale.new(row[0], row[1], row[2], row[3], row[4])
           @@sales_list.push(sale)
+
+          @@sales_by_product[sale.product_id] << sale
+          # create another one of these for products_by_vendor, product.vendor_id in product
+          # revenue_by_product[sale.product_id] += sale.amount
         end
+
+      # @@master_hash[:sales_by_product] = sales_by_product
+      # @@master_hash[:revenue_by_product] = revenue_by_product
       end
 
       return @@sales_list
+    end
+
+    def self.sales_by_product
+      self.all
+
+      return @@sales_by_product
     end
 
     def self.find(id)

@@ -16,29 +16,33 @@ module FarMar
     end
 
     def products
-      products_list = Product.all
+      Product.products_by_vendor[@id]
 
-      return products_list.find_all do |instance|
-        @id == instance.vendor_id
-      end
+      # products_list = Product.all
+      #
+      # return products_list.find_all do |instance|
+      #   @id == instance.vendor_id
+      # end
     end
 
     def sales
-      sales_list = Sale.all
+      sales_list = []
 
-      return sales_list.find_all do |instance|
-        @id == instance.vendor_id
+      self.products.each do |product|
+        sales_list += Sale.sales_by_product[product.id]
       end
+
+      return sales_list
+
+      # sales_list = Sale.all[0]
+      #
+      # return sales_list.find_all do |instance|
+      #   @id == instance.vendor_id
+      # end
     end
 
     def revenue
-      @revenue ||= 0
-
-      if @revenue == 0
-        @revenue = self.sales.inject(0) { |sum, sale| sum + sale.amount }
-      end
-
-      return @revenue
+      self.sales.inject(0) { |sum, sale| sum + sale.amount }
     end
 
     def self.by_market(market_id)
@@ -52,7 +56,7 @@ module FarMar
     def self.all
       @@vendors_list ||= []
 
-      if @@vendors_list == []
+      if @@vendors_list.empty?
         CSV.foreach(CSV_FILE) do |row|
           vendor = Vendor.new(row[0], row[1], row[2], row[3])
           @@vendors_list.push(vendor)
