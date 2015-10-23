@@ -22,8 +22,8 @@ describe FarMar::Market do
   end
 
   context ".self.find(id)" do
-    it "returns an instance of Market" do
-      expect(@market.class).to be FarMar::Market
+    it "returns the right instance" do
+      expect(FarMar::Market.find(14).name).to eq "Hartford Farmers Market"
     end
 
     it "returns an instance with the same id as the value in the CSV file" do

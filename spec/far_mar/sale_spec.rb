@@ -22,8 +22,8 @@ describe FarMar::Sale do
   end
 
   context ".self.find(id)" do
-    it "returns an instance of Sale" do
-      expect(@sale.class).to be FarMar::Sale
+    it "returns the right instance" do
+      expect(FarMar::Sale.find(14).amount).to eq 4978
     end
 
     it "returns an instance with the same id as the value in the CSV file" do

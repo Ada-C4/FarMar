@@ -43,7 +43,7 @@ describe FarMar::Product do
 
   context "#sales" do
     it "returns a collection of FarMar::Sale instances" do
-      expect(@product.sales.length).to eq 0
+      expect(@product_2.sales.length).to eq 2
     end
   end
 

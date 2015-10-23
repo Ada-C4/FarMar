@@ -48,7 +48,7 @@ module FarMar
       sales_array = []
       sales_list = FarMar::Sale.all
         sales_list.find_all do |i|
-          if i.product_id == @id
+          if i.product_id == id
             sales_array.push(i)
           end
         end

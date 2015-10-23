@@ -23,8 +23,8 @@ describe FarMar::Vendor do
   end
 
   context ".self.find(id)" do
-    it "returns an instance of Vendor" do
-      expect(@vendor.class).to be FarMar::Vendor
+    it "returns the right instance" do
+      expect(FarMar::Vendor.find(45).name).to eq "Hyatt, Conroy and Ortiz"
     end
 
     it "returns an instance with the same id as the value in the CSV file" do
