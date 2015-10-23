@@ -32,9 +32,18 @@ describe FarMar::Sale do
     # it "returns the FarMar::Vendor instance associated with @sale" do
     #   @sale.vendor.each do |v|
     #     vendor.vendor_id == v.id
-
-
   end
+
+  describe "#self.between" do
+    it "returns an array of sales" do
+      expect(FarMar::Sale.between("2013-11-08 10:38:56 -0800","2013-11-13 01:48:15 -0800")).to be_an Array
+      expect(FarMar::Sale.between(give a specific instance and have it expect a specific id number_of_sales
+      # by giving it a specific index[0]))
+    end
+  end
+
+
+
 end
 
 

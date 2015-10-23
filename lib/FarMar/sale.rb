@@ -40,8 +40,18 @@ module FarMar
       end
     end
 
+    # def product
+    #   return FarMar::Product.find do |
 
-
-
+# this method currently doesn't work. Fix it, Sarah!
+    def self.between(beginning_time, end_time)
+      sales = []
+      Sale.all.find_all do |sale|
+        if sale.purchase_time >= DateTime.parse(beginning_time) || sale.purchase_time <= DateTime.parse(end_time)
+          sales.push(sale)
+        end
+      end
+        return sales
+    end
   end
 end
