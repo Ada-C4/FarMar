@@ -40,11 +40,8 @@ end
 
 # - `find_product_things` - returns and array of all of the product item instances from a given class
 
-  def find_product_things(pd_id, class_name)
-    case class_name
-    when "sale"
-      item_array = FarMar::Sale.all
-    end
+  def find_product_things(pd_id)
+    item_array = FarMar::Sale.all
     products_items = []
     item_array.find_all do |single_item|
       if single_item.product_id == pd_id.to_s
@@ -65,16 +62,13 @@ end
 # - `sales` - returns a collection of `FarMar::Sale` instances that are associated using the `FarMar::Sale` `product_id` field.
 
   def sales(prod_id)
-    class_name = "sale"
-    find_product_things(prod_id, class_name)
+    find_product_things(prod_id)
   end
 
 # - `number_of_sales` - returns the number of times this product has been sold.
 
   def number_of_sales(prod_id)
-    class_name = "sale"
-    find_product_things(prod_id, class_name).length
-
+    find_product_things(prod_id).length
   end
 
 # - `self.by_vendor(vendor_id)` - returns all of the products with the given `vendor_id`

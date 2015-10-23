@@ -14,7 +14,7 @@ module FarMar
     def initialize(id, amount, purchase_time, vendor_id, product_id)
       @id = id
       @amount = amount
-      @purchase_time = purchase_time
+      @purchase_time =  DateTime.strptime(purchase_time, "%Y-%m-%d %H:%M:%S %z")
       @vendor_id = vendor_id
       @product_id = product_id
     end
@@ -39,18 +39,54 @@ module FarMar
     all_the_sales = FarMar::Sale.all
     all_the_sales.find do |single_sale|
       if single_sale.id == sale_id.to_s
-        var = []
-        var = ["#{single_sale.id}", "#{single_sale.amount}", "#{single_sale.purchase_time}", "#{single_sale.vendor_id}", "#{single_sale.product_id}"]
-        return var
+        return single_sale
       end
     end
   end
 
+# - `find_sale_things` - returns and array of all of the sale item related instances from a given class
+
+  def find_sale_things(class_type)
+    case class_type
+    when "product"
+      item_array = FarMar::Product.all
+      compare = self.product_id.to_s
+    when "vendor"
+      item_array = FarMar::Vendor.all
+      compare = self.vendor_id.to_s
+    end
+    item_array.find_all do |sale_item|
+      if sale_item.id == compare
+        return sale_item
+      end
+    end
+  end
+
+
 # - `vendor` - returns the `FarMar::Vendor` instance that is associated with this sale using the `FarMar::Sale` `vendor_id` field
+  def vendor
+    class_type = "vendor"
+    find_sale_things(class_type)
+  end
 
 # - `product` - returns the `FarMar::Product` instance that is associated with this sale using the `FarMar::Sale` `product_id` field
 
+  def product
+    class_type = "product"
+    find_sale_things(class_type)
+  end
+
 # - `self.between(beginning_time, end_time)` - returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
+
+  def self.between(begin_time, end_time)
+      time_array = []
+      self.all.find_all do |purchase|
+        if begin_time <= purchase.purchase_time && end_time >= purchase.purchase_time
+          time_array.push(purchase)
+        end
+      end
+      return time_array
+  end
 
   end
 end

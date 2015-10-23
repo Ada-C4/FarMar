@@ -19,7 +19,30 @@ describe FarMar::Sale do
 
     describe "self.find_sale"
       it "returns the information for a given sale ID" do
-        expect(FarMar::Sale.find_sale(8)).to eq ["8", "5727", "2013-11-12 06:03:54 -0800", "2", "2"]
+        expect(FarMar::Sale.find_sale(8).amount).to eq "5727"
       end
 
+    describe "vendor"
+      it "returns a vendor instance" do
+        expect(FarMar::Sale.find_sale(8).vendor).to be_an_instance_of FarMar::Vendor
+      end
+      it "gives the vendor associated with the sales instance" do
+        expect(FarMar::Sale.find_sale(8).vendor.id).to eq "2"
+      end
+
+      describe "product"
+        it "returns a product instance" do
+          expect(FarMar::Sale.find_sale(8).product).to be_an_instance_of FarMar::Product
+        end
+        it "gives the product associated with the sales instance" do
+          expect(FarMar::Sale.find_sale(8).product.id).to eq "2"
+        end
+
+      describe "self.between"
+        it "returns all of the sales that occured between the parameter times" do
+          @beginning_time = DateTime.strptime("2013-11-07 04:34:56 -0800", "%Y-%m-%d %H:%M:%S %z")
+          @end_time = DateTime.strptime("2013-11-10 01:51:24 -0800", "%Y-%m-%d %H:%M:%S %z")
+          expect(FarMar::Sale.between(@beginning_time, @end_time)).to be_an Array
+         expect(FarMar::Sale.between(@beginning_time, @end_time)[0].amount).to eq "9290"
+        end
 end

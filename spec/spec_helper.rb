@@ -5,6 +5,10 @@ SimpleCov.start
 require "./lib/far_mar"
 
 RSpec.configure do |config|
+ config.order = 'random'
+end
+
+RSpec.configure do |config|
   config.after(:suite) do
     num_failed = RSpec.world
                       .filtered_examples
