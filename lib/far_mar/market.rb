@@ -27,7 +27,27 @@ module FarMar
     # Returns a collection of FarMar::Market instances where the market name
     # or vendor name contain the search_term
     def self.search(search_term)
-
+      return [] if search_term.class != String
+      search_term.downcase!
+      # find all markets that include the search term in the market name
+      market_match = FarMar::Market.all_objects.select do |market|
+        market_name = market.name.downcase
+        market_name.include?(search_term)
+      end
+      # find all markets that have the search term in the vendor name
+      vendor_match = FarMar::Vendor.all_objects.select do |vendor|
+        vendor_name = vendor.name.downcase
+        vendor_name.include?(search_term)
+      end
+      # This iterates through the vendors that include the search term
+      vendor_match.each do |vendor|
+        # and finds their associated market based on the market_id
+        market = FarMar::Market.find(vendor.market_id)
+        # then checks to see if the market is already in the market_match array
+        # and if not, it pushes it into the array
+        market_match.push(market) if !market_match.include?(market)
+      end
+      return market_match
     end
 
     # Returns a collection of FarMar::Vendor instances that are associated
