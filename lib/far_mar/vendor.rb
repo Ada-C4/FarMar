@@ -52,11 +52,13 @@ module FarMar
     return sales
     end
 
-    def revenue
-      sales = self.sales
+    def revenue(date = nil)
+      date = DateTime.parse(date) if date != nil
       revenue = 0
       sales.each do |sale|
-        revenue += sale.amount
+        if sale.purchase_time.to_date == date || date == nil
+          revenue += sale.amount
+        end
       end
       return revenue
     end

@@ -66,10 +66,9 @@ module FarMar
       return name_search_results + vendor_search_results
     end
 
-    def prefered_vendor
-      market_vendors = self.vendors
-      top_vendor = market_vendors.max_by do |vendor|
-        vendor.revenue
+    def prefered_vendor(date = nil)
+      top_vendor = vendors.max_by do |vendor|
+        vendor.revenue(date)
       end
       return top_vendor
     end
