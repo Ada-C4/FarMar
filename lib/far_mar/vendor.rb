@@ -73,6 +73,14 @@ module FarMar
       vendors_by_revenue = vendors_by_revenue.sort_by { |vendor| vendor.revenue }
 
       return vendors_by_revenue[0...n]
+    end
+
+    def self.most_items(n)
+      vendors_by_items = self.all
+
+      vendors_by_items = vendors_by_items.sort_by { |vendor| vendor.products.length }
+
+      return vendors_by_items[0...n]
 
     end
   end

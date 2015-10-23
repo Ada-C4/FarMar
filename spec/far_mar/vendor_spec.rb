@@ -96,4 +96,15 @@ describe FarMar::Vendor do
       expect(FarMar::Vendor.most_revenue(5)[0].revenue).to be >= FarMar::Vendor.most_revenue(5)[1].revenue
     end
   end
+  describe ".self.most_items(n)" do
+    it "returns an array of instances of FarMar::Vendor" do
+      expect(FarMar::Vendor.most_items(5)[0]).to be_instance_of FarMar::Vendor
+    end
+    it "returns array of correct length" do
+      expect(FarMar::Vendor.most_items(5).length).to eq 5
+    end
+    it "returns correct first instance in array, with highest revenue" do
+      expect(FarMar::Vendor.most_items(5)[0].products.length).to be >= FarMar::Vendor.most_items(5)[1].products.length
+    end
+  end
 end
