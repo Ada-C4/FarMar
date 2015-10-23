@@ -57,8 +57,7 @@ module FarMar
      #~~~~~special fun method~~~~~~~~~~~#
      #returns the number of times a product has been sold
      def number_of_sales(sales_csv = "./support/sales.csv" )
-       #to do this, will find all the sales with that product id and total them
-       self.sales(sales_csv).length #an array of the sales for the given product id
+       self.sales(sales_csv).length 
      end
   end
 end

@@ -25,7 +25,7 @@ module FarMar
    end
 
    #method to return an instance for which the id matches the parameter
-   #input a csv and an id. By default, the market.csv will be used, but this method can be reused in other classes and given different default csv values.
+   #input a csv and an id. By default, the market.csv will be used.
 
    def self.find(search_id, csv = "./support/markets.csv")
      all = self.all(csv)
