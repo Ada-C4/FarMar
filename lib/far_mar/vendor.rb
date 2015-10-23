@@ -63,37 +63,20 @@ module FarMar
         sales.each do |sale|
           total_amount += sale.amount
         end
-
         return total_amount
-
-        #I am currently in a particular instance of vendor
-        #I want to find all of the vendors sales
-
-        #for each instance in the array, I want to take out the amount part
-        #then take out the number that is saved in the amount variable
-        #and add each of the amounts in the list together
-        # amount_array = []
-
-
-
-          # amount_array.push
-
-        # return amount_array
       end
 
+      def self.by_market(market_id)
+        #returns all of the vendors with the given market_id
+        vendors_in_a_market_array = []
+        vendor_list = FarMar::Vendor.all
+        vendor_list.find_all do |vendor|
+          if vendor.market_id == market_id
+            vendors_in_a_market_array.push(vendor)
+          end
+        end
+        return vendors_in_a_market_array
+      end
 
-      #   .inject { |sum, pennies| sum + pennies }
-      #
-      #     come back to this one
-      # end
-
-    end
   end
-
-      # def self.by_market(market_id)
-      #   by_market_array = []
-      #   by_market_array = self.find(market_id)
-      #   by_market_array.find_all do |i|
-      #     i.market_id == @id
-      #   end
-      # end
+end
