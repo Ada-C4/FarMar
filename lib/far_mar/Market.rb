@@ -55,9 +55,26 @@ module FarMar
       end
       return matching_markets
     end
-    def preferred_vendor
-      vendors.max_by do |vendor|
-        vendor.revenue
+    def preferred_vendor(date = nil)
+      if date == nil
+        vendors.max_by do |vendor|
+          vendor.revenue
+        end
+      else
+        date = DateTime.parse(date)
+        sales_on_date = FarMar::Sale.all.find_all do |sale|
+          sale.purchase_time.to_date == date.to_date
+        end
+        revenue_hash = Hash.new(0)
+        sales_on_date.each do |sale|
+          if sale.vendor.market_id == self.id
+            revenue_hash["#{sale.vendor_id}"] += sale.amount
+          end
+        end
+        max = revenue_hash.max_by do |vendor_id, revenue|
+          revenue
+        end
+        return FarMar::Vendor.find(max[0].to_i)
       end
     end
   end

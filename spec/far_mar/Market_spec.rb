@@ -69,4 +69,9 @@ describe FarMar::Market do
       expect(@market.preferred_vendor.id).to eq 2684
     end
   end
+  describe ".preferred_vendor(date)" do
+    it "returns the vendor with the highest revenue for date passed in" do
+      expect(@market.preferred_vendor("2013-11-09").id).to eq 2687
+    end
+  end
 end
