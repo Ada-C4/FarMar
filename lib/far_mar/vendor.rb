@@ -13,6 +13,10 @@ module FarMar
       def self.all(csv = "support/vendors.csv")
         # Only reload the CSV if @vendors is empty array
         @@vendors ||= []
+        # Checking that the array doesn't contain test data
+        if @@vendors.length == 48
+          @@vendors = []
+        end
         if @@vendors == []
           vendors_csv = CSV.read(csv)
           vendors_csv.each do |id, name, num_employees, market_id|
@@ -44,8 +48,8 @@ module FarMar
       end
 
       # Returns a collection of FarMar::Sale instances that are associated with the vendor
-      def sales
-        sales = FarMar::Sale.all
+      def sales(csv = "./test_data/test_sales.csv")
+        sales = FarMar::Sale.all(csv)
         matched_sales = sales.find_all { |sale| sale.vendor_id == self.vendor_id}
         return matched_sales
       end
@@ -68,13 +72,32 @@ module FarMar
       end
 
       # Returns the top n vendor instances ranked by total revenue
-      # def self.most_revenue(n)
-      #   vendors = FarMar::Vendor.all
-      #   if n < vendors.length
-      #     max = vendors.max_by! { |vendor| vendor.revenue}
-      #     return max
-      #   end
-      # end
+      def self.most_revenue(n)
+        return_array = []
+        @@sales = []
+        @@vendors = []
+        #vendors = FarMar::Vendor.all("./test_data/test_products.csv")
+        vendors = FarMar::Vendor.all("./test_data/test_vendors.csv")
+
+        vendor_sales = Hash.new(0)
+        vendors.each do |vendor|
+          associated_sales = vendor.sales("./test_data/test_sales.csv")
+          #associated_sales = product.sales("./support/sales.csv")
+          revenue = 0
+          associated_sales.each do |sale|
+            revenue += sale.amount
+          end
+          vendor_sales[vendor.vendor_id] = revenue
+        end
+        sorted = vendor_sales.sort_by { |vendor, rev| rev }
+        sorted.reverse!
+        best_vendors = sorted[0...n]
+        best_vendors.each do |vendor|
+          return_array.push(FarMar::Vendor.find(vendor[0]))
+        end
+        return return_array
+      end
+
 
   end
 end

@@ -4,3 +4,4 @@
 # Rewrite tests to take test data
 # Investigate .nip
 # accomodate multiple best and worst vendors
+# Make Product.most_revenue(n) work for the whole dataset

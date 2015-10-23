@@ -90,12 +90,20 @@ describe FarMar::Vendor do
     end
   end
 
-  # describe ".most_revenue" do
-  #   it "returns an array of n values" do
-  #     number_of_vals = 3
-  #     expect(FarMar::Vendor.most_revenue(number_of_vals).length).to eq number_of_vals
-  #     expect(FarMar::Vendor.most_revenue(number_of_vals)).to be_an_instance_of Array
-  #   end
-  # end
-  
+  describe ".most_revenue" do
+    it "returns an array of length n" do
+      result = FarMar::Vendor.most_revenue(10)
+      expect(result.length).to eq 10
+      expect(result).to be_an_instance_of Array
+      expect(result[0]).to be_an_instance_of FarMar::Vendor
+    end
+    it "returns the correct product for a test data set" do
+      expected_vendor_name = "Reynolds, Schmitt and Klocko"
+      result = FarMar::Vendor.most_revenue(10)
+      expect(result[0].vendor_name).to eq expected_vendor_name
+    end
+  end
+
+
+
 end

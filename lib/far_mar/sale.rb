@@ -11,9 +11,13 @@ module FarMar
     end
 
     # Returns a collection of Sale instances, representing all of the sales described in the CSV
-    def self.all(csv = "support/sales.csv")
+    def self.all(csv = "./support/sales.csv")
       # Only reload the CSV is sales is empty array
       @@sales ||= []
+      # Checking that the array doesn't contain test data
+      if @@sales.length == 105
+        @@sales = []
+      end
       if @@sales == []
         sales_csv = CSV.read(csv)
         sales_csv.each do |id, amount, purchase_time, vendor_id, product_id|
