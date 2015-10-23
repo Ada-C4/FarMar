@@ -1,5 +1,5 @@
 module FarMar
-  class Product
+  class Product < FarmersMarket
     attr_accessor :id, :name, :vendor_id
     CSV_FILE = "./support/products.csv"
 

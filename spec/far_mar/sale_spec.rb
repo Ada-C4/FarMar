@@ -54,7 +54,11 @@ describe FarMar::Sale do
     it "returns an array" do
       @beginning_time = "2013-11-07 04:34:56 -0800"
       @end_time = "2013-11-10 11:31:16 -0800"
+      @id = 10
+      expect(FarMar::Sale.find(@id).purchase_time).to be_between DateTime.parse(@beginning_time), DateTime.parse(@end_time)
       expect(FarMar::Sale.between(@beginning_time, @end_time)).to be_an Array
+      expect(FarMar::Sale.between(@beginning_time, @end_time)[0]).to be_an_instance_of FarMar::Sale
+      expect(FarMar::Sale.between(@beginning_time, @end_time)).to include(FarMar::Sale.find(@id))
       @end_time = @beginning_time
       expect(FarMar::Sale.between(@beginning_time, @end_time)).to be_an Array
     end

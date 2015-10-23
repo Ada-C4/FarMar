@@ -1,5 +1,5 @@
 module FarMar
-  class Market
+  class Market < FarmersMarket
     attr_accessor :id, :name, :address, :city, :county, :state, :zip
     CSV_FILE = "./support/markets.csv"
 
@@ -75,13 +75,14 @@ module FarMar
       end
     end
 
+    # combine this and preferred_vendor into one method?!
     def vendor_of_the_day(date)
-      date = DateTime.parse(date)
+      date = Date.parse(date)
       vendor_list = self.vendors
 
       vendor_list.max_by do |vendor|
         day_sales = vendor.sales.find_all do |sale|
-          sale.purchase_time == date
+          sale.purchase_time.to_date == date
         end
 
         day_sales.inject(0) { |sum, sale| sum + sale.amount }
@@ -97,12 +98,12 @@ module FarMar
     end
 
     def failure_of_the_day(date)
-      date = DateTime.parse(date)
+      date = Date.parse(date)
       vendor_list = self.vendors
 
       vendor_list.min_by do |vendor|
         day_sales = vendor.sales.find_all do |sale|
-          sale.purchase_time == date
+          sale.purchase_time.to_date == date
         end
 
         day_sales.inject(0) { |sum, sale| sum + sale.amount }
