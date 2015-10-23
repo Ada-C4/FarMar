@@ -51,6 +51,13 @@ describe FarMar::Vendor do
   describe ".by_market" do
     it "returns an array of vendors" do
       expect(FarMar::Vendor.by_market(1)).to be_an Array
+      expect(FarMar::Vendor.by_market(1).length).to eq 6
     end
+
+    # it "returns the right number of things" do
+    #   FarMar::Vendor.by_market(1).each do |s|
+    #     expect()
+    #   end
+    # end
   end
 end
