@@ -24,22 +24,24 @@ describe FarMar::Sale do
   describe ".vendor" do
     it "returns the vendor instance whose id matches the sale's vendor_id" do
       expect(@sale.vendor.id).to eq 742
-      expect(@sale.vendor.name).to eq "Beer, Heathcote and Leffler"
     end
   end
   describe ".product" do
     it "returns the product instance whose id matches the sales's product_id" do
       expect(@sale.product.id).to eq 2213
-      expect(@sale.product.name).to eq "Rotten Fruit"
     end
   end
-  describe "#between(beginning_time, end_time)"do
-    it "returns a collection of sales where the purchase_time is between the two parameters" do
+  describe "#between(beginning_time, end_time)" do
+    context "when beginning_time is before end_time" do
       begin_time = "2013-11-06 08:47:12 -0800"
       end_time = "2013-11-06 08:52:59 -0800"
-      expect(FarMar::Sale.between(begin_time, end_time).length).to eq 4
-      expect(FarMar::Sale.between(begin_time, end_time)[1].id).to eq 4119
-      expect(FarMar::Sale.between(begin_time, end_time)[1].class).to eq FarMar::Sale
+      it "returns a collection of sales instances" do
+        expect(FarMar::Sale.between(begin_time, end_time)[1].class).to eq FarMar::Sale
+      end
+      it "returns all sales that occurred between beginning_time and end_time (exclusive)" do
+        expect(FarMar::Sale.between(begin_time, end_time).length).to eq 4
+        expect(FarMar::Sale.between(begin_time, end_time)[1].id).to eq 4119
+      end
     end
     context "when end_time is before beginning_time" do
       it "returns an empty array" do

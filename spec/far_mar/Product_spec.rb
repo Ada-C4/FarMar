@@ -23,15 +23,12 @@ describe FarMar::Product do
   end
   describe ".vendor" do
     it "returns the vendor instance whose id matches the product's vendor_id" do
-      vendor = @product.vendor
-      expect(vendor.id).to eq 2689
-      expect(vendor.name).to eq "Durgan-Moen"
+      expect(@product.vendor.id).to eq 2689
     end
   end
   describe ".sales" do
     it "returns a collection of sales instances whose product_id matches the product's id" do
       expect(@product.sales.length).to eq 2
-      expect(@product.sales[0].class).to eq FarMar::Sale
     end
   end
   describe ".number_of_sales" do
@@ -43,7 +40,6 @@ describe FarMar::Product do
     it "returns all product instances whose vendor_id matches the parameter passed in" do
       vendor = FarMar::Product.by_vendor(2672)
       expect(vendor.length).to eq 4
-      expect(vendor[3].name).to eq "Energetic Pretzel"
     end
   end
 end

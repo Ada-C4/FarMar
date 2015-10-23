@@ -34,7 +34,6 @@ describe FarMar::Market do
     it "returns a collection of product instances associated through vendors" do
       #vendor ids: 2681, 2682, 2683, 2684, 2685, 2686, 2687, 2688, 2689, 2690
       expect(@market.products.length).to eq 34
-      expect(@market.products[0].class).to eq FarMar::Product
     end
   end
   describe "#search(search_term)" do
