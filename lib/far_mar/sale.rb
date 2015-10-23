@@ -16,12 +16,17 @@ module FarMar
       @@vendor_stats ||= self.all[1]
     end
 
+    def self.product_stats
+      @@product_stats ||= self.all[2]
+    end
+
     def self.all
       if !self.class_variable_defined?(:@@all_objects) ||!self.class_variable_defined?(:@@vendor_stats)
         csv_file = CSV.read(FILENAME)
         # Create empty array which will hold all the objects
         objects = []
-        stats = {}
+        vend_stats = {}
+        prod_stats = {}
         csv_file.each do |row|
           # Convert the array to a hash
           sale_hash = convert_to_hash(row)
@@ -29,17 +34,24 @@ module FarMar
           temp = self.new(sale_hash)
           # Push object to array of products
           objects.push(temp)
-          # Populate the stats array
-          if stats[sale_hash[:vendor_id]].nil? # if there is no revenue yet
-            stats[sale_hash[:vendor_id]] = {}
-            stats[sale_hash[:vendor_id]][:revenue] = sale_hash[:amount] # store the first revenue
-            stats[sale_hash[:vendor_id]][:num_sales] = 1 # and tally 1 for number of sales
+          # Populate the vend_stats array
+          if vend_stats[sale_hash[:vendor_id]].nil? # if there is no revenue yet
+            vend_stats[sale_hash[:vendor_id]] = {}
+            vend_stats[sale_hash[:vendor_id]][:revenue] = sale_hash[:amount] # store the first revenue
+            vend_stats[sale_hash[:vendor_id]][:num_sales] = 1 # and tally 1 for number of sales
           else
-            stats[sale_hash[:vendor_id]][:revenue] += sale_hash[:amount] # add the amount to the revenue
-            stats[sale_hash[:vendor_id]][:num_sales] += 1 # and add 1 to sale tally
+            vend_stats[sale_hash[:vendor_id]][:revenue] += sale_hash[:amount] # add the amount to the revenue
+            vend_stats[sale_hash[:vendor_id]][:num_sales] += 1 # and add 1 to sale tally
+          end
+          # Populate product_stats array
+          if prod_stats[sale_hash[:product_id]].nil? # if there is no product revenue yet
+            prod_stats[sale_hash[:product_id]] = {}
+            prod_stats[sale_hash[:product_id]][:revenue] = sale_hash[:amount] # stores the first revenue
+          else
+            prod_stats[sale_hash[:product_id]][:revenue] += sale_hash[:amount] # adds the amount to the revenue
           end
         end
-        return self.class_variable_set(:@@all_objects, objects), self.class_variable_set(:@@vendor_stats, stats)
+        return self.class_variable_set(:@@all_objects, objects), self.class_variable_set(:@@vendor_stats, vend_stats), self.class_variable_set(:@@product_stats, prod_stats)
 
       end
       self.all_objects
@@ -60,7 +72,7 @@ module FarMar
       return FarMar::Sale.all_objects.find_all { |sale| sale.product_id == product_id }
     end
 
-    # returns all of the vendors with the given vendor id
+    # returns all of the sales with the given vendor id
     def self.by_vendor(vendor_id)
       return FarMar::Sale.all_objects.find_all { |sale| sale.vendor_id == vendor_id }
     end

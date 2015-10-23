@@ -51,6 +51,12 @@ describe FarMar do
       end
     end
 
+    describe ".revenue" do
+      it "returns the revenue for a given product" do
+        expect(sample_product.revenue).to eq(39719)
+      end
+    end
+
     describe "#sales" do
       it "returns array of Sales that match the product id" do
         sales = sample_product.sales
