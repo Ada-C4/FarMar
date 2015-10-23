@@ -77,4 +77,10 @@ describe FarMar::Market do
       expect(vendor_matches[0].name).to eq "Fakey Fake Vendor"
     end
   end
+
+  describe "#products" do
+    it "returns an array of products associated with the market through vendor" do
+
+    end  
+  end
 end

@@ -34,13 +34,19 @@ module FarMar
    end
 
    #~~~~~search foreign keyholder~~~~~~~~~~~#
-     #need to look through the vendors and find the one with this market id
+     #returns an array of vendors with the given market_id
      #can use default or other csv
-     #market doesn't know the vendor id, but vendors have market ids
    def vendors(vendors_csv = "./support/vendors.csv")
      all_vendors = Vendor.all(vendors_csv)
      vendor_matches = (all_vendors.find_all {|n| n.market_id == self.id})
      return vendor_matches
    end
+
+    #returns a collection of product instances that are associated to the market through the FarMar::Vendor class.
+  #  def products(vendors_csv = "./support/vendors.csv", products_csv = "./support/products.csv")
+  #    vendors = self.vendors(vendors_csv)
+  #    vendors_products_method = Vendor:
+  #    products = vendors.products
+  #  end
  end
 end
