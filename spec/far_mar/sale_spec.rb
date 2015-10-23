@@ -8,7 +8,7 @@ describe FarMar do
 
     describe "#initialize" do
       it "creates a new instance of Sale" do
-        fake_hash = {:id => 6, :amount => 150, :purchase_time => "2007-01-31 12:22:26", :vendor_id => 555, :product_id => 4}
+        fake_hash = {:id => 6, :amount => 150, :purchase_time => "2013-11-10 18:56:53 -0800", :vendor_id => 555, :product_id => 4}
         test = FarMar::Sale.new(fake_hash)
         expect(test).to be_an_instance_of FarMar::Sale
       end
@@ -29,8 +29,13 @@ describe FarMar do
 
     describe "self.between(start,stop)" do
       it "returns array of sale instances" do
-        time_test = FarMar::Sale.between(9:00,16:00)
-        expect(time_test.length).to eq 9
+        time_test = FarMar::Sale.between?("2013-11-10 08:56:53 -0800","2013-11-10 08:59:53 -0800")
+        expect(time_test.length).to eq 2
+      end
+
+      it "returns array of sale instances" do
+        time_test = FarMar::Sale.between?("2010-11-10 08:56:53 -0800","2014-11-10 08:59:53 -0800")
+        expect(time_test.length).to eq 12798
       end
     end
 

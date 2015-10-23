@@ -4,7 +4,7 @@ module FarMar
     def initialize(sale_hash)
       @id = sale_hash[:id].to_i
       @amount = sale_hash[:amount].to_i
-      @purchase_time = DateTime.parse(sale_hash[:purchase_time])
+      @purchase_time = DateTime.strptime(sale_hash[:purchase_time], "%Y-%m-%d %H:%M:%S %z")
       @vendor_id = sale_hash[:vendor_id].to_i
       @product_id = sale_hash[:product_id].to_i
     end
@@ -27,15 +27,10 @@ module FarMar
       end
     end
 
-    def self.between(start_time,stop_time)
-      start_time = DateTime.parse(start_time.to_s)
-      stop_time = DateTime.parse(stop_time.to_s)
-      time_span_sales = []
-      FarMar::Sale.all.each do |sale|
-        if purchase_time.between?(start_time,stop_time)
-          time_span_sales.push(sale)
-        end
-      end
+    def self.between?(start_time, stop_time)
+      start_time = DateTime.strptime(start_time,"%Y-%m-%d %H:%M:%S %z")
+      stop_time = DateTime.strptime(stop_time,"%Y-%m-%d %H:%M:%S %z")
+      FarMar::Sale.all.find_all { |sale| sale.purchase_time.between?(start_time, stop_time) }
     end
 
     def list_vendors
