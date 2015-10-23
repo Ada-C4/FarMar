@@ -42,15 +42,7 @@ module FarMar
       most_x(n, "@num_sales")
     end
 
-    # returns a single instance whose attribute matches the parameter
-    def self.find_by_name(match)
-      return nil if match.class != String
-      result = FarMar::Vendor.all_objects.find do |vendor|
-        test_string = vendor.name.downcase
-        test_string.include?(match.downcase)
-      end
-      return result
-    end
+
 
     # returns a collection of FarMar::Product instances that are
     # associated by the FarMar::Product vendor_id field

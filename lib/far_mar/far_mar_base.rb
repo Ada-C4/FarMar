@@ -29,8 +29,14 @@ module FarMar
       self.all_objects.find { |obj| obj.id == id }
     end
 
-    def self.find_by_x(match)
-      
+    # returns a single instance whose attribute matches the parameter
+    def self.find_by_name(match)
+      return nil if match.class != String
+      result = FarMar::Vendor.all_objects.find do |vendor|
+        test_string = vendor.name.downcase
+        test_string.include?(match.downcase)
+      end
+      return result
     end
 
   end
