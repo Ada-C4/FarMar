@@ -1,20 +1,26 @@
 module FarMar
-  class VendorProductBase  < FarMar_Base
+  module VendorProductBase
 
-    # helper method for the most methods in product and vendor classes
-    def self.most_x(n, attribute)
-      return [] if
-        n.class != Fixnum ||
-        n < 0 ||
-        n > FarMar::Vendor.all_objects.length
-      backwards = FarMar::Vendor.all_objects.sort_by { |vendor_obj| vendor_obj.instance_variable_get(attribute) }
-      sorted = backwards.reverse
-      return sorted[0, n]
+    def self.included(base)
+      base.extend(ClassMethods)
     end
 
-    def revenue(attribute)
+    # helper method for the most methods in product and vendor classes
+    module ClassMethods
+      def most_x(n, attribute)
+        return [] if
+          n.class != Fixnum ||
+          n < 0 ||
+          n > self.all_objects.length
+        backwards = self.all_objects.sort_by { |obj| obj.instance_variable_get(attribute) }
+        sorted = backwards.reverse
+        return sorted[0, n]
+      end
+    end
+
+    def revenue
       return @revenue if !@revenue.nil?
-      results = FarMar::Sale.class_variable_get(attribute)
+      results = FarMar::Sale.class_variable_get(self.class::REV_ATTR)
       if results[@id].nil?
         @revenue = 0
       else
