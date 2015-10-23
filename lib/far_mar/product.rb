@@ -1,5 +1,5 @@
 module FarMar
-  class Product < FarMar_Base
+  class Product < VendorProductBase
     attr_reader :id, :name, :vendor_id
     FILENAME = './support/products.csv'
 
@@ -45,13 +45,7 @@ module FarMar
 
     # returns the total revenue for a given product
     def revenue
-      return @revenue if !@revenue.nil?
-      results = FarMar::Sale.product_stats
-      if results[@id].nil?
-        @revenue = 0
-      else
-        @revenue = results[@id][:revenue]
-      end
+      super(:@@product_stats)
     end
 
   end

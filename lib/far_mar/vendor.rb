@@ -1,5 +1,5 @@
 module FarMar
-  class Vendor < FarMar_Base
+  class Vendor < VendorProductBase
     attr_reader :id, :name, :emp_num, :market_id
     FILENAME = './support/vendors.csv'
 
@@ -68,13 +68,7 @@ module FarMar
 
     # returns the sum of all of the vendor's sales (in cents)
     def revenue
-      return @revenue if !@revenue.nil?
-      results = FarMar::Sale.vendor_stats
-      if results[@id].nil?
-        @revenue = 0
-      else
-        @revenue = results[@id][:revenue]
-      end
+      super(:@@vendor_stats)
     end
 
     def num_sales
