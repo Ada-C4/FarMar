@@ -97,8 +97,8 @@ module FarMar
     all_vends.find_all do |seller|
       if seller.market_id == mkt_id.to_s
         var.push(seller)
-    end
-    end
+        end
+      end
     return var
   end
 

@@ -19,20 +19,28 @@ describe FarMar::Product do
         expect(FarMar::Product.all.count).to eq 500
       end
 
-    describe "self.find"
+    describe "self.find_product"
       it "returns the information for a given product ID" do
         expect(FarMar::Product.find_product(10)).to be_an_instance_of FarMar::Product
         end
-      it "returns the information for a given product ID" do
+      it "returns the instance for the given product ID" do
         @product_test = FarMar::Product.find_product(10)
         expect(@product_test.vendor_id).to eq "5"
         end
 
       describe "vendor"
-        it "returs and instance of vendor"do
-          
+        it "returns an instance of vendor" do
+          @product_test = FarMar::Product.new("24", "Fierce Beef", "10")
+          expect(@product_test.vendor(24)).to be_an_instance_of FarMar::Vendor
         end
-        it "returns the vendor instance of the provided vendor ID" do
 
+      describe "sale"
+        it "returns an instance of sale" do
+          @prod_test = FarMar::Product.new("4", "Yummy Fruit", "3")
+          expect(@prod_test.sales(4)[0]).to be_an_instance_of FarMar::Sale
         end
+
+
+
+
 end
