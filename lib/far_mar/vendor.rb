@@ -58,11 +58,37 @@ module FarMar
         return sales_array
       end
 
-      # def revenue
-      #   sales.each do |i|
+      def revenue
+        total_amount = 0
+        sales.each do |sale|
+          total_amount += sale.amount
+        end
+
+        return total_amount
+
+        #I am currently in a particular instance of vendor
+        #I want to find all of the vendors sales
+
+        #for each instance in the array, I want to take out the amount part
+        #then take out the number that is saved in the amount variable
+        #and add each of the amounts in the list together
+        # amount_array = []
+
+
+
+          # amount_array.push
+
+        # return amount_array
+      end
+
+
+      #   .inject { |sum, pennies| sum + pennies }
       #
       #     come back to this one
       # end
+
+    end
+  end
 
       # def self.by_market(market_id)
       #   by_market_array = []
@@ -71,6 +97,3 @@ module FarMar
       #     i.market_id == @id
       #   end
       # end
-
-  end
-end

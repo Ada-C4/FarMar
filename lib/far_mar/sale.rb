@@ -3,7 +3,7 @@ module FarMar
     attr_accessor :id, :amount, :purchase_time, :vendor_id, :product_id
     def initialize(id, amount, purchase_time, vendor_id, product_id)
       @id = id.to_i
-      @amount = amount
+      @amount = amount.to_i
       @purchase_time = purchase_time.to_s
       @vendor_id = vendor_id.to_i
       @product_id = product_id.to_i
@@ -43,14 +43,7 @@ module FarMar
         product.id == self.product_id
       end
     end
-      # product_array = []
-      # sales_list = FarMar::Sale.all
-      # sales_list.find_all do |sale|
-      #   if sale.product_id == id
-      #     product_array.push(i)
-      #   end
-      # end
-      # return product_array
+
 
   end
 end
