@@ -19,15 +19,16 @@ describe FarMar::Market do
 
     describe "self.find"
     it "returns the information for a given market ID" do
-      expect(FarMar::Market.find_market(303)).to eq ["303", "Madison County Farmers Market", "1022 Cook Avenue", "Huntsville", "Madison", "Alabama", "35804"]
+      expect(FarMar::Market.find_market(303).zip).to eq "35804"
       end
 
-#     describe "vendors"
-#     FarMar::Vendor.new
-#       it "returns a collection" do
-#         expect(@market_test.vendors(1)).to be_an Array
-#       end
-#       it "returns all vendors for a given market id" do
-#         expect(@market_test.vendors(1)).to eq #and array with all of the market 1 vendors
-#       end
+    describe "vendors"
+      it "returns a collection" do
+        @market_test = FarMar::Market.new("7", "Petaluma Evening Farmers' Market", "1 2nd Street", "Petaluma", "Sonoma", "California", "94952")
+        expect(@market_test.vendors).to be_an Array
+      end
+      it "returns all vendors for a given market id" do
+        @market_test = FarMar::Market.new("7", "Petaluma Evening Farmers' Market", "1 2nd Street", "Petaluma", "Sonoma", "California", "94952")
+        expect(@market_test.vendors.length).to eq 2
+      end
 end

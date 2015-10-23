@@ -11,7 +11,7 @@ module FarMar
   # 3. No. of Employees - (Fixnum) How many employees the vendor has at the market
   # 4. Market_id - (Fixnum) a reference to which market the vendor attends
 
-    def initialize(id,name, employees_count, market_id)
+    def initialize(id, name, employees_count, market_id)
       @id = id
       @name = name
       @employees_count = employees_count
