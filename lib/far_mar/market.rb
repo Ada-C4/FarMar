@@ -1,5 +1,93 @@
 module FarMar
-  class Market
+  class Market < FarMar_Base
+    attr_reader :id, :name, :address, :city, :county, :state, :zip
+    FILENAME = './support/markets.csv'
+
+    def initialize(market_hash)
+      super(market_hash)
+    end
+
+    def self.all_objects
+      @@all_objects ||= self.all
+    end
+
+    # Converts an array to a hash for passing to market instantiation
+    def self.convert_to_hash(market_array)
+      market_hash = {}
+      market_hash[:id] = market_array[0].to_i
+      market_hash[:name] = market_array[1]
+      market_hash[:address] = market_array[2]
+      market_hash[:city] = market_array[3]
+      market_hash[:county] = market_array[4]
+      market_hash[:state] = market_array[5]
+      market_hash[:zip] = market_array[6]
+      return market_hash
+    end
+
+    # Returns a collection of FarMar::Market instances where the market name
+    # or vendor name contain the search_term
+    def self.search(search_term)
+      return [] if search_term.class != String
+      search_term.downcase!
+      # find all markets that include the search term in the market name
+      market_match = FarMar::Market.all_objects.select do |market|
+        market_name = market.name.downcase
+        market_name.include?(search_term)
+      end
+      # find all markets that have the search term in the vendor name
+      vendor_match = FarMar::Vendor.all_objects.select do |vendor|
+        vendor_name = vendor.name.downcase
+        vendor_name.include?(search_term)
+      end
+      # This iterates through the vendors that include the search term
+      vendor_match.each do |vendor|
+        # and finds their associated market based on the market_id
+        market = FarMar::Market.find(vendor.market_id)
+        # then checks to see if the market is already in the market_match array
+        # and if not, it pushes it into the array
+        market_match.push(market) if !market_match.include?(market)
+      end
+      return market_match
+    end
+
+    # Returns a collection of FarMar::Vendor instances that are associated
+    # with the market by the market_id field
+    def vendors
+      return FarMar::Vendor.by_market(@id)
+    end
+
+    # returns a collection of FarMar::Product instances that are associated
+    # to the market through the FarMar::Vendor class
+    def products
+      products = []
+      v = vendors
+      v.each do |vendor|
+        products += vendor.products
+      end
+      return products
+    end
+
+    # returns the vendor with the highest revenue for the given date
+    # or returns the vendor with the highest revenue if no date is given
+    def preferred_vendor(date = nil)
+      return vendors.max_by { |vend| vend.revenue } if date.nil?
+      return nil if date.class != DateTime
+      m_vendors = vendors
+      rev = m_vendors.map { |vend| vend.day_revenue(date) }
+      max_index = rev.each_with_index.max[1]
+      return m_vendors[max_index]
+    end
+
+    # returns the vendor with the lowest revenue on the given date
+    # or returns the vendor with the lowest revenue if no date is given
+    def worst_vendor(date = nil)
+      return vendors.min_by { |vend| vend.revenue } if date.nil?
+      return nil if date.class != DateTime
+      m_vendors = vendors
+      rev = m_vendors.map { |vend| vend.day_revenue(date) }
+      min_index = rev.each_with_index.min[1]
+      return m_vendors[min_index]
+    end
 
   end
 end
