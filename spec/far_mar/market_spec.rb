@@ -2,7 +2,6 @@ require "spec_helper"
 
 describe FarMar::Market do
   before :each do
-
     @market = FarMar::Market.new({
       id:       "1",
       name:     "People's Co-op Farmers Market",
