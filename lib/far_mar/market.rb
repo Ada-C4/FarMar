@@ -53,20 +53,12 @@ module FarMar
       return markets
     end
 
-    def preferred_vendor
-      return vendors.max_by {|vendor| vendor.revenue}
+    def preferred_vendor(date = nil)
+      return vendors.max_by {|vendor| vendor.revenue(date)}
     end
 
-    def preferred_vendor_date(date)
-      return vendors.max_by {|vendor| vendor.revenue_date(date)}
-    end
-
-    def worst_vendor
-      return vendors.min_by {|vendor| vendor.revenue}
-    end
-
-    def worst_vendor_date(date)
-      return vendors.min_by {|vendor| vendor.revenue_date(date)}
+    def worst_vendor(date = nil)
+      return vendors.min_by {|vendor| vendor.revenue(date)}
     end
   end
 end

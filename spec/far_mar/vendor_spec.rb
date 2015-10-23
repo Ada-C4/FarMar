@@ -91,4 +91,10 @@ describe FarMar::Vendor do
       expect(FarMar::Vendor.most_items(3)[0].id).to eq 2689
     end
   end
+
+  # describe "self.revenue(date)" do
+  #   it "returns the total revenue for that date across all vendors" do
+  #     expect(FarMar::Vendor.revenue(Date.parse"2013-11-07"))).to eq 500
+  #   end
+  # end
 end

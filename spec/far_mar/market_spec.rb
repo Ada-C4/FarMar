@@ -57,7 +57,7 @@ describe FarMar::Market do
       end
     end
 
-    describe "#preferred_vendor" do
+    describe "#preferred_vendor(date = nil)" do
       it "returns the vendor with the highest revenue" do
         expect(@market.preferred_vendor).to be_an_instance_of FarMar::Vendor
         expect(@market.preferred_vendor.name).to eq "Reynolds, Schmitt and Klocko"
@@ -65,24 +65,24 @@ describe FarMar::Market do
       end
     end
 
-    describe "#preferred_vendor_date(date)" do
+    describe "#preferred_vendor(date)" do
       it "returns the vendor with the highest revenue for a given date" do
-        expect(@market3.preferred_vendor_date(Date.parse("2013-11-10"))).to be_an_instance_of FarMar::Vendor
-        expect(@market3.preferred_vendor_date(Date.parse("2013-11-07")).id).to eq 7
+        expect(@market3.preferred_vendor("2013-11-10")).to be_an_instance_of FarMar::Vendor
+        expect(@market3.preferred_vendor("2013-11-07").id).to eq 7
       end
     end
 
-    describe "#worst_vendor" do
+    describe "#worst_vendor(date = nil)" do
       it "returns the vendor with the lowest revenue" do
         expect(@market3.worst_vendor).to be_an_instance_of FarMar::Vendor
         expect(@market3.worst_vendor.id).to eq 9
       end
     end
 
-    describe "#worst_vendor_date" do
+    describe "#worst_vendor(date)" do
       it "returns the vendor with the lowest revenue for a give date" do
-        expect(@market3.worst_vendor_date(Date.parse("2013-11-07"))).to be_an_instance_of FarMar::Vendor
-        expect(@market3.worst_vendor_date(Date.parse("2013-11-07")).id).to eq 9
+        expect(@market3.worst_vendor("2013-11-07")).to be_an_instance_of FarMar::Vendor
+        expect(@market3.worst_vendor("2013-11-07").id).to eq 9
       end
     end
   end

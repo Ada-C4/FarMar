@@ -35,23 +35,26 @@ module FarMar
       return FarMar::Sale.all.find_all {|sale| sale.vendor_id == @id}
     end
 
-    def revenue
+    def revenue(date = nil)
+      date = Date.parse(date) if !date.nil?
       total_revenue = 0
       sales.each do |sale|
-        total_revenue += sale.amount
-      end
-      return total_revenue
-    end
-
-    def revenue_date(date)
-      total_revenue = 0
-      sales.each do |sale|
-        if sale.purchase_time.to_date == date
+        if sale.purchase_time.to_date == date || date.nil?
           total_revenue += sale.amount
         end
       end
       return total_revenue
     end
+
+    # def revenue_date(date)
+    #   total_revenue = 0
+    #   sales.each do |sale|
+    #     if sale.purchase_time.to_date == date
+    #       total_revenue += sale.amount
+    #     end
+    #   end
+    #   return total_revenue
+    # end
 
     def self.by_market(market_id)
       market = FarMar::Market.find(market_id)
@@ -64,6 +67,10 @@ module FarMar
 
     def self.most_items(n)
       return FarMar::Vendor.all.max_by(n) {|vendor| vendor.products.length}
+    end
+
+    def self.revenue(date)
+
     end
   end
 end
