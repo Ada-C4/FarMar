@@ -47,4 +47,22 @@ describe FarMar::Vendor do
     expect(FarMar::Vendor.find(1).id).to eq 1
     end
   end
+
+  describe ".markets" do
+    it "returns an instance of FarMar::Market" do
+      expect(@vendor.market).to be_an_instance_of FarMar::Market
+    end
+
+    it "returns 6" do
+      expect(@vendor.market.name).to eq "People's Co-op Farmers Market"
+    end
+  end
+
+  describe ".product" do
+    it "returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field." do
+      expect(FarMar::Product.find(1)).to be_an_instance_of FarMar::Product
+      expect(FarMar::Product.find(1).vendor_id).to eq 1
+      expect(@vendor.products.class).to eq Array
+    end
+  end
 end

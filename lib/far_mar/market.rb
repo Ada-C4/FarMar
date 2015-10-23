@@ -43,8 +43,8 @@ module FarMar
     def vendors
       #create an empty array
         #match FarMar::Market id with FarMar:: Vendor id
-      FarMar::Vendors.all.find_all do |vendor|
-        vendor.market.id == @id
+      FarMar::Vendor.all.find_all do |vendor|
+        vendor.market_id == @id
       end
     end
   end

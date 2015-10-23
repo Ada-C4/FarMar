@@ -41,7 +41,7 @@ describe FarMar::Product do
     describe "self.find(id)" do
       it "returns an instance of FarMar::Product with its passed in id" do
       expect(FarMar::Product.find(1)).to be_an_instance_of FarMar::Product
-      expect(FarMar::Product.find("Dry Beets").name).to eq "Dry Beets"
+      expect(FarMar::Product.find(1).id).to eq 1
       end
     end
   end

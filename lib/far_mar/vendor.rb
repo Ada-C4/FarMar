@@ -13,7 +13,7 @@ module FarMar
     def self.all
       @@vendor_all ||=
 
-        CSV.read("support/vendors.csv").map do |row|
+        CSV.read("./support/vendors.csv").map do |row|
           #binding.pry
           FarMar::Vendor.new({
           id: row[0].to_i,
@@ -30,13 +30,16 @@ module FarMar
         vendor.id == id
       end
     end
+
+    def market
+      FarMar::Market.all.find do |market|
+      market.id == @market_id #vendor's, the other one is from FarMar::Market
+      end
+    end
+    def products
+      FarMar::Product.all.find_all do |product|
+      product.vendor_id == @id
+      end
+    end
   end
 end
-
-
-# vendor_hash=
-#{ id: 1500,
-#name: "Remlinger Farms",
-#num_employees: 8
-#market_id =
-# }

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe FarMar::Market do
   before :each do
     market_hash = {
-      id: 1,
+      id: "1",
       name: "People's Co-op Farmers Market",
       address: "30th and Burnside",
       city: "Portland",
@@ -53,9 +53,14 @@ describe FarMar::Market do
   end
 
   describe "vendors" do
-    it "returns an array of FarMar::Vendors instances that are associated with the market by the market_id field." do
+    it "returns an array of FarMar::Vendor instances that are associated with the market_id field." do
       expect(@market.vendors.class).to eq Array
     end
+
+    it "returns 6" do
+      expect(@market.vendors.length).to eq 6
+    end
+
   end
 end
 

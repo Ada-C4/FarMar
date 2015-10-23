@@ -5,7 +5,7 @@ describe FarMar::Sale do
     sale_hash = {
       id: 1,
       amount: 9290,
-      purchase_time: DateTime.parse(sale_hash[:purchase_time]),
+      purchase_time: "2013-11-07 04:34:56 -0800",
       vendor_id: 1,
       product_id: 1
     }
@@ -44,7 +44,7 @@ describe FarMar::Sale do
     describe "self.find(id)" do
       it "returns an instance of FarMar::Sale with its passed in id" do
       expect(FarMar::Sale.find(1)).to be_an_instance_of FarMar::Sale
-      expect(FarMar::Sale.find(9390).amount).to eq 9390
+      expect(FarMar::Sale.find(1).amount).to eq 9290
       end
     end
   end
