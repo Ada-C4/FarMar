@@ -2,7 +2,12 @@ require "spec_helper"
 
 describe FarMar::Vendor do
   before :each do
-    @vendor = FarMar::Vendor.new
+    @vendor = FarMar::Vendor.new({
+      id: "1",
+      name: "Feil-Farrell",
+      employees: "8",
+      market_id: "1"
+      })
   end
 
   describe ".new" do
@@ -11,4 +16,67 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "#all" do
+    all_vendors = FarMar::Vendor.all
+    it "returns a collection of all vendor instances in the csv" do
+      expect(all_vendors.class).to eq Array
+      expect(all_vendors[0]).to be_an_instance_of FarMar::Vendor
+      expect(all_vendors[-1]).to be_an_instance_of FarMar::Vendor
+      csv = CSV.read("support/vendors.csv")
+      expect(all_vendors.length).to eq csv.length
+    end
+  end
+
+  describe "#find" do
+    it "returns the instance of Vendor matching the input id" do
+      expect(FarMar::Vendor.find(1)).to be_an_instance_of FarMar::Vendor
+      expect(FarMar::Vendor.find(2).name).to eq "Hamill, Kilback and Pfeffer"
+    end
+  end
+
+  describe ".market" do
+    it "returns the Market instance from the csv that is associated with this vendor" do
+      expect(@vendor.market).to be_an_instance_of FarMar::Market
+      expect(@vendor.market.name).to eq "People's Co-op Farmers Market"
+    end
+  end
+
+  describe ".products" do
+    it "returns a collection of the product instances associated with the vendor" do
+      expect(@vendor.products).to be_an Array
+      expect(@vendor.products.first).to be_a FarMar::Product
+      expect(@vendor.products.first.name).to eq "Dry Beets"
+    end
+  end
+
+  describe ".sales" do
+    it "returns a collection of the sale instances associated with the vendor" do
+      expect(@vendor.sales).to be_an Array
+      expect(@vendor.sales.first.id).to eq 1
+    end
+  end
+
+  describe ".revenue" do
+    it "returns the sum of all of the vendor's sales, in cents" do
+      expect(@vendor.revenue).to be_an Integer
+      expect(@vendor.revenue).to eq 38259
+    end
+    it "returns the amount of the vendor's sale in cents, if only one sale" do
+      @vendor2 = FarMar::Vendor.new({
+        id: "2",
+        name: "Hamill, Kilback and Pfeffer",
+        employees: "5",
+        market_id: "1"
+        })
+        expect(@vendor2.revenue).to be_an Integer
+        expect(@vendor2.revenue).to eq 5727
+    end
+  end
+
+  describe "#by_market" do
+    it "returns all of the vendors with the given market id" do
+      expect(FarMar::Vendor.by_market(1)).to be_an Array
+      expect(FarMar::Vendor.by_market(1).length).to eq 6
+    end
+  end
 end
