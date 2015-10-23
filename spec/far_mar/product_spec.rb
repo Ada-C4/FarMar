@@ -72,4 +72,18 @@ describe FarMar::Product do
     end
   end
 
+  describe ".most_revenue" do
+    it "returns an array of length n" do
+      result = FarMar::Product.most_revenue(10)
+      expect(result.length).to eq 10
+      expect(result).to be_an_instance_of Array
+      expect(result[0]).to be_an_instance_of FarMar::Product
+    end
+    it "returns the correct product for a test data set" do
+      expected_product_name = "Yummy Fruit"
+      result = FarMar::Product.most_revenue(10)
+      expect(result[0].product_name).to eq expected_product_name
+    end
+  end
+
 end

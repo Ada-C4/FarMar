@@ -1,6 +1,5 @@
 module FarMar
   class Product
-
     attr_accessor :product_id, :product_name, :vendor_id
     def initialize(product_hash)
       @product_id   = product_hash[:id].to_i
@@ -35,8 +34,8 @@ module FarMar
     end
 
     # Returns a collection for FarMar::Sale instances associated with the product
-    def sales
-      all_sales = FarMar::Sale.all
+    def sales(csv = "./support/sales.csv")
+      all_sales = FarMar::Sale.all(csv)
       matched_sales = all_sales.find_all { |sale| sale.product_id == self.product_id }
       return matched_sales
     end
@@ -52,5 +51,33 @@ module FarMar
       matched_products = all_products.find_all { |product| product.vendor_id == vendor_id }
       return matched_products
     end
+
+    # Returns the top n product instances ranked by total revenue
+    # Written so that the method only runs on a partial version of the data.  Needs to be optimized so it can run on the full data without taking forever
+    def self.most_revenue(n)
+      return_array = []
+      @@sales = []
+      @@products = []
+      products = FarMar::Product.all("./test_data/test_products.csv")
+      #products = FarMar::Product.all("./support/products.csv")
+      product_sales = Hash.new(0)
+      products.each do |product|
+        associated_sales = product.sales("./test_data/test_sales.csv")
+        #associated_sales = product.sales("./support/sales.csv")
+        revenue = 0
+        associated_sales.each do |sale|
+          revenue += sale.amount
+        end
+        product_sales[product.product_id] = revenue
+      end
+      sorted = product_sales.sort_by { |product, rev| rev }
+      sorted.reverse!
+      best_products = sorted[0...n]
+      best_products.each do |product|
+        return_array.push(FarMar::Product.find(product[0]))
+      end
+      return return_array
+    end
+
   end
 end

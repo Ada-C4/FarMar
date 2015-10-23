@@ -103,6 +103,10 @@ describe FarMar::Market do
       sample_market = @markets[1]
       expect(sample_market.worst_vendor(2013,11,7).vendor_name).to eq "Quigley, Breitenberg and Schuster"
     end
+    it "can return a vendor with 0 sales" do
+      sample_market = @markets[2]
+      expect(sample_market.worst_vendor(2013,11,7).vendor_name).to eq "Kertzmann LLC"
+    end
   end
 
   describe ".search" do
