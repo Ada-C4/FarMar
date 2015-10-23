@@ -44,14 +44,10 @@ module FarMar
       search_term = search_term.downcase
       matching_markets = []
       all.each do |market|
-        if (market.name.downcase.include? search_term) && !(matching_markets.include? market)
-            matching_markets.push(market)
-        end
+        matching_markets.push(market) if (market.name.downcase.include? search_term) && !(matching_markets.include? market)
       end
       FarMar::Vendor.all.each do |vendor|
-        if (vendor.name.downcase.include? search_term) && !(matching_markets.include? vendor.market)
-            matching_markets.push(vendor.market)
-        end
+        matching_markets.push(vendor.market) if (vendor.name.downcase.include? search_term) && !(matching_markets.include? vendor.market)
       end
       return matching_markets
     end

@@ -19,17 +19,17 @@ module FarMar
       return @@sales_all
     end
     def self.find(id)
-      FarMar::Sale.all.find do |sale|
+      all.find do |sale|
         sale.id == id
       end
     end
     def vendor
-      FarMar::Vendor.all.find do |vendor|
+      Vendor.all.find do |vendor|
         vendor.id == self.vendor_id
       end
     end
     def product
-      FarMar::Product.all.find do |product|
+      Product.all.find do |product|
         product.id == self.product_id
       end
     end

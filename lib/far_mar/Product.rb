@@ -11,23 +11,23 @@ module FarMar
       @@products_all ||= []
       if @@products_all == []
         CSV.read("./support/products.csv").map do |row|
-          @@products_all.push(FarMar::Product.new(row[0], row[1], row[2]))
+          @@products_all.push(self.new(row[0], row[1], row[2]))
         end
       end
       return @@products_all
     end
     def self.find(id)
-      FarMar::Product.all.find do |product|
+      all.find do |product|
         product.id == id
       end
     end
     def vendor
-      FarMar::Vendor.all.find do |vendor|
+      Vendor.all.find do |vendor|
         vendor.id == self.vendor_id
       end
     end
     def sales
-      FarMar::Sale.all.find_all do |sale|
+      Sale.all.find_all do |sale|
         sale.product_id == self.id
       end
     end
