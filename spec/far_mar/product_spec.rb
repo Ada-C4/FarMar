@@ -71,7 +71,7 @@ describe FarMar do
         expect(top_revenue[0].revenue).to eq(118516)
         expect(top_five).to be_an_instance_of(Array)
         expect(top_five.length).to eq(5)
-        expect(top_revenue[-1].revenue).to eq(99098)
+        expect(top_five[-1].revenue).to eq(99098)
       end
     end
 
