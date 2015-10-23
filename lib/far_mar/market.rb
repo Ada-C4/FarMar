@@ -81,14 +81,17 @@ module FarMar
         if sales_array.length > 0
           total = sales_array.inject(0, :+)
           if total > max_revenue
-            binding.pry
             max_revenue = total
             pref_vend = vendor_inst
           end
         end
-        #binding.pry
       end
       return pref_vend
+    end
+
+    def worst_vendor
+      ven = self.vendors
+      worst = ven.min_by{|ven| ven.revenue}
     end
 
   end
