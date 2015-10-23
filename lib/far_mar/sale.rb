@@ -1,15 +1,11 @@
 module FarMar
-  class Sale
+  class Sale < FarMar::FarMarParent
     attr_accessor :id, :amount, :purchase_time, :vendor_id, :product_id
-      def initialize(sale_hash)
-        @id = sale_hash[:id]
-        @amount = sale_hash[:amount]
-        @purchase_time = sale_hash[:purchase_time]
-        @vendor_id = sale_hash[:vendor_id]
-        @product_id = sale_hash[:product_id]
+      def self.filepath
+        "./support/sales.csv"
       end
 
-      def self.create_sale_hash(sale_array)
+      def self.create_hash(sale_array)
         sale_hash = {}
         sale_hash[:id] = sale_array[0].to_i
         sale_hash[:amount] = sale_array[1].to_i
@@ -17,25 +13,6 @@ module FarMar
         sale_hash[:vendor_id] = sale_array[3].to_i
         sale_hash[:product_id] = sale_array[4].to_i
         return sale_hash
-      end
-
-      def self.all()
-        @sales_all ||= []
-        if @sales_all == []
-          @sales_all = CSV.read("./support/sales.csv")
-          @sales_all.map! do |line|
-            self.new(self.create_sale_hash(line))
-          end
-        end
-        return @sales_all
-      end
-
-      def self.find(id)
-        self.all.find {|sale| sale.id == id}
-      end
-
-      def id
-        return @id
       end
 
       def amount

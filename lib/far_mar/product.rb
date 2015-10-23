@@ -1,37 +1,17 @@
 module FarMar
-  class Product
+  class Product < FarMar::FarMarParent
     attr_accessor :id, :name, :vendor_id
-      def initialize(product_hash)
-        @id = product_hash[:id]
-        @name = product_hash[:name]
-        @vendor_id = product_hash[:vendor_id]
-      end
 
-      def self.create_product_hash(product_array)
+    def self.filepath
+      "./support/products.csv"
+    end
+
+      def self.create_hash(product_array)
         product_hash = {}
         product_hash[:id] = product_array[0].to_i
         product_hash[:name] = product_array[1]
         product_hash[:vendor_id] = product_array[2].to_i
         return product_hash
-      end
-
-      def self.all()
-        @products_all ||= []
-        if @products_all == []
-          @products_all = CSV.read("./support/products.csv")
-          @products_all.map! do |line|
-            self.new(self.create_product_hash(line))
-          end
-        end
-        return @products_all
-      end
-
-      def self.find(id)
-        self.all.find {|product| product.id == id}
-      end
-
-      def id
-        return @id
       end
 
       def vendor_id

@@ -1,39 +1,17 @@
 module FarMar
-  class Vendor
+  class Vendor < FarMar::FarMarParent
     attr_accessor :id, :name, :num_employees, :market_id
-      def initialize(vendor_hash)
-        @id = vendor_hash[:id]
-        @name = vendor_hash[:name]
-        @num_employees = vendor_hash[:num_employees]
-        @market_id = vendor_hash[:market_id]
+      def self.filepath
+        "./support/vendors.csv"
       end
 
-      def self.create_vendor_hash(vendor_array)
+      def self.create_hash(vendor_array)
         vendor_hash = {}
         vendor_hash[:id] = vendor_array[0].to_i
         vendor_hash[:name] = vendor_array[1]
         vendor_hash[:num_employees] = vendor_array[2].to_i
         vendor_hash[:market_id] = vendor_array[3].to_i
         return vendor_hash
-      end
-
-      def self.all()
-        @vendors_all ||= []
-        if @vendors_all == []
-          @vendors_all = CSV.read("./support/vendors.csv")
-          @vendors_all.map! do |line|
-            self.new(self.create_vendor_hash(line))
-          end
-        end
-        return @vendors_all
-      end
-
-      def self.find(id)
-        self.all.find {|vendor| vendor.id == id}
-      end
-
-      def id
-        return @id
       end
 
       def market_id
