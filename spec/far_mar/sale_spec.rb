@@ -43,6 +43,12 @@ describe FarMar::Sale do
     end
   end
 
+  context "#vendor" do
+    it "returns an instance of a vendor" do
+      expect(@sale.vendor).to be_an_instance_of FarMar::Vendor
+    end
+  end
+
   context ".self.between(beginning_time, end_time)" do
     it "returns an array of sales" do
       expect(FarMar::Sale.between("2013-11-07 20:25:38 -0800", "2013-11-08 10:38:56 -0800").class).to eq Array
@@ -52,5 +58,5 @@ describe FarMar::Sale do
       expect(FarMar::Sale.between("2013-11-07 20:25:38 -0800", "2013-11-08 10:38:56 -0800").length).to eq 1090
     end
   end
-  
+
 end
