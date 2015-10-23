@@ -74,15 +74,15 @@ describe FarMar::Vendor do
     end
   end
 
-  #taking forever to run rspec, so commenting out
-  # describe "#self.most_revenue(n)" do
-  #   it "returns the top n vendor(s) with the highest revenue" do
-  #     expect(FarMar::Vendor.most_revenue(3)).to be_an Array
-  #     expect(FarMar::Vendor.most_revenue(3).length).to eq 3
-  #     expect(FarMar::Vendor.most_revenue(3)[0].id).to eq 2590
-  #     expect(FarMar::Vendor.most_revenue(3)[0].revenue > FarMar::Vendor.most_revenue(3)[1].revenue).to eq true
-  #   end
-  # end
+  #this takes forever to run rspec!
+  describe "#self.most_revenue(n)" do
+    it "returns the top n vendor(s) with the highest revenue" do
+      expect(FarMar::Vendor.most_revenue(3)).to be_an Array
+      expect(FarMar::Vendor.most_revenue(3).length).to eq 3
+      expect(FarMar::Vendor.most_revenue(3)[0].id).to eq 2590
+      expect(FarMar::Vendor.most_revenue(3)[0].revenue > FarMar::Vendor.most_revenue(3)[1].revenue).to eq true
+    end
+  end
 
   describe "#self.most_items(n)" do
     it "returns the top n vendors with the highest number of products" do

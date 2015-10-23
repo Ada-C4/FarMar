@@ -38,5 +38,19 @@ module FarMar
       vendor = FarMar::Vendor.find(vendor_id)
       return vendor.products
     end
+
+    def revenue
+      total_revenue = 0
+      sales.each do |sale|
+        if sale.product_id == @id
+          total_revenue += sale.amount
+        end
+      end
+      return total_revenue
+    end
+
+    def self.most_revenue(n)
+      return FarMar::Product.all.max_by(n) {|product| product.revenue}
+    end
   end
 end

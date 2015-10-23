@@ -64,4 +64,12 @@ describe "initialize" do
     end
   end
 
+#need better tests
+  describe "self.most_revenue(n)" do
+    it "returns the top n products with the most revenue" do
+      expect(FarMar::Product.most_revenue(3)).to be_an Array
+      expect(FarMar::Product.most_revenue(3).length).to eq 3
+    end
+  end
+
 end
