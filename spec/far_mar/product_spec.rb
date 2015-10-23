@@ -20,9 +20,6 @@ describe FarMar::Product do
   describe ".find" do
     it "returns a single vendor" do
       expect(FarMar::Product.find(2)).to be_an_instance_of FarMar::Product
-    end
-
-    it "returns a specific vendor" do
       expect(FarMar::Product.find(2).id).to eq 2
     end
   end
@@ -53,4 +50,5 @@ describe FarMar::Product do
       expect(FarMar::Product.by_vendor(5).length).to eq 3
     end
   end
+  
 end

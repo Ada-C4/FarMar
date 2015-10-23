@@ -13,21 +13,21 @@ module FarMar
       @product_id = product_id.to_i
     end
 
+    # Returns a collection of sale instances
+    # representing all of the sales described in the CSV
     def self.all
-      # returns a collection of sale instances
-      # representing all of the sales described in the CSV
       csv_info = CSV.read("./support/sales.csv")
-      @sales = []
+      sales = []
       csv_info.each do |line|
-        @sales.push(Sale.new(line[0], line[1], line[2], line[3], line[4]))
+        sales.push(Sale.new(line[0], line[1], line[2], line[3], line[4]))
       end
-      return @sales
+      return sales
       ## for optimization, say, if @sales has stuff in it, don't run it again, just return it.
     end
 
+    # Returns an instance of sale where the value of the id in Sale
+    # matches the passed parameter.
     def self.find(sale_id)
-      # Returns an instance of sale where the value of the id in the csv
-      # matches the passed parameter.
       all.each do |sales|
         if sales.id == sale_id
           return sales # the instance of the sale.
@@ -42,7 +42,6 @@ module FarMar
           return v
         end
       end
-
     end
 
     # Returns the one product ID associated with this sale using the product_id
@@ -65,7 +64,6 @@ module FarMar
       end
       return sales_array
     end
-
 
   end
 end

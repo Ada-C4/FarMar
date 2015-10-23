@@ -11,15 +11,15 @@ module FarMar
       @vendor_id = vendor_id.to_i
     end
 
+    # Returns a collection of product instances
+    # representing all of the products described in the CSV
     def self.all
-      # returns a collection of product instances
-      # representing all of the products described in the CSV
       csv_info = CSV.read("./support/products.csv")
-      @products = []
+      products = []
       csv_info.each do |line|
-        @products.push(Product.new(line[0], line[1], line[2]))
+        products.push(Product.new(line[0], line[1], line[2]))
       end
-      return @products
+      return products
     end
 
     # Returns an instance of product where the value of the id in the csv

@@ -20,9 +20,6 @@ describe FarMar::Market do
   describe ".find" do
     it "returns a single market" do
       expect(FarMar::Market.find(1)).to be_an_instance_of FarMar::Market
-    end
-
-    it "returns a specific market" do
       expect(FarMar::Market.find(14).id).to eq 14
     end
   end

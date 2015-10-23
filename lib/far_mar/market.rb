@@ -15,20 +15,20 @@ module FarMar
       @zip = zip
     end
 
+    # Returns an array of Market instances representing all of the markets
+    # Not sure I fully understand how this method works.
     def self.all
-      # Returns an array of Market instances representing all of the markets
-      # Not sure I fully understand how this method works.
       csv_info = CSV.read("./support/markets.csv")
-      @markets = []
+      markets = []
       csv_info.each do |line|
-        @markets.push(Market.new(line[0], line[1], line[2], line[3], line[4], line[5], line[6]))
+        markets.push(Market.new(line[0], line[1], line[2], line[3], line[4], line[5], line[6]))
       end
-      return @markets
+      return markets
     end
 
+    # Returns an instance of Market where the value of the id in the csv
+    # matches the passed parameter.
     def self.find(market_id)
-      # Returns an instance of Market where the value of the id in the csv
-      # matches the passed parameter.
       all.each do |market|
         if market.id == market_id
           return market # the instance of the market.
@@ -36,8 +36,8 @@ module FarMar
       end
     end
 
+    # Given the ID of the market, RETURN vendors with the same market_id.
     def vendors
-      # Given a market ID, RETURN vendors associated with that market.
       vendor_array = []
       FarMar::Vendor.all.find_all do |v|
         if v.market_id == id
@@ -46,7 +46,6 @@ module FarMar
       end
       return vendor_array
     end
-
 
   end
 end

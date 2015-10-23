@@ -20,9 +20,6 @@ describe FarMar::Vendor do
   describe ".find" do
     it "returns a single vendor" do
       expect(FarMar::Vendor.find(2)).to be_an_instance_of FarMar::Vendor
-    end
-
-    it "returns a specific vendor" do
       expect(FarMar::Vendor.find(2).id).to eq 2
     end
   end
