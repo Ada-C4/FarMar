@@ -11,16 +11,31 @@ module FarMar
     end
 
     def self.all
-      @@sale_array ||= []
+      return sales_by_product.values.flatten
+    end
 
-      if @@sale_array == []
+    def self.sales_by_product
+      @@sales_by_product ||= Hash.new { |hash,key| hash[key] = [] }
+
+      if @@sales_by_product.empty?
         CSV.read("./support/sales.csv").each do |sale|
           new_sale = FarMar::Sale.new(sale)
-          @@sale_array.push(new_sale)
+          @@sales_by_product[sale[4].to_i].push(new_sale)
         end
       end
+      return @@sales_by_product
+    end
 
-      return @@sale_array
+    def self.sales_by_vendor
+      @@sales_by_vendor ||= Hash.new { |hash,key| hash[key] = [] }
+
+      if @@sales_by_vendor.empty?
+        CSV.read("./support/sales.csv").each do |sale|
+          new_sale = FarMar::Sale.new(sale)
+          @@sales_by_vendor[sale[3].to_i].push(new_sale)
+        end
+      end
+      return @@sales_by_vendor
     end
 
     def self.find(id)

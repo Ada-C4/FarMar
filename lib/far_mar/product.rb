@@ -34,10 +34,8 @@ module FarMar
     end
 
     def sales
-      sales = FarMar::Sale.all.find_all do |sale|
-        sale.product_id == self.id
-      end
-      return sales
+      sales_hash = FarMar::Sale.sales_by_product
+      return sales_hash[@id]
     end
 
     def product_revenue

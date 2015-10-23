@@ -64,7 +64,6 @@ describe FarMar do
       end
     end
 
-
     describe ".between(beginning_time, end_time)" do
       before :each do
         @beginning_time = DateTime.strptime("2013-11-06 08:35:40 -0800", "%Y-%m-%d %H:%M:%S %z")

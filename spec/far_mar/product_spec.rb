@@ -98,23 +98,21 @@ describe FarMar do
       end
     end
 
-    ### can comment out below method to speed up specs ###
-    # describe ".most_revenue(n)" do
-    #   before :each do
-    #     @n = 2
-    #   end
-    #   it "returns a collection" do
-    #     expect(FarMar::Product.most_revenue(@n)).to be_an(Array)
-    #   end
-    #   it "returns a list of Products" do
-    #     expect(FarMar::Product.most_revenue(2)[0]).to be_an_instance_of(FarMar::Product)
-    #     expect(FarMar::Product.most_revenue(2)[1]).to be_an_instance_of(FarMar::Product)
-    #   end
-    #   it "is an ordered list" do
-    #     expect(FarMar::Product.most_revenue(@n)[0].product_revenue).to be >= FarMar::Product.most_revenue(2)[1].product_revenue if FarMar::Product.most_revenue(2).length > 1
-    #   end
-    # end
-    ### can comment out above method to speed up specs ###
+    describe ".most_revenue(n)" do
+      before :each do
+        @n = 2
+      end
+      it "returns a collection" do
+        expect(FarMar::Product.most_revenue(@n)).to be_an(Array)
+      end
+      it "returns a list of Products" do
+        expect(FarMar::Product.most_revenue(2)[0]).to be_an_instance_of(FarMar::Product)
+        expect(FarMar::Product.most_revenue(2)[1]).to be_an_instance_of(FarMar::Product)
+      end
+      it "is an ordered list" do
+        expect(FarMar::Product.most_revenue(@n)[0].product_revenue).to be >= FarMar::Product.most_revenue(2)[1].product_revenue if FarMar::Product.most_revenue(2).length > 1
+      end
+    end
 
   end
 end
