@@ -93,9 +93,9 @@ describe FarMar::Market do
     end
   end
 
-  # describe "#preferred_vendor(date)"do
-  #   it "returns a vendor correctly" do
-  #     expect(@market2.preferred_vendor(Date.parse("2013-11-07")).id).to eq 7
-  #   end
-  # end
+  describe "#preferred_vendor(date)"do
+    it "returns a vendor correctly" do
+      expect(@market2.preferred_vendor(Date.parse("2013-11-07")).id).to eq 7
+    end
+  end
 end

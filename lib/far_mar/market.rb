@@ -84,23 +84,23 @@ module FarMar
     end
 
 #This method starts be going through each vendor of the market. For each vendor, it calls sales, which returns all sales associated with the vendor. Next, for every sale it checks if the purchase_time is equal to the date passed through as an argument. If it is, it calls amount on that sale and adds it to the variable revenue. After the loops cycling through adding the sales of each vendor on a certain date, the method compares to see if the revenue on that date calculated is greater than the max_revenue, which startes at 0. If it is, it sets itself as max revenue and the vendor in question as the max_vendor. Thus, for each vendor it compares their revenue with the max revenue and max vendor of all the vendors the loops has already iterated, returning the overall max_vendor.
-    # def preferred_vendor(date)
-    #   max_rev = 0
-    #   max_vendor = nil
-    #   self.vendors.each do |vendor|
-    #   rev = 0
-    #    vendor.sales.each do |sale|
-    #      if sale.purchase_time.to_date == date
-    #        rev += sale.amount
-    #      end
-    #    end
-    #    #puts vendor
-    #     if rev > max_rev
-    #       rev = max_rev
-    #       max_vendor = vendor
-    #     end
-    #   end
-    #   return max_vendor
-    # end
+    def preferred_vendor(date)
+      max_rev = 0
+      max_vendor = nil
+      self.vendors.each do |vendor|
+      rev = 0
+       vendor.sales.each do |sale|
+         if sale.purchase_time.to_date == date
+           rev += sale.amount
+         end
+       end
+       #puts vendor
+        if rev > max_rev
+           max_rev = rev
+          max_vendor = vendor
+        end
+      end
+      return max_vendor
+    end
   end
 end
