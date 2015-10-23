@@ -73,23 +73,24 @@ describe FarMar::Market do
   end
 
   describe ".preferred_vendor" do
-    it "returns the vendor with the highest revenue" do
+    it "returns the vendor with the highest revenue, if no date given" do
       expect(@market2.preferred_vendor).to be_an_instance_of FarMar::Vendor
       expect(@market2.preferred_vendor.id).to eq 8
     end
-  end
-
-  describe ".preferred_vendor(date)" do
-    it "returns the vendor with the highest revenue for the given date" do
+    it "returns the vendor with the highest revenue for the given date, when given a date" do
       expect(@market2.preferred_vendor("2013-11-07")).to be_an_instance_of FarMar::Vendor
       expect(@market2.preferred_vendor("2013-11-07").id).to eq 7
     end
   end
 
   describe ".worst_vendor" do
-    it "returns the vendor with the lowest vendor" do
+    it "returns the vendor with the lowest revenue, if no date given" do
       expect(@market2.worst_vendor).to be_an_instance_of FarMar::Vendor
       expect(@market2.worst_vendor.id).to eq 9
+    end
+    it "returns the vendor revenue for the given date, when given date" do
+      expect(@market2.worst_vendor("2013-11-07")).to be_an_instance_of FarMar::Vendor
+      expect(@market2.worst_vendor("2013-11-07").id).to eq 9
     end
   end
 

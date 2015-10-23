@@ -53,7 +53,7 @@ module FarMar
         market.vendors.any?{|vendor| vendor.name.downcase.include?(search_term.downcase)}
       end
     end
-    
+
     # This was my def preferred_vendor code before refactoring:
     # highest_rev = 0
     # pref_vendor = nil
@@ -73,8 +73,12 @@ module FarMar
       end
     end
 
-    def worst_vendor
-      vendors.min_by{|vendor|vendor.revenue}
+    def worst_vendor(date = nil)
+      if date == nil
+        vendors.min_by{|vendor|vendor.revenue}
+      else
+        vendors.min_by{|vendor|vendor.revenue(date)}
+      end
     end
 
 
