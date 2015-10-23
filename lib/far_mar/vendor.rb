@@ -97,6 +97,19 @@ module FarMar
       end
 
       return revenue
+    end
+
+    def revenue_on(date)
+      date = DateTime.strptime(date, "%Y-%m-%d").to_date
+      revenue = 0
+
+      sales.each do |sales_instance|
+        if sales_instance.purchase_time.to_date == date
+          revenue += sales_instance.amount
+        end
+      end
+
+      return revenue
 
     end
   end

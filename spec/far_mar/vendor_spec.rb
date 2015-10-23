@@ -115,4 +115,13 @@ describe FarMar::Vendor do
       expect(FarMar::Vendor.revenue("2013-11-07")).to eq 9060582
     end
   end
+  describe "#revenue_on(date)" do
+    it "returns a Fixnum" do
+      expect(@vendor1.revenue_on("2013-11-07")).to be_a Fixnum
+    end
+    it "Returns correct revenue amount" do
+      @vendor3 = FarMar::Vendor.new(7, "name", 9, 10)
+      expect(@vendor3.revenue_on("2013-11-07")).to eq 12377
+    end
+  end
 end
