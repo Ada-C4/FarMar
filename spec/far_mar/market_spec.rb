@@ -60,11 +60,17 @@ describe FarMar::Market do
     it "retun an array of market " do
     expect(FarMar::Market.search("Jefferson")).to be_an(Array)
     end
+    #
+    it "return the right array" do
+      array = FarMar::Market.search("Jefferson")
+      expect(array[0].id).to eq 6
+    end
+
   end
 end
 
-
-#     it "return vendors that associated with the market"
-#       expact(@market_array).to include
-#   end
+#
+# #     it "return vendors that associated with the market"
+# #       expact(@market_array).to include
+# #   end
 # end

@@ -57,17 +57,36 @@ module FarMar
        include_array =[]
        vendor_array = FarMar::Vendor.all
        vendor_array.each do |vendor|
-         if vendor.name.include?(search_term)
+         vendor_name = vendor.name
+         if vendor_name.include?(search_term)
            market = self.find(vendor.market_id)
-           if !inclde_array.iclude?(market)
+           if !(check_include(include_array, market))
+              # !include_array.iclude?(market)
              include_array.push(market)
            end
          end
        end
-       return include_array
+        @@market_all = self.all
+        @@market_all.each do |market|
+          market_name = market.name
+          if market_name.include?(search_term) #working
+            # binding.pry
+            if (check_include(include_array, market) == false)
+              include_array.push(market)
+            end
+          end
+        end
+        return include_array
      end
 
-
+     def self.check_include (include_array , market)
+       include_array.each do |mar|
+         if mar.name == market.name
+           return true
+         end
+       end
+       return false
+     end
 
   end
 end
