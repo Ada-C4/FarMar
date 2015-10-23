@@ -40,15 +40,35 @@ module FarMar
       end
       return products
     end
+    #
+    # # returns the vendor with the highest revenue from a market
+    # def preferred_vendor
+    #
+    # end
 
-    # returns the vendor with the highest revenue from a market
-    def preferred_vendor
-      return vendors.max_by { |vend| vend.revenue }
+    # returns the vendor with the highest revenue for the given date
+    def preferred_vendor(date = nil)
+      return vendors.max_by { |vend| vend.revenue } if date.nil?
+      return nil if date.class != DateTime
+      m_vendors = vendors
+      rev = m_vendors.map { |vend| vend.day_revenue(date) }
+      max_index = rev.each_with_index.max[1]
+      return m_vendors[max_index]
     end
 
     # returns the vendor with the lowest revenue from a market
     def worst_vendor
       return vendors.min_by { |vend| vend.revenue }
+    end
+
+    #returns the vendor with the lowest revenue on the given date
+    def worst_vendor_on(date)
+      return nil if date.class != DateTime
+      return nil if date.class != DateTime
+      m_vendors = vendors
+      rev = m_vendors.map { |vend| vend.day_revenue(date) }
+      min_index = rev.each_with_index.min[1]
+      return m_vendors[min_index]
     end
 
   end
