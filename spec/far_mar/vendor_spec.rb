@@ -92,9 +92,9 @@ describe FarMar::Vendor do
     end
   end
 
-  # describe "self.revenue(date)" do
-  #   it "returns the total revenue for that date across all vendors" do
-  #     expect(FarMar::Vendor.revenue(Date.parse"2013-11-07"))).to eq 500
-  #   end
-  # end
+  describe "self.revenue(date)" do
+    it "returns the total revenue for that date across all vendors" do
+      expect(FarMar::Vendor.revenue("2013-11-07")).to eq 9060582
+    end
+  end
 end
