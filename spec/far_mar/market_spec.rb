@@ -77,5 +77,13 @@ describe FarMar::Market do
         expect(@market_1.preferred_vendor("2013-11-07")).to be_an_instance_of FarMar::Vendor
       end
     end
+
+    describe "worst_vendor" do
+      it "returns the vendor with the lowest revenue" do
+        expect(@market_1.worst_vendor).to be_an_instance_of FarMar::Vendor
+        expect(@market_1.worst_vendor.vendor_id).to eq 6
+        expect(@market_1.worst_vendor.revenue).to eq 2977
+      end
+    end
   end
 end
