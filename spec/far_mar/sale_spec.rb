@@ -59,7 +59,7 @@ describe FarMar::Sale do
           expect(FarMar::Sale.between(@beginning_time, @end_time)).to be_an(Array)
         end
         it "returns Sale objects" do
-          expect(FarMar::Sale.between(@beginning_time, @end_time)[0]).to be_an_instance_of FarMar::Sale
+          expect(FarMar::Sale.between(@beginning_time, @end_time)[0]).to be_an_instance_of FarMar::
         end
         it "returns FarMar::Sale objects that have a purchase_time between beginning_time and end_time" do
           expect(FarMar::Sale.between(@beginning_time, @end_time).length).to eq 12798
