@@ -2,7 +2,8 @@ require "spec_helper"
 
 describe FarMar::Market do
   before :each do
-    @market = FarMar::Market.new(1, "Meighan", "1234 N St", "Seattle", "WA", "King", "98103")
+    @market = FarMar::Market.new(1, "Meighan's Ranch", "1234 N St", "Seattle", "WA", "King", "98103")
+    @market_1 = FarMar::Market.new(1,"People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202")
   end
   describe "#initialize" do
     it "creates a new instance" do
@@ -64,7 +65,16 @@ describe FarMar::Market do
 
     describe "preferred_vendor" do
       it "returns the vendor with the highest revenue" do
-        expect(FarMar::Market..preferred_vendor).to be_an Object
+        expect(@market_1.preferred_vendor).to be_an_instance_of FarMar::Vendor
+        expect(@market_1.preferred_vendor.vendor_id).to eq 5
+        expect(@market_1.preferred_vendor.revenue).to eq 61749
+      end
+    end
+
+    describe "preferred_vendor(date)" do
+      it "returns the vendor with the highest revenue for the given date" do
+        @date = DateTime.strptime("2013-11-07", "%Y-%m-%d")
+        expect(@market_1.preferred_vendor("2013-11-07")).to be_an_instance_of FarMar::Vendor
       end
     end
   end

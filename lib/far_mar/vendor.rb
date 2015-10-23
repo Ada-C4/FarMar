@@ -57,10 +57,13 @@ module FarMar
       return vendor_sales_array
     end
 
-    def revenue
+    def revenue(date = nil)
+      date = DateTime.strptime(date, "%Y-%m-%d") if date != nil
       total_revenue = 0
       sales.each do |sale|
+        if sale.purchase_time.to_date == date || date == nil
         total_revenue += sale.amount
+        end
       end
       return total_revenue
     end

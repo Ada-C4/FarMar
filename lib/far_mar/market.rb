@@ -64,11 +64,12 @@ module FarMar
       return name_array.uniq
     end
 
-    def preferred_vendor
-      vendor_sales = []
-      sales_per_vendor = FarMar::Vendor.all.map do |vendor|
-        vendor.revenue
-      end
+    def preferred_vendor(date = nil)
+      market_vendors = self.vendors
+        top_vendor = market_vendors.max_by do |vendor|
+          vendor.revenue(date)
+        end
+        return top_vendor
     end
   end
 end
