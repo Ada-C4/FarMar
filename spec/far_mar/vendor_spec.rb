@@ -56,7 +56,4 @@ describe FarMar::Vendor do
       expect(FarMar::Vendor.by_market(1)).to be_an Array
     end
   end
-
-
-
 end

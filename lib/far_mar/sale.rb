@@ -8,7 +8,7 @@ module FarMar
     def initialize(id, amount, purchase_time, vendor_id, product_id)
       @id = id.to_i
       @amount = amount.to_i
-      @purchase_time = purchase_time
+      @purchase_time = DateTime.strptime(purchase_time, "%Y-%m-%d %H:%M:%S %z")
       @vendor_id = vendor_id.to_i
       @product_id = product_id.to_i
     end
@@ -35,17 +35,37 @@ module FarMar
       end
     end
 
-    def vendor(vendor_id)
-      # Returns an instance that is associated with this sale using the vendor_id
+    # Returns the instance of the vendor associated with the Sale vendor_id
+    def vendor
+      FarMar::Vendor.all.each do |v|
+        if v.id == vendor_id
+          return v
+        end
+      end
+
     end
 
-    def product(product_id)
-      # Returns the product instance that is associated with this sale using the product_id
+    # Returns the one product ID associated with this sale using the product_id
+    def product
+      FarMar::Product.all.each do |prod|
+        if prod.id == product_id
+          return prod
+        end
+      end
     end
 
+    # Returns an array of sale objects where the purchase time is between the
+    # two times given as arguments.
     def self.between(beginning_time, end_time)
-      # Returns an array of sale objects where the purchase time is between the
-      # two times given as arguments.
+      sales_array = []
+      self.all.find_all do |sales|
+        if sales.purchase_time >= beginning_time && sales.purchase_time <= end_time
+          sales_array.push(sales)
+        end
+      end
+      return sales_array
     end
+
+
   end
 end

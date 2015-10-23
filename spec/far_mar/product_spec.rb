@@ -53,6 +53,4 @@ describe FarMar::Product do
       expect(FarMar::Product.by_vendor(5).length).to eq 3
     end
   end
-
-
 end
