@@ -22,5 +22,16 @@ end
     end
   end
 
+  describe "get_vendor" do
+    it "returns vendor instance ralated to sale" do
+      expect(@sale.get_vendor).to be_an Array
+      end
+    end
+
+  describe "get_product" do
+    it "returns product instance related to sale" do
+      expect(@sale.get_product). to be_an Array
+    end
+  end
 
 end
