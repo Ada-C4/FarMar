@@ -2,8 +2,10 @@ module FarMar
   class Vendor < FarMar_Base
     attr_reader :id, :name, :emp_num, :market_id
     FILENAME = './support/vendors.csv'
-    REV_ATTR = :@@vendor_stats
+    REV_ATTR = :@@vendor_stats # the attribute accessed by the revenue method
 
+    # include adds methods to the instance of a class
+    # in this case, revenue is an instance method that is included
     include VendorProductBase
 
     def initialize(vendor_hash)
@@ -57,11 +59,6 @@ module FarMar
     def market
       return FarMar::Market.find(@market_id)
     end
-
-    # # returns the sum of all of the vendor's sales (in cents)
-    # def revenue
-    #   super(:@@vendor_stats)
-    # end
 
     def num_sales
       return @num_sales if !@num_sales.nil?
