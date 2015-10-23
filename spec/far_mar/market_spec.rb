@@ -109,14 +109,14 @@ describe FarMar do
     end
 
     # Returns the vendor with the lowest revenue for the given date
-    describe "#worst_vendor_on(date)" do
+    describe "#worst_vendor(date)" do
       it "returns nil for an invalid date" do
-        expect(sample_market.worst_vendor_on(123)).to be_nil
-        expect(sample_market.worst_vendor_on('abc')).to be_nil
+        expect(sample_market.worst_vendor(123)).to be_nil
+        expect(sample_market.worst_vendor('abc')).to be_nil
       end
-      it "returns the vendor with the highest revenue for the given date" do
+      it "returns the vendor with the lowest revenue for the given date" do
         date = DateTime.parse("2013-11-12T13:07:19-08:00")
-        worst = sample_market2.worst_vendor_on(date)
+        worst = sample_market2.worst_vendor(date)
         expect(worst).to be_an_instance_of(FarMar::Vendor)
         # NOTE: many different possible with 0: 102, 105, 107
         expect(worst.id).to eq(102)
