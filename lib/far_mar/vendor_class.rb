@@ -27,16 +27,15 @@ module FarMar
         name = single_vend[1]
         employees_count = single_vend[2]
         market_id = single_vend[3]
-      all_vend_instances.push(FarMar::Vendor.new(id, name, employees_count, market_id))
+      all_vend_instances.push(self.new(id, name, employees_count, market_id))
       end
       return all_vend_instances
     end
 
 # - `self.find(id)` - returns an instance of Vendor where the value of the `id` field in the CSV matches the passed parameter.
     def self.find_vendor(vend_id)
-      all_vends = FarMar::Vendor.all
       var = []
-      all_vends.find_all do |single_vend|
+      self.all.find_all do |single_vend|
         if single_vend.id == vend_id.to_s
           var.push(single_vend)
           return var
@@ -70,21 +69,18 @@ module FarMar
 
 # - `products` - returns a collection of `FarMar::Product` instances that are associated by the `FarMar::Product` `vendor_id` field.
   def products(vend_id)
-    class_name = "product"
-    find_vend_things(vend_id, class_name)
+    find_vend_things(vend_id, "product")
   end
 
 # - `sales` - returns a collection of `FarMar::Sale` instances that are associated by the `vendor_id` field.
   def sales(vend_id)
-    class_name = "sale"
-    find_vend_things(vend_id, class_name)
+    find_vend_things(vend_id, "sale")
   end
 
 # - `revenue` - returns the the sum of all of the vendor's sales (in cents)
   def revenue(vend_id)
     total_sales = 0
-    var = sales(vend_id)
-    var.each do |money|
+    sales(vend_id).each do |money|
       total_sales += money.amount.to_i
     end
     return total_sales
@@ -92,20 +88,14 @@ module FarMar
 
 # # - `self.by_market(market_id)` - returns all of the vendors with the given `market_id`
   def self.by_market(mkt_id)
-    # assigns all of the vendor instances as an array to all_vends
-    all_vends = FarMar::Vendor.all
     var = []
-    #passes to the seller var each of the vendor instances in turn
-    all_vends.find_all do |seller|
-      # compares the market id of a vendor instance to the market id we have taken in as a parameter
+    FarMar::Vendor.all.find_all do |seller|
       if seller.market_id == mkt_id.to_s
-        #pushes the vendor instances that pass the comparison to the var array
         var.push(seller)
-      end #close if
-    end #close do
-    #return array of vendor instances
+      end
+    end
     return var
-  end #close method
+  end
 
   end
 end

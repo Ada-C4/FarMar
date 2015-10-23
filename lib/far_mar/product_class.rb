@@ -23,15 +23,14 @@ def self.all
       id = single_array[0]
       name = single_array[1]
       vendor_id = single_array[2]
-    all_products_array.push(FarMar::Product.new(id, name, vendor_id))
+    all_products_array.push(self.new(id, name, vendor_id))
     end
   return all_products_array
 end
 
 # - `self.find(id)` - returns an instance of Product where the value of the `id` field in the CSV matches the passed parameter.
   def self.find_product(product_id)
-    all_the_products = FarMar::Product.all
-      all_the_products.find do |single_product|
+      self.all.find do |single_product|
         if single_product.id == product_id.to_s
         return single_product
       end
@@ -41,9 +40,8 @@ end
 # - `find_product_things` - returns and array of all of the product item instances from a given class
 
   def find_product_things(pd_id)
-    item_array = FarMar::Sale.all
     products_items = []
-    item_array.find_all do |single_item|
+    FarMar::Sale.all.find_all do |single_item|
       if single_item.product_id == pd_id.to_s
         products_items.push(single_item)
       end
@@ -74,11 +72,9 @@ end
 # - `self.by_vendor(vendor_id)` - returns all of the products with the given `vendor_id`
 
   def self.by_vendor(vend_id)
-    # assigns all of the product instances as an array to all_prod
-    all_prod = FarMar::Product.all
     var = []
-    #passes to the seller var each of the vendor instances in turn
-    all_prod.find_all do |item|
+    #passes to the variable item each of the vendor instances in turn
+    self.all.find_all do |item|
       # compares the vendor id of a product instance to the vendor id we have taken in as a parameter
       if item.vendor_id == vend_id.to_s
         #pushes the vendor instances that pass the comparison to the var array

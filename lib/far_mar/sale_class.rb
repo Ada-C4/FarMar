@@ -36,7 +36,7 @@ module FarMar
 
 # - `self.find(id)` - returns an instance of Sale where the value of the `id` field in the CSV matches the passed parameter.
   def self.find_sale(sale_id)
-    all_the_sales = FarMar::Sale.all
+    all_the_sales = self.all
     all_the_sales.find do |single_sale|
       if single_sale.id == sale_id.to_s
         return single_sale
@@ -65,15 +65,13 @@ module FarMar
 
 # - `vendor` - returns the `FarMar::Vendor` instance that is associated with this sale using the `FarMar::Sale` `vendor_id` field
   def vendor
-    class_type = "vendor"
-    find_sale_things(class_type)
+    find_sale_things("vendor")
   end
 
 # - `product` - returns the `FarMar::Product` instance that is associated with this sale using the `FarMar::Sale` `product_id` field
 
   def product
-    class_type = "product"
-    find_sale_things(class_type)
+    find_sale_things("product")
   end
 
 # - `self.between(beginning_time, end_time)` - returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
