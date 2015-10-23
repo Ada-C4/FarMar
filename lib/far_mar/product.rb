@@ -1,7 +1,10 @@
 module FarMar
-  class Product < VendorProductBase
+  class Product < FarMar_Base
     attr_reader :id, :name, :vendor_id
     FILENAME = './support/products.csv'
+    REV_ATTR = :@@product_stats
+
+    include VendorProductBase
 
     def initialize(product_hash)
       super(product_hash)
@@ -26,6 +29,12 @@ module FarMar
       FarMar::Product.all_objects.find_all { |product| product.vendor_id == vendor_id }
     end
 
+    # returns the top n products instances ranked by total revenue
+    def self.most_revenue(n)
+      most_x(n, "@revenue")
+      # FarMar::VendorProductBase.class_method(:most_x).bind(self).call(n, "@revenue")
+    end
+
     # returns the FarMar::Vendor instance that is associated with this
     # vendor using the vendor_id field
     def vendor
@@ -43,10 +52,10 @@ module FarMar
       return sales.length
     end
 
-    # returns the total revenue for a given product
-    def revenue
-      super(:@@product_stats)
-    end
+    # # returns the total revenue for a given product
+    # def revenue
+    #   super(:@@product_stats)
+    # end
 
   end
 end
