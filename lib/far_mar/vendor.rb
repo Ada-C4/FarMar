@@ -42,8 +42,6 @@ module FarMar
       most_x(n, "@num_sales")
     end
 
-
-
     # returns a collection of FarMar::Product instances that are
     # associated by the FarMar::Product vendor_id field
     def products
