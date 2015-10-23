@@ -57,14 +57,10 @@ module FarMar
 
     def find_products(market_id)
       products_array = []
-      # returns an array of Vendor objects
-      vendors = self.find_vendors(market_id)
+      vendors = find_vendors(market_id)
       vendors.each do |vendor|
-        #products is an array of Product objects
-        products = vendor.find_products(vendor.id)
-        products_array.push(products)
+        products_array += vendor.find_products(vendor.id)
       end
-      #products_array structured like [[P1,P2,P3],[P1,P2,P3]], maybe not the most useful output...
       return products_array
     end
 

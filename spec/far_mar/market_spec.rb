@@ -103,7 +103,7 @@ describe FarMar do
       end
       it "has Product objects in the array" do
         market_id = 1
-        expect(@market.find_products(market_id)[0][0]).to be_an_instance_of FarMar::Product
+        expect(@market.find_products(market_id)[0]).to be_an_instance_of FarMar::Product
       end
       it "returns empty Array if the argument is not a Fixnum" do
         expect(@market.find_products("abc")).to eq []
