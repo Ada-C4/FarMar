@@ -86,4 +86,27 @@ describe FarMar::Vendor do
 		end
 	end
 
+	# Couldn't figure out how to get this to run without taking so long I have to just cancel it.. 
+	# describe '.most_revenue(n)' do
+	# 	it 'returns top n Vendors by revenue' do
+	# 		top_vends = FarMar::Vendor.most_revenue(3)
+	# 		expect(top_vends[1].vendor_id).to eq()
+	# 	end
+	# end
+
+	describe '.most_items(n)' do
+		it 'returns an Array' do
+			expect(FarMar::Vendor.most_items(3)).to be_an_instance_of(Array)
+		end
+		it 'returns top n Vendors by most items available for sale' do
+			expect(FarMar::Vendor.most_items(3)[0].vendor_id).to eq(10)
+		end
+	end
+
+	describe 'self.revenue(date)' do
+		it 'returns total revenue for a given date' do
+			expect(FarMar::Vendor.revenute("2013-11-07")).to eq(9060582)
+		end
+	end
+
 end
