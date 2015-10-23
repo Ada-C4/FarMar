@@ -30,9 +30,7 @@ module FarMar
 
     def self.find(id)
       # can use all without self (all.find instead of self.all.find) because already in the class scope
-      all.find do |market|
-        market.id == id
-      end
+      all.find {|market| market.id == id}
     end
 
     def vendors
@@ -55,25 +53,25 @@ module FarMar
         market.vendors.any?{|vendor| vendor.name.downcase.include?(search_term.downcase)}
       end
     end
-
-    def preferred_vendor
-      # highest_rev = 0
-      # pref_vendor = nil
-      # vendors.each do |vendor|
-      #   if vendor.revenue > highest_rev
-      #     highest_rev = vendor.revenue
-      #     pref_vendor = vendor
-      #   end
-      # end
-      # return pref_vendor
-      vendors.max_by{|vendor|vendor.revenue}
-    end
-
-    # def preferred_vendor_date(date)
-    #   date = date.to_date
-    #   vendors.max_by{|vendor|vendor.revenue}
-    #
+    
+    # This was my def preferred_vendor code before refactoring:
+    # highest_rev = 0
+    # pref_vendor = nil
+    # vendors.each do |vendor|
+    #   if vendor.revenue > highest_rev
+    #     highest_rev = vendor.revenue
+    #     pref_vendor = vendor
+    #   end
     # end
+    # return pref_vendor
+
+    def preferred_vendor(date = nil)
+      if date == nil
+        vendors.max_by{|vendor|vendor.revenue}
+      else
+        vendors.max_by {|vendor| vendor.revenue(date)}
+      end
+    end
 
     def worst_vendor
       vendors.min_by{|vendor|vendor.revenue}

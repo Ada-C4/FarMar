@@ -52,8 +52,19 @@ module FarMar
     #   return total_revenue
     # end
 
-    def revenue
+    def revenue(date=nil)
+      if date == nil
         sales.reduce(0) {|sum, sale| sum + sale.amount}
+      else
+        date = DateTime.parse(date)
+        total_revenue = 0
+        sales.each do |sale|
+          if sale.purchase_time.to_date == date
+            total_revenue += sale.amount
+          end
+        end
+        return total_revenue
+      end
     end
 
     def self.by_market(market_id)
