@@ -93,7 +93,10 @@ module FarMar
 
     # returns the total revenue for the specific date and vendor instance
     def day_revenue(date)
-
+      return 0 if date.class != DateTime
+      all_sales = FarMar::Sale.by_vendor(@id)
+      day_sales = all_sales.select { |sale| sale.purchase_time.to_date == date.to_date }
+      return day_sales.inject(0) { |sum, sale_obj| sum + sale_obj.amount }
     end
 
   end
