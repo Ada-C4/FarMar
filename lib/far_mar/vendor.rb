@@ -15,7 +15,6 @@ module FarMar
         @@vendors ||= []
         if @@vendors == []
           vendors_csv = CSV.read(csv)
-
           vendors_csv.each do |id, name, num_employees, market_id|
             hash = {:id => id, :name => name, :employees => num_employees, :market_id => market_id}
             vendor = FarMar::Vendor.new(hash)
@@ -45,15 +44,10 @@ module FarMar
       end
 
       # Returns a collection of FarMar::Sale instances that are associated with the vendor
-      def sales(date = nil)
+      def sales
         sales = FarMar::Sale.all
-        if date == nil
-          matched_sales = sales.find_all { |sale| sale.vendor_id == self.vendor_id}
-          return matched_sales
-        else
-          # purchase_day = date.strftime()
-          # matched_sales = sales.find_all { |sale| sale.vendor_id == self.vendor_id && sale.purchase_time}
-        end
+        matched_sales = sales.find_all { |sale| sale.vendor_id == self.vendor_id}
+        return matched_sales
       end
 
       # Returns the sum of all the vendor's sale (in cents)

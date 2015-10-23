@@ -13,8 +13,8 @@ module FarMar
       # Only reload the CSV if @products is empty array
       @@products ||= []
       if @@products == []
+        # Create a new Product object for each row in the CSV and add the products to an array
         products_csv = CSV.read(csv)
-
         products_csv.each do |id, name, vendor_id|
           hash = {:id => id, :name => name, :vendor_id => vendor_id}
           product = FarMar::Product.new(hash)
@@ -52,6 +52,5 @@ module FarMar
       matched_products = all_products.find_all { |product| product.vendor_id == vendor_id }
       return matched_products
     end
-
   end
 end

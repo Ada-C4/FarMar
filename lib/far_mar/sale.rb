@@ -6,10 +6,6 @@ module FarMar
       @sale_id       = sale_hash[:id].to_i
       @amount        = sale_hash[:amount].to_i
       @purchase_time = DateTime.parse(sale_hash[:purchase_time])
-
-      #DateTime.strptime('2001-02-03T04:05:06+07:00', '%Y-%m-%dT%H:%M:%S%z')
-                          #=> #<DateTime: 2001-02-03T04:05:06+07:00 ...>
-      #@purchase_time = sale_hash[:purchase_time] ### NEEDS TO BE DATETIME
       @vendor_id     = sale_hash[:vendor_id].to_i
       @product_id    = sale_hash[:product_id].to_i
     end
@@ -20,7 +16,6 @@ module FarMar
       @@sales ||= []
       if @@sales == []
         sales_csv = CSV.read(csv)
-
         sales_csv.each do |id, amount, purchase_time, vendor_id, product_id|
           hash = {:id => id, :amount => amount, :purchase_time => purchase_time,  :vendor_id => vendor_id, :product_id => product_id}
           sale = FarMar::Sale.new(hash)
@@ -49,17 +44,18 @@ module FarMar
 
     # Returns a collection of FarMar::Sale objects where the purchase time is between the two given times
     def self.between(beginning_time, end_time)
+      # generate all Sale objects
       all_sales = FarMar::Sale.all
       sales_between = []
+      # For each sale, check if the purchase time is between is between the giving beginning_time and end_time
       all_sales.find_all do |sale|
         if sale.purchase_time > beginning_time && sale.purchase_time < end_time
           sales_between.push(sale)
         end
       end
+      # return a sorted list of sales
       sales_between.sort_by! { |sale| sale.purchase_time }
       return sales_between
     end
-
-
   end
 end

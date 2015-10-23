@@ -2,3 +2,5 @@
 # Improve #vendors spec - suspect this could be written more efficiently
 # Rewrite the vendor by_market spec - using length but should be testing result accuracy
 # Rewrite tests to take test data
+# Investigate .nip
+# accomodate multiple best and worst vendors
