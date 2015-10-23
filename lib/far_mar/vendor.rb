@@ -70,6 +70,13 @@ module FarMar
     return bymarket
     end
 
+    def self.most_revenue(n)
+      revenue_array = FarMar::Vendor.all.sort_by do |vendor|
+        vendor.revenue
+      end
+      revenue_array.first(n)
+    end
+
   end
 
 end
