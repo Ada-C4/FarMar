@@ -71,15 +71,29 @@ end
 
 # - `number_of_sales` - returns the number of times this product has been sold.
 
-#   def number_of_sales(prod_id)
-#
-#   end
-# #
-# # - `self.by_vendor(vendor_id)` - returns all of the products with the given `vendor_id`
-#
-#   def self.by_vendor(vendor_id)
-#
-#   end
+  def number_of_sales(prod_id)
+    class_name = "sale"
+    find_product_things(prod_id, class_name).length
+
+  end
+
+# - `self.by_vendor(vendor_id)` - returns all of the products with the given `vendor_id`
+
+  def self.by_vendor(vend_id)
+    # assigns all of the product instances as an array to all_prod
+    all_prod = FarMar::Product.all
+    var = []
+    #passes to the seller var each of the vendor instances in turn
+    all_prod.find_all do |item|
+      # compares the vendor id of a product instance to the vendor id we have taken in as a parameter
+      if item.vendor_id == vend_id.to_s
+        #pushes the vendor instances that pass the comparison to the var array
+        var.push(item)
+      end #close if
+    end #close do
+    #return array of vendor instances
+    return var
+  end
 
   end
 end

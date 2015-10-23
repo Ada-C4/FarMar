@@ -40,7 +40,14 @@ describe FarMar::Product do
           expect(@prod_test.sales(4)[0]).to be_an_instance_of FarMar::Sale
         end
 
+        describe "number_of_sales"
+          it "returns the number of times the product has been sold" do
+            @prod_test = FarMar::Product.new("4", "Yummy Fruit", "3")
+            expect(@prod_test.number_of_sales(4)).to eq 8
+          end
 
-
-
+        describe "self.by_vendor(vendor_id)"
+         it "returns all of the products with the given id" do
+           expect(FarMar::Product.by_vendor(7).length).to eq 1
+         end
 end
