@@ -47,11 +47,27 @@ module FarMar
 
     def prefered_vendor
       return FarMar::Vendor.best_revenue(self.id)
-     end
+    end
 
      def worst_vendor
        return FarMar::Vendor.worst_revenue(self.id)
      end
+
+     def self.search(search_term)
+       include_array =[]
+       vendor_array = FarMar::Vendor.all
+       vendor_array.each do |vendor|
+         if vendor.name.include?(search_term)
+           market = self.find(vendor.market_id)
+           if !inclde_array.iclude?(market)
+             include_array.push(market)
+           end
+         end
+       end
+       return include_array
+     end
+
+
 
   end
 end

@@ -55,7 +55,14 @@ describe FarMar::Market do
       expect(@market.worst_vendor).to be_an_instance_of(FarMar::Vendor)
     end
   end
+
+  describe "search" do
+    it "retun an array of market " do
+    expect(FarMar::Market.search("Jefferson")).to be_an(Array)
+    end
+  end
 end
+
 
 #     it "return vendors that associated with the market"
 #       expact(@market_array).to include
