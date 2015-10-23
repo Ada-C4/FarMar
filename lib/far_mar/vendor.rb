@@ -1,4 +1,5 @@
 require 'csv'
+require 'pry'
 module FarMar
   class Vendor
     attr_reader :id, :name, :num_employees, :market_id , :vendor_csv
@@ -30,16 +31,37 @@ module FarMar
         vendor.id == id
       end
     end
-
     def market
       FarMar::Market.all.find do |market|
       market.id == @market_id #vendor's, the other one is from FarMar::Market
       end
     end
+
     def products
       FarMar::Product.all.find_all do |product|
       product.vendor_id == @id
       end
     end
+
+    def sales
+      FarMar::Sale.all.find_all do |sales|
+      sales.vendor_id == @id
+      end
+    end
+
+    def revenue
+      sale_cents = 0
+      FarMar::Sale.all.each do |sale|
+      if sale.vendor_id == @id
+        sale_cents += sale.amount
+      end
+    end
+      return sale_cents
+    end
+
+
+    def self.by_market(market_id)
+    end
+
   end
 end

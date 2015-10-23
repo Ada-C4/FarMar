@@ -64,5 +64,35 @@ describe FarMar::Vendor do
       expect(FarMar::Product.find(1).vendor_id).to eq 1
       expect(@vendor.products.class).to eq Array
     end
+
+    it "returns 1" do
+      @vendor.products.each do |product|
+        expect(product.vendor_id).to eq @vendor.id
+      end
+    end
   end
-end
+
+  describe ".sales" do
+    it "returns a collection of FarMar::Sale instances that are associated by the @vendor.id field" do
+      @vendor.sales.each do |sales|
+        expect(sales.vendor_id).to eq @vendor.id
+      end
+    end
+
+    it "returns an array" do
+        expect(@vendor.sales.class).to eq Array
+    end
+  end
+
+  describe ".revenue" do
+    it "returns the sum of Sale.amount values" do
+      expect(@vendor.revenue.class).to eq Fixnum
+      end
+    end
+
+    it "returns 9290 for the sume of Sale.amount" do
+      FarMar::Sales.each do |sale|
+        expect(sale.amount).to eq 9290
+      end
+    end
+  end
