@@ -2,12 +2,88 @@ require "spec_helper"
 
 describe FarMar::Product do
   before :each do
-    @product = FarMar::Product.new
+    @products = FarMar::Product.all
   end
 
   describe "#new" do
     it "create a new instance of Product" do
-      expect(@product).to be_an_instance_of FarMar::Product
+      example_product_hash = {:id => 5, :name => "Test Product", :vendor_id => "25"}
+      example_product = FarMar::Product.new(example_product_hash)
+      expect(example_product).to be_an_instance_of FarMar::Product
     end
   end
+
+  describe ".all" do
+    it "creates a product object for every product listed in the datafile" do
+      csv = CSV.read("support/products.csv")
+      expect(@products.length).to eq csv.length
+    end
+  end
+
+  describe ".find" do
+    it "can find a product object with a given ID" do
+      test_id = @products[2].product_id
+      expect(FarMar::Product.find(test_id)).to eq @products[2]
+    end
+  end
+
+  describe "#vendor" do
+    it "returns a vendor object for the current product" do
+      @products = FarMar::Product.all
+      product = @products[1]
+      expect(product.vendor).to be_an_instance_of FarMar::Vendor
+    end
+
+    it "returns the correct vendor object for a product" do
+      product = @products[1]
+      expect(product.vendor.vendor_name).to eq "Hamill, Kilback and Pfeffer"
+    end
+  end
+
+  describe "#sales" do
+    it "does not return an empty array" do
+      product = @products[0]
+      expect(product.sales).not_to eq []
+    end
+
+    it "returns the expected number of sales" do
+      product = @products[0]
+      expect(product.sales.length).to eq 7
+    end
+  end
+
+  describe "#number_of_sales" do
+    it "returns the expected number of sales" do
+      product = @products[0]
+      expect(product.number_of_sales).to eq 7
+    end
+  end
+
+  describe ".by_vendor" do
+    it "returns an array of vendor objects" do
+      vendor_id = 1
+      expect(FarMar::Product.by_vendor(vendor_id)).to be_an_instance_of Array
+      expect(FarMar::Product.by_vendor(vendor_id)).not_to eq []
+    end
+
+    it "returns the expected vendors" do
+      vendor_id = 2
+      expect(FarMar::Product.by_vendor(vendor_id).length).to eq 2
+    end
+  end
+
+  describe ".most_revenue" do
+    it "returns an array of length n" do
+      result = FarMar::Product.most_revenue(10)
+      expect(result.length).to eq 10
+      expect(result).to be_an_instance_of Array
+      expect(result[0]).to be_an_instance_of FarMar::Product
+    end
+    it "returns the correct product for a test data set" do
+      expected_product_name = "Yummy Fruit"
+      result = FarMar::Product.most_revenue(10)
+      expect(result[0].product_name).to eq expected_product_name
+    end
+  end
+
 end
