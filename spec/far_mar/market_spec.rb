@@ -63,4 +63,10 @@ describe FarMar::Market do
     end
   end
 
+  describe ".preferred_vendor" do
+    it "returns the vendor with the highest revenue" do
+      expect(@market.preferred_vendor).to be_an_instance_of FarMar::Vendor
+    end
+  end
+
 end

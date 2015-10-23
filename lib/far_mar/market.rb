@@ -56,5 +56,17 @@ module FarMar
       end
     end
 
+    def preferred_vendor
+      highest_rev = 0
+      pref_vendor = nil
+      vendors.each do |vendor|
+        if vendor.revenue > highest_rev
+          highest_rev = vendor.revenue
+          pref_vendor = vendor
+        end
+      end
+      return pref_vendor
+    end
+
   end
 end
