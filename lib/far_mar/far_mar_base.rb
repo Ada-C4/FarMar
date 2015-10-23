@@ -29,5 +29,9 @@ module FarMar
       self.all_objects.find { |obj| obj.id == id }
     end
 
+    def self.find_by_x(match)
+      
+    end
+
   end
 end

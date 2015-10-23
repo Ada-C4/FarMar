@@ -45,6 +45,24 @@ describe FarMar do
       end
     end
 
+    describe ".search(search_term)" do
+      let(:cor_search) { FarMar::Market.search("cor") }
+      it "returns an empty array when search term is not a string" do
+        expect(FarMar::Market.search(123)).to eq([])
+        expect(FarMar::Market.search([1, 2, 3])).to eq([])
+      end
+      it "returns a collection of market instances" do
+        expect(cor_search).to be_an_instance_of(Array)
+        cor_search.each do |item|
+          expect(item).to be_an_instance_of(FarMar::Market)
+        end
+      end
+      it "markets have search term in market or vendor name" do
+        expect(cor_search.length).to eq(37)
+      end
+
+    end
+
     describe "#vendors" do
       it "returns array of vendors for the market" do
         vendors = sample_market2.vendors

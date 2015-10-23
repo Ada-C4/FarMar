@@ -24,6 +24,12 @@ module FarMar
       return market_hash
     end
 
+    # Returns a collection of FarMar::Market instances where the market name
+    # or vendor name contain the search_term
+    def self.search(search_term)
+
+    end
+
     # Returns a collection of FarMar::Vendor instances that are associated
     # with the market by the market_id field
     def vendors
