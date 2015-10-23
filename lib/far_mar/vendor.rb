@@ -27,25 +27,14 @@ module FarMar
       FarMar::Vendor.all_objects.find_all { |vendor| vendor.market_id == market_id }
     end
 
-    # helper method for the most methods
-    def self.most_x(n, attribute)
-      return [] if
-        n.class != Fixnum ||
-        n < 0 ||
-        n > FarMar::Vendor.all_objects.length
-      backwards = FarMar::Vendor.all_objects.sort_by { |vendor_obj| vendor_obj.instance_variable_get(attribute) }
-      sorted = backwards.reverse
-      return sorted[0, n]
-    end
-
     # returns the top n vendor instances ranked by total number of items sold
     def self.most_revenue(n)
-      FarMar::Vendor.most_x(n, "@revenue")
+      FarMar::VendorProductBase.most_x(n, "@revenue")
     end
 
     # returns the top n vendor instances ranked by total number of items sold
     def self.most_items(n)
-      FarMar::Vendor.most_x(n, "@num_sales")
+      FarMar::VendorProductBase.most_x(n, "@num_sales")
     end
 
     # returns a collection of FarMar::Product instances that are
