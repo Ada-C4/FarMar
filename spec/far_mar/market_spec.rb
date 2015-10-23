@@ -95,5 +95,24 @@ describe FarMar do
         expect(@market.find_vendors(-1)).to eq []
       end
     end
+
+    describe "find_products" do
+      it "returns an array" do
+        market_id = 1
+        expect(@market.find_products(market_id)).to be_an Array
+      end
+      it "has Product objects in the array" do
+        market_id = 1
+        expect(@market.find_products(market_id)[0][0]).to be_an_instance_of FarMar::Product
+      end
+      it "returns empty Array if the argument is not a Fixnum" do
+        expect(@market.find_products("abc")).to eq []
+        expect(@market.find_products(1.24)).to eq []
+        expect(@market.find_products(:id)).to eq []
+      end
+      it "returns empty Array if passed a Fixnum that isn't a valid ID" do
+        expect(@market.find_products(-1)).to eq []
+      end
+    end
   end
 end
