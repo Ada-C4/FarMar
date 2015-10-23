@@ -52,10 +52,16 @@ describe FarMar::Vendor do
     end
   end
 
-  # context ".self.by_market" do
-  #   it "returns all the vendors with the given market_id" do
-  #     expect(FarMar::Vendor.by_market(10)).to eq
-  #   end
-  # end
+  context "#revenue" do
+    it "returns a sum of all the vendors sales" do
+      expect(@vendor.revenue).to eq 10150
+    end
+  end
+
+  context ".self.by_market(market_id)" do
+    it "returns all the vendors with the given market_id" do
+      expect(FarMar::Vendor.by_market(10).length).to eq 9
+    end
+  end
 
 end

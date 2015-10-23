@@ -20,7 +20,7 @@ module FarMar
 
     def self.find(id)
       #returns an instance of Product where the value in the id field of the CSV file matches the passed parameter
-      self.all.find {|i| i.id == id}
+      all.find {|i| i.id == id}
     end
 
     def vendor
@@ -42,10 +42,13 @@ module FarMar
     end
 
     def sales
+      #sales - returns a collection
+      #of FarMar::Sale instances that are associated
+      #using the FarMar::Sale product_id field.
       sales_array = []
       sales_list = FarMar::Sale.all
         sales_list.find_all do |i|
-          if i.product_id == id
+          if i.product_id == @id
             sales_array.push(i)
           end
         end

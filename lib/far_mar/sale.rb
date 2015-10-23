@@ -22,7 +22,7 @@ module FarMar
     def self.find(id)
       #self.find(id) - returns an instance of Sale where the value of the id field
       #in the CSV matches the passed parameter.
-      self.all.find {|i| i.id == id}
+      all.find {|i| i.id == id}
     end
 
     def vendor

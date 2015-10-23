@@ -23,9 +23,12 @@ describe FarMar::Product do
 
   context ".self.find(id)" do
     it "returns an instance of Product" do
-      expect(@product.class).to be FarMar::Product
+      expect(FarMar::Product.find(12)).to be_an_instance_of FarMar::Product
     end
 
+    it "returns the right instance" do
+      expect(FarMar::Product.find(12).name).to eq "Gorgeous Fish"
+    end
     it "returns an instance with the same id as the value in the CSV file" do
       expect(@product.id).to eq 12
       expect(@product_2.id).to eq 8193
@@ -36,7 +39,13 @@ describe FarMar::Product do
     it "returns an instance of Vendor" do
       expect(@product.vendor).to be_an_instance_of FarMar::Vendor
     end
-  end  
+  end
+
+  context "#sales" do
+    it "returns a collection of FarMar::Sale instances" do
+      expect(@product.sales.length).to eq 0
+    end
+  end
 
   context ".self.by_vendor(vendor_id)" do
     it "returns all of the products with a given vendor id" do
