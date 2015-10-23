@@ -26,7 +26,7 @@ end
 
 
     describe ".get_market" do
-      it "returns all accounts withth same vendor id" do
+      it "returns all accounts with the same market id" do
         expect(@vendor.get_market).to be_an_instance_of FarMar::Market
       end
     end
