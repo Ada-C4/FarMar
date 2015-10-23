@@ -61,32 +61,32 @@ module FarMar
        return match_markets
     end
 
-    def preferred_vendor
-      ven = self.vendors
-      preferred = ven.max_by{|ven| ven.revenue}
-    end
-
-    def preferred_vendor_by_date(date)
-      date = DateTime.strptime(date, "%Y-%m-%d").to_date
-      max_revenue = 0
-      pref_vend = nil
-      total = 0
-      self.vendors.each do |vendor_inst|
-        sales_array = []
-        vendor_inst.sales.each do |sale_inst|
-          if sale_inst.purchase_time.to_date == date
+    def preferred_vendor(date = nil)
+      if date == nil
+        ven = self.vendors
+        preferred = ven.max_by{|ven| ven.revenue}
+      else 
+        date = DateTime.strptime(date, "%Y-%m-%d").to_date
+        max_revenue = 0
+        pref_vend = nil
+        total = 0
+        self.vendors.each do |vendor_inst|
+          sales_array = []
+          vendor_inst.sales.each do |sale_inst|
+            if sale_inst.purchase_time.to_date == date
             sales_array.push(sale_inst.amount)
+            end
+          end
+          if sales_array.length > 0
+            total = sales_array.inject(0, :+)
+            if total > max_revenue
+              max_revenue = total
+              pref_vend = vendor_inst
+            end
           end
         end
-        if sales_array.length > 0
-          total = sales_array.inject(0, :+)
-          if total > max_revenue
-            max_revenue = total
-            pref_vend = vendor_inst
-          end
-        end
+        return pref_vend
       end
-      return pref_vend
     end
 
     def worst_vendor

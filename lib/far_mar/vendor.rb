@@ -66,6 +66,19 @@ module FarMar
 			return vendors_by_items
 		end
 
+		# def self.revenue(date)
+		# 	date = DateTime.strptime(date, "%Y-%m-%d").to_date
+		# 	sales_array = []
+		# 	FarMar::Vendor.all.each do |vendor_inst|
+		# 		vendor_inst.sales.each do |sale_inst|
+  #         if sale_inst.purchase_time.to_date == date
+  #           sales_array.push(sale_inst.amount)
+  #         end
+  #       end
+		# 	end
+		# 	revenue = sales_array.inject(0, :+)
+		# end
+
 	end
 
 end

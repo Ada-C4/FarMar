@@ -88,7 +88,7 @@ describe FarMar::Market do
 		end	
 	end
 
-	describe '#preferred_vendor' do
+	describe '#preferred_vendor(date)' do
 		before :each do
 			@market = FarMar::Market.new(2,"Silverdale Farmers Market",98383,"Silverdale","Kitsap","Washington",98383)
 		end
@@ -98,17 +98,8 @@ describe FarMar::Market do
 		it 'returns Vendor with highest revenue' do
 			expect(@market.preferred_vendor.name).to eq("Stamm Inc")
 		end
-	end
-
-	describe 'preferred_vendor_by_date(date)' do
-		before :each do
-			@market = FarMar::Market.new(2,"Silverdale Farmers Market",98383,"Silverdale","Kitsap","Washington",98383)
-		end
-		it 'returns a Vendor' do
-			expect(@market.preferred_vendor_by_date("2013-11-10")).to be_an_instance_of(FarMar::Vendor)
-		end
-		it 'returns Vendor w highest revenue for date' do
-			@pref_vend = @market.preferred_vendor_by_date("2013-11-10")
+				it 'returns Vendor w highest revenue for date' do
+			@pref_vend = @market.preferred_vendor("2013-11-10")
 			expect(@pref_vend.vendor_id).to eq(7)
 		end
 	end

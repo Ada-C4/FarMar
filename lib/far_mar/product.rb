@@ -39,7 +39,7 @@ module FarMar
 		end
 
 		def self.by_vendor(vendor_id)
-			@@product_array.find_all{|prod| prod.vendor_id == vendor_id}
+			FarMar::Product.all.find_all{|prod| prod.vendor_id == vendor_id}
 		end
 
 	end
