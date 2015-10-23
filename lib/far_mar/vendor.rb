@@ -87,5 +87,14 @@ module FarMar
       end
     end
 
+    # returns the vendor's revenue for a given date
+    def self.revenue(date)
+    end
+
+    # returns the total revenue for the specific date and vendor instance
+    def day_revenue(date)
+
+    end
+
   end
 end

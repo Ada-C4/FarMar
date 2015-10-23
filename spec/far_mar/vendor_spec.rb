@@ -120,5 +120,22 @@ describe FarMar do
         expect(sample_vendor.revenue).to eq(17211)
       end
     end
+
+    describe "#day_revenue(date)" do
+      it "returns 0 for invalid date" do
+        expect(sample_vendor.day_revenue(123)).to eq(0)
+        expect(sample_vendor.day_revenue('abc')).to eq(0)
+      end
+      it "returns the total revenue for the vendor on the given date" do
+        date1 = DateTime.parse("2013-11-12T13:07:19-08:00")
+        date2 = DateTime.parse("2013-11-10T15:40:57-08:00")
+        date3 = DateTime.parse("2013-11-08T07:41:09-08:00")
+        date4 = DateTime.parse("2013-11-09T07:41:09-08:00")
+        expect(sample_vendor.day_revenue(date1)).to eq(1135)
+        expect(sample_vendor.day_revenue(date2)).to eq(7225)
+        expect(sample_vendor.day_revenue(date3)).to eq(4733)
+        expect(sample_vendor.day_revenue(date4)).to eq(0)
+      end
+    end
   end
 end
