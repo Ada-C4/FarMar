@@ -1,3 +1,4 @@
+require "pry"
 require "csv"
 require "time"
 require "./lib/far_mar/market"
