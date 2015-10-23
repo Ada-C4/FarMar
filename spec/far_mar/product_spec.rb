@@ -32,6 +32,12 @@ describe FarMar::Product do
     end
   end
 
+  context "#vendor" do
+    it "returns an instance of Vendor" do
+      expect(@product.vendor).to be_an_instance_of FarMar::Vendor
+    end
+  end  
+
   context ".self.by_vendor(vendor_id)" do
     it "returns all of the products with a given vendor id" do
         expect(FarMar::Product.by_vendor(6).length).to eq 3

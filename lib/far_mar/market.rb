@@ -26,8 +26,7 @@ module FarMar
 
     def self.find(id)
       #returns an instance of Market where the value in the id field of the CSV file matches the passed parameter
-      market_array = self.all
-      market_array.find {|i| i.id == id}
+      self.all.find {|i| i.id == id}
     end
 
     def vendors

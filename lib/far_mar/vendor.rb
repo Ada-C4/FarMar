@@ -19,8 +19,7 @@ module FarMar
       end
 
       def self.find(id)
-        vendor_array = self.all
-        vendor_array.find {|i| i.id == id}
+        self.all.find {|i| i.id == id}
       end
 
       def market
