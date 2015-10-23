@@ -83,5 +83,21 @@ module FarMar
       return vendors_by_items[0...n]
 
     end
+
+    def self.revenue(date)
+      date = DateTime.strptime(date, "%Y-%m-%d").to_date
+      revenue = 0
+
+      self.all.each do |vendor_instance|
+        vendor_instance.sales.each do |sales_instance|
+          if sales_instance.purchase_time.to_date == date
+            revenue += sales_instance.amount
+          end
+        end
+      end
+
+      return revenue
+
+    end
   end
 end

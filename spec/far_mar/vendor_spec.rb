@@ -107,4 +107,12 @@ describe FarMar::Vendor do
       expect(FarMar::Vendor.most_items(5)[0].products.length).to be >= FarMar::Vendor.most_items(5)[1].products.length
     end
   end
+  describe "self.revenue(date)" do
+    it "returns a Fixnum" do
+      expect(FarMar::Vendor.revenue("2013-11-07")).to be_a Fixnum
+    end
+    it "returns correct revenue for a date" do
+      expect(FarMar::Vendor.revenue("2013-11-07")).to eq 9060582
+    end
+  end
 end
