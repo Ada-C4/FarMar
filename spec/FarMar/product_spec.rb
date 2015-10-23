@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe FarMar::Product do
   before :each do
-    @product = FarMar::Product.new("1","Dry Beets","1")
+    @product = FarMar::Product.new(1,"Dry Beets",1)
   end
 
   describe ".new" do
@@ -23,5 +23,17 @@ describe FarMar::Product do
     expect(twelve).to be_an_instance_of FarMar::Product
     expect(twelve.id).to eq 12
     end
-  end  
+  end
+
+  describe "number_of_sales" do
+    it "returns the number of times a particular product has been sold" do
+      expect(@product.number_of_sales).to be_a Fixnum
+    end
+  end
+
+  describe "#by_vendor" do
+    it "returns an array of the vendors of a given vendor id" do
+      expect(FarMar::Product.by_vendor(7)).to be_an Array
+    end
+  end
 end

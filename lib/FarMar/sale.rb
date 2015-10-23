@@ -39,14 +39,9 @@ module FarMar
         end
       end
     end
+
+
+
+
   end
 end
-
-# def self.by_market(market_id)
-#   all_vendors = []
-#   Vendor.all.find_all do |vendor|
-#     if vendor.market_id == market_id
-#     all_vendors.push(vendor)
-#     end
-#   end
-# return all_vendors

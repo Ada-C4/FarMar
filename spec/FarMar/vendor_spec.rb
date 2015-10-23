@@ -39,10 +39,16 @@ describe FarMar::Vendor do
     vendor6 = @vendor.products
     expect(vendor6.length).to eq 3
     end
+    it "has a product ID that matches the vendor ID" do
+      @vendor.products.each do |product|
+        expect(product.vendor_id).to eq @vendor.id
+      end
+    end
   end
   #.each to look at all the products and then check that the product has a
-  #vendor id that matches this vendor 
+  #vendor id that matches this vendor
 
+#FIX
   describe "sales" do
     it "returns sales instances that match the vendor_id specified" do
     vendor6 = @vendor.sales
@@ -62,5 +68,4 @@ describe FarMar::Vendor do
       expect(vendor6.length).to eq 2
     end
   end
-
 end

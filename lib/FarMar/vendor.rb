@@ -85,15 +85,17 @@ module FarMar
     end
 
 # returns all of the vendors with the given market_id
-    def self.by_market(market_id)
+
+    def self.by_market(mrkt_id)
       all_vendors = []
       Vendor.all.find_all do |vendor|
-        if vendor.market_id == market_id
+        if vendor.market_id == mrkt_id
         all_vendors.push(vendor)
         end
       end
     return all_vendors
     end
+
 
   end
 end

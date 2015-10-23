@@ -26,5 +26,27 @@ attr_reader :id, :name, :vendor_id
           product.id == id
       end
     end
+
+# number_of_sales - returns the number of times this
+# product has been sold.
+
+    def number_of_sales
+      total_products_sold = FarMar::Sale.all.find_all do |sale|
+        sale.product_id == id
+      end
+      return total_products_sold.length
+    end
+
+# returns all of the vendors with the given vendor_id
+    def self.by_vendor(vendor_id)
+    all_vendors = []
+      FarMar::Vendor.all.find_all do |vendor|
+        if vendor.id == vendor_id
+          all_vendors.push(vendor)
+        end
+      end
+    return all_vendors
+    end
+
   end
 end
