@@ -94,4 +94,13 @@ describe FarMar::Product do
       expect(sale_matches[1].amount).to eq "5160"
     end
   end
+
+  describe "#number_of_sales" do
+    it "returns the number of times a product has been sold" do
+      @product1 = FarMar::Product.new("1", "Silly Product", "5")
+      @product3 = FarMar::Product.new("3", "Another Product", "10")
+      expect(@product1.number_of_sales).to eq 7
+      expect(@product3.number_of_sales).to eq 0
+    end
+  end
 end

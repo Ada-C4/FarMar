@@ -67,9 +67,9 @@ module FarMar
 
      #~~~~~special fun method~~~~~~~~~~~#
      #returns the the sum of all of a vendor instance's sales (in cents)
-     def revenue(csv = "./support/sales.csv")
+     def revenue(sales_csv = "./support/sales.csv")
        total = 0
-       sales = self.sales(csv)
+       sales = self.sales(sales_csv)
        sales.each {|n| total += n.amount.to_i}
        return total
      end
