@@ -66,6 +66,7 @@ module FarMar
 			return vendors_by_items
 		end
 
+		# This method is currently taking too long to run; I can't even get the tests to finish on it. Not sure if I'll have the time to retool it
 		# def self.revenue(date)
 		# 	date = DateTime.strptime(date, "%Y-%m-%d").to_date
 		# 	sales_array = []

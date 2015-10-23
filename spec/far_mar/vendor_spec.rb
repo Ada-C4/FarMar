@@ -103,6 +103,7 @@ describe FarMar::Vendor do
 		end
 	end
 
+	# Another method that is taking way too long to run :/
 	# describe 'self.revenue(date)' do
 	# 	it 'returns total revenue for a given date' do
 	# 		expect(FarMar::Vendor.revenue("2013-11-07")).to eq(9060582)
