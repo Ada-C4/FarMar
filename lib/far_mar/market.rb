@@ -73,5 +73,13 @@ module FarMar
       return top_vendor
     end
 
+    def worst_vendor(date = nil)
+      low_vend = vendors.min_by do |vendor|
+        vendor.revenue(date)
+      end
+      return low_vend
+    end
+
+
   end
 end

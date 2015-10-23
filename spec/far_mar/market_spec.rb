@@ -102,4 +102,21 @@ describe FarMar::Market do
     expect(market_4.prefered_vendor("2013-11-10").id).to be 15 #14 has no sales
     end
   end
+  describe "#worst_vendor" do
+    it "returns the vendor at the market with lowest revenue" do
+      market_20 = FarMar::Market.new("20","Scottdale Farmers Market","1 Centennial Way","Scottdale","Westmoreland","Pennsylvania","15683")
+      expect(market_20.worst_vendor).to be_an_instance_of FarMar::Vendor
+      expect(market_20.worst_vendor.id).to eq 105
+      expect(market_20.worst_vendor.revenue).to eq 1810
+    end
+  end
+  describe "#worst_vendor(date)" do
+    it "returns the vendor with the lowest revenue for the given date" do
+    market_4 = FarMar::Market.new("4","Preston Farmers’ Market","#1 Route 164","Preston","New London","Connecticut","")
+    expect(market_4.worst_vendor("2013-11-10")).to be_an_instance_of FarMar::Vendor
+    expect(market_4.worst_vendor("2013-11-10").id).to be 14
+    end
+  end
+
+
 end
