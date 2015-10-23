@@ -46,6 +46,7 @@ module FarMar
         zip: matched_line[6])
     end
 
+#Calls the .all method of Vendors and parses through each vendor (already instantiated via the all method), finding all vendors where the id of the market matches the market id of the vendor.
     def vendors
       possibilities = FarMar::Vendor.all
       associated_vendors = possibilities.find_all do |each|
@@ -54,6 +55,7 @@ module FarMar
       return associated_vendors
     end
 
+#Creates an array of all_products, then calls the vendor method on itself to return all the associated vendors. For each vendor, it calls the vendor product method which finds all the products sold by the vendor. For each product it checks if that product is already included on all_products. If it is not, it pushes the product to the mass array. The method return all_products, consisting of every product of every vendor at the market, with no duplicates.
     def products
       all_products = []
       self.vendors.each do |vendor|
@@ -64,6 +66,7 @@ module FarMar
       return all_products
     end
 
+#This creates an array of results, then goes through all the names of all the markets and vendors. If the name of either of those instances matches the search term (using regexp and /i for case insensitivity), if will push that instance to the results and return it.
     def self.search(search_term)
       results = []
       FarMar::Market.all.find_all do |market|
@@ -75,10 +78,12 @@ module FarMar
       return results
     end
 
+#This calls the vendor method on itself, returning all vendors associated with the market. Then it sorts the vendors least to greatest by their revenue, a method in the vendor class. Finally, the method returns the last vendor of that group, or the vendor with the greatest revenue.
     def pref_vendor
-      self.vendors.sort_by { |vendor| vendor.revenue}.last
+      return self.vendors.sort_by { |vendor| vendor.revenue}.last
     end
 
+#This method starts be going through each vendor of the market. For each vendor, it calls sales, which returns all sales associated with the vendor. Next, for every sale it checks if the purchase_time is equal to the date passed through as an argument. If it is, it calls amount on that sale and adds it to the variable revenue. After the loops cycling through adding the sales of each vendor on a certain date, the method compares to see if the revenue on that date calculated is greater than the max_revenue, which startes at 0. If it is, it sets itself as max revenue and the vendor in question as the max_vendor. Thus, for each vendor it compares their revenue with the max revenue and max vendor of all the vendors the loops has already iterated, returning the overall max_vendor.
     def preferred_vendor(date)
       self.vendors.each do |vendor|
       rev = 0

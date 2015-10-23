@@ -58,7 +58,7 @@ module FarMar
       return associated_sales
     end
 
-#
+#Calls sales on the particular vendor, which returns an array of all sales the vendor has made. For each sale, it iterates through and adds the amount of that sale to the revenue variable. Then it returns the total revenue, or sum of every sale.
     def revenue
       revenue = 0
       self.sales.each do |sale|
@@ -67,14 +67,11 @@ module FarMar
       return revenue
     end
 
+#Starts with an array of all vendors using the .all method, then employs find_all to find where the market id passes as an argument equals the market id of each vendor of every iteration. It returns an array of vendors of all of these matches.
     def self.by_market(market_id)
-      #possibilities = self.all
-      #vendor_party = possibilities.find_all do |each|
-        #market_id == each.market_id
       return self.all.find_all do |each|
         market_id == each.market_id
       end
-      #return vendor_party
     end
   end
 end
