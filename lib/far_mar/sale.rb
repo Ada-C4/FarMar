@@ -11,10 +11,6 @@ module FarMar
        @product_id = product_id
      end
 
-
-    #  @open_date = DateTime.strptime(open_date, "%Y-%m-%d %H:%M:%S %z")
-    #     end
-
   ######CLASS METHODS####
     def self.all(csv = "./support/sales.csv")
       sales_info = CSV.read(csv)
@@ -27,11 +23,18 @@ module FarMar
 
     def self.find(search_id, csv = "./support/sales.csv")
       all = self.all(csv)
-      match = (all.find {|n| n.id == search_id.to_s})
+      match = all.find {|n| n.id == search_id.to_s}
       return match
     end
 
-   def self.between(beginning_time, end_time)
+    #~~~~~special fun method~~~~~~~~~~~#
+   def self.between(beginning_time, end_time, csv = "./support/sales.csv")
+
+     #returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
+     range = beginning_time..end_time
+     all = self.all(csv) #array of all sales
+     in_range = all.find_all {|n| range.cover?(n.purchase_time)}
+     return in_range
    end
 
   ######INSTANCE METHODS####

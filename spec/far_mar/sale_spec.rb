@@ -68,6 +68,19 @@ describe FarMar::Sale do
     end
   end
 
+  describe "self.between" do
+    it "returns an Array of FarMar::Sale objects where the purchase time is between the two times given as arguments" do
+      beginning_time1 = "2013-11-07 04:30:56 -0800"
+      end_time1 = "2013-11-11 11:31:52 -0800"
+      beginning_time2 = "2013-11-07 04:30:56 -0800"
+      end_time2 = "2013-11-07 04:30:56 -0800"
+      sold_in_range =  FarMar::Sale.between(beginning_time1, end_time1, "./support/sales2.csv")
+      expect(sold_in_range.length).to eq 5
+      sold_in_range2 = FarMar::Sale.between(beginning_time2, end_time2, "./support/sales2.csv")
+      expect(sold_in_range2.length).to eq 0
+    end
+  end
+
   describe "#vendor" do
     it "returns the vendor instance associated with the given sale" do
       @sale3 = FarMar::Sale.new("4", "", "9", "7", "")
