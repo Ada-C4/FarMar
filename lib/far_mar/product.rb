@@ -47,5 +47,18 @@ module FarMar
         end
       return sales_array
     end
+
+    def self.by_vendor(vendor_id)
+        #returns all of the products with the given vendor_id
+        products_sold_by_a_vendor_array = []
+        product_list = FarMar::Product.all
+        product_list.find_all do |product|
+          if product.vendor_id == vendor_id
+            products_sold_by_a_vendor_array.push(product)
+          end
+        end
+        return products_sold_by_a_vendor_array
+    end
+    
   end
 end
