@@ -27,7 +27,7 @@ module FarMar
   	end
 
     def self.find(id)
-      @@market_array.find {|mar| mar.market_id == id }
+      FarMar::Market.all.find {|mar| mar.market_id == id }
     end
 
     def vendors
@@ -46,7 +46,7 @@ module FarMar
     def self.search(search_term)
       search_term = search_term.downcase
       match_markets = []
-      @@market_array.each do |market|
+      FarMar::Market.all.each do |market|
         match_markets.push(market) if market.name.downcase.match(/#{search_term}/)
       end
       match_vendors = []
@@ -89,34 +89,33 @@ module FarMar
       end
     end
 
-    def worst_vendor
-      ven = self.vendors
-      worst = ven.min_by{|ven| ven.revenue}
-    end
-
-    def worst_vendor_by_date(date)
-      date = DateTime.strptime(date, "%Y-%m-%d").to_date
-      min_revenue = Float::INFINITY
-      worst_ven = nil
-      total = 0
-      self.vendors.each do |vendor_inst|
-        sales_array = []
-        vendor_inst.sales.each do |sale_inst|
-          if sale_inst.purchase_time.to_date == date
-            sales_array.push(sale_inst.amount)
+    def worst_vendor(date = nil)
+      if date == nil        
+        ven = self.vendors
+        worst = ven.min_by{|ven| ven.revenue}
+      else
+        date = DateTime.strptime(date, "%Y-%m-%d").to_date
+        min_revenue = Float::INFINITY        
+        worst_ven = nil
+        total = 0
+        self.vendors.each do |vendor_inst|
+          sales_array = []
+          vendor_inst.sales.each do |sale_inst|
+            if sale_inst.purchase_time.to_date == date
+             sales_array.push(sale_inst.amount)
+            end
           end
+          if sales_array.length > 0
+            total = sales_array.inject(0, :+)
+            if total < min_revenue
+              min_revenue = total
+              worst_ven = vendor_inst
+            end
+         end
         end
-        if sales_array.length > 0
-          total = sales_array.inject(0, :+)
-          if total < min_revenue
-            min_revenue = total
-            worst_ven = vendor_inst
-          end
-        end
+        return worst_ven
       end
-      return worst_ven
     end
 
   end
-
 end

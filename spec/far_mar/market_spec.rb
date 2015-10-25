@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe FarMar::Market do 
 
+		FarMar::Sale.sales_init
+
 	describe '#initialize' do
 	  before :each do
 		  @market = FarMar::Market.new(1,"People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon",97202)
@@ -114,17 +116,8 @@ describe FarMar::Market do
 		it 'returns the Vendor with lowest revenue' do
 			expect(@market.worst_vendor.name).to eq("Quigley, Breitenberg and Schuster")
 		end
-	end
-
-	describe '#worst_vendor_by_date(date)' do
-		before :each do
-		@market = FarMar::Market.new(2,"Silverdale Farmers Market",98383,"Silverdale","Kitsap","Washington",98383)
-		end
-			it 'returns a Vendor' do
-			expect(@market.worst_vendor_by_date("2013-11-10")).to be_an_instance_of(FarMar::Vendor)
-		end
-			it 'returns Vendor w highest revenue for date' do
-			@worst_vend = @market.worst_vendor_by_date("2013-11-10")
+					it 'returns Vendor w highest revenue for date' do
+			@worst_vend = @market.worst_vendor("2013-11-10")
 			expect(@worst_vend.vendor_id).to eq(8)
 		end
 	end

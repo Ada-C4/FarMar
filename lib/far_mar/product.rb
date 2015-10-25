@@ -23,7 +23,7 @@ module FarMar
 		end
 
 		def self.find(id)
-			@@product_array.find {|pro| pro.product_id == id}
+			FarMar::Product.all.find {|pro| pro.product_id == id}
 		end
 
 		def vendor
@@ -31,7 +31,8 @@ module FarMar
 		end
 
 		def sales
-			FarMar::Sale.all.find_all {|sale| sale.product_id == @product_id}
+			sales_hash = FarMar::Sale.sales_by_product
+			return sales_hash[@product_id]
 		end
 
 		def number_of_sales

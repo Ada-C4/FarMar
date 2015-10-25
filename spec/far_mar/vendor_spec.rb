@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe FarMar::Vendor do 
+
+		FarMar::Sale.sales_init
+
 	
 	describe '#initialize' do
 		before :each do
@@ -62,6 +65,9 @@ describe FarMar::Vendor do
 	describe '#sales' do
 		before :each do
 			@vendor = FarMar::Vendor.new(12,"Windler Inc",4,3)
+		end
+		it 'returns an array' do
+		expect(@vendor.sales.class).to eq(Array)
 		end
 		it 'returns all sales per vendor' do
 			expect(@vendor.sales.length).to eq(3)

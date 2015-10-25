@@ -24,7 +24,7 @@ module FarMar
 		end
 
 		def self.find(vendor_id)
- 			@@vendor_array.find {|ven| ven.vendor_id == vendor_id}
+ 			FarMar::Vendor.all.find {|ven| ven.vendor_id == vendor_id}
 		end
 
 		def products
@@ -32,15 +32,17 @@ module FarMar
 		end
 
 		def sales
-			FarMar::Sale.all.find_all {|sale| sale.vendor_id == vendor_id }
+			sales_hash = FarMar::Sale.sales_by_vendor
+			return sales_hash[@vendor_id]
 		end
 
 		def revenue
 			sales_array = self.sales
-			sales_array.map! do |sale|
-				sale.amount
+			total = 0
+			sales_array.each do |sale|
+			#	binding.pry
+				total += sale.amount
 			end
-			total = sales_array.inject(0, :+)
 			return total
 		end
 
@@ -69,15 +71,15 @@ module FarMar
 		# This method is currently taking too long to run; I can't even get the tests to finish on it. Not sure if I'll have the time to retool it
 		# def self.revenue(date)
 		# 	date = DateTime.strptime(date, "%Y-%m-%d").to_date
-		# 	sales_array = []
+		# 	revenue = 0
 		# 	FarMar::Vendor.all.each do |vendor_inst|
 		# 		vendor_inst.sales.each do |sale_inst|
   #         if sale_inst.purchase_time.to_date == date
-  #           sales_array.push(sale_inst.amount)
+  #           revenue += sale_inst.amount
   #         end
   #       end
 		# 	end
-		# 	revenue = sales_array.inject(0, :+)
+		# 	return revenue
 		# end
 
 	end
