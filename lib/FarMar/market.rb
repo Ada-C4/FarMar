@@ -38,7 +38,6 @@ module FarMar
     end
 
 # self.find(id) - returns an instance of Market where the value of the id field in the CSV matches the passed parameter.
-# review!!!
     def self.find(id)
     return Market.all.find do |market|
         market.id == id
@@ -56,9 +55,5 @@ module FarMar
       end
      return all_vendors
     end
-
-
-
-
   end
 end

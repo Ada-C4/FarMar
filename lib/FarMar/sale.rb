@@ -40,18 +40,29 @@ module FarMar
       end
     end
 
-    # def product
-    #   return FarMar::Product.find do |
+# product - returns the FarMar::Product instance that is associated with this sale
+# using the FarMar::Sale product_id field
 
-# this method currently doesn't work. Fix it, Sarah!
+    def product
+      product_instance = []
+      FarMar::Product.all.find do |product|
+        if product.id == product_id
+          product_instance.push(product)
+        end
+      end
+      return product_instance
+    end
+
+# returns a collection of FarMar::Sale objects where the purchase time
+# is between the two times given as arguments
     def self.between(beginning_time, end_time)
       sales = []
       Sale.all.find_all do |sale|
-        if sale.purchase_time >= DateTime.parse(beginning_time) || sale.purchase_time <= DateTime.parse(end_time)
+        if ((sale.purchase_time >= DateTime.parse(beginning_time)) && (sale.purchase_time <= DateTime.parse(end_time)))
           sales.push(sale)
         end
       end
-        return sales
+      return sales
     end
   end
 end

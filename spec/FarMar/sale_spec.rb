@@ -34,25 +34,19 @@ describe FarMar::Sale do
     #     vendor.vendor_id == v.id
   end
 
-  describe "#self.between" do
-    it "returns an array of sales" do
-      expect(FarMar::Sale.between("2013-11-08 10:38:56 -0800","2013-11-13 01:48:15 -0800")).to be_an Array
-      expect(FarMar::Sale.between(give a specific instance and have it expect a specific id number_of_sales
-      # by giving it a specific index[0]))
+  describe "product" do
+    it "returns an array of products associated with the sale" do
+      expect(@sale.product).to be_an Array
     end
   end
 
-
+  describe "#self.between" do
+    it "returns an array of sales" do
+      expect(FarMar::Sale.between("2013-11-08 10:38:56 -0800","2013-11-08 10:39:26 -0800")).to be_an Array
+    end
+    it "returns a specific ID for a specific sale" do
+      expect(FarMar::Sale.between("2013-11-08 10:38:56 -0800","2013-11-08 10:38:56 -0800")[0].id).to eq 39
+    end
+  end
 
 end
-
-
-
-##.products is a method in the vendor spec.
-#goes through the specific instance of vendor, looks at all
-#the products. if the individual product has a vendor ID
-#that matches the product, ID, return
-  # DELETEit "has a product ID that matches the vendor ID" do
-  #   @vendor.products.each do |product|
-  #     product.vendor_id == product.id
-  #   end
