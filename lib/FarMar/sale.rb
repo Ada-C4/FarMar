@@ -1,5 +1,68 @@
+require 'csv'
+require 'pry'
+
 module FarMar
   class Sale
 
+    attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
+
+    def initialize(id, amount, purchase_time, vendor_id, product_id)
+      @id = id
+      @amount = amount
+      @purchase_time = purchase_time
+      @vendor_id = vendor_id
+      @product_id = product_id
+    end
+
+    def self.all
+      @sales = []
+      CSV.foreach('./support/sales.csv') do |row|
+        newsales = Sale.new row[0].to_i, row[1].to_i, DateTime.parse(row [2]), row[3].to_i, row[4].to_i
+        @sales.push(newsales)
+      end
+      return @sales
+    end
+
+    def self.find(id)
+      return Sale.all.find do |sale|
+          sale.id == id
+      end
+    end
+
+# vendor: returns the FarMar::Vendor instance that is associated
+# with this sale using the FarMar::Sale vendor_id field
+    def vendor
+      vendor_sales = []
+      FarMar::Vendor.all.find_all do |sale|
+        if sale.id == vendor_id
+          vendor_sales.push(sale)
+        end
+      end
+    end
+
+# product - returns the FarMar::Product instance that is associated with this sale
+# using the FarMar::Sale product_id field
+
+    def product
+      product_instance = []
+      FarMar::Product.all.find do |product|
+        if product.id == product_id
+          product_instance.push(product)
+        end
+      end
+      return product_instance
+    end
+
+# returns a collection of FarMar::Sale objects where the purchase time
+# is between the two times given as arguments
+    def self.between(beginning_time, end_time)
+      sales = []
+      Sale.all.find_all do |sale|
+        if ((sale.purchase_time >= DateTime.parse(beginning_time)) && (sale.purchase_time <= DateTime.parse(end_time)))
+          sales.push(sale)
+        end
+      end
+      return sales
+    end
   end
 end
