@@ -42,11 +42,14 @@ module FarMar
      return vendor_matches
    end
 
-    #returns a collection of product instances that are associated to the market through the FarMar::Vendor class.
-  #  def products(vendors_csv = "./support/vendors.csv", products_csv = "./support/products.csv")
-  #    vendors = self.vendors(vendors_csv)
-  #    vendors_products_method = Vendor:
-  #    products = vendors.products
-  #  end
+    # returns a collection of product instances that are associated to the market through the FarMar::Vendor class.
+   def products(vendors_csv = "./support/vendors.csv", products_csv = "./support/products.csv")
+     vendors = self.vendors(vendors_csv)
+     product_matches = []
+     vendors.each do |n|
+      product_matches.push(n.products(products_csv))
+     end
+     return product_matches
+   end
  end
 end

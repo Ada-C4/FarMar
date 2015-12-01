@@ -80,7 +80,14 @@ describe FarMar::Market do
 
   describe "#products" do
     it "returns an array of products associated with the market through vendor" do
-
-    end  
+      @market3 = FarMar::Market.new("3", "Best Market","","","","","45555")
+      product_matches = @market3.products("./support/vendors2.csv", "./support/products2.csv")
+      expect(product_matches).to be_an(Array)
+      expect(product_matches.length).to eq 3
+      expect(product_matches[1].name).to eq "Sticky Mango"
+        #fakey fake, new guy- 9
+      #and 10. length 3
+      #last 3 items in products
+    end
   end
 end
